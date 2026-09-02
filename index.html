@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Дашборды и автоматизация — портфолио</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Светлая тема — основная: тёплая бумага, глубокие чернила, тонкое золото.
+   Тёмная — та же композиция на графите. Все цвета заданы здесь, в media-блоках
+   только переопределяются, иначе при системной теме страница остаётся без фона. */
+:root{
+  --paper:#faf6ef; --paper-2:#f3ede1; --ink:#1b1812; --ink-soft:#6a6253;
+  --line:#ddd2bd; --line-strong:#c3b495; --gold:#9c762a; --gold-soft:#c2912e;
+  --card:#fefdfa;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#12100d; --paper-2:#17140f; --ink:#f0e9dc; --ink-soft:#9d9584;
+    --line:#2e2920; --line-strong:#463d2c; --gold:#c2912e; --gold-soft:#ddb970;
+    --card:#181510;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#12100d; --paper-2:#17140f; --ink:#f0e9dc; --ink-soft:#9d9584;
+  --line:#2e2920; --line-strong:#463d2c; --gold:#c2912e; --gold-soft:#ddb970;
+  --card:#181510;
+}
+*{box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font:300 16px/1.75 "Jost","Helvetica Neue",Arial,sans-serif;
+}
+.wrap{max-width:1120px; margin:0 auto; padding:0 32px}
+
+/* --- шапка --- */
+.top{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 0; border-bottom:1px solid var(--line);
+}
+.mark{
+  font:500 13px/1 "Jost",sans-serif; letter-spacing:.38em;
+  text-transform:uppercase; color:var(--ink);
+}
+.mark span{color:var(--gold)}
+.top nav{display:flex; gap:30px}
+.top nav a{
+  font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-soft); text-decoration:none; transition:color .2s;
+}
+.top nav a:hover{color:var(--gold)}
+
+/* --- обложка --- */
+.hero{padding:86px 0 74px; border-bottom:1px solid var(--line)}
+.hero .eyebrow{
+  font-size:11px; letter-spacing:.34em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:26px;
+}
+.hero h1{
+  font:300 clamp(40px,6.4vw,78px)/1.06 "Cormorant Garamond",Georgia,serif;
+  margin:0 0 26px; letter-spacing:-.012em;
+}
+.hero h1 em{font-style:italic; color:var(--gold)}
+.hero p{max-width:560px; margin:0; color:var(--ink-soft); font-size:17px}
+.facts{display:flex; flex-wrap:wrap; gap:56px; margin-top:52px}
+.fact .n{font:400 clamp(38px,4.4vw,54px)/1 "Cormorant Garamond",Georgia,serif;
+  color:var(--gold); letter-spacing:-.02em}
+.fact .l{
+  font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--ink-soft); margin-top:8px;
+}
+
+/* --- разделы --- */
+section{padding:74px 0; border-bottom:1px solid var(--line)}
+.sec-head{display:flex; align-items:baseline; gap:22px; margin-bottom:44px}
+.sec-num{font:400 11px/1 "Jost",sans-serif; letter-spacing:.2em; color:var(--gold)}
+h2{
+  font:300 clamp(26px,3.4vw,38px)/1.15 "Cormorant Garamond",Georgia,serif;
+  margin:0; letter-spacing:-.01em; flex:1;
+}
+.sec-head p{margin:0; color:var(--ink-soft); font-size:14px; max-width:280px}
+
+/* Плитки стоят порознь, у каждой своя рамка: так дашборд читается
+   как отдельная работа, а не как ячейка таблицы. */
+.grid{display:grid; gap:22px; background:transparent; border:0}
+.grid.two{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.item{background:var(--card); padding:34px 32px; display:flex;
+  flex-direction:column; border:1px solid var(--line); border-radius:2px;
+  transition:.22s}
+.item:hover{box-shadow:0 10px 30px rgba(156,118,42,.14);
+  border-color:var(--gold-soft)}
+.item h3{
+  font:400 25px/1.25 "Cormorant Garamond",Georgia,serif;
+  margin:0 0 14px; letter-spacing:-.005em;
+}
+.item p{margin:0 0 22px; color:var(--ink-soft); font-size:15px; flex:1}
+.item p strong{color:var(--ink); font-weight:400}
+.stack{
+  font-size:10.5px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:24px; line-height:2;
+}
+.acts{display:flex; gap:10px; flex-wrap:wrap}
+.acts a{
+  font-size:11.5px; letter-spacing:.18em; text-transform:uppercase;
+  text-decoration:none; padding:13px 26px; border:1px solid var(--line-strong);
+  color:var(--ink); transition:.22s; white-space:nowrap;
+}
+.acts a:hover{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+.acts a.gold{background:var(--gold); border-color:var(--gold); color:#fdfcf9}
+.acts a.gold:hover{background:var(--ink); border-color:var(--ink); color:var(--paper)}.feature{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(260px,1fr);
+  gap:22px;background:transparent;border:0;margin-bottom:22px}
+.feature>div{border:1px solid var(--line);border-radius:2px}
+.feature>div{background:var(--card);padding:40px 38px}
+.feature-side{background:var(--paper-2)}
+.tag{font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:16px}
+.feature h3{font:400 30px/1.2 "Cormorant Garamond",Georgia,serif;
+  margin:0 0 16px;letter-spacing:-.01em}
+.feature p{margin:0 0 16px;color:var(--ink-soft);font-size:15px}
+.feature p strong{color:var(--ink);font-weight:400}
+.feature .stack{margin:22px 0 24px}
+@media(max-width:860px){.feature{grid-template-columns:1fr}.feature>div{padding:30px 26px}}
+.sub{margin-top:26px; padding-top:22px; border-top:1px solid var(--line)}
+.sub .lbl{
+  font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:14px;
+}
+.chips{display:flex; flex-wrap:wrap; gap:8px}
+/* Кнопка раздела — в золотой рамке: это вход внутрь приложения,
+   и он должен читаться как кнопка, а не как подпись. */
+.chips a{
+  font-size:13px; text-decoration:none; padding:8px 16px;
+  border:1px solid var(--gold); color:var(--ink-soft); transition:.2s;
+}
+.chips a:hover{background:var(--gold); border-color:var(--gold); color:var(--paper)}
+
+/* --- заметка и подвал --- */
+.note{
+  display:grid; grid-template-columns:180px 1fr; gap:40px;
+  padding:52px 0; align-items:start;
+}
+.note h4{
+  font:400 11px/1.6 "Jost",sans-serif; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold); margin:0;
+}
+.note p{margin:0; color:var(--ink-soft); font-size:15px; max-width:660px}
+.note p + p{margin-top:16px}
+footer{
+  padding:38px 0 64px; display:flex; gap:34px; flex-wrap:wrap;
+  border-top:1px solid var(--line);
+}
+footer a{
+  font-size:11.5px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-soft); text-decoration:none; transition:color .2s;
+}
+footer a:hover{color:var(--gold)}
+
+@media(max-width:720px){.wrap{padding:0 20px}.top nav{display:none}.hero{padding:56px 0 48px}.facts{gap:32px}.sec-head{flex-direction:column; gap:10px}.sec-head p{max-width:none}.note{grid-template-columns:1fr; gap:16px; padding:40px 0}.item{padding:30px 26px}
+}
+</style>
+<!-- portfolio-scrollbar -->
+<style id="pfScrollbar">
+/* Полоса прокрутки в тон странице. Без этого браузер рисует свою
+   светлую — на тёмном разделе она читается как белая черта сбоку. */
+:root{ color-scheme: dark; }
+:root[data-theme="light"], :root.light,
+body.light, body.light-mode, body.om-light-theme{ color-scheme: light; }
+
+*::-webkit-scrollbar{ width:10px; height:10px; }
+*::-webkit-scrollbar-track{ background:rgba(255,255,255,.04); }
+*::-webkit-scrollbar-thumb{
+  background:rgba(194,145,46,.34);
+  border-radius:6px;
+  border:2px solid transparent;
+  background-clip:padding-box;
+}
+*::-webkit-scrollbar-thumb:hover{ background:rgba(194,145,46,.55);
+  background-clip:padding-box; }
+*::-webkit-scrollbar-corner{ background:transparent; }
+*{ scrollbar-width:thin; scrollbar-color:rgba(194,145,46,.42) transparent; }
+
+/* На светлой теме полоса чуть темнее фона, иначе её не видно. */
+:root[data-theme="light"] *::-webkit-scrollbar-track,
+:root.light *::-webkit-scrollbar-track,
+body.light *::-webkit-scrollbar-track,
+body.light-mode *::-webkit-scrollbar-track,
+body.om-light-theme *::-webkit-scrollbar-track{ background:rgba(0,0,0,.04); }
+:root[data-theme="light"] *::-webkit-scrollbar-thumb,
+:root.light *::-webkit-scrollbar-thumb,
+body.light *::-webkit-scrollbar-thumb,
+body.light-mode *::-webkit-scrollbar-thumb,
+body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
+  background-clip:padding-box; }
+</style>
+<!-- /portfolio-scrollbar -->
+<!-- portfolio-reset -->
+<script>
+/* Разовый сброс: при первой встрече с новой сборкой чистим кэши разделов
+   и ставим тёмную тему. Иначе браузер показывает прошлый запуск, и правки
+   выглядят как непринятые. Вход, роль и имя не трогаем. */
+(function () {
+  var BUILD = 'pf-build-2026-09-02-11';
+  try {
+    if (localStorage.getItem('pf-build') === BUILD) return;
+    var drop = [];
+    for (var i = 0; i < localStorage.length; i++) {
+      var key = localStorage.key(i) || '';
+      var junk = /cache|snap|demo|orders|news|ads|stat|report|items|rows|resources|market|mp_|sowy|om_|fox|calc|kaps|proj/i.test(key);
+      var keep = /auth|role|name|token|login|user/i.test(key);
+      if (junk && !keep) drop.push(key);
+    }
+    drop.forEach(function (key) {
+      try { localStorage.removeItem(key); } catch (e) {}
+    });
+    /* Тёмная тема: у разделов разные ключи, ставим все. */
+    ['pr:theme', 'theme', 'om-theme', 'pf-theme', 'dc-theme', 'koro-theme',
+     'ozlog_theme']
+      .forEach(function (key) {
+        try { localStorage.setItem(key, 'dark'); } catch (e) {}
+      });
+    localStorage.setItem('pf-build', BUILD);
+    /* Перерисовываем страницу с новыми настройками — часть разделов
+       читает тему только при загрузке. */
+    if (!/[?&]pfreset=1/.test(location.search)) {
+      var url = location.href + (location.search ? '&' : '?') + 'pfreset=1';
+      location.replace(url);
+    }
+  } catch (e) {}
+})();
+</script>
+<!-- /portfolio-reset -->
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="top">
+    <div class="mark">Портфолио<span> · </span>дашборды и автоматизация</div>
+    <nav>
+      <a href="#works">Работы</a>
+      <a href="#small">Небольшие</a>
+      <a href="#code">Код</a>
+      <a href="АРХИТЕКТУРА.html">Архитектура</a>
+      <a href="ИИ-НАВЫКИ.html">ИИ и навыки</a>
+    </nav>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">Отдел маркетплейсов · рабочий контур</div>
+    <h1>Инструменты, по которым<br>каждый день <em>принимают решения</em></h1>
+    <p>Пять систем, стоящих в работе: сбор данных из шести кабинетов, разбор
+      заказа на сырьё, планирование поставок по стране, академия регламентов.
+      Каждая выросла из конкретной боли отдела и считает то, по чему
+      принимают решения, — а не то, что удобно посчитать.</p>
+    <div class="facts">
+      <div class="fact"><div class="n">5</div><div class="l">проектов</div></div>
+      <div class="fact"><div class="n">13</div><div class="l">дашбордов</div></div>
+      <div class="fact"><div class="n">6</div><div class="l">кабинетов в сборе</div></div>
+      <div class="fact"><div class="n">45</div><div class="l">человек в шести отделах</div></div>
+      <div class="fact"><div class="n">1,5–3 ч</div><div class="l">ручной работы в день у каждого</div></div>
+    </div>
+  </div>
+
+  <section id="works">
+    <div class="sec-head">
+      <div class="sec-num">01</div>
+      <h2>Открывается и работает</h2>
+      <p>Всё ниже можно потыкать прямо сейчас — данные уже внутри.</p>
+    </div>
+
+    <div class="feature">
+      <div class="feature-main">
+        <div class="tag">Главный проект</div>
+        <h3>Дашборд-центр: тринадцать инструментов отдела</h3>
+        <p>Не набор страниц, а <strong>приложение</strong>. Отчёт о прибылях
+          и убытках из учётной системы, разбор заказа на сырьё, производство,
+          остатки по площадкам, реклама всех кабинетов в одном месте,
+          календарь отгрузок, два калькулятора юнит-экономики, единый
+          справочник и <strong>академия регламентов</strong> с пошаговыми
+          инструкциями по отделам, тестами и прогрессом сотрудника.</p>
+        <p>Все разделы ходят за данными через один шлюз и читают общий
+          справочник — код товара и себестоимость одинаковы везде. Роль
+          выбирается один раз и применяется во всех разделах. Собирается
+          в три упаковки: браузер, программа для компьютера, приложение
+          для телефона.</p>
+        <div class="stack">Кофе в капсулах Nespresso «PIANO 2», 10 шт. Aurora Coffee JS без фреймворков · Google Apps Script ·
+          SheetJS · Electron · Android WebView · PWA</div>
+        <div class="acts">
+          <a class="gold" href="06-dashboard-center/ПК-Windows/site/Projects.html">Открыть витрину</a>
+          <a href="АРХИТЕКТУРА.html#center">Архитектура</a>
+          <a href="АРХИТЕКТУРА.html#dashboards">Разбор всех разделов</a>
+        </div>
+      </div>
+
+      <div class="feature-side">
+        <div class="lbl">Разделы</div>
+        <div class="chips">
+          <a href="06-dashboard-center/ПК-Windows/site/index.html">Прибыли и убытки · 1С</a>
+          <a href="06-dashboard-center/ПК-Windows/site/KapsDash.html">Разбор заказа на сырьё</a>
+          <a href="06-dashboard-center/ПК-Windows/site/foxdash.html">Производство</a>
+          <a href="06-dashboard-center/ПК-Windows/site/SOWY.html">Остатки по площадкам</a>
+          <a href="06-dashboard-center/ПК-Windows/site/ADSdash.html">Реклама и ставки</a>
+          <a href="06-dashboard-center/ПК-Windows/site/OMDash.html">Календарь отгрузок</a>
+          <a href="06-dashboard-center/ПК-Windows/site/EXEC.html">Сводка руководителя</a>
+          <a href="06-dashboard-center/ПК-Windows/site/calcOZONlog.html">Калькулятор Ozon</a>
+          <a href="06-dashboard-center/ПК-Windows/site/calcWB.html">Калькулятор Wildberries</a>
+          <a href="06-dashboard-center/ПК-Windows/site/reglament/index.html">Академия регламентов</a>
+          <a href="06-dashboard-center/ПК-Windows/site/monkey_bot_dashboard.html">Единый портал</a>
+          <a href="06-dashboard-center/ПК-Windows/site/data.html">Справочник источников</a>
+          <a href="06-dashboard-center/ПК-Windows/site/start.html">Стартовая</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid two">
+      <div class="item">
+        <h3>Логистика маркетплейса</h3>
+        <p>Отвечает не «сколько остатков», а <strong>что везти, куда и почему
+          именно туда</strong>. Действия на сегодня отсортированы по деньгам
+          на кону. Десять вкладок: карта страны по кластерам, реестр ЧП и потерь на
+          складах, резервы, напоминания и лента новостей площадки — с
+          пометкой того, что меняет расчёт. Потери считаются сравнением
+          снимков остатков за прошлые дни.</p>
+        <div class="stack">Python · Кофе в капсулах Nespresso «PIANO 2», 10 шт. Aurora Coffee JS · SVG-карта · один файл</div>
+        <div class="acts">
+          <a class="gold" href="02-ozon-logistics-dashboard/Дашборд_логистика_Ozon.html">Открыть</a>
+          <a href="АРХИТЕКТУРА.html#logistics">Как устроено</a>
+        </div>
+      </div>
+
+      <div class="item">
+        <h3>Сайт студии танцев</h3>
+        <p>Расписание занятий, преподаватели, запись клиентов. Интересен не
+          доменной моделью, а сборкой: <strong>двадцать три контейнера
+          поднимаются одной командой</strong> — две базы с репликацией,
+          три слоя сервисов, балансировка чтения на NGINX, сбор логов и
+          трассировка запроса через все слои.</p>
+        <div class="stack">Docker Compose · FastAPI · PostgreSQL · NGINX ·
+          Grafana · Loki · Jaeger · React · TypeScript</div>
+        <div class="acts">
+          <a class="gold" href="08-dance-studio/nginx/static/prototype.html">Открыть интерфейс</a>
+          <a href="08-dance-studio/index.html">Разбор проекта</a>
+        </div>
+      </div>
+
+      <div class="item">
+        <h3>Koro — приложение для языков</h3>
+        <p>214 ключей, HSK 1–3, словари, неправильные глаголы, грамматика,
+          разговорник, квизы и интервальные повторения. Отдельный модуль
+          <strong>«Личное»</strong> — древние письменности и символические
+          системы на том же движке карточек.</p>
+        <div class="stack">Кофе в капсулах Nespresso «PIANO 2», 10 шт. Aurora Coffee JS · SM-2 · PWA · Android · Electron</div>
+        <div class="acts">
+          <a class="gold" href="04-koro-app/index.html">Открыть</a>
+          <a href="АРХИТЕКТУРА.html#koro">Как устроено</a>
+        </div>
+      </div>
+
+      <div class="item">
+        <h3>Карта продаж и прогноз спроса</h3>
+        <p>Две половины одного вопроса на одной странице. Карта страны по
+          кластерам показывает, <strong>где</strong> продаётся и где кончается
+          запас: округа, склады, цвет по риску. Прогноз отвечает,
+          <strong>сколько</strong> понадобится: прогноз по каждой позиции,
+          страховой запас, точка заказа. Точность модели проверена на днях,
+          которых она не видела.</p>
+        <div class="stack">SVG-карта своей отрисовкой · прогноз по истории ·
+          страховой запас · без внешних библиотек</div>
+        <div class="acts">
+          <a class="gold" href="10-map-forecast/index.html">Открыть</a>
+          <a href="АРХИТЕКТУРА.html#forecast">Как устроено</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Небольшие работы: задачи, которые не попадают в большие разделы. -->
+  <section id="small">
+    <div class="sec-head">
+      <div class="sec-num">02</div>
+      <h2>Небольшие работы</h2>
+      <p>Четыре компактных экрана про то, что не помещается в большие
+        разделы: расписания и повторы, лимиты площадок, качество и
+        стоимость ответов модели, сбор отчётов с шести источников.</p>
+    </div>
+
+    <div class="grid two">
+      <div class="item">
+        <h3>Сценарии автоматизации</h3>
+        <p>Двенадцать сценариев: сбор отчётов, обмен с учётной системой,
+          уведомления о дефиците. Видно <strong>запуски по часам</strong>,
+          повторы при отказе площадки по лимиту и то, что остановилось совсем.</p>
+        <div class="stack">n8n-логика · расписание · повторы · один файл</div>
+        <div class="acts">
+          <a class="gold" href="07-small-dashboards/automations.html">Открыть</a>
+          <a href="АРХИТЕКТУРА.html#small">Как устроено</a>
+        </div>
+      </div>
+
+      <div class="item">
+        <h3>Здоровье интеграций</h3>
+        <p>Двенадцать методов пяти систем: коды ответов, задержки, израсходованная
+          квота. Отвечает на вопрос, <strong>у кого запас кончится раньше суток</strong>
+          и где ставить очередь вместо прямого запроса.</p>
+        <div class="stack">квоты · 429 и повторы · задержки по часам</div>
+        <div class="acts">
+          <a class="gold" href="07-small-dashboards/integrations.html">Открыть</a>
+          <a href="АРХИТЕКТУРА.html#small">Как устроено</a>
+        </div>
+      </div>
+
+      <div class="item">
+        <h3>Качество и стоимость ответов модели</h3>
+        <p>Десять задач отдела с эталонными ответами прогоняются через три модели.
+          Оценка по близости к эталону, расход в рублях за две недели и вывод,
+          <strong>какую модель ставить в какой шаг</strong>.</p>
+        <div class="stack">набор примеров · оценка · стоимость токенов</div>
+        <div class="acts">
+          <a class="gold" href="07-small-dashboards/model-quality.html">Открыть</a>
+          <a href="АРХИТЕКТУРА.html#small">Как устроено</a>
+        </div>
+      </div>
+
+      <div class="item">
+        <h3>Разбор ролей и навыков</h3>
+        <p>Три направления работы с ИИ — архитектура, инженерия,
+          автоматизация: что входит в каждое и какая моя работа за этим
+          стоит. Плюс три работающих экрана: сценарий с повтором, поиск по
+          смыслу, сборка агента.</p>
+        <div class="stack">три направления · три экрана · разбор устройства</div>
+        <div class="acts">
+          <a class="gold" href="ИИ-НАВЫКИ.html">Открыть</a>
+          <a href="АРХИТЕКТУРА.html#ai">Как устроено</a>
+          <a href="07-small-dashboards/index.html">Все небольшие работы</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="code">
+    <div class="sec-head">
+      <div class="sec-num">03</div>
+      <h2>Код и разбор</h2>
+      <p>Здесь смотреть нечего глазами — смотреть надо код.</p>
+    </div>
+
+    <div class="grid two">
+      <div class="item">
+        <h3>Сборщик отчётов маркетплейсов</h3>
+        <p>Ежедневный сбор из шести кабинетов по расписанию. Где есть API —
+          идём в API, где нет — поднимаем браузер с сохранённой сессией.
+          Повторы с уважением к <strong>Retry-After</strong>, обход потолка
+          offset, автопочинка драйвера, алерт в Telegram при слетевшей сессии.</p>
+        <div class="stack">Python · Selenium · Apps Script · Telegram · Планировщик</div>
+        <div class="acts"><a class="gold" href="АРХИТЕКТУРА.html#collector">Разбор проекта</a></div>
+      </div>
+
+      <div class="item">
+        <h3>Голосовой агент для робота</h3>
+        <p>Домашний робот с закрытым облачным управлением. Сетевой протокол
+          разобран по трафику и нативным библиотекам, написан <strong>свой
+          клиент на Python</strong>, сверху — голос и слежение за человеком
+          по видео.</p>
+        <div class="stack">Python · UDP · Vosk · YOLO · Frida</div>
+        <div class="acts"><a class="gold" href="АРХИТЕКТУРА.html#robot">Разбор проекта</a></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="note">
+    <h4>О данных</h4>
+    <div>
+      <p>Все цифры, названия и коды приведены для примера. Приём один: у
+        каждого товара свой постоянный коэффициент, одинаковый во всех блоках
+        данных, — поэтому дни покрытия, ABC-классы и темпы продаж остались
+        такими же, как на настоящих данных. Заменены цифры, а не картина.</p>
+      <p>Ни один запрос не уходит наружу: адреса площадок и внешних сервисов
+        заменены на локальные пути, отвечает на них шлюз, поднимающийся вместе
+        с сервером. Контракт тот же — те же методы и та же форма ответа.</p>
+    </div>
+  </div>
+
+  <footer>
+    <a href="АРХИТЕКТУРА.html">Архитектура проектов</a>
+    <a href="ИИ-НАВЫКИ.html">ИИ и автоматизация</a>
+    <a href="АРХИТЕКТУРА.html#sections">Все разделы списком</a>
+  </footer>
+
+</div>
+<!-- portfolio-theme -->
+<style>
+#themeBtn{
+  position:fixed; right:22px; top:20px; z-index:900;
+  display:flex; align-items:center; gap:9px; cursor:pointer;
+  padding:9px 15px; border:1px solid var(--line-strong); background:var(--card);
+  color:var(--ink-soft); font:400 11px/1 "Jost","Helvetica Neue",Arial,sans-serif;
+  letter-spacing:.16em; text-transform:uppercase; transition:.2s;
+}
+#themeBtn:hover{border-color:var(--gold); color:var(--gold)}
+#themeBtn i{font-style:normal; font-size:13px; line-height:1}
+@media(max-width:720px){
+  #themeBtn{right:12px; top:12px; padding:8px 11px}
+  #themeBtn span{display:none}
+}
+/* Полоса прокрутки в цвет темы: по умолчанию она белая и выбивается. */
+:root{color-scheme:dark}
+:root[data-theme="light"]{color-scheme:light}
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{background:rgba(0,0,0,.18)}
+::-webkit-scrollbar-thumb{background:#3a352c;border-radius:6px;
+  border:3px solid transparent;background-clip:content-box}
+::-webkit-scrollbar-thumb:hover{background:#5a5142;background-clip:content-box}
+:root[data-theme="light"] ::-webkit-scrollbar-track{background:rgba(0,0,0,.06)}
+:root[data-theme="light"] ::-webkit-scrollbar-thumb{background:#cfc4ad;
+  background-clip:content-box}
+</style>
+<script>
+/* Тема: системная по умолчанию, дальше — то, что человек выбрал сам.
+   Выбор пишем в корень страницы, оба набора цветов уже описаны в стилях. */
+(function () {
+  var KEY = 'pf-theme';
+
+  /* По умолчанию тёмная: разделы задумывались тёмными, светлая —
+     осознанный выбор человека, и он запоминается. */
+  function current() {
+    try { return localStorage.getItem(KEY) || 'dark'; }
+    catch (e) { return 'dark'; }
+  }
+
+  function apply(mode) {
+    document.documentElement.setAttribute('data-theme', mode);
+    var btn = document.getElementById('themeBtn');
+    if (btn) {
+      btn.querySelector('i').textContent = mode === 'dark' ? '\u2600' : '\u263D';
+      btn.querySelector('span').textContent = mode === 'dark' ? 'светлая' : 'тёмная';
+      btn.title = mode === 'dark' ? 'Включить светлую тему' : 'Включить тёмную тему';
+    }
+  }
+
+  apply(current());
+
+  function build() {
+    if (document.getElementById('themeBtn')) return;
+    var btn = document.createElement('button');
+    btn.id = 'themeBtn';
+    btn.type = 'button';
+    btn.innerHTML = '<i></i><span></span>';
+    btn.addEventListener('click', function () {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      try { localStorage.setItem(KEY, next); } catch (e) {}
+      apply(next);
+    });
+    document.body.appendChild(btn);
+    apply(current());
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', build);
+  } else { build(); }
+})();
+</script>
+<!-- /portfolio-theme -->
+</body>
+</html>

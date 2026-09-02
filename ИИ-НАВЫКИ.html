@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ИИ и автоматизация — навыки</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#faf6ef; --ink:#1b1812; --ink-soft:#6a6253;
+  --line:#ddd2bd; --line-strong:#c3b495; --gold:#9c762a; --card:#fefdfa;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#12100d; --ink:#f0e9dc; --ink-soft:#9d9584;
+    --line:#2e2920; --line-strong:#463d2c; --gold:#c2912e; --card:#181510;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#12100d; --ink:#f0e9dc; --ink-soft:#9d9584;
+  --line:#2e2920; --line-strong:#463d2c; --gold:#c2912e; --card:#181510;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:300 16px/1.75 "Jost","Helvetica Neue",Arial,sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+.top{display:flex;align-items:center;justify-content:space-between;
+  padding:26px 0;border-bottom:1px solid var(--line)}
+.mark{font:500 13px/1 "Jost",sans-serif;letter-spacing:.38em;
+  text-transform:uppercase}
+.mark span{color:var(--gold)}
+.top a{font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);text-decoration:none}
+.top a:hover{color:var(--gold)}
+.hero{padding:74px 0 56px;border-bottom:1px solid var(--line)}
+.hero .eyebrow{font-size:11px;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:24px}
+.hero h1{font:300 clamp(34px,5.2vw,60px)/1.08 "Cormorant Garamond",Georgia,serif;
+  margin:0 0 22px}
+.hero p{max-width:640px;margin:0;color:var(--ink-soft);font-size:17px}
+.demo-lead{margin:0 0 14px;color:var(--ink-soft)}
+.demo-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:14px;margin:0 0 20px;padding:16px 18px;background:var(--card);
+  border:1px solid var(--line);font-size:14px;line-height:1.6}
+.demo-meta b{display:block;font-weight:400;color:var(--gold);
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  margin-bottom:4px}
+section{padding:62px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:22px;margin-bottom:22px}
+.sec-num{font:400 11px/1 "Jost",sans-serif;letter-spacing:.2em;color:var(--gold)}
+h2{font:300 clamp(25px,3.2vw,36px)/1.15 "Cormorant Garamond",Georgia,serif;margin:0}
+.kind{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);margin-top:8px}
+.what{max-width:720px;color:var(--ink-soft);margin:0 0 28px;font-size:15.5px}
+/* Четыре цифры в одну строку: при переносе последняя болтается
+   отдельной строкой и читается как случайная. */
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;
+  margin:0 0 30px}
+@media(max-width:860px){.facts{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:460px){.facts{grid-template-columns:1fr}}
+.fact .n{font:400 42px/1 "Cormorant Garamond",Georgia,serif;color:var(--gold)}
+.fact .l{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-soft);margin-top:6px}
+.tablewrap{overflow-x:auto;border:1px solid var(--gold)}
+table{border-collapse:collapse;width:100%;min-width:720px;background:var(--card)}
+th,td{padding:15px 20px;text-align:left;border-bottom:1px solid var(--line);
+  vertical-align:top;font-size:14.5px;color:var(--ink-soft)}
+th{font:500 10px/1 "Jost",sans-serif;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold)}
+tr:last-child td{border-bottom:0}
+td.nm{font-family:"Cormorant Garamond",Georgia,serif;font-size:17px;color:var(--ink)}
+td.st{font-size:11px;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
+
+.demo{border:1px solid var(--gold);background:var(--card);padding:30px 28px;
+  margin-bottom:22px}
+.demo h3{font:400 23px/1.25 "Cormorant Garamond",Georgia,serif;margin:0 0 10px}
+.demo p{margin:0 0 20px;color:var(--ink-soft);font-size:14.5px;max-width:660px}
+.run{border:1px solid var(--gold);background:var(--gold);color:#fdfcf9;
+  padding:11px 24px;font:500 11.5px/1 "Jost",sans-serif;letter-spacing:.18em;
+  text-transform:uppercase;cursor:pointer}
+.run:hover{filter:brightness(1.07)}
+.flow{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.node{border:1px solid var(--line-strong);padding:12px 16px;font-size:13px;
+  min-width:150px;transition:.2s}
+.node b{display:block;font-size:13.5px;color:var(--ink);margin-bottom:3px}
+.node span{font-size:11.5px;color:var(--ink-soft)}
+.node.run-now{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.node.done{border-color:#7a8b3a}
+.node.retry{border-color:#9c762a}
+.log{margin-top:16px;font-family:ui-monospace,Menlo,Consolas,monospace;
+  font-size:12.5px;color:var(--ink-soft);white-space:pre-wrap;line-height:1.7}
+.ask{display:flex;gap:10px;flex-wrap:wrap}
+.ask input{flex:1;min-width:240px;padding:12px 15px;border:1px solid var(--line-strong);
+  background:transparent;color:var(--ink);font:300 14px/1 "Jost",sans-serif}
+.tools{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:18px}
+.tool{border:1px solid var(--line-strong);padding:9px 15px;font-size:13px;
+  cursor:pointer;user-select:none}
+.tool.on{border-color:var(--gold);color:var(--gold)}
+footer{padding:36px 0 60px;display:flex;gap:32px;flex-wrap:wrap}
+footer a{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);text-decoration:none}
+footer a:hover{color:var(--gold)}
+@media(max-width:720px){.wrap{padding:0 20px}.sec-head{flex-direction:column;gap:8px}}
+</style>
+<!-- portfolio-scrollbar -->
+<style id="pfScrollbar">
+/* Полоса прокрутки в тон странице. Без этого браузер рисует свою
+   светлую — на тёмном разделе она читается как белая черта сбоку. */
+:root{ color-scheme: dark; }
+:root[data-theme="light"], :root.light,
+body.light, body.light-mode, body.om-light-theme{ color-scheme: light; }
+
+*::-webkit-scrollbar{ width:10px; height:10px; }
+*::-webkit-scrollbar-track{ background:rgba(255,255,255,.04); }
+*::-webkit-scrollbar-thumb{
+  background:rgba(194,145,46,.34);
+  border-radius:6px;
+  border:2px solid transparent;
+  background-clip:padding-box;
+}
+*::-webkit-scrollbar-thumb:hover{ background:rgba(194,145,46,.55);
+  background-clip:padding-box; }
+*::-webkit-scrollbar-corner{ background:transparent; }
+*{ scrollbar-width:thin; scrollbar-color:rgba(194,145,46,.42) transparent; }
+
+/* На светлой теме полоса чуть темнее фона, иначе её не видно. */
+:root[data-theme="light"] *::-webkit-scrollbar-track,
+:root.light *::-webkit-scrollbar-track,
+body.light *::-webkit-scrollbar-track,
+body.light-mode *::-webkit-scrollbar-track,
+body.om-light-theme *::-webkit-scrollbar-track{ background:rgba(0,0,0,.04); }
+:root[data-theme="light"] *::-webkit-scrollbar-thumb,
+:root.light *::-webkit-scrollbar-thumb,
+body.light *::-webkit-scrollbar-thumb,
+body.light-mode *::-webkit-scrollbar-thumb,
+body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
+  background-clip:padding-box; }
+</style>
+<!-- /portfolio-scrollbar -->
+<!-- portfolio-reset -->
+<script>
+/* Разовый сброс: при первой встрече с новой сборкой чистим кэши разделов
+   и ставим тёмную тему. Иначе браузер показывает прошлый запуск, и правки
+   выглядят как непринятые. Вход, роль и имя не трогаем. */
+(function () {
+  var BUILD = 'pf-build-2026-09-02-11';
+  try {
+    if (localStorage.getItem('pf-build') === BUILD) return;
+    var drop = [];
+    for (var i = 0; i < localStorage.length; i++) {
+      var key = localStorage.key(i) || '';
+      var junk = /cache|snap|demo|orders|news|ads|stat|report|items|rows|resources|market|mp_|sowy|om_|fox|calc|kaps|proj/i.test(key);
+      var keep = /auth|role|name|token|login|user/i.test(key);
+      if (junk && !keep) drop.push(key);
+    }
+    drop.forEach(function (key) {
+      try { localStorage.removeItem(key); } catch (e) {}
+    });
+    /* Тёмная тема: у разделов разные ключи, ставим все. */
+    ['pr:theme', 'theme', 'om-theme', 'pf-theme', 'dc-theme', 'koro-theme',
+     'ozlog_theme']
+      .forEach(function (key) {
+        try { localStorage.setItem(key, 'dark'); } catch (e) {}
+      });
+    localStorage.setItem('pf-build', BUILD);
+    /* Перерисовываем страницу с новыми настройками — часть разделов
+       читает тему только при загрузке. */
+    if (!/[?&]pfreset=1/.test(location.search)) {
+      var url = location.href + (location.search ? '&' : '?') + 'pfreset=1';
+      location.replace(url);
+    }
+  } catch (e) {}
+})();
+</script>
+<!-- /portfolio-reset -->
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="mark">ИИ<span> · </span>навыки и автоматизация</div>
+    <div style="display:flex;gap:22px;align-items:center">
+      <a href="АРХИТЕКТУРА.html#ai">как устроены экраны</a>
+      <a href="07-small-dashboards/index.html">небольшие работы</a>
+      <a href="index.html">← к проектам</a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">Автоматизация и работа с ИИ</div>
+    <h1>Что я умею — и в какой<br>работе это видно</h1>
+    <p>AI-архитектор, AI-инженер и автоматизатор — три разных набора задач. Ниже: что входит в каждый, какая моя работа за этим стоит, и четыре небольших экрана, где приём показан в действии.</p>
+  </div>
+
+  <section id="roles">
+    <div class="sec-head"><div class="sec-num">01</div>
+      <div><h2>Три направления и что я приношу в каждое</h2>
+      <div class="kind">что входит в каждое направление</div></div></div>
+    <p class="what">Названия ролей размыты, а задачи за ними — нет. Ниже то,
+      что в них действительно входит, и работа, в которой это сделано.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Направление</th><th>Что входит</th>
+      <th>Что за этим у меня стоит</th><th>Где посмотреть</th></tr></thead>
+      <tbody><tr><td class="nm">AI-архитектор</td><td>Собрать систему из моделей, хранилищ и сервисов: где границы, что синхронно, что очередью, как считать стоимость и что делать при отказе.</td><td>Пять систем, где сбор отделён от показа. Единый шлюз: ключи на своей стороне, разделы к площадкам напрямую не ходят. Снимок ответов вместо живых вызовов — приложение работает и без сети. Единый справочник как источник истины: код товара и себестоимость одинаковы во всех разделах.</td><td class="st">Архитектура · дашборд-центр</td></tr><tr><td class="nm">AI-инженер</td><td>Довести модель до продукта: подготовка данных, подсказки, поиск по смыслу, оценка качества ответов и наблюдение за тем, как модель работает в бою.</td><td>Распознавание речи и детекция объектов на устройстве в проекте робота. Свой клиент к закрытому облаку — протокол разобран по трафику. Прогноз спроса по истории продаж со страховым запасом и точкой заказа. Набор задач отдела с эталонными ответами: точность и стоимость трёх моделей считаются, а не оцениваются на глаз.</td><td class="st">Качество и стоимость ответов модели</td></tr><tr><td class="nm">Автоматизатор</td><td>Связать сервисы без ручной работы: сценарии, вебхуки, очереди, расписания, боты, обработка ошибок и повторы.</td><td>Ежедневный сбор из шести кабинетов по расписанию: где есть API — идём в API, где нет — поднимаем браузер с сохранённой сессией. Повторы с уважением к Retry-After, обход потолка выборки, алерты в Telegram и запуск командой боту. Полтора часа ручной работы у сорока пяти человек — снято.</td><td class="st">Сборщик отчётов · сценарии автоматизации</td></tr></tbody></table></div>
+  </section>
+  <section id="skills">
+    <div class="sec-head"><div class="sec-num">02</div>
+      <div><h2>Сильные стороны</h2>
+      <div class="kind">каждая — с делом, в котором она видна</div></div></div>
+    <div class="facts"><div class="fact"><div class="n">5</div><div class="l">самостоятельных систем</div></div><div class="fact"><div class="n">13</div><div class="l">разделов в приложении</div></div><div class="fact"><div class="n">6</div><div class="l">кабинетов по расписанию</div></div><div class="fact"><div class="n">45</div><div class="l">человек без ручной работы</div></div></div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Что умею</th><th>В чём это видно</th>
+      <th>Где открыть</th></tr></thead>
+      <tbody><tr><td class="nm">Python: сбор, разбор, интеграции</td><td>Шесть кабинетов площадок, браузерная автоматизация там, где API закрыт, запуск по расписанию и восстановление после сбоя.</td><td class="st">Сборщик отчётов</td></tr><tr><td class="nm">Работа с API и их ограничениями</td><td>Квоты и лимиты, отказы по превышению, потолок выборки в двадцать тысяч записей, разбивка тяжёлых выгрузок на окна.</td><td class="st">Здоровье интеграций</td></tr><tr><td class="nm">Сценарии автоматизации</td><td>Двенадцать сценариев: расписание, ветвление, повтор при отказе, уведомление ответственному. Логика переносится в n8n один в один.</td><td class="st">Сценарии автоматизации</td></tr><tr><td class="nm">Поиск по смыслу вместо совпадения слов</td><td>Вопрос переводится в вектор, ответ ищется по близости: «приёмка задерживается» находит правило про опоздание машины.</td><td class="st">Экран поиска ниже</td></tr><tr><td class="nm">Подсказки и оценка ответов модели</td><td>Набор из десяти задач отдела с эталонами: оценка по близости к эталону, стоимость прогона в рублях, вывод, где какая модель дешевле.</td><td class="st">Качество и стоимость ответов модели</td></tr><tr><td class="nm">Разбор протоколов и обратная разработка</td><td>Свой клиент к закрытому облаку робота: трафик разобран, команды воспроизведены, устройство работает без родного приложения.</td><td class="st">Голосовой агент</td></tr><tr><td class="nm">Прогнозирование и планирование поставок</td><td>Прогноз спроса по истории продаж, страховой запас, точка заказа и готовый план: что везти, куда и в каком количестве.</td><td class="st">Логистика · формирование поставок</td></tr><tr><td class="nm">Наблюдение за системой в работе</td><td>Что отработало и что упало, повторы, задержки по часам, израсходованная квота, оповещение до того, как встало.</td><td class="st">Сценарии автоматизации · здоровье интеграций</td></tr><tr><td class="nm">Данные: один справочник для всех разделов</td><td>Сто двадцать две позиции, код товара и себестоимость в одном месте: тринадцать разделов считают по одним и тем же числам.</td><td class="st">Справочник источников</td></tr><tr><td class="nm">Инфраструктура: контейнеры, базы, наблюдение</td><td>Система из двадцати трёх контейнеров: репликация базы, разделение чтения и записи, балансировка, логи в Grafana и трассировка запроса через все слои.</td><td class="st">Сайт студии танцев</td></tr><tr><td class="nm">Продукт целиком, а не только скрипт</td><td>Тринадцать разделов в одном приложении, три упаковки — браузер, программа для компьютера, приложение для телефона.</td><td class="st">Дашборд-центр</td></tr></tbody></table></div>
+  </section>
+  <section id="tooling">
+    <div class="sec-head"><div class="sec-num">03</div>
+      <div><h2>Инструменты разработки</h2>
+      <div class="kind">чем собираю и как отдаю людям</div></div></div>
+    <p class="what">Приложение мало написать — его нужно собрать, обновлять и
+      отдать людям так, чтобы оно открылось без настройки. Ниже то, чем я это
+      делаю, и честное состояние по каждому пункту.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Инструмент</th><th>Что с ним делаю</th>
+      <th>Состояние</th></tr></thead>
+      <tbody><tr><td class="nm">Git</td><td>Веду репозиторий: ветки под правку, понятные коммиты, откат к рабочей версии. Файл исключений написан первым делом — ключи, сессии браузера и рабочие выгрузки в репозиторий не попадают. Статику публиковала через GitHub Pages: страница раздаётся прямо из репозитория.</td><td class="st">пользуюсь</td></tr><tr><td class="nm">Сборка приложения для компьютера</td><td>Тот же сайт запускается внутри окна Electron, сборка через electron-builder, на выходе установщик NSIS для Windows. Приложение работает без интернета и ставится обычным двойным щелчком.</td><td class="st">делала сама</td></tr><tr><td class="nm">Сборка приложения для телефона</td><td>Экран — WebView, сайт лежит внутри пакета и грузится с устройства. Сборка Gradle, на выходе APK. Отдельный скрипт синхронизации следит, чтобы обе упаковки собирались из одного исходника.</td><td class="st">делала сама</td></tr><tr><td class="nm">Установка из браузера (PWA)</td><td>Манифест и служебный скрипт кладут страницы в кэш устройства: приложение ставится на домашний экран и открывается без сети.</td><td class="st">делала сама</td></tr><tr><td class="nm">Docker</td><td>Собирала в контейнерах систему целиком: двадцать три контейнера в одном описании — две базы с репликацией, три слоя сервисов по три копии, балансировка на NGINX, сбор логов и трассировка. Поднимается одной командой, зависимости и проверки готовности описаны там же. В портфолио есть и упаковка самого портфолио: Dockerfile и compose-файл в корне.</td><td class="st">сайт студии танцев</td></tr></tbody></table></div>
+  </section>
+  <section id="demos">
+    <div class="sec-head"><div class="sec-num">04</div>
+      <div><h2>Три экрана, которые работают</h2>
+      <div class="kind">не рассказ, а то, что можно потыкать</div></div></div>
+    <p class="what">Каждый экран — отдельный приём из рабочей практики,
+      сведённый к минимуму, на котором видно суть. Всё считается прямо
+      в странице, без сервера и без интернета.</p>
+
+    <div class="demo">
+      <h3>Сценарий с повтором: сбор отчёта</h3>
+      <p class="demo-lead">Узлы срабатывают по очереди, у каждого свой
+        результат. На третьем шаге площадка отвечает отказом по лимиту —
+        сценарий ждёт и повторяет вместо того, чтобы упасть.</p>
+      <div class="demo-meta">
+        <div><b>Что показывает</b> порядок шагов, обработку отказа и то,
+          что сценарий доводит работу до конца сам.</div>
+        <div><b>Какой навык</b> автоматизация связок между сервисами:
+          расписание, ветвление, повторы, уведомление ответственному.</div>
+        <div><b>Где это в работе</b> утренний сбор отчётов из шести
+          кабинетов; именно так он переживает лимиты площадок.</div>
+      </div>
+      <div class="flow" id="flow"></div>
+      <button class="run" id="runFlow">Запустить сценарий</button>
+      <div class="log" id="flowLog"></div>
+    </div>
+
+    <div class="demo">
+      <h3>Поиск по смыслу вместо совпадения слов</h3>
+      <p class="demo-lead">Запрос переводится в набор чисел, и ответ ищется
+        по близости смыслов. Спросите своими словами — например, «что делать
+        если приёмка задерживается»: в правиле этих слов нет, а найдётся оно.</p>
+      <div class="demo-meta">
+        <div><b>Что показывает</b> почему поиск по смыслу отвечает там, где
+          обычный поиск по словам возвращает пустоту.</div>
+        <div><b>Какой навык</b> подготовка базы знаний: разбить документы на
+          куски, перевести в векторы, искать ближайшие и показать источник.</div>
+        <div><b>Где это в работе</b> академия регламентов: сотрудник
+          спрашивает по-человечески, а не угадывает название документа.</div>
+      </div>
+      <div class="ask">
+        <input id="ragQ" placeholder="ваш вопрос своими словами…">
+        <button class="run" id="ragBtn">Найти</button>
+      </div>
+      <div class="log" id="ragOut"></div>
+    </div>
+
+    <div class="demo">
+      <h3>Сборка агента под задачу</h3>
+      <p class="demo-lead">Агент — это модель плюс инструменты и правило
+        остановки. Отметьте инструменты и посмотрите, какие шаги он выполнит
+        и во что обойдётся прогон.</p>
+      <div class="demo-meta">
+        <div><b>Что показывает</b> что агент — не магия, а набор доступных
+          действий и условие, при котором он останавливается.</div>
+        <div><b>Какой навык</b> постановка задачи модели: какие инструменты
+          дать, в каком порядке вызывать, чем ограничить и как считать цену.</div>
+        <div><b>Где это в работе</b> утренняя сводка руководителю: забрать
+          остатки, сверить со справочником, посчитать маржу, отправить.</div>
+      </div>
+      <div class="tools" id="tools"></div>
+      <button class="run" id="agentBtn">Собрать и запустить</button>
+      <div class="log" id="agentOut"></div>
+    </div>
+  </section>
+
+  <footer>
+    <a href="index.html">Проекты</a>
+    <a href="АРХИТЕКТУРА.html">Архитектура</a>
+  </footer>
+</div>
+
+<script>
+/* Три экрана ниже работают полностью на странице: считают, ищут и
+   показывают шаги. Модель не вызывается — показан подход, а не сервис. */
+(function () {
+  /* --- 1. Сценарий сбора: узлы, отказ и повтор --- */
+  var NODES = [
+    { name: 'Расписание', note: 'каждый день 06:00' },
+    { name: 'Ozon · отчёт', note: 'запрос по API' },
+    { name: 'WB · отчёт', note: 'ответ 429, повтор' },
+    { name: 'Свести колонки', note: 'общая схема' },
+    { name: 'Записать в лист', note: 'Google Sheets' },
+    { name: 'Сообщить', note: 'Telegram' }
+  ];
+
+  var flow = document.getElementById('flow');
+  NODES.forEach(function (n, i) {
+    var d = document.createElement('div');
+    d.className = 'node';
+    d.id = 'node' + i;
+    d.innerHTML = '<b>' + n.name + '</b><span>' + n.note + '</span>';
+    flow.appendChild(d);
+  });
+
+  document.getElementById('runFlow').addEventListener('click', function () {
+    var log = document.getElementById('flowLog');
+    log.textContent = '';
+    NODES.forEach(function (n, i) {
+      document.getElementById('node' + i).className = 'node';
+    });
+
+    var i = 0;
+    (function step() {
+      if (i >= NODES.length) {
+        log.textContent += 'готово · 6 узлов · 1 повтор · 4.8 c\n';
+        return;
+      }
+      var el = document.getElementById('node' + i);
+      el.className = 'node run-now';
+      var retry = (i === 2);
+      setTimeout(function () {
+        el.className = 'node ' + (retry ? 'retry' : 'done');
+        log.textContent += (retry
+          ? '· ' + NODES[i].name + ' → 429, жду 2 c и повторяю → готово\n'
+          : '· ' + NODES[i].name + ' → готово\n');
+        i++;
+        step();
+      }, retry ? 1100 : 500);
+    })();
+  });
+
+  /* --- 2. Векторный поиск: близость по смыслу, а не по словам --- */
+  var DOCS = [
+    { t: 'Приёмка задерживается', a: 'Проверить окно отгрузки и статус ' +
+      'заявки; если склад встал — перенаправить поставку в соседний кластер.',
+      k: 'приёмк задерж склад окно очеред перенаправ поставк' },
+    { t: 'Товар без продаж больше 14 дней', a: 'Снять с продвижения, ' +
+      'проверить карточку и цену, рассмотреть вывоз со склада.',
+      k: 'без продаж залежал вывоз карточк цена продвижен' },
+    { t: 'Остаток кончится раньше срока', a: 'Посчитать дни покрытия, ' +
+      'поднять приоритет позиции и заложить страховой запас.',
+      k: 'остаток кончит дефицит покрыти запас приоритет срочн' },
+    { t: 'Реклама съедает маржу', a: 'Сравнить ДРР с коридором, урезать ' +
+      'ставку на дорогих запросах, проверить корзину.',
+      k: 'реклам дрр маржа ставк запрос корзина дорог' },
+    { t: 'Отчёт не собрался утром', a: 'Проверить сессию кабинета и ' +
+      'ответ площадки; повтор идёт с учётом Retry-After.',
+      k: 'отчёт не собрал сессия ошибка повтор сбор утро' }
+  ];
+
+  function vec(text) {
+    /* Упрощённое представление: слово → его вклад в вектор. Настоящая
+       модель делает то же самое, только размерность больше. */
+    var words = String(text).toLowerCase().match(/[а-яёa-z]{3,}/g) || [];
+    var v = {};
+    words.forEach(function (w) {
+      var stem = w.slice(0, 5);
+      v[stem] = (v[stem] || 0) + 1;
+    });
+    return v;
+  }
+
+  function near(a, b) {
+    var dot = 0, na = 0, nb = 0, k;
+    for (k in a) { na += a[k] * a[k]; if (b[k]) dot += a[k] * b[k]; }
+    for (k in b) { nb += b[k] * b[k]; }
+    return (na && nb) ? dot / Math.sqrt(na * nb) : 0;
+  }
+
+  document.getElementById('ragBtn').addEventListener('click', function () {
+    var q = document.getElementById('ragQ').value.trim();
+    var out = document.getElementById('ragOut');
+    if (!q) { out.textContent = 'напишите вопрос своими словами'; return; }
+    var qv = vec(q);
+    var scored = DOCS.map(function (d) {
+      return { d: d, s: near(qv, vec(d.k + ' ' + d.t)) };
+    }).sort(function (x, y) { return y.s - x.s; });
+
+    var best = scored[0];
+    out.textContent =
+      'вектор запроса: ' + Object.keys(qv).length + ' измерений\n' +
+      'ближайшее совпадение: ' + best.d.t +
+      ' (близость ' + best.s.toFixed(2) + ')\n\n' +
+      best.d.a + '\n\nследом: ' +
+      scored.slice(1, 3).map(function (x) {
+        return x.d.t + ' (' + x.s.toFixed(2) + ')';
+      }).join(' · ');
+  });
+
+  /* --- 3. Сборка агента: инструменты, шаги и стоимость --- */
+  var TOOLS = [
+    { id: 'api', name: 'Запрос к API площадки', step: 'забрал остатки и заказы', cost: 0.4 },
+    { id: 'sheet', name: 'Чтение таблицы', step: 'сверил со справочником', cost: 0.2 },
+    { id: 'calc', name: 'Расчёт юнит-экономики', step: 'посчитал маржу по позициям', cost: 0.3 },
+    { id: 'search', name: 'Поиск по регламентам', step: 'нашёл правило для случая', cost: 0.5 },
+    { id: 'tg', name: 'Отправка в Telegram', step: 'отправил сводку', cost: 0.1 }
+  ];
+  var picked = { api: true, calc: true, tg: true };
+
+  var tools = document.getElementById('tools');
+  TOOLS.forEach(function (t) {
+    var d = document.createElement('div');
+    d.className = 'tool' + (picked[t.id] ? ' on' : '');
+    d.textContent = t.name;
+    d.addEventListener('click', function () {
+      picked[t.id] = !picked[t.id];
+      d.className = 'tool' + (picked[t.id] ? ' on' : '');
+    });
+    tools.appendChild(d);
+  });
+
+  document.getElementById('agentBtn').addEventListener('click', function () {
+    var out = document.getElementById('agentOut');
+    var use = TOOLS.filter(function (t) { return picked[t.id]; });
+    if (!use.length) { out.textContent = 'отметьте хотя бы один инструмент'; return; }
+    var cost = use.reduce(function (s, t) { return s + t.cost; }, 0);
+    var lines = ['задача: собрать утреннюю сводку по остаткам и марже', ''];
+    use.forEach(function (t, i) {
+      lines.push('шаг ' + (i + 1) + ': ' + t.name + ' → ' + t.step);
+    });
+    lines.push('', 'остановка: задача решена, повторных шагов не требуется');
+    lines.push('шагов: ' + use.length + ' · условная стоимость: ' +
+               cost.toFixed(1) + ' ₽ за прогон');
+    out.textContent = lines.join('\n');
+  });
+})();
+</script>
+<!-- portfolio-theme -->
+<style>
+#themeBtn{
+  position:fixed; right:22px; top:20px; z-index:900;
+  display:flex; align-items:center; gap:9px; cursor:pointer;
+  padding:9px 15px; border:1px solid var(--line-strong); background:var(--card);
+  color:var(--ink-soft); font:400 11px/1 "Jost","Helvetica Neue",Arial,sans-serif;
+  letter-spacing:.16em; text-transform:uppercase; transition:.2s;
+}
+#themeBtn:hover{border-color:var(--gold); color:var(--gold)}
+#themeBtn i{font-style:normal; font-size:13px; line-height:1}
+@media(max-width:720px){
+  #themeBtn{right:12px; top:12px; padding:8px 11px}
+  #themeBtn span{display:none}
+}
+/* Полоса прокрутки в цвет темы: по умолчанию она белая и выбивается. */
+:root{color-scheme:dark}
+:root[data-theme="light"]{color-scheme:light}
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{background:rgba(0,0,0,.18)}
+::-webkit-scrollbar-thumb{background:#3a352c;border-radius:6px;
+  border:3px solid transparent;background-clip:content-box}
+::-webkit-scrollbar-thumb:hover{background:#5a5142;background-clip:content-box}
+:root[data-theme="light"] ::-webkit-scrollbar-track{background:rgba(0,0,0,.06)}
+:root[data-theme="light"] ::-webkit-scrollbar-thumb{background:#cfc4ad;
+  background-clip:content-box}
+</style>
+<script>
+/* Тема: системная по умолчанию, дальше — то, что человек выбрал сам.
+   Выбор пишем в корень страницы, оба набора цветов уже описаны в стилях. */
+(function () {
+  var KEY = 'pf-theme';
+
+  /* По умолчанию тёмная: разделы задумывались тёмными, светлая —
+     осознанный выбор человека, и он запоминается. */
+  function current() {
+    try { return localStorage.getItem(KEY) || 'dark'; }
+    catch (e) { return 'dark'; }
+  }
+
+  function apply(mode) {
+    document.documentElement.setAttribute('data-theme', mode);
+    var btn = document.getElementById('themeBtn');
+    if (btn) {
+      btn.querySelector('i').textContent = mode === 'dark' ? '\u2600' : '\u263D';
+      btn.querySelector('span').textContent = mode === 'dark' ? 'светлая' : 'тёмная';
+      btn.title = mode === 'dark' ? 'Включить светлую тему' : 'Включить тёмную тему';
+    }
+  }
+
+  apply(current());
+
+  function build() {
+    if (document.getElementById('themeBtn')) return;
+    var btn = document.createElement('button');
+    btn.id = 'themeBtn';
+    btn.type = 'button';
+    btn.innerHTML = '<i></i><span></span>';
+    btn.addEventListener('click', function () {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      try { localStorage.setItem(KEY, next); } catch (e) {}
+      apply(next);
+    });
+    document.body.appendChild(btn);
+    apply(current());
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', build);
+  } else { build(); }
+})();
+</script>
+<!-- /portfolio-theme -->
+</body>
+</html>

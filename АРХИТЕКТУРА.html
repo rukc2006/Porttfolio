@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Архитектура проектов</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#faf6ef; --ink:#1b1812; --ink-soft:#6a6253;
+  --line:#ddd2bd; --line-strong:#c3b495; --gold:#9c762a; --card:#fefdfa;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#12100d; --ink:#f0e9dc; --ink-soft:#9d9584;
+    --line:#2e2920; --line-strong:#463d2c; --gold:#c2912e; --card:#181510;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#12100d; --ink:#f0e9dc; --ink-soft:#9d9584;
+  --line:#2e2920; --line-strong:#463d2c; --gold:#c2912e; --card:#181510;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:300 16px/1.75 "Jost","Helvetica Neue",Arial,sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+.top{display:flex;align-items:center;justify-content:space-between;
+  padding:26px 0;border-bottom:1px solid var(--line)}
+.mark{font:500 13px/1 "Jost",sans-serif;letter-spacing:.38em;
+  text-transform:uppercase}
+.mark span{color:var(--gold)}
+.top a{font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);text-decoration:none}
+.top a:hover{color:var(--gold)}
+
+.hero{padding:74px 0 60px;border-bottom:1px solid var(--line)}
+.hero .eyebrow{font-size:11px;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:24px}
+.hero h1{font:300 clamp(36px,5.6vw,64px)/1.08 "Cormorant Garamond",Georgia,serif;
+  margin:0 0 22px}
+.hero p{max-width:620px;margin:0;color:var(--ink-soft);font-size:17px}
+
+section{padding:66px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:22px;margin-bottom:20px}
+.sec-num{font:400 11px/1 "Jost",sans-serif;letter-spacing:.2em;color:var(--gold)}
+h2{font:300 clamp(25px,3.2vw,36px)/1.15 "Cormorant Garamond",Georgia,serif;margin:0}
+.kind{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);margin-top:8px}
+.what{max-width:720px;color:var(--ink-soft);margin:0 0 34px;font-size:15.5px}
+
+.diagram{border:1px solid var(--line);background:var(--card);padding:22px;
+  overflow-x:auto}
+.diagram svg{display:block;min-width:760px;width:100%;height:auto}
+.legend{display:flex;gap:26px;flex-wrap:wrap;margin:14px 0 34px;
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.legend i{display:inline-block;width:9px;height:9px;margin-right:7px}
+
+.stack{border-left:2px solid var(--gold);padding:4px 0 4px 18px;
+  margin-bottom:34px;color:var(--ink-soft);font-size:14.5px}
+.stack b{display:block;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:5px;font-weight:500}
+
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+  gap:1px;background:var(--line);border:1px solid var(--line)}
+.cols>div{background:var(--card);padding:26px 28px}
+.lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px}
+.row{margin-bottom:22px}
+.row:last-child{margin-bottom:0}
+.row h4{font:400 17px/1.35 "Cormorant Garamond",Georgia,serif;margin:0 0 6px}
+.row p{margin:0;color:var(--ink-soft);font-size:14.5px}
+
+.tablewrap{overflow-x:auto;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;min-width:720px;background:var(--card)}
+th,td{padding:15px 20px;text-align:left;border-bottom:1px solid var(--line);
+  vertical-align:top;font-size:14.5px;color:var(--ink-soft)}
+th{font:500 10px/1 "Jost",sans-serif;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold)}
+tr:last-child td{border-bottom:0}
+td.nm{font-family:"Cormorant Garamond",Georgia,serif;font-size:17px;
+  color:var(--ink);white-space:nowrap}
+td.src{color:var(--gold);font-size:13px}
+
+footer{padding:38px 0 64px;display:flex;gap:34px;flex-wrap:wrap}
+footer a{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);text-decoration:none}
+footer a:hover{color:var(--gold)}
+@media(max-width:720px){
+  .wrap{padding:0 20px}
+  .sec-head{flex-direction:column;gap:8px}
+}
+
+/* Разбор разделов приложения: карточка на каждый. */
+.dashes{display:grid;gap:18px}
+.dash{border:1px solid var(--line);background:var(--card);padding:22px 24px}
+.dash-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+  margin-bottom:14px}
+.dash-head h3{font:400 22px/1.2 "Cormorant Garamond",Georgia,serif;margin:0}
+.dash-head .file{font-size:11px;letter-spacing:.12em;color:var(--gold);
+  font-family:"Jost",monospace}
+.chain{display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  margin-bottom:16px}
+.chain .ch{font-size:12px;padding:6px 12px;border:1px solid var(--line)}
+.chain .src{border-color:#c2912e}
+.chain .proc{border-color:#8a7a3a}
+.chain .out{border-color:#5b5a4a}
+.chain .arr{color:var(--ink-soft)}
+.dash-rows{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:16px}
+.dash-rows .lbl{font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:6px}
+.dash-rows p{margin:0;font-size:14px;line-height:1.65;color:var(--ink-soft)}
+</style>
+<!-- portfolio-scrollbar -->
+<style id="pfScrollbar">
+/* Полоса прокрутки в тон странице. Без этого браузер рисует свою
+   светлую — на тёмном разделе она читается как белая черта сбоку. */
+:root{ color-scheme: dark; }
+:root[data-theme="light"], :root.light,
+body.light, body.light-mode, body.om-light-theme{ color-scheme: light; }
+
+*::-webkit-scrollbar{ width:10px; height:10px; }
+*::-webkit-scrollbar-track{ background:rgba(255,255,255,.04); }
+*::-webkit-scrollbar-thumb{
+  background:rgba(194,145,46,.34);
+  border-radius:6px;
+  border:2px solid transparent;
+  background-clip:padding-box;
+}
+*::-webkit-scrollbar-thumb:hover{ background:rgba(194,145,46,.55);
+  background-clip:padding-box; }
+*::-webkit-scrollbar-corner{ background:transparent; }
+*{ scrollbar-width:thin; scrollbar-color:rgba(194,145,46,.42) transparent; }
+
+/* На светлой теме полоса чуть темнее фона, иначе её не видно. */
+:root[data-theme="light"] *::-webkit-scrollbar-track,
+:root.light *::-webkit-scrollbar-track,
+body.light *::-webkit-scrollbar-track,
+body.light-mode *::-webkit-scrollbar-track,
+body.om-light-theme *::-webkit-scrollbar-track{ background:rgba(0,0,0,.04); }
+:root[data-theme="light"] *::-webkit-scrollbar-thumb,
+:root.light *::-webkit-scrollbar-thumb,
+body.light *::-webkit-scrollbar-thumb,
+body.light-mode *::-webkit-scrollbar-thumb,
+body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
+  background-clip:padding-box; }
+</style>
+<!-- /portfolio-scrollbar -->
+<!-- portfolio-reset -->
+<script>
+/* Разовый сброс: при первой встрече с новой сборкой чистим кэши разделов
+   и ставим тёмную тему. Иначе браузер показывает прошлый запуск, и правки
+   выглядят как непринятые. Вход, роль и имя не трогаем. */
+(function () {
+  var BUILD = 'pf-build-2026-09-02-11';
+  try {
+    if (localStorage.getItem('pf-build') === BUILD) return;
+    var drop = [];
+    for (var i = 0; i < localStorage.length; i++) {
+      var key = localStorage.key(i) || '';
+      var junk = /cache|snap|demo|orders|news|ads|stat|report|items|rows|resources|market|mp_|sowy|om_|fox|calc|kaps|proj/i.test(key);
+      var keep = /auth|role|name|token|login|user/i.test(key);
+      if (junk && !keep) drop.push(key);
+    }
+    drop.forEach(function (key) {
+      try { localStorage.removeItem(key); } catch (e) {}
+    });
+    /* Тёмная тема: у разделов разные ключи, ставим все. */
+    ['pr:theme', 'theme', 'om-theme', 'pf-theme', 'dc-theme', 'koro-theme',
+     'ozlog_theme']
+      .forEach(function (key) {
+        try { localStorage.setItem(key, 'dark'); } catch (e) {}
+      });
+    localStorage.setItem('pf-build', BUILD);
+    /* Перерисовываем страницу с новыми настройками — часть разделов
+       читает тему только при загрузке. */
+    if (!/[?&]pfreset=1/.test(location.search)) {
+      var url = location.href + (location.search ? '&' : '?') + 'pfreset=1';
+      location.replace(url);
+    }
+  } catch (e) {}
+})();
+</script>
+<!-- /portfolio-reset -->
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="mark">Архитектура<span> · </span>пять проектов</div>
+    <a href="index.html">← к проектам</a>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">Как это устроено внутри</div>
+    <h1>Откуда берутся данные<br>и что с ними происходит</h1>
+    <p>По разделу на проект: схема потока, стек, контракт с источником и
+      решения, каждое из которых стоило ошибки. Схемы читаются слева
+      направо — от источника к тому, что видит человек.</p>
+  </div>
+
+  <section id="collector">
+    <div class="sec-head">
+      <div class="sec-num">01</div>
+      <div>
+        <h2>Сборщик отчётов маркетплейсов</h2>
+        <div class="kind">Python · сервис по расписанию</div>
+      </div>
+    </div>
+
+    <p class="what">Каждое утро в 06:00 собирает отчёты из шести кабинетов и складывает их в одну таблицу. Заменил полтора часа ручной работы: раньше отчёты выгружали руками по одному.</p>
+
+    <div class="diagram"><svg viewBox="0 0 780 370" role="img" aria-label="Схема потока данных"><defs><marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="var(--line-strong)"/></marker></defs><path d="M201,37.0 C233.0,37.0 233.0,92.5 256,92.5" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M201,111.0 C233.0,111.0 233.0,92.5 256,92.5" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M201,185.0 C233.0,185.0 233.0,92.5 256,92.5" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M201,259.0 C233.0,259.0 233.0,92.5 256,92.5" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M201,333.0 C233.0,333.0 233.0,92.5 256,92.5" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,92.5 C358.0,92.5 358.0,277.5 256,277.5" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,277.5 C483.0,277.5 483.0,92.5 506,92.5" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,277.5 C483.0,277.5 483.0,277.5 506,277.5" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><rect x="15" y="14.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="41.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">Ozon · API</text><rect x="15" y="88.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="115.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">Wildberries · API</text><rect x="15" y="162.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="189.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">Яндекс Маркет · API</text><rect x="15" y="236.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="263.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">Сбер · браузер</text><rect x="15" y="310.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="337.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">МВидео · браузер</text><rect x="265" y="69.5" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="97.0" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">run_all.py</text><rect x="265" y="254.5" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="282.0" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">нормализация</text><rect x="515" y="69.5" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="97.0" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">Google Sheets</text><rect x="515" y="254.5" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="282.0" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">Telegram</text></svg></div>
+    <div class="legend">
+      <span><i style="background:#c2912e"></i>источник данных</span>
+      <span><i style="background:#8a7a3a"></i>обработка</span>
+      <span><i style="background:#5b5a4a"></i>что видит человек</span>
+    </div>
+
+    <div class="stack"><b>Стек</b> Python · requests · Selenium · Google Sheets API · Telegram Bot API · Планировщик задач Windows</div>
+
+    <div class="cols">
+      <div><div class="lbl">Как устроено</div><div class="row"><h4>Где есть API — идём в API</h4><p>Ozon, Wildberries и Яндекс Маркет отдают отчёты методом. Ответ разбирается по схеме и приводится к общим колонкам.</p></div><div class="row"><h4>Где API нет — поднимаем браузер</h4><p>Сбер и МВидео закрыты: запускается Chrome с сохранённой сессией, отчёт скачивается как файл и читается с диска.</p></div><div class="row"><h4>Повторы с уважением к Retry-After</h4><p>Площадка отвечает 429 и говорит, через сколько повторить. Слепые повторы добивают квоту и блокируют ключ на час.</p></div></div>
+      <div><div class="lbl">Решения и почему так</div><div class="row"><h4>Ошибка громче тишины</h4><p>Слетевшая сессия и недоехавший отчёт уходят в Telegram. Сбор, молча отдавший неполные данные, опаснее упавшего: по неполным цифрам принимают решения.</p></div><div class="row"><h4>Обход потолка offset</h4><p>Площадка не отдаёт больше 20 000 строк подряд. Запрос режется по датам, иначе хвост выгрузки теряется без единой ошибки.</p></div></div>
+    </div>
+  </section>
+
+  <section id="logistics">
+    <div class="sec-head">
+      <div class="sec-num">02</div>
+      <div>
+        <h2>Дашборд логистики</h2>
+        <div class="kind">Python + Кофе в капсулах Nespresso «PIANO 2», 10 шт. Aurora Coffee JS · один файл</div>
+      </div>
+    </div>
+
+    <p class="what">Отвечает не «сколько остатков», а что везти, куда и почему именно туда. Десять вкладок: что делать сегодня, товары, поставки, карта страны по кластерам, ЧП и потери, кластеры и склады, резервы, напоминания, журнал действий и лента новостей площадки. Действия отсортированы по деньгам на кону, потери считаются сравнением снимков за прошлые дни.</p>
+
+    <div class="diagram"><svg viewBox="0 0 780 238" role="img" aria-label="Схема потока данных"><defs><marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="var(--line-strong)"/></marker></defs><path d="M201,39.666666666666664 C233.0,39.666666666666664 233.0,39.666666666666664 256,39.666666666666664" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M201,119.0 C233.0,119.0 233.0,39.666666666666664 256,39.666666666666664" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M201,198.33333333333331 C233.0,198.33333333333331 233.0,39.666666666666664 256,39.666666666666664" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,39.666666666666664 C358.0,39.666666666666664 358.0,119.0 256,119.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,119.0 C358.0,119.0 358.0,198.33333333333331 256,198.33333333333331" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,198.33333333333331 C483.0,198.33333333333331 483.0,119.0 506,119.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><rect x="15" y="16.7" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="44.2" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">API площадки</text><rect x="15" y="96.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="123.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">таблица склада</text><rect x="15" y="175.3" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="202.8" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">лента новостей</text><rect x="265" y="16.7" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="44.2" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">collect_ozon.py</text><rect x="265" y="96.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="123.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">правила отбора</text><rect x="265" y="175.3" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="202.8" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">data.json</text><rect x="515" y="96.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="123.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">один HTML-файл</text></svg></div>
+    <div class="legend">
+      <span><i style="background:#c2912e"></i>источник данных</span>
+      <span><i style="background:#8a7a3a"></i>обработка</span>
+      <span><i style="background:#5b5a4a"></i>что видит человек</span>
+    </div>
+
+    <div class="stack"><b>Стек</b> Python · Кофе в капсулах Nespresso «PIANO 2», 10 шт. Aurora Coffee JS · SVG-карта · сборка в один файл</div>
+
+    <div class="cols">
+      <div><div class="lbl">Как устроено</div><div class="row"><h4>Сборка отделена от показа</h4><p>collect_ozon.py собирает данные и кладёт их в data.json. Сборщик подставляет его в template.html по якорю &lt;script id=&quot;OZON_DATA&quot;&gt;. Файл открывается без сервера.</p></div><div class="row"><h4>Снимки остатков за прошлые дни</h4><p>Каждый сбор сохраняет срез. Потери считаются сравнением срезов: без истории видно только «сейчас мало», а не «упало».</p></div><div class="row"><h4>Карта страны по кластерам</h4><p>Своя отрисовка контуров и кластеров: цвет показывает запас хода, размер — объём продаж. Подложка из сети не нужна, файл открывается на любом компьютере без интернета.</p></div><div class="row"><h4>Лента новостей площадки</h4><p>Новости о тарифах, коэффициентах приёмки и правилах собираются вместе с данными и раскладываются по темам: то, что меняет расчёт, помечается отдельно.</p></div><div class="row"><h4>Реестр ЧП и потерь</h4><p>Повреждения, пересорт и пропажи на складах ведутся списком с суммой потерь и статусом обращения — по нему видно, что уже возмещено, а что ещё висит.</p></div></div>
+      <div><div class="lbl">Решения и почему так</div><div class="row"><h4>«Наблюдаем» не закрывает кластер</h4><p>Статус «наблюдаем» — машинная аномалия, а не происшествие. Если закрывать по нему поставки, под запрет уезжает Москва с третью выручки.</p></div><div class="row"><h4>Действия отсортированы по деньгам</h4><p>Не по дате и не по алфавиту. Сверху то, что нельзя откладывать, и у каждой строки написано, почему именно здесь.</p></div></div>
+    </div>
+  </section>
+
+  <section id="koro">
+    <div class="sec-head">
+      <div class="sec-num">03</div>
+      <div>
+        <h2>Koro — приложение для изучения языков</h2>
+        <div class="kind">Кофе в капсулах Nespresso «PIANO 2», 10 шт. Aurora Coffee JS · офлайн-первое приложение</div>
+      </div>
+    </div>
+
+    <p class="what">214 ключей, HSK 1–3, словари, неправильные глаголы, грамматика, разговорник, квизы и интервальные повторения. Отдельный модуль «Личное» — древние письменности и символические системы, закрыт паролем.</p>
+
+    <div class="diagram"><svg viewBox="0 0 780 238" role="img" aria-label="Схема потока данных"><defs><marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="var(--line-strong)"/></marker></defs><path d="M201,119.0 C233.0,119.0 233.0,39.666666666666664 256,39.666666666666664" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,39.666666666666664 C358.0,39.666666666666664 358.0,119.0 256,119.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,119.0 C358.0,119.0 358.0,198.33333333333331 256,198.33333333333331" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,198.33333333333331 C483.0,198.33333333333331 483.0,39.666666666666664 506,39.666666666666664" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,198.33333333333331 C483.0,198.33333333333331 483.0,119.0 506,119.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,198.33333333333331 C483.0,198.33333333333331 483.0,198.33333333333331 506,198.33333333333331" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><rect x="15" y="96.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="123.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">словарь в таблице</text><rect x="265" y="16.7" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="44.2" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">бэкенд</text><rect x="265" y="96.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="123.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">движок карточек</text><rect x="265" y="175.3" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="202.8" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">интервальные повторения</text><rect x="515" y="16.7" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="44.2" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">веб</text><rect x="515" y="96.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="123.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">Android</text><rect x="515" y="175.3" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="202.8" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">Electron</text></svg></div>
+    <div class="legend">
+      <span><i style="background:#c2912e"></i>источник данных</span>
+      <span><i style="background:#8a7a3a"></i>обработка</span>
+      <span><i style="background:#5b5a4a"></i>что видит человек</span>
+    </div>
+
+    <div class="stack"><b>Стек</b> Кофе в капсулах Nespresso «PIANO 2», 10 шт. Aurora Coffee JS · SM-2 · JSONP · PWA · Android WebView · Electron</div>
+
+    <div class="cols">
+      <div><div class="lbl">Как устроено</div><div class="row"><h4>Движок карточек универсальный</h4><p>Карточке хватает четырёх полей: знак, чтение, значение, заметка. Поэтому модуль «Личное» получил поиск, отметки и повторения без единой лишней строки кода.</p></div><div class="row"><h4>Одна страница — всё приложение</h4><p>Всё живёт в одном файле: разделы, стили, данные и картинки как data-URI. Из него собираются три сборки.</p></div></div>
+      <div><div class="lbl">Решения и почему так</div><div class="row"><h4>Интервальные повторения по SM-2</h4><p>Карточка возвращается тем позже, чем увереннее ответ. Простая очередь заставляет учить то, что уже знаешь.</p></div><div class="row"><h4>Шрифт решает, какие письменности брать</h4><p>Клинопись и египетские иероглифы в системе не установлены и рисуются пустыми квадратами. Взяты руны, деванагари, триграммы, греческий, иврит и старославянский.</p></div></div>
+    </div>
+  </section>
+
+  <section id="robot">
+    <div class="sec-head">
+      <div class="sec-num">04</div>
+      <div>
+        <h2>Голосовой агент для робота</h2>
+        <div class="kind">Python · разбор закрытого протокола</div>
+      </div>
+    </div>
+
+    <p class="what">Домашний робот управлялся только через закрытое облако производителя. Сетевой протокол разобран по трафику и нативным библиотекам приложения, написан свой клиент, сверху — голос и слежение за человеком по видео.</p>
+
+    <div class="diagram"><svg viewBox="0 0 780 304" role="img" aria-label="Схема потока данных"><defs><marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="var(--line-strong)"/></marker></defs><path d="M201,76.0 C233.0,76.0 233.0,38.0 256,38.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M201,228.0 C233.0,228.0 233.0,38.0 256,38.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,38.0 C358.0,38.0 358.0,114.0 256,114.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,190.0 C358.0,190.0 358.0,114.0 256,114.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,266.0 C358.0,266.0 358.0,114.0 256,114.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,114.0 C483.0,114.0 483.0,152.0 506,152.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><rect x="15" y="53.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="80.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">трафик приложения</text><rect x="15" y="205.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="232.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">нативные библиотеки</text><rect x="265" y="15.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="42.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">разбор протокола</text><rect x="265" y="91.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="118.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">свой клиент</text><rect x="265" y="167.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="194.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">распознавание речи</text><rect x="265" y="243.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="270.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">детекция человека</text><rect x="515" y="129.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="156.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">робот</text></svg></div>
+    <div class="legend">
+      <span><i style="background:#c2912e"></i>источник данных</span>
+      <span><i style="background:#8a7a3a"></i>обработка</span>
+      <span><i style="background:#5b5a4a"></i>что видит человек</span>
+    </div>
+
+    <div class="stack"><b>Стек</b> Python · UDP · Frida · Vosk · YOLO · OpenCV</div>
+
+    <div class="cols">
+      <div><div class="lbl">Как устроено</div><div class="row"><h4>Команды идут по UDP</h4><p>Пакет собирается вручную: заголовок, идентификатор устройства, тип команды и полезная нагрузка. Ответ приходит тем же сокетом.</p></div><div class="row"><h4>Ключи не в коде</h4><p>Идентификатор устройства и пароль подставляются при запуске. В файлах проекта на их месте заглушки.</p></div></div>
+      <div><div class="lbl">Решения и почему так</div><div class="row"><h4>Свой клиент вместо эмуляции приложения</h4><p>Кликать по чужому интерфейсу автоматикой — хрупко: любое обновление ломает сценарий. Разбор протокола дал прямое управление, которое не зависит от версии приложения.</p></div><div class="row"><h4>Распознавание речи локальное</h4><p>Vosk работает без интернета. Голосовая команда не уезжает в чужое облако, и задержка меньше.</p></div></div>
+    </div>
+  </section>
+
+  <section id="dance">
+    <div class="sec-head">
+      <div class="sec-num">05</div>
+      <div>
+        <h2>Сайт студии танцев</h2>
+        <div class="kind">Docker Compose · сервисы · репликация</div>
+      </div>
+    </div>
+
+    <p class="what">Расписание занятий, преподаватели, запись клиентов. Система собрана из двух десятков контейнеров и поднимается одной командой: две базы с репликацией, три слоя сервисов, балансировка чтения, сбор логов и трассировка запроса.</p>
+
+    <div class="diagram"><svg viewBox="0 0 780 370" role="img" aria-label="Схема потока данных"><defs><marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="var(--line-strong)"/></marker></defs><path d="M201,185.0 C233.0,185.0 233.0,37.0 256,37.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,37.0 C358.0,37.0 358.0,111.0 256,111.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,111.0 C358.0,111.0 358.0,185.0 256,185.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,185.0 C358.0,185.0 358.0,259.0 256,259.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,259.0 C358.0,259.0 358.0,333.0 256,333.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,333.0 C483.0,333.0 483.0,61.666666666666664 506,61.666666666666664" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,333.0 C483.0,333.0 483.0,185.0 506,185.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M701,61.666666666666664 C608.0,61.666666666666664 608.0,308.3333333333333 506,308.3333333333333" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><rect x="15" y="162.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="189.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">браузер, расширение, терминал</text><rect x="265" y="14.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="41.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">NGINX</text><rect x="265" y="88.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="115.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">шлюз и права</text><rect x="265" y="162.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="189.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">backend x3</text><rect x="265" y="236.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="263.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">core x3</text><rect x="265" y="310.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="337.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">data x3</text><rect x="515" y="38.7" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="66.2" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">ведущая база</text><rect x="515" y="162.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="189.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">реплика: чтение</text><rect x="515" y="285.3" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="312.8" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">зеркало: свой контур</text></svg></div>
+    <div class="legend">
+      <span><i style="background:#c2912e"></i>источник данных</span>
+      <span><i style="background:#8a7a3a"></i>обработка</span>
+      <span><i style="background:#5b5a4a"></i>что видит человек</span>
+    </div>
+
+    <div class="stack"><b>Стек</b> Python 3.12 · FastAPI · SQLAlchemy 2 · PostgreSQL 16 · NGINX · Docker Compose · Grafana · Loki · Promtail · Jaeger · OpenTelemetry · RabbitMQ · Consul · React 19 · TypeScript · Vite · Electron</div>
+
+    <div class="cols">
+      <div><div class="lbl">Как устроено</div><div class="row"><h4>Чтение и запись разведены</h4><p>Запись идёт только в ведущую базу, чтение — в горячую реплику. NGINX делит запросы на чтение между тремя экземплярами в пропорции 2:1:1, а запись отправляет строго туда, где открыта ведущая база.</p></div><div class="row"><h4>Реплика поднимается сама</h4><p>При первом запуске точка входа контейнера снимает базовую копию с ведущей и встаёт в режим горячего ожидания. Никаких ручных шагов после docker compose up.</p></div><div class="row"><h4>Зеркало — отдельный контур</h4><p>Через логическую репликацию поднимается вторая база со своими сервисами. На ней можно проверять изменения, не трогая тот путь, по которому ходят люди.</p></div><div class="row"><h4>Логи и трассировка с самого начала</h4><p>Promtail собирает логи контейнеров в Loki, дашборд Grafana показывает, какой сервис отвечает и как быстро. Запрос прослеживается через слои по идентификатору трассировки.</p></div></div>
+      <div><div class="lbl">Решения и почему так</div><div class="row"><h4>Три слоя вместо одного приложения</h4><p>Работа с базой, правила и HTTP разведены по разным сервисам. Дороже в поддержке, но позволяет держать несколько копий каждого слоя и менять один, не задевая остальные.</p></div><div class="row"><h4>Проверки готовности вместо пауз</h4><p>Сервисы стартуют не по таймеру, а по готовности зависимостей: база отвечает на pg_isready, только потом поднимается слой данных. Иначе половина контейнеров падает при холодном старте.</p></div><div class="row"><h4>Четыре клиента к одному API</h4><p>Одностраничное приложение, расширение браузера, оболочка на Electron и терминальный интерфейс ходят через один шлюз. Логика прав лежит в одном месте, а не размазана по клиентам.</p></div></div>
+    </div>
+  </section>
+
+  <section id="forecast">
+    <div class="sec-head">
+      <div class="sec-num">06</div>
+      <div>
+        <h2>Прогноз спроса и точка заказа</h2>
+        <div class="kind">Python · прогноз по истории продаж</div>
+      </div>
+    </div>
+
+    <p class="what">Отвечает на вопрос, которого нет в остальных разделах: сколько товара понадобится и когда отправлять заявку, чтобы не встать без него и не заморозить деньги в излишке. По каждой из ста двадцати двух позиций — прогноз, страховой запас, точка заказа и честная ошибка модели.</p>
+
+    <div class="diagram"><svg viewBox="0 0 780 304" role="img" aria-label="Схема потока данных"><defs><marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="var(--line-strong)"/></marker></defs><path d="M201,76.0 C233.0,76.0 233.0,38.0 256,38.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M201,76.0 C233.0,76.0 233.0,114.0 256,114.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,38.0 C358.0,38.0 358.0,190.0 256,190.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,114.0 C358.0,114.0 358.0,190.0 256,190.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M201,76.0 C233.0,76.0 233.0,266.0 256,266.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M201,228.0 C233.0,228.0 233.0,266.0 256,266.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,190.0 C483.0,190.0 483.0,253.33333333333331 506,253.33333333333331" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,114.0 C483.0,114.0 483.0,50.666666666666664 506,50.666666666666664" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,266.0 C483.0,266.0 483.0,152.0 506,152.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,266.0 C483.0,266.0 483.0,50.666666666666664 506,50.666666666666664" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><rect x="15" y="53.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="80.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">история продаж, 180 дней</text><rect x="15" y="205.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="232.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">остаток и срок поставки</text><rect x="265" y="15.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="42.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">недельный профиль</text><rect x="265" y="91.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="118.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">тренд и уровень</text><rect x="265" y="167.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="194.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">проверка на отложенных днях</text><rect x="265" y="243.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="270.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">страховой запас</text><rect x="515" y="27.7" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="55.2" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">что заказать сейчас</text><rect x="515" y="129.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="156.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">точка заказа</text><rect x="515" y="230.3" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="257.8" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">ошибка прогноза</text></svg></div>
+    <div class="legend">
+      <span><i style="background:#c2912e"></i>источник данных</span>
+      <span><i style="background:#8a7a3a"></i>обработка</span>
+      <span><i style="background:#5b5a4a"></i>что видит человек</span>
+    </div>
+
+    <div class="stack"><b>Стек</b> Python · собственный расчёт без внешних библиотек · графики своей разметкой</div>
+
+    <div class="cols">
+      <div><div class="lbl">Как устроено</div><div class="row"><h4>Прогноз объяснимый, а не «чёрный ящик»</h4><p>Уровень берётся скользящим средним за четыре недели, к нему добавляется тренд и коэффициент дня недели. Каждое число в таблице можно разложить обратно и объяснить поставщику.</p></div><div class="row"><h4>Точность считается на том, чего модель не видела</h4><p>Последние тридцать дней истории при обучении откладываются: прогноз строится по остальным, а потом сравнивается с ними. Ошибка на своих же данных ничего не значит.</p></div><div class="row"><h4>Страховой запас от разброса, а не от страха</h4><p>Считается по отклонению дневного спроса и корню из срока поставки при уровне обслуживания 95%. Ровный спрос требует меньше запаса, скачущий — больше.</p></div><div class="row"><h4>Точка заказа вместо календаря</h4><p>Заявка отправляется не по расписанию, а когда остаток опустился до спроса за срок поставки со страховкой.</p></div></div>
+      <div><div class="lbl">Решения и почему так</div><div class="row"><h4>Простая модель вместо сложной</h4><p>На дневных продажах с недельной сезонностью скользящее среднее с профилем даёт ошибку около двадцати процентов. Сложная модель выиграет несколько пунктов, но её нельзя объяснить в переписке с поставщиком, а решение о закупке принимает человек.</p></div><div class="row"><h4>Ошибка показана рядом с прогнозом</h4><p>У каждой позиции своя точность: у ровных продаж она в разы лучше, чем у редких. Без этой цифры прогноз выглядит одинаково надёжным везде, а это неправда.</p></div><div class="row"><h4>Считается на месте, без сервера</h4><p>История, прогноз и расчёты вшиваются в страницу при сборке. Открывается двойным щелчком, работает без интернета — как и остальные разделы портфолио.</p></div><div class="row"><h4>Рядом с картой, а не отдельно</h4><p>Прогноз показан вместе с картой страны по кластерам: карта отвечает, где продаётся и где кончается запас, прогноз — сколько понадобится. Карта берётся из дашборда логистики как есть: тот же код и те же данные, просто открытая сразу и без обвязки.</p></div></div>
+    </div>
+  </section>
+
+  <section id="ai">
+    <div class="sec-head">
+      <div class="sec-num">07</div>
+      <div>
+        <h2>Сценарий с повтором, поиск по смыслу и агент</h2>
+        <div class="kind">JS · три приёма работы с моделью и сервисами</div>
+      </div>
+    </div>
+
+    <p class="what">Три приёма, на которых держится автоматизация с моделью: сценарий, который переживает отказ площадки; поиск, который отвечает на вопрос своими словами; агент, у которого есть список инструментов и правило остановки. Каждый сведён к рабочему экрану и считается прямо в странице.</p>
+
+    <div class="diagram"><svg viewBox="0 0 780 370" role="img" aria-label="Схема потока данных"><defs><marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="var(--line-strong)"/></marker></defs><path d="M201,61.666666666666664 C233.0,61.666666666666664 233.0,37.0 256,37.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,37.0 C358.0,37.0 358.0,111.0 256,111.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,111.0 C358.0,111.0 358.0,37.0 256,37.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,37.0 C483.0,37.0 483.0,61.666666666666664 506,61.666666666666664" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M201,185.0 C233.0,185.0 233.0,185.0 256,185.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,185.0 C358.0,185.0 358.0,259.0 256,259.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,259.0 C483.0,259.0 483.0,185.0 506,185.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M201,308.3333333333333 C233.0,308.3333333333333 233.0,333.0 256,333.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,333.0 C483.0,333.0 483.0,308.3333333333333 506,308.3333333333333" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><rect x="15" y="38.7" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="66.2" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">расписание</text><rect x="15" y="162.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="189.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">вопрос человека</text><rect x="15" y="285.3" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="312.8" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">задача агенту</text><rect x="265" y="14.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="41.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">узлы сценария</text><rect x="265" y="88.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="115.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">повтор при отказе</text><rect x="265" y="162.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="189.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">вектор запроса</text><rect x="265" y="236.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="263.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">поиск ближайших</text><rect x="265" y="310.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="337.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">выбор инструментов</text><rect x="515" y="38.7" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="66.2" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">отчёт в таблице</text><rect x="515" y="162.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="189.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">ответ с источником</text><rect x="515" y="285.3" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="312.8" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">сводка и её цена</text></svg></div>
+    <div class="legend">
+      <span><i style="background:#c2912e"></i>источник данных</span>
+      <span><i style="background:#8a7a3a"></i>обработка</span>
+      <span><i style="background:#5b5a4a"></i>что видит человек</span>
+    </div>
+
+    <div class="stack"><b>Стек</b> Кофе в капсулах Nespresso «PIANO 2», 10 шт. Aurora Coffee JS · косинусная близость · без внешних библиотек</div>
+
+    <div class="cols">
+      <div><div class="lbl">Как устроено</div><div class="row"><h4>Сценарий: шаг, проверка, повтор</h4><p>Узлы идут по очереди, у каждого свой результат. Отказ по лимиту не роняет сценарий: он ждёт указанное время и повторяет только упавший шаг, а не всю цепочку.</p></div><div class="row"><h4>Поиск: смысл вместо слов</h4><p>Каждый кусок регламента переведён в набор чисел. Вопрос переводится так же, ответом становится ближайший по направлению вектор — совпадение слов не требуется.</p></div><div class="row"><h4>Агент: инструменты и правило остановки</h4><p>Агент — это модель плюс список доступных действий и условие выхода. Инструменты отмечаются вручную, каждый шаг стоит денег, и итог показывает цену прогона.</p></div></div>
+      <div><div class="lbl">Решения и почему так</div><div class="row"><h4>Считаем в странице, а не на сервере</h4><p>Экраны должны открываться с диска и без интернета. Векторы и близость считаются на месте: это десятки строк, зато ничего не зависит от сети и ключей.</p></div><div class="row"><h4>Повтор только упавшего шага</h4><p>Перезапуск всей цепочки удваивает нагрузку на площадку и снова упирается в лимит. Повторяется ровно то, что не прошло, с задержкой, которую площадка сама и назвала.</p></div><div class="row"><h4>Стоимость видна сразу</h4><p>Без цены прогона агент выглядит бесплатным. Когда каждый инструмент стоит денег, выбор между лёгкой и крупной моделью становится расчётом, а не вкусом.</p></div></div>
+    </div>
+  </section>
+
+  <section id="small">
+    <div class="sec-head">
+      <div class="sec-num">08</div>
+      <div>
+        <h2>Небольшие дашборды: сценарии, интеграции, модель</h2>
+        <div class="kind">HTML · три самостоятельных экрана</div>
+      </div>
+    </div>
+
+    <p class="what">Три компактных экрана про то, как живёт автоматизация: что отработало за сутки, что с квотами площадок и во что обходится работа модели. Данные вшиты при сборке, страница открывается двойным щелчком.</p>
+
+    <div class="diagram"><svg viewBox="0 0 780 238" role="img" aria-label="Схема потока данных"><defs><marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="var(--line-strong)"/></marker></defs><path d="M201,39.666666666666664 C233.0,39.666666666666664 233.0,59.5 256,59.5" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M201,119.0 C233.0,119.0 233.0,59.5 256,59.5" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M201,198.33333333333331 C233.0,198.33333333333331 233.0,59.5 256,59.5" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,59.5 C358.0,59.5 358.0,178.5 256,178.5" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,178.5 C483.0,178.5 483.0,39.666666666666664 506,39.666666666666664" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,178.5 C483.0,178.5 483.0,119.0 506,119.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,178.5 C483.0,178.5 483.0,198.33333333333331 506,198.33333333333331" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><rect x="15" y="16.7" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="44.2" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">журнал запусков</text><rect x="15" y="96.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="123.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">ответы площадок</text><rect x="15" y="175.3" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="202.8" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">набор задач с эталонами</text><rect x="265" y="36.5" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="64.0" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">сборка страницы</text><rect x="265" y="155.5" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="183.0" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">свёртка в показатели</text><rect x="515" y="16.7" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="44.2" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">сценарии автоматизации</text><rect x="515" y="96.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="123.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">здоровье интеграций</text><rect x="515" y="175.3" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="202.8" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">качество и стоимость модели</text></svg></div>
+    <div class="legend">
+      <span><i style="background:#c2912e"></i>источник данных</span>
+      <span><i style="background:#8a7a3a"></i>обработка</span>
+      <span><i style="background:#5b5a4a"></i>что видит человек</span>
+    </div>
+
+    <div class="stack"><b>Стек</b> Python (сборка) · HTML · CSS · разметка графиков без библиотек</div>
+
+    <div class="cols">
+      <div><div class="lbl">Как устроено</div><div class="row"><h4>Данные вшиваются при сборке</h4><p>Скрипт считает показатели и кладёт их в страницу. На экране нет ни одного запроса: ни к сети, ни к шлюзу.</p></div><div class="row"><h4>Графики — своей разметкой</h4><p>Столбцы и подписи рисуются вёрсткой. Внешняя библиотека графиков без интернета не загрузится, а страница должна открываться где угодно.</p></div><div class="row"><h4>Одна тема на все экраны</h4><p>Те же переменные цвета, шрифты и переключатель светлой и тёмной темы, что в остальных разделах портфолио.</p></div></div>
+      <div><div class="lbl">Решения и почему так</div><div class="row"><h4>Три экрана вместо одного большого</h4><p>У ролей разные вопросы: автоматизатора интересуют запуски, архитектора — лимиты и задержки, инженера — точность и цена. Смешивать их в один экран значит не ответить никому.</p></div><div class="row"><h4>Показатели, а не журнал</h4><p>Сырые строки журнала ничего не решают. На экран выведено то, по чему принимают решение: что повторялось, у кого кончается квота, какая модель дешевле при той же точности.</p></div></div>
+    </div>
+  </section>
+  <section id="sections">
+    <div class="sec-head">
+      <div class="sec-num">09</div>
+      <div>
+        <h2>Разделы дашборд-центра</h2>
+        <div class="kind">тринадцать инструментов, один шлюз</div>
+      </div>
+    </div>
+    <p class="what">Все разделы ходят за данными через один шлюз и читают
+      общий справочник. Поэтому код товара, штрихкод и себестоимость
+      одинаковы в каждом разделе, а ключи доступа не попадают в браузер.
+      Ниже — короткий обзор, а <a href="#dashboards">следом</a> разбор
+      каждого раздела: источник, формат обмена и решение, которое
+      определило устройство.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Раздел</th><th>Что делает</th><th>Откуда данные</th></tr></thead>
+      <tbody><tr><td class="nm">P&amp;L · учётная система</td><td>Отчёт о прибылях и убытках по месяцам: выручка, себестоимость, комиссии, логистика, реклама, хранение, возвраты.</td><td class="src">проводки учётной системы через шлюз</td></tr><tr><td class="nm">Разбор заказа на сырьё</td><td>Раскладывает заказ на капсулы, упаковку, зерно, фольгу, плёнку, стаканчики и ароматизаторы, считает себестоимость.</td><td class="src">файл сборки + встроенный справочник</td></tr><tr><td class="nm">Производство</td><td>Заказы в работе: план, фасовка, сборка, остаток. Разбивка по площадкам, ABC, приоритеты.</td><td class="src">листы общей таблицы, лист на заказ</td></tr><tr><td class="nm">Остатки по площадкам</td><td>Шесть площадок в одном экране: остатки, продажи, дни покрытия, формирование поставок, карта продаж по регионам, лента новостей площадок и разбор конкурентов.</td><td class="src">API площадок через шлюз, отчёт МВидео — листом</td></tr><tr><td class="nm">Реклама и ставки</td><td>Кампании всех площадок в одном месте: расход, ДРР, CTR, корзины, что проверить.</td><td class="src">рекламные кабинеты через шлюз</td></tr><tr><td class="nm">Фиксация заказов</td><td>Календарь поставок и заявок на отгрузку: кто, когда, сколько коробов и паллет.</td><td class="src">таблица заявок через шлюз</td></tr><tr><td class="nm">Калькулятор Ozon</td><td>Юнит-экономика поставки: логистика по кластерам, комиссия, приёмка, маржа.</td><td class="src">карточки и тарифы площадки</td></tr><tr><td class="nm">Калькулятор Wildberries</td><td>Объём поставки, коэффициент склада, хранение, себестоимость и чистая прибыль.</td><td class="src">карточки, склады и остатки</td></tr><tr><td class="nm">Сводка руководителя</td><td>Одна страница на все разделы: что происходит, какие проблемы и что сделать.</td><td class="src">итоги остальных разделов</td></tr><tr><td class="nm">Справочник источников</td><td>Единый справочник: штрихкод, код 1С, формат, капсульность, себестоимость. Его читают все разделы.</td><td class="src">файл barcodes.xlsx</td></tr><tr><td class="nm">База регламентов</td><td>Пошаговые инструкции по отделам и должностям, тесты и прогресс сотрудника.</td><td class="src">база регламентов приложения</td></tr><tr><td class="nm">Единый портал</td><td>Сборка заказов из файлов и выгрузка готовых книг Excel по складам и юрлицам.</td><td class="src">файлы сборок + встроенная база</td></tr><tr><td class="nm">Витрина Project room</td><td>Карта всего хозяйства: дашборды, таблицы, сервисы и контакты в одном списке.</td><td class="src">опубликованный лист</td></tr></tbody>
+    </table></div>
+  </section>
+  <section id="center">
+    <div class="sec-head">
+      <div class="sec-num">10</div>
+      <div>
+        <h2>Дашборд-центр: тринадцать разделов</h2>
+        <div class="kind">Кофе в капсулах Nespresso «PIANO 2», 10 шт. Aurora Coffee JS · Apps Script как бэкенд</div>
+      </div>
+    </div>
+
+    <p class="what">Инструментарий отдела, собранный в одно приложение: витрина, фиксация заказов, реклама, остатки, два калькулятора юнит-экономики, разбор заказа на сырьё и база регламентов.</p>
+
+    <div class="diagram"><svg viewBox="0 0 780 238" role="img" aria-label="Схема потока данных"><defs><marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="var(--line-strong)"/></marker></defs><path d="M201,39.666666666666664 C233.0,39.666666666666664 233.0,59.5 256,59.5" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M201,119.0 C233.0,119.0 233.0,59.5 256,59.5" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M201,198.33333333333331 C233.0,198.33333333333331 233.0,59.5 256,59.5" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,59.5 C358.0,59.5 358.0,178.5 256,178.5" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,178.5 C483.0,178.5 483.0,39.666666666666664 506,39.666666666666664" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,178.5 C483.0,178.5 483.0,119.0 506,119.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,178.5 C483.0,178.5 483.0,198.33333333333331 506,198.33333333333331" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><rect x="15" y="16.7" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="44.2" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">API площадок</text><rect x="15" y="96.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="123.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">Google Sheets</text><rect x="15" y="175.3" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="202.8" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">учётная система</text><rect x="265" y="36.5" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="64.0" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">шлюз</text><rect x="265" y="155.5" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="183.0" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">разделы</text><rect x="515" y="16.7" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="44.2" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">браузер</text><rect x="515" y="96.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="123.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">Electron</text><rect x="515" y="175.3" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="202.8" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">Android</text></svg></div>
+    <div class="legend">
+      <span><i style="background:#c2912e"></i>источник данных</span>
+      <span><i style="background:#8a7a3a"></i>обработка</span>
+      <span><i style="background:#5b5a4a"></i>что видит человек</span>
+    </div>
+
+    <div class="stack"><b>Стек</b> Кофе в капсулах Nespresso «PIANO 2», 10 шт. Aurora Coffee JS без фреймворков · Google Apps Script · Google Sheets как хранилище · SheetJS · Electron · Android WebView · PWA</div>
+
+    <div class="cols">
+      <div><div class="lbl">Как устроено</div><div class="row"><h4>Один шлюз на все вызовы</h4><p>Разделы не ходят в площадки напрямую: они заворачивают адрес, метод и тело в конверт и отдают его шлюзу. Ключи живут на стороне шлюза и в браузер не попадают.</p></div><div class="row"><h4>Ответ бывает и JSONP</h4><p>Часть разделов запрашивает данные тегом script, а не fetch. Такому вызову нужен ответ-вызов функции: иначе браузер разбирает JSON как код и падает на первом же двоеточии.</p></div><div class="row"><h4>Справочник один на всех</h4><p>Коды 1С, штрихкоды, формат и капсульность лежат в одном справочнике. Если у калькулятора справочник свой, себестоимость перестаёт сходиться с позициями заказа.</p></div></div>
+      <div><div class="lbl">Решения и почему так</div><div class="row"><h4>Роль выбирается один раз</h4><p>Выбранная роль применяется во всех разделах и решает, что человек видит. Приложение ведёт аудит: кто заходил, куда и надолго ли — чтобы видеть, чем реально пользуются.</p></div><div class="row"><h4>Одна кодовая база на три упаковки</h4><p>Веб, программа для компьютера и приложение для телефона собираются из одних и тех же файлов. Правка в разделе доезжает всюду за один прогон синхронизации.</p></div></div>
+    </div>
+  </section>
+  <section id="dashboards">
+    <div class="sec-head">
+      <div class="sec-num">11</div>
+      <div>
+        <h2>Разделы приложения по отдельности</h2>
+        <div class="kind">у каждого свой источник и свой формат</div>
+      </div>
+    </div>
+    <p class="what">Разделы писались под разные источники: где-то отвечает
+      кабинет площадки, где-то служебный скрипт таблицы, где-то файл, который
+      человек перетаскивает на страницу, а где-то данных нет вовсе — раздел
+      считает по снимкам соседей. Ниже каждый по отдельности.</p>
+    <div class="dashes">
+    <div class="dash">
+      <div class="dash-head">
+        <h3>P&amp;L · учётная система</h3>
+        <span class="file">index.html</span>
+      </div>
+      <div class="chain"><span class="ch src">учётная система, OData</span><span class="arr">&rarr;</span><span class="ch proc">разбор проводок</span><span class="arr">&rarr;</span><span class="ch out">прибыль и рентабельность</span></div>
+      <div class="dash-rows">
+        <div><div class="lbl">Откуда данные</div><p>Счета доходов и расходов выгружаются напрямую из учётной системы по OData через ретранслятор: запрос уходит с логином базы, ответ приходит разобранным по месяцам.</p></div>
+        <div><div class="lbl">Формат обмена</div><p>OData (XML/JSON) · период задаётся датами</p></div>
+        <div><div class="lbl">Что считает</div><p>Выручка без НДС, расходы по статьям, операционная прибыль, рентабельность; два графика — доходы против расходов и структура расходов.</p></div>
+        <div><div class="lbl">Решение</div><p>Ретранслятор вместо прямого запроса из браузера: учётная система не отдаёт данные на сторонний адрес, а логин не должен лежать в странице.</p></div>
+      </div>
+    </div>
+    <div class="dash">
+      <div class="dash-head">
+        <h3>Разбор заказа на сырьё</h3>
+        <span class="file">KapsDash.html</span>
+      </div>
+      <div class="chain"><span class="ch src">файл сборки заказа</span><span class="arr">&rarr;</span><span class="ch proc">справочник + нормы</span><span class="arr">&rarr;</span><span class="ch out">потребность и себестоимость</span></div>
+      <div class="dash-rows">
+        <div><div class="lbl">Откуда данные</div><p>Файл сборки перетаскивается на страницу. Нормы и цены берутся из общего справочника, который загружается один раз в разделе данных.</p></div>
+        <div><div class="lbl">Формат обмена</div><p>Excel (.xlsx) перетаскиванием · справочник в памяти браузера</p></div>
+        <div><div class="lbl">Что считает</div><p>Заказ раскладывается на капсулы, упаковку, фольгу, плёнку, стаканчики и ароматизаторы; считается количество каждого и себестоимость всего заказа.</p></div>
+        <div><div class="lbl">Решение</div><p>Расчёт идёт в браузере, файл никуда не уходит: заказ — коммерческая информация, ей незачем путешествовать по сети.</p></div>
+      </div>
+    </div>
+    <div class="dash">
+      <div class="dash-head">
+        <h3>Производство</h3>
+        <span class="file">foxdash.html</span>
+      </div>
+      <div class="chain"><span class="ch src">рабочий лист таблицы</span><span class="arr">&rarr;</span><span class="ch proc">этапы и роли</span><span class="arr">&rarr;</span><span class="ch out">план и что горит</span></div>
+      <div class="dash-rows">
+        <div><div class="lbl">Откуда данные</div><p>Заказы и их состояние лежат в таблице, куда пишут со смены; страница читает их через служебный скрипт таблицы.</p></div>
+        <div><div class="lbl">Формат обмена</div><p>Google Apps Script (JSON) · роль хранится в браузере</p></div>
+        <div><div class="lbl">Что считает</div><p>Заказы по этапам: фасовка, обработка, контроль, сборка. Разбивка по площадкам, ABC-группы, приоритеты, счётчики к выполнению.</p></div>
+        <div><div class="lbl">Решение</div><p>Экран зависит от роли: у оператора свой список, у руководителя — сводка. Одна страница вместо четырёх похожих.</p></div>
+      </div>
+    </div>
+    <div class="dash">
+      <div class="dash-head">
+        <h3>Остатки по площадкам</h3>
+        <span class="file">SOWY.html</span>
+      </div>
+      <div class="chain"><span class="ch src">шесть площадок</span><span class="arr">&rarr;</span><span class="ch proc">сведение к одному виду</span><span class="arr">&rarr;</span><span class="ch out">что везти и куда</span></div>
+      <div class="dash-rows">
+        <div><div class="lbl">Откуда данные</div><p>Шесть источников с разными правилами: две площадки отдают JSON по ключу, одна требует конверт с описанием запроса, ещё одна отвечает постранично, отчёт шестой приходит текстом из таблицы.</p></div>
+        <div><div class="lbl">Формат обмена</div><p>REST (JSON) · конверт с телом запроса · CSV из Google-листа</p></div>
+        <div><div class="lbl">Что считает</div><p>Остатки и продажи по товарам и складам, запас хода в днях, что срочно везти и что залежалось. Отдельными окнами: формирование поставок с расчётом до целевого запаса и разбивкой по кластерам; карта продаж по регионам и округам с топом и списком «куда везти в первую очередь»; лента новостей площадок с пометкой того, что меняет расчёт; сводка для руководителя и разбор рынка конкурентов по категориям.</p></div>
+        <div><div class="lbl">Решение</div><p>Скорость продаж раскладывается по складам пропорционально остатку — иначе поставка считается только там, где площадка отдала разбивку сама. Карта нарисована своей разметкой, а не внешней подложкой: раздел открывают с диска и без интернета.</p></div>
+      </div>
+    </div>
+    <div class="dash">
+      <div class="dash-head">
+        <h3>Реклама и ставки</h3>
+        <span class="file">ADSdash.html</span>
+      </div>
+      <div class="chain"><span class="ch src">кабинеты рекламы</span><span class="arr">&rarr;</span><span class="ch proc">сведение кампаний</span><span class="arr">&rarr;</span><span class="ch out">ДРР и что проверить</span></div>
+      <div class="dash-rows">
+        <div><div class="lbl">Откуда данные</div><p>Три рекламных кабинета: у каждого свой способ входа и своя форма отчёта. Выручка для расчёта доли берётся из отчёта о продажах, а не из заказов.</p></div>
+        <div><div class="lbl">Формат обмена</div><p>REST (JSON) с обновляемым ключом доступа</p></div>
+        <div><div class="lbl">Что считает</div><p>Расход, заказы, ДРР, CTR, корзины и доля рекламы в выручке; сигналы «что проверить»: ставки, карточка, остатки, цена, доставка.</p></div>
+        <div><div class="lbl">Решение</div><p>Доля рекламы считается от продаж, а не от заказов: на заказах она уходила в сотни процентов и показатель терял смысл.</p></div>
+      </div>
+    </div>
+    <div class="dash">
+      <div class="dash-head">
+        <h3>Фиксация заказов</h3>
+        <span class="file">OMDash.html</span>
+      </div>
+      <div class="chain"><span class="ch src">заявки из таблицы</span><span class="arr">&rarr;</span><span class="ch proc">календарь и статусы</span><span class="arr">&rarr;</span><span class="ch out">отгрузки и письма</span></div>
+      <div class="dash-rows">
+        <div><div class="lbl">Откуда данные</div><p>Заявки на отгрузку и записи о поставках лежат в таблице; страница читает и меняет их через служебный скрипт — создание, удаление, отправка письма.</p></div>
+        <div><div class="lbl">Формат обмена</div><p>Google Apps Script (JSON), запись и чтение</p></div>
+        <div><div class="lbl">Что считает</div><p>Календарь на месяц: поставки и заявки с цветом по состоянию, фильтры, счётчики по дням, письмо контрагенту в один клик.</p></div>
+        <div><div class="lbl">Решение</div><p>Состояние заявки определяется по факту отгрузки, а не по галочке: иначе закрытыми считаются заявки, которые ещё едут.</p></div>
+      </div>
+    </div>
+    <div class="dash">
+      <div class="dash-head">
+        <h3>Сводка руководителя</h3>
+        <span class="file">EXEC.html</span>
+      </div>
+      <div class="chain"><span class="ch src">снимки других разделов</span><span class="arr">&rarr;</span><span class="ch proc">свёртка и прогноз</span><span class="arr">&rarr;</span><span class="ch out">пять блоков решений</span></div>
+      <div class="dash-rows">
+        <div><div class="lbl">Откуда данные</div><p>Единственный раздел, который никуда не ходит: он берёт снимки, оставленные другими разделами при загрузке, и считает по ним.</p></div>
+        <div><div class="lbl">Формат обмена</div><p>Память браузера (снимки разделов)</p></div>
+        <div><div class="lbl">Что считает</div><p>Выручка, маржа, капитал на остатке, оборачиваемость, дефицит и затоваривание; прогноз — тренд по последним дням, помечен как ориентир, а не пророчество.</p></div>
+        <div><div class="lbl">Решение</div><p>Себестоимость подставляется по всем кодам товара сразу — штрихкод, код учётной системы, внутренний код площадки. Иначе маржа выходит стопроцентной.</p></div>
+      </div>
+    </div>
+    <div class="dash">
+      <div class="dash-head">
+        <h3>Калькулятор поставки Ozon</h3>
+        <span class="file">calcOZONlog.html</span>
+      </div>
+      <div class="chain"><span class="ch src">тарифы и кластеры</span><span class="arr">&rarr;</span><span class="ch proc">расчёт по объёму</span><span class="arr">&rarr;</span><span class="ch out">стоимость и сроки</span></div>
+      <div class="dash-rows">
+        <div><div class="lbl">Откуда данные</div><p>Тарифы, кластеры и локализация подтягиваются из кабинета и справочника товаров; коэффициенты обновляются вручную при изменении сетки.</p></div>
+        <div><div class="lbl">Формат обмена</div><p>REST (JSON) · справочник товаров из таблицы</p></div>
+        <div><div class="lbl">Что считает</div><p>Стоимость логистики и хранения по кластерам, объём и вес поставки, локализация, сравнение вариантов отправки.</p></div>
+        <div><div class="lbl">Решение</div><p>Значения тарифов вынесены отдельно от расчёта: сетка меняется несколько раз в год, и правка не должна трогать формулы.</p></div>
+      </div>
+    </div>
+    <div class="dash">
+      <div class="dash-head">
+        <h3>Калькулятор поставки Wildberries</h3>
+        <span class="file">calcWB.html</span>
+      </div>
+      <div class="chain"><span class="ch src">склады и коэффициенты</span><span class="arr">&rarr;</span><span class="ch proc">расчёт короба</span><span class="arr">&rarr;</span><span class="ch out">во что обойдётся</span></div>
+      <div class="dash-rows">
+        <div><div class="lbl">Откуда данные</div><p>Список складов и коэффициенты приёмки, справочник товаров с габаритами и кратностью короба.</p></div>
+        <div><div class="lbl">Формат обмена</div><p>REST (JSON) · справочник в памяти браузера</p></div>
+        <div><div class="lbl">Что считает</div><p>Логистика и хранение с учётом коэффициента склада, габариты, количество коробов, стоимость поставки на выбранный склад.</p></div>
+        <div><div class="lbl">Решение</div><p>Склады приходят названиями, а не объектами: страница рисует их строкой, и объект превращался в подпись «[object Object]».</p></div>
+      </div>
+    </div>
+    <div class="dash">
+      <div class="dash-head">
+        <h3>Справочник источников</h3>
+        <span class="file">data.html</span>
+      </div>
+      <div class="chain"><span class="ch src">файл справочника</span><span class="arr">&rarr;</span><span class="ch proc">разбор листов</span><span class="arr">&rarr;</span><span class="ch out">общий словарь для всех</span></div>
+      <div class="dash-rows">
+        <div><div class="lbl">Откуда данные</div><p>Файл со штрихкодами и себестоимостью загружается один раз: лист базы товаров и лист цен по коду учётной системы.</p></div>
+        <div><div class="lbl">Формат обмена</div><p>Excel (.xlsx), два листа · хранение в браузере</p></div>
+        <div><div class="lbl">Что считает</div><p>Сопоставление штрихкода, кода учётной системы, короткого названия, категории и себестоимости; проверка полноты и поиск по любому из кодов.</p></div>
+        <div><div class="lbl">Решение</div><p>Один справочник на все разделы. Пока он был у каждого свой, один и тот же товар считался по разной себестоимости.</p></div>
+      </div>
+    </div>
+    <div class="dash">
+      <div class="dash-head">
+        <h3>Академия регламентов</h3>
+        <span class="file">reglament/index.html</span>
+      </div>
+      <div class="chain"><span class="ch src">регламенты и схемы</span><span class="arr">&rarr;</span><span class="ch proc">обучение и тесты</span><span class="arr">&rarr;</span><span class="ch out">прогресс сотрудника</span></div>
+      <div class="dash-rows">
+        <div><div class="lbl">Откуда данные</div><p>Регламенты, схемы процессов и оргструктура собраны в разделе; прогресс обучения хранится у сотрудника в браузере.</p></div>
+        <div><div class="lbl">Формат обмена</div><p>Встроенные материалы · слайды · память браузера</p></div>
+        <div><div class="lbl">Что считает</div><p>Каталог по отделам, схемы взаимодействия, пошаговое обучение с тестами, отметка пройденного и возврат к незаконченному.</p></div>
+        <div><div class="lbl">Решение</div><p>Материалы лежат внутри раздела, а не ссылками наружу: новичок открывает одну страницу и не собирает инструкции по чужим папкам.</p></div>
+      </div>
+    </div>
+    <div class="dash">
+      <div class="dash-head">
+        <h3>Единый портал</h3>
+        <span class="file">Projects.html</span>
+      </div>
+      <div class="chain"><span class="ch src">лист со ссылками</span><span class="arr">&rarr;</span><span class="ch proc">категории и поиск</span><span class="arr">&rarr;</span><span class="ch out">карта рабочих мест</span></div>
+      <div class="dash-rows">
+        <div><div class="lbl">Откуда данные</div><p>Список дашбордов, таблиц и рабочих ссылок ведётся в опубликованном листе — обновление не требует правки страницы.</p></div>
+        <div><div class="lbl">Формат обмена</div><p>CSV/JSON из Google-листа</p></div>
+        <div><div class="lbl">Что считает</div><p>Карточки по категориям, поиск, отметка избранного, быстрый переход в нужный раздел или таблицу.</p></div>
+        <div><div class="lbl">Решение</div><p>Данные в листе, а не в коде: добавить ссылку может любой в отделе, не трогая приложение.</p></div>
+      </div>
+    </div>
+    <div class="dash">
+      <div class="dash-head">
+        <h3>Стартовая: роли и вход</h3>
+        <span class="file">start.html</span>
+      </div>
+      <div class="chain"><span class="ch src">имя и роль</span><span class="arr">&rarr;</span><span class="ch proc">применение везде</span><span class="arr">&rarr;</span><span class="ch out">свои разделы</span></div>
+      <div class="dash-rows">
+        <div><div class="lbl">Откуда данные</div><p>Роль выбирается один раз на входе и запоминается; разделы читают её и показывают своё.</p></div>
+        <div><div class="lbl">Формат обмена</div><p>Память браузера, общий ключ для всех разделов</p></div>
+        <div><div class="lbl">Что считает</div><p>Комнаты по ролям: у оператора производство, у руководителя сводка, у новичка академия.</p></div>
+        <div><div class="lbl">Решение</div><p>Роль общая для всех разделов. Раньше её спрашивали в каждом, и человек отвечал по-разному.</p></div>
+      </div>
+    </div>
+    <div class="dash">
+      <div class="dash-head">
+        <h3>Сборка заказов</h3>
+        <span class="file">monkey_bot_dashboard.html</span>
+      </div>
+      <div class="chain"><span class="ch src">выгрузки заказов площадок</span><span class="arr">&rarr;</span><span class="ch proc">разбор, сведение, короба</span><span class="arr">&rarr;</span><span class="ch out">задание складу и общая сборка</span></div>
+      <div class="dash-rows">
+        <div><div class="lbl">Откуда данные</div><p>На вход идут выгрузки заказов из разных кабинетов — у каждой площадки своя форма файла, свои заголовки и своя нумерация. Плюс собственная база товаров с кратностью короба и принадлежностью юрлицу.</p></div>
+        <div><div class="lbl">Формат обмена</div><p>Excel и CSV разных форматов · собственная база с индексами · запись в Google-лист · выгрузка ZIP</p></div>
+        <div><div class="lbl">Что считает</div><p>Площадка определяется по имени файла и по содержимому — заголовки в выгрузках плавают, поэтому строка заголовков ищется перебором, а файлы без заголовков разбираются по позициям колонок. Строки разных файлов сводятся по коду учётной системы, количество приводится к кратности короба своей площадки, позиции сортируются по приоритету. Дальше собирается общая сборка на смену, раскладка по коробам и паллетам и выгрузка задания для склада архивом.</p></div>
+        <div><div class="lbl">Решение</div><p>Формат входного файла не задан жёстко: площадки меняют выгрузки без предупреждения. Раздел узнаёт формат сам и говорит, если файл не похож ни на один известный, — это дешевле, чем ломаться на каждой правке площадки.</p></div>
+      </div>
+    </div></div>
+  </section>
+  <section id="build">
+    <div class="sec-head">
+      <div class="sec-num">12</div>
+      <div>
+        <h2>Как собираются приложения</h2>
+        <div class="kind">одна кодовая база — три упаковки</div>
+      </div>
+    </div>
+    <p class="what">Веб-версия, программа для компьютера и приложение для
+      телефона собираются из одного исходника. Ни одна из сборок не тянет
+      страницы из сети: файлы лежат внутри приложения, поэтому оно работает
+      и без интернета.</p>
+
+    <div class="diagram"><svg viewBox="0 0 780 304" role="img" aria-label="Схема потока данных"><defs><marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="var(--line-strong)"/></marker></defs><path d="M201,152.0 C233.0,152.0 233.0,38.0 256,38.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,38.0 C358.0,38.0 358.0,114.0 256,114.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,38.0 C358.0,38.0 358.0,190.0 256,190.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,38.0 C358.0,38.0 358.0,266.0 256,266.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,114.0 C483.0,114.0 483.0,50.666666666666664 506,50.666666666666664" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,190.0 C483.0,190.0 483.0,152.0 506,152.0" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><path d="M451,266.0 C483.0,266.0 483.0,253.33333333333331 506,253.33333333333331" fill="none" stroke="var(--line-strong)" stroke-width="1.2" marker-end="url(#ah)"/><rect x="15" y="129.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#c2912e" stroke-width="1.2"/><text x="108.0" y="156.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">site/ — общий исходник</text><rect x="265" y="15.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="42.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">sync_site.py</text><rect x="265" y="91.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="118.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">electron-builder</text><rect x="265" y="167.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="194.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">Gradle</text><rect x="265" y="243.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#8a7a3a" stroke-width="1.2"/><text x="358.0" y="270.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">манифест PWA</text><rect x="515" y="27.7" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="55.2" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">установщик Windows</text><rect x="515" y="129.0" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="156.5" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">APK</text><rect x="515" y="230.3" width="186" height="46" rx="2" fill="var(--card)" stroke="#5b5a4a" stroke-width="1.2"/><text x="608.0" y="257.8" text-anchor="middle" font-size="13.5" fill="var(--ink)" font-family="Jost,Arial,sans-serif">браузер</text></svg></div>
+    <div class="legend">
+      <span><i style="background:#c2912e"></i>исходник</span>
+      <span><i style="background:#8a7a3a"></i>сборка</span>
+      <span><i style="background:#5b5a4a"></i>что получается</span>
+    </div>
+
+    <div class="tablewrap"><table>
+      <thead><tr><th>Шаг</th><th>Чем</th><th>Что происходит</th></tr></thead>
+      <tbody><tr><td class="nm">Общий исходник</td><td class="src">site/</td><td>Один набор HTML, стилей и скриптов. Правка раздела делается здесь и дальше расходится по всем упаковкам одним прогоном синхронизации.</td></tr><tr><td class="nm">Программа для компьютера</td><td class="src">Electron</td><td>Тот же сайт запускается внутри окна Electron: main.js создаёт окно и открывает локальный index. Сборка — electron-builder, на выходе установщик NSIS для Windows. Приложение работает без интернета.</td></tr><tr><td class="nm">Приложение для телефона</td><td class="src">Android WebView</td><td>Экран приложения — WebView, а сайт лежит в assets/site и грузится с устройства, не из сети. Сборка — Gradle, на выходе APK. Настройки: разрешён JavaScript и доступ к локальным файлам.</td></tr><tr><td class="nm">Версия для браузера</td><td class="src">PWA</td><td>Манифест и служебный скрипт кладут страницы в кэш устройства: приложение ставится на домашний экран и открывается офлайн.</td></tr><tr><td class="nm">Запуск в контейнере</td><td class="src">Dockerfile</td><td>Витрина и шлюз данных поднимаются одной командой: образ на базе python-slim, сторонних зависимостей нет, работа не от суперпользователя, файловая система только для чтения. Нужен там, где ставить Python на машину нельзя или не хочется.</td></tr><tr><td class="nm">Синхронизация упаковок</td><td class="src">sync_site.py</td><td>Скрипт копирует общий исходник в папку Android и сверяет состав. Без него правка доезжает только до компьютерной версии, и две сборки начинают расходиться.</td></tr></tbody>
+    </table></div>
+  </section>
+
+  <footer>
+    <a href="index.html">Проекты</a>
+    <a href="ИИ-НАВЫКИ.html">Автоматизация и ИИ</a>
+    <a href="07-small-dashboards/index.html">Небольшие работы</a>
+  </footer>
+
+</div>
+<!-- portfolio-theme -->
+<style>
+#themeBtn{
+  position:fixed; right:22px; top:20px; z-index:900;
+  display:flex; align-items:center; gap:9px; cursor:pointer;
+  padding:9px 15px; border:1px solid var(--line-strong); background:var(--card);
+  color:var(--ink-soft); font:400 11px/1 "Jost","Helvetica Neue",Arial,sans-serif;
+  letter-spacing:.16em; text-transform:uppercase; transition:.2s;
+}
+#themeBtn:hover{border-color:var(--gold); color:var(--gold)}
+#themeBtn i{font-style:normal; font-size:13px; line-height:1}
+@media(max-width:720px){
+  #themeBtn{right:12px; top:12px; padding:8px 11px}
+  #themeBtn span{display:none}
+}
+/* Полоса прокрутки в цвет темы: по умолчанию она белая и выбивается. */
+:root{color-scheme:dark}
+:root[data-theme="light"]{color-scheme:light}
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{background:rgba(0,0,0,.18)}
+::-webkit-scrollbar-thumb{background:#3a352c;border-radius:6px;
+  border:3px solid transparent;background-clip:content-box}
+::-webkit-scrollbar-thumb:hover{background:#5a5142;background-clip:content-box}
+:root[data-theme="light"] ::-webkit-scrollbar-track{background:rgba(0,0,0,.06)}
+:root[data-theme="light"] ::-webkit-scrollbar-thumb{background:#cfc4ad;
+  background-clip:content-box}
+</style>
+<script>
+/* Тема: системная по умолчанию, дальше — то, что человек выбрал сам.
+   Выбор пишем в корень страницы, оба набора цветов уже описаны в стилях. */
+(function () {
+  var KEY = 'pf-theme';
+
+  /* По умолчанию тёмная: разделы задумывались тёмными, светлая —
+     осознанный выбор человека, и он запоминается. */
+  function current() {
+    try { return localStorage.getItem(KEY) || 'dark'; }
+    catch (e) { return 'dark'; }
+  }
+
+  function apply(mode) {
+    document.documentElement.setAttribute('data-theme', mode);
+    var btn = document.getElementById('themeBtn');
+    if (btn) {
+      btn.querySelector('i').textContent = mode === 'dark' ? '\u2600' : '\u263D';
+      btn.querySelector('span').textContent = mode === 'dark' ? 'светлая' : 'тёмная';
+      btn.title = mode === 'dark' ? 'Включить светлую тему' : 'Включить тёмную тему';
+    }
+  }
+
+  apply(current());
+
+  function build() {
+    if (document.getElementById('themeBtn')) return;
+    var btn = document.createElement('button');
+    btn.id = 'themeBtn';
+    btn.type = 'button';
+    btn.innerHTML = '<i></i><span></span>';
+    btn.addEventListener('click', function () {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      try { localStorage.setItem(KEY, next); } catch (e) {}
+      apply(next);
+    });
+    document.body.appendChild(btn);
+    apply(current());
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', build);
+  } else { build(); }
+})();
+</script>
+<!-- /portfolio-theme -->
+</body>
+</html>
