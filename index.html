@@ -563,5 +563,59 @@ body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
 })();
 </script>
 <!-- /portfolio-theme -->
+
+
+
+
+
+
+
+
+<!-- portfolio-sw -->
+<script>
+/* Подключение раздатчика содержимого. Локально (file://) браузер
+   сервис-воркеры не разрешает — и не надо: на диске лежат настоящие
+   папки, ссылки ведут прямо в них. На сайте всё наоборот: папок нет,
+   их заменяют пакеты pack-*.bin. */
+(function () {
+  if (!("serviceWorker" in navigator) || location.protocol === "file:") return;
+
+  navigator.serviceWorker.register("sw.js").then(function (reg) {
+    var target = reg.active || reg.installing || reg.waiting;
+    function prefetch() {
+      if (navigator.serviceWorker.controller) {
+        navigator.serviceWorker.controller.postMessage({ type: "prefetch" });
+      }
+    }
+    if (navigator.serviceWorker.controller) prefetch();
+    else navigator.serviceWorker.addEventListener("controllerchange", prefetch);
+  }).catch(function () { /* не вышло — ссылки просто откроются напрямую */ });
+
+  /* Ненавязчивая полоска: видно, что содержимое подтягивается. */
+  var pill = null;
+  navigator.serviceWorker.addEventListener("message", function (e) {
+    var d = e.data || {};
+    if (d.type !== "progress") return;
+    if (!pill) {
+      pill = document.createElement("div");
+      pill.setAttribute("style", "position:fixed;left:18px;bottom:18px;z-index:9999;" +
+        "padding:7px 13px;border-radius:999px;font:400 12px/1.4 system-ui,sans-serif;" +
+        "background:rgba(20,20,22,.82);color:#fff;letter-spacing:.02em;" +
+        "backdrop-filter:blur(6px);transition:opacity .4s");
+      document.body.appendChild(pill);
+    }
+    pill.textContent = "готовим содержимое — " + d.done + " из " + d.total;
+    if (d.done >= d.total) {
+      pill.textContent = "содержимое готово";
+      setTimeout(function () {
+        pill.style.opacity = "0";
+        setTimeout(function () { pill.remove(); pill = null; }, 500);
+      }, 1200);
+    }
+  });
+})();
+</script>
+<!-- /portfolio-sw -->
+
 </body>
 </html>
