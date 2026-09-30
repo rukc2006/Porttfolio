@@ -137,6 +137,46 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 @media(max-width:1000px){.entry-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.entry-grid a:last-child{grid-column:1/-1}.work-preview-grid.featured-works{grid-template-columns:repeat(2,minmax(0,1fr))}.objects-showcase{grid-template-columns:1fr}}
 @media(max-width:680px){.entry-grid{grid-template-columns:1fr}.entry-grid a:last-child{grid-column:auto;display:flex;flex-direction:column;align-items:flex-start}.work-preview-grid.featured-works{grid-template-columns:1fr 1fr}.exhibition-featured{grid-template-columns:1fr}.archive-row{grid-template-columns:1fr;gap:6px}.objects-showcase-copy{padding:26px}.objects-showcase-media{min-height:260px}}
 
+
+/* v31 responsive repair */
+@media (max-width:1000px){
+  .entry-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+}
+@media (max-width:700px){
+  .container{width:min(100% - 28px,1180px)}
+  header nav{height:62px}
+  .logo img{width:38px;height:38px}
+  .logo span{font-size:20px}
+  .hero{padding:100px 0 58px;min-height:auto}
+  h1{font-size:56px}
+  .lead{font-size:24px}
+  .hero-copy{font-size:14px}
+  .entry-points{padding:45px 0 65px}
+  .entry-grid{grid-template-columns:1fr !important;gap:10px}
+  .entry-grid a,.entry-grid a:last-child{min-height:0 !important;padding:22px 20px !important;display:block !important;grid-column:auto !important}
+  .entry-grid strong{display:block;font-size:30px !important;line-height:1.02 !important;overflow-wrap:normal !important;word-break:normal !important;margin:12px 0 7px}
+  .entry-grid small{display:block;font-size:12px;line-height:1.5}
+  section{padding:78px 0}
+  h2{font-size:44px}
+  .intro{font-size:24px}
+  .process-line{font-size:19px}
+  .featured-section{padding-top:55px}
+  .work-preview-grid.featured-works{grid-template-columns:1fr 1fr !important}
+  .work-art-caption{padding:10px !important}
+  .work-art-caption strong{font-size:15px !important}
+  .work-art-caption span{font-size:10px !important}
+  .objects-showcase-copy{padding:24px}
+  .objects-showcase-copy h3{font-size:32px}
+  .objects-showcase-media{min-height:260px;padding:18px}
+  .order-cta{padding:28px 22px}
+  .order-cta h3{font-size:32px}
+}
+@media (max-width:420px){
+  .logo span{font-size:18px}
+  h1{font-size:48px}
+  .work-preview-grid.featured-works{grid-template-columns:1fr !important}
+}
+
 </style>
 
 </head>
@@ -250,7 +290,7 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 </div>
 </section>
 
-<section id="works" class="featured-section"><div class="container"><div class="section-kicker">Сейчас в мастерской</div><h2>То, что уже можно увидеть.</h2><p class="featured-intro">Здесь появляются реальные работы из витрины Мастерской. Некоторые уже нашли свой дом, другие пока находятся здесь. Витрина пополняется по мере того, как работы появляются в мастерской.</p><div class="work-preview-wrap"><div id="workPreview" class="work-preview-grid featured-works" aria-live="polite"></div><div class="work-preview-foot"><span id="workPreviewStatus">Работы из текущей витрины.</span><a class="button" href="vitrina.html?v=30">Смотреть всю витрину →</a></div></div></div></section>
+<section id="works" class="featured-section"><div class="container"><div class="section-kicker">Сейчас в мастерской</div><h2>То, что уже можно увидеть.</h2><p class="featured-intro">Здесь появляются реальные работы из витрины Мастерской. Некоторые уже нашли свой дом, другие пока находятся здесь. Витрина пополняется по мере того, как работы появляются в мастерской.</p><div class="work-preview-wrap"><div id="workPreview" class="work-preview-grid featured-works" aria-live="polite"></div><div class="work-preview-foot"><span id="workPreviewStatus">Работы из текущей витрины.</span><a class="button" href="vitrina.html?v=31">Смотреть всю витрину →</a></div></div></div></section>
 <section class="order-section after-works"><div class="container"><div class="order-cta" id="order"><div><div class="section-kicker">Если хочется свою</div><h3>Есть образ, который хочется воплотить?</h3><p>Можно просто написать мне. Расскажите, что хочется создать, для кого это и какой образ вы представляете — дальше вместе разберёмся с формой, материалами и деталями.</p></div><a class="button" href="https://vk.ru/ru2006kc" target="_blank" rel="noopener">Написать мне в VK →</a></div></div></section>
 <section id="exhibitions"><div class="container"><div class="section-kicker">2017 → 2021 · выставки и конкурсы</div><h2>Работы уже<br>путешествовали.</h2><p class="featured-intro">Несколько событий, через которые прошли мои работы. Полный архив оставила ниже — без тяжёлых встроенных лент, чтобы сама история оставалась лёгкой и читаемой.</p><div class="exhibition-featured">
 <article class="ex-card compact"><div class="ex-meta">2021 · Москва</div><h3>Персональная выставка-продажа · Пространство SiriusPark</h3><a class="button" href="https://vk.ru/wall-157175276_245" target="_blank" rel="noopener">Смотреть запись →</a></article>
@@ -328,7 +368,7 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 </footer>
 <script>
 (async function(){
-  const manifestUrl='works-cache/manifest.json?v=30';
+  const manifestUrl='works-cache/manifest.json?v=31';
   function esc(s){return String(s).replace(/[&<>\"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[m]));}
   try{
     const r=await fetch(manifestUrl,{cache:'no-store'}); if(!r.ok) throw 0;
@@ -336,7 +376,7 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
     (data.sections||[]).forEach(s=>(s.files||[]).forEach(f=>files.push({section:s.name,file:f})));
     const first=files.slice(0,4); if(!first.length) throw 0;
     const out=document.getElementById('workPreview');
-    out.innerHTML=first.map(w=>{const name=w.file.split('/').pop().replace(/\.[^.]+$/,'').replace(/[_-]+/g,' '); const idx=(data.sections||[]).findIndex(s=>s.name===w.section); return '<a class="work-art-card" href="vitrina.html?v=30#section-'+idx+'"><img class="work-art-image" loading="lazy" src="'+esc(w.file)+'" alt="'+esc(name)+' — '+esc(w.section)+'"><span class="work-art-caption"><strong>'+esc(name)+'</strong><span>'+esc(w.section)+'</span></span></a>';}).join('');
+    out.innerHTML=first.map(w=>{const name=w.file.split('/').pop().replace(/\.[^.]+$/,'').replace(/[_-]+/g,' '); const idx=(data.sections||[]).findIndex(s=>s.name===w.section); return '<a class="work-art-card" href="vitrina.html?v=31#section-'+idx+'"><img class="work-art-image" loading="lazy" src="'+esc(w.file)+'" alt="'+esc(name)+' — '+esc(w.section)+'"><span class="work-art-caption"><strong>'+esc(name)+'</strong><span>'+esc(w.section)+'</span></span></a>';}).join('');
     document.getElementById('workPreviewStatus').textContent='Первые '+first.length+' работы из текущей витрины.';
     const feature=document.getElementById('objectFeature'); if(feature){const w=first[0],name=w.file.split('/').pop().replace(/\.[^.]+$/,'').replace(/[_-]+/g,' '); feature.innerHTML='<img class="work-art-image" src="'+esc(w.file)+'" alt="'+esc(name)+'"><span class="work-art-caption"><strong>'+esc(name)+'</strong><span>'+esc(w.section)+'</span></span>';}
   }catch(e){document.getElementById('workPreview').innerHTML='<div class="work-preview-empty">Работы появятся здесь, когда витрина будет наполнена.</div>';}
