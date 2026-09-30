@@ -116,7 +116,7 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 .vk-preview-empty{padding:28px;color:var(--muted);font-size:13px;text-align:left;width:100%}
 @media(max-width:800px){.current-line{grid-template-columns:1fr}.order-cta{flex-direction:column;align-items:flex-start}.order-cta .button{margin-top:8px}}
 
-.work-preview-wrap{margin-top:42px}.work-preview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.work-section-card{display:block;position:relative;aspect-ratio:1.12;overflow:hidden;border:1px solid var(--line);background:var(--bg2)}.work-section-card img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .35s ease}.work-section-card:hover img{transform:scale(1.035)}.work-section-card:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,rgba(10,14,10,.88))}.work-section-card .work-label{position:absolute;z-index:1;left:0;right:0;bottom:0;padding:48px 18px 17px;color:var(--paper);font-family:"Cormorant Garamond",serif;font-size:27px}.work-section-card .work-count{display:block;margin-top:4px;color:var(--muted);font-family:Arial,sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase}.work-preview-empty{grid-column:1/-1;border:1px solid var(--line);padding:28px;color:var(--muted)}.work-preview-foot{margin-top:16px;display:flex;align-items:center;justify-content:space-between;gap:20px;color:var(--muted);font-size:13px}.work-preview-foot .button{margin-top:0;white-space:nowrap}@media(max-width:900px){.work-preview-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.work-preview-grid{grid-template-columns:1fr 1fr;gap:9px}.work-section-card .work-label{font-size:20px;padding:34px 10px 11px}.work-preview-foot{align-items:flex-start;flex-direction:column}.order-cta{padding:30px 24px}.order-cta h3{font-size:34px}.order-cta .button{width:100%;justify-content:center}}
+.work-preview-wrap{margin-top:42px}.work-preview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.work-section-card{display:block;position:relative;min-height:330px;overflow:hidden;border:1px solid var(--line);background:var(--bg2)}.work-section-card img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .4s ease}.work-section-card:hover img{transform:scale(1.035)}.work-section-card:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,rgba(7,11,7,.9))}.work-section-card .work-label{position:absolute;z-index:1;left:0;right:0;bottom:0;padding:70px 24px 22px;color:var(--paper);font-family:"Cormorant Garamond",serif;font-size:clamp(34px,5vw,58px);line-height:.98}.work-section-card .work-count{display:block;margin-top:8px;color:var(--muted);font-family:Arial,sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase}.work-preview-empty{grid-column:1/-1;border:1px solid var(--line);padding:28px;color:var(--muted)}.work-preview-foot{margin-top:16px;display:flex;align-items:center;justify-content:space-between;gap:20px;color:var(--muted);font-size:13px}.work-preview-foot .button{margin-top:0;white-space:nowrap}@media(max-width:900px){.work-preview-grid{grid-template-columns:1fr 1fr}}@media(max-width:680px){.work-preview-grid{grid-template-columns:1fr;gap:12px}.work-section-card{min-height:280px}.work-section-card .work-label{font-size:42px;padding:58px 18px 18px}.work-preview-foot{align-items:flex-start;flex-direction:column}.order-cta{padding:30px 24px}.order-cta h3{font-size:34px}.order-cta .button{width:100%;justify-content:center}}
 .vk-post-wrap{width:100%;min-height:80px;overflow:hidden;margin:14px 0}.vk-post-wrap iframe{max-width:100%!important}.vk-preview-empty{border:1px solid var(--line);padding:18px;color:var(--muted)}
 @media(max-width:680px){.vk-post-wrap{margin:10px 0}.vk-post-wrap iframe{width:100%!important;max-width:100%!important}}
 
@@ -290,7 +290,7 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 </div>
 </section>
 
-<section id="works" class="featured-section"><div class="container"><div class="section-kicker">Сейчас в мастерской</div><h2>То, что уже можно увидеть.</h2><p class="featured-intro">Здесь появляются реальные работы из витрины Мастерской. Некоторые уже нашли свой дом, другие пока находятся здесь. Витрина пополняется по мере того, как работы появляются в мастерской.</p><div class="work-preview-wrap"><div id="workPreview" class="work-preview-grid featured-works" aria-live="polite"></div><div class="work-preview-foot"><span id="workPreviewStatus">Работы из текущей витрины.</span><a class="button" href="vitrina.html?v=31">Смотреть всю витрину →</a></div></div></div></section>
+<section id="works" class="featured-section"><div class="container"><div class="section-kicker">Сейчас в мастерской</div><h2>То, что уже можно увидеть.</h2><p class="featured-intro">Здесь можно сначала выбрать направление, а потом заглянуть внутрь. В каждой плитке — фотография работ из этого раздела.</p><div class="work-preview-wrap"><div id="workPreview" class="work-preview-grid" aria-live="polite"></div><div class="work-preview-foot"><span id="workPreviewStatus">Разделы текущей витрины.</span><a class="button" href="vitrina.html?v=32">Смотреть всю витрину →</a></div></div></div></section>
 <section class="order-section after-works"><div class="container"><div class="order-cta" id="order"><div><div class="section-kicker">Если хочется свою</div><h3>Есть образ, который хочется воплотить?</h3><p>Можно просто написать мне. Расскажите, что хочется создать, для кого это и какой образ вы представляете — дальше вместе разберёмся с формой, материалами и деталями.</p></div><a class="button" href="https://vk.ru/ru2006kc" target="_blank" rel="noopener">Написать мне в VK →</a></div></div></section>
 <section id="exhibitions"><div class="container"><div class="section-kicker">2017 → 2021 · выставки и конкурсы</div><h2>Работы уже<br>путешествовали.</h2><p class="featured-intro">Несколько событий, через которые прошли мои работы. Полный архив оставила ниже — без тяжёлых встроенных лент, чтобы сама история оставалась лёгкой и читаемой.</p><div class="exhibition-featured">
 <article class="ex-card compact"><div class="ex-meta">2021 · Москва</div><h3>Персональная выставка-продажа · Пространство SiriusPark</h3><a class="button" href="https://vk.ru/wall-157175276_245" target="_blank" rel="noopener">Смотреть запись →</a></article>
@@ -368,18 +368,24 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 </footer>
 <script>
 (async function(){
-  const manifestUrl='works-cache/manifest.json?v=31';
+  const manifestUrl='works-cache/manifest.json?v=32';
   function esc(s){return String(s).replace(/[&<>\"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[m]));}
+  function plural(n,forms){const m=n%100;if(m>=11&&m<=14)return forms[2];const x=n%10;return x===1?forms[0]:(x>=2&&x<=4?forms[1]:forms[2])}
   try{
     const r=await fetch(manifestUrl,{cache:'no-store'}); if(!r.ok) throw 0;
-    const data=await r.json(), files=[];
-    (data.sections||[]).forEach(s=>(s.files||[]).forEach(f=>files.push({section:s.name,file:f})));
-    const first=files.slice(0,4); if(!first.length) throw 0;
+    const data=await r.json();
+    const sections=(data.sections||[]).filter(s=>s.files&&s.files.length);
     const out=document.getElementById('workPreview');
-    out.innerHTML=first.map(w=>{const name=w.file.split('/').pop().replace(/\.[^.]+$/,'').replace(/[_-]+/g,' '); const idx=(data.sections||[]).findIndex(s=>s.name===w.section); return '<a class="work-art-card" href="vitrina.html?v=31#section-'+idx+'"><img class="work-art-image" loading="lazy" src="'+esc(w.file)+'" alt="'+esc(name)+' — '+esc(w.section)+'"><span class="work-art-caption"><strong>'+esc(name)+'</strong><span>'+esc(w.section)+'</span></span></a>';}).join('');
-    document.getElementById('workPreviewStatus').textContent='Первые '+first.length+' работы из текущей витрины.';
-    const feature=document.getElementById('objectFeature'); if(feature){const w=first[0],name=w.file.split('/').pop().replace(/\.[^.]+$/,'').replace(/[_-]+/g,' '); feature.innerHTML='<img class="work-art-image" src="'+esc(w.file)+'" alt="'+esc(name)+'"><span class="work-art-caption"><strong>'+esc(name)+'</strong><span>'+esc(w.section)+'</span></span>';}
-  }catch(e){document.getElementById('workPreview').innerHTML='<div class="work-preview-empty">Работы появятся здесь, когда витрина будет наполнена.</div>';}
+    if(!sections.length) throw 0;
+    out.innerHTML=sections.map((s,i)=>{
+      const cover=s.files[0];
+      return '<a class="work-section-card" href="vitrina.html?v=32#section-'+i+'"><img loading="lazy" src="'+esc(cover)+'" alt="'+esc(s.name)+'"><span class="work-label">'+esc(s.name)+'<span class="work-count">'+s.files.length+' '+plural(s.files.length,['работа','работы','работ'])+'</span></span></a>';
+    }).join('');
+    document.getElementById('workPreviewStatus').textContent='Разделы текущей витрины.';
+  }catch(e){
+    console.error(e);
+    document.getElementById('workPreview').innerHTML='<div class="work-preview-empty">Разделы витрины появятся здесь, когда она будет наполнена.</div>';
+  }
 })();
 </script>
 </body>
