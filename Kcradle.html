@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kcradle — Ксения Комарова · Мастерская-Колыбель</title>
+<meta name="description" content="Ксения Комарова — художник, основатель и хранитель Мастерской-Колыбель. Искусство, ручная работа, символы, образы и создание маленьких миров.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap');
+:root{
+  --bg:#101710; --bg2:#172018; --paper:#e9dfc9; --paper2:#cfc0a3;
+  --ink:#182018; --cream:#f1eadb; --muted:#b7ad98; --gold:#b69a68;
+  --line:rgba(233,223,201,.18); --shadow:0 25px 80px rgba(0,0,0,.35);
+}
+:root[data-theme="light"]{
+  --bg:#eee8dc; --bg2:#e4ddce; --paper:#273126; --paper2:#4b5a49;
+  --ink:#182018; --cream:#273126; --muted:#687063; --gold:#8a7040;
+  --line:rgba(39,49,38,.18); --shadow:0 25px 60px rgba(40,35,25,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--cream);font-family:Manrope,system-ui,sans-serif;font-weight:300;line-height:1.7}
+a{color:inherit;text-decoration:none}
+.container{width:min(1180px,calc(100% - 48px));margin:auto}
+header{position:fixed;top:0;left:0;right:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:11px;color:var(--cream);text-decoration:none}.logo img{width:42px;height:42px;border-radius:50%;display:block;object-fit:cover}.logo span{font-family:"Cormorant Garamond",serif;font-size:22px;line-height:1;font-weight:500;white-space:nowrap}
+.navlinks{display:flex;align-items:center;gap:22px;font-size:13px;color:var(--muted)}
+.theme-btn{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:8px 12px;font:inherit;font-size:12px;cursor:pointer}.theme-btn:hover{color:var(--cream);border-color:var(--gold)}
+.navlinks a:hover{color:var(--cream)}
+.hero{min-height:100vh;display:grid;align-items:center;padding:130px 0 80px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:
+ radial-gradient(circle at 75% 30%,rgba(102,117,73,.22),transparent 32%),
+ radial-gradient(circle at 20% 70%,rgba(150,112,56,.12),transparent 30%);
+pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+h1,h2,h3{font-family:"Cormorant Garamond",serif;font-weight:500;line-height:.98;margin:0}
+h1{font-size:clamp(62px,8vw,112px);letter-spacing:-.035em}
+.hero h1 span{display:block;color:var(--paper2)}
+.lead{font-family:"Cormorant Garamond",serif;font-size:28px;line-height:1.2;max-width:680px;margin:30px 0;color:var(--paper)}
+.hero-copy{font-size:15px;color:var(--muted);max-width:620px}
+.button{display:inline-flex;margin-top:30px;padding:13px 20px;border:1px solid rgba(182,154,104,.55);border-radius:999px;color:var(--paper);font-size:13px}
+.hero-art{width:100%;display:block;border:1px solid var(--line);box-shadow:var(--shadow);position:relative}.hero-art-img{display:block;width:100%;height:auto}
+section{padding:115px 0;border-top:1px solid var(--line)}
+.section-kicker{color:var(--gold);font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+h2{font-size:clamp(46px,6vw,76px)}
+.intro{max-width:820px;font-family:"Cormorant Garamond",serif;font-size:28px;line-height:1.25;color:var(--paper);margin-top:24px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:70px;margin-top:55px}
+.text{color:var(--muted);font-size:15px}
+.manifesto{font-family:"Cormorant Garamond",serif;font-size:36px;line-height:1.15;color:var(--paper);border-left:1px solid var(--gold);padding-left:28px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:50px}
+.card{border:1px solid var(--line);padding:26px 20px;min-height:190px;background:rgba(255,255,255,.018)}
+.card .num{font-family:"Cormorant Garamond",serif;font-size:36px;color:var(--gold)}
+.card h3{font-size:27px;margin:16px 0 8px}
+.card p{font-size:13px;color:var(--muted);margin:0}
+.timeline{margin-top:45px;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:130px 1fr;gap:30px;padding:22px 0;border-bottom:1px solid var(--line)}
+.year{color:var(--gold);font-size:12px;letter-spacing:.08em}
+.row strong{font-weight:500;color:var(--paper)}
+.tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:25px}
+.tag{border:1px solid var(--line);padding:8px 12px;border-radius:999px;font-size:12px;color:var(--muted)}
+.quote{margin-top:55px;padding:50px;background:color-mix(in srgb,var(--bg2) 72%,transparent);border:1px solid var(--line);font-family:"Cormorant Garamond",serif;font-size:34px;line-height:1.2;text-align:center}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:45px}
+.gallery .tile{aspect-ratio:1;background:#1b241a;border:1px solid var(--line);display:flex;align-items:end;padding:18px;color:var(--muted);font-family:"Cormorant Garamond",serif;font-size:24px}
+.gallery .tile:nth-child(2){background:radial-gradient(circle at 65% 35%,#766b4b 0 4%,transparent 5%),linear-gradient(135deg,#243223,#11170f)}
+.gallery .tile:nth-child(3){background:radial-gradient(circle at 50% 50%,#8c7550 0 7%,transparent 8%),linear-gradient(135deg,#172318,#4b3b28)}
+.material-image{width:100%;display:block;border:1px solid var(--line);margin-top:18px}.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:35px}.info-card{border:1px solid var(--line);padding:24px;background:color-mix(in srgb,var(--bg2) 55%,transparent)}.info-card h3{font-size:30px;margin-bottom:10px}.info-card p{margin:0;color:var(--muted);font-size:14px}.path-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:45px}.path-card{border:1px solid var(--line);padding:28px;background:color-mix(in srgb,var(--bg2) 48%,transparent)}.path-card .year{display:block;margin-bottom:12px}.path-card h3{font-size:30px;margin-bottom:10px}.path-card p{margin:0;color:var(--muted);font-size:14px}.education{margin-top:50px;border-top:1px solid var(--line)}.edu-row{display:grid;grid-template-columns:150px 1fr;gap:30px;padding:22px 0;border-bottom:1px solid var(--line)}.edu-year{color:var(--gold);font-size:12px;letter-spacing:.08em}.edu-row strong{color:var(--paper);font-weight:500}.assortment{margin-top:30px}.assortment img{width:100%;max-width:520px;display:block;border:1px solid var(--line)}.mindful{margin-top:50px;padding:38px;border:1px solid var(--gold);background:color-mix(in srgb,var(--bg2) 60%,transparent)}.mindful h3{font-size:34px;margin-bottom:12px}.mindful p{max-width:850px;margin:0;color:var(--paper);font-family:"Cormorant Garamond",serif;font-size:26px;line-height:1.25}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:end}
+.contact-list{display:grid;gap:14px;margin-top:35px}
+.contact-item{padding:16px 0;border-bottom:1px solid var(--line);color:var(--muted)}
+.contact-item b{display:block;color:var(--paper);font-weight:500;font-size:12px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:5px}
+footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--line)}
+.small{font-size:12px;color:#817a6c}
+
+.entry-points{padding:55px 0 90px;border-top:0}.entry-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:30px}.entry-grid a{border:1px solid var(--line);padding:20px;min-height:150px;display:flex;flex-direction:column;transition:.2s;background:color-mix(in srgb,var(--bg2) 35%,transparent)}.entry-grid a:hover{transform:translateY(-2px);border-color:var(--gold)}.entry-grid span{color:var(--gold);font-size:11px;letter-spacing:.14em}.entry-grid strong{font-family:"Cormorant Garamond",serif;font-size:25px;font-weight:500;margin-top:auto;color:var(--paper)}.entry-grid small{color:var(--muted);font-size:12px;margin-top:8px;line-height:1.45}.process-line{margin-top:50px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 10px;display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--paper);font-family:"Cormorant Garamond",serif;font-size:22px}.process-line i{color:var(--gold);font-style:normal}.material-showcase{align-items:center}.platform-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:45px}.platform-card{border:1px solid var(--line);padding:30px;min-height:230px;background:color-mix(in srgb,var(--bg2) 48%,transparent);display:flex;flex-direction:column}.platform-card:hover{border-color:var(--gold)}.platform-name{font-family:"Cormorant Garamond",serif;font-size:42px;color:var(--paper);margin-bottom:18px}.platform-card span:not(.platform-name){color:var(--muted);font-size:14px;max-width:520px}.platform-card b{font-size:12px;color:var(--gold);font-weight:400;letter-spacing:.05em;margin-top:auto;padding-top:25px}
+@media(max-width:850px){
+ .navlinks{display:none}.hero-grid,.grid2,.contact,.path-grid,.info-grid{grid-template-columns:1fr}.hero{padding-top:110px}.hero-art{max-width:560px}
+ .cards{grid-template-columns:1fr 1fr}.gallery{grid-template-columns:1fr 1fr}.entry-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.platform-grid{grid-template-columns:1fr}.process-line{flex-wrap:wrap;justify-content:flex-start}
+ .edu-row{grid-template-columns:1fr;gap:5px}
+}
+@media(max-width:520px){
+ .container{width:min(100% - 28px,1180px)}.cards,.gallery{grid-template-columns:1fr}.row{grid-template-columns:1fr;gap:5px}
+ h1{font-size:58px}.lead{font-size:24px}.manifesto,.quote{font-size:28px}
+}
+.vk-post-wrap{margin-top:18px;min-height:220px;border:1px solid var(--line);background:color-mix(in srgb,var(--bg2) 50%,transparent);display:flex;align-items:center;justify-content:center;overflow:hidden}.vk-fallback{padding:28px;text-align:left;width:100%;min-height:220px;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(145deg,color-mix(in srgb,var(--bg2) 80%,transparent),var(--bg))}.vk-fallback .vk-mark{font-family:"Cormorant Garamond",serif;font-size:42px;color:var(--paper)}.vk-fallback span{font-size:11px;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-top:8px}.ex-card .button{margin-top:18px}
+.exhibition-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:45px}.ex-card{border:1px solid var(--line);padding:28px;background:rgba(255,255,255,.018)}.ex-card h3{font-size:28px;margin:8px 0 18px}.ex-meta{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}.ex-card .button{margin-top:18px;margin-right:6px}@media(max-width:1100px){.entry-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:850px){.exhibition-list{grid-template-columns:1fr}}
+
+.vk-fallback{min-height:210px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:28px;background:var(--panel);border:1px solid var(--line);color:var(--cream)}
+.vk-fallback-title{font:400 25px/1.2 "Cormorant Garamond",Georgia,serif;margin-bottom:10px}
+.vk-fallback-note{font:300 13px/1.6 "Jost",sans-serif;color:var(--muted);max-width:460px}
+
+.live-contact-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:34px}.live-contact-card{border:1px solid var(--line);padding:34px 30px;min-height:100%;background:rgba(255,255,255,.01)}.live-contact-card h2{font-size:clamp(30px,3vw,48px);line-height:1.02;margin:18px 0 24px}.live-contact-card p{color:var(--ink-soft);line-height:1.75}.live-contact-card .button{margin-top:24px}.live-contact-card .section-kicker{margin-bottom:0}.live-contact-card .contact-list{margin-top:28px}.live-contact-card .contact-item{padding:13px 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:5px}.live-contact-card .contact-item:last-child{border-bottom:1px solid var(--line)}
+@media(max-width:900px){.live-contact-grid{grid-template-columns:1fr}.live-contact-card{padding:28px 24px}}
+</style>
+
+<script>
+(function(){
+  const key='kcradle-theme';
+  function apply(mode){document.documentElement.setAttribute('data-theme',mode); const b=document.getElementById('themeBtn'); if(b) b.textContent=mode==='light'?'Тёмная тема':'Светлая тема';}
+  function init(){let mode='dark'; try{mode=localStorage.getItem(key)||'dark'}catch(e){} apply(mode); const b=document.getElementById('themeBtn'); if(b) b.addEventListener('click',()=>{mode=mode==='light'?'dark':'light'; try{localStorage.setItem(key,mode)}catch(e){} apply(mode)});}
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+})();
+</script>
+</head>
+<body>
+<header>
+  <div class="container">
+    <nav>
+      <a class="logo" href="#top" aria-label="Мастерская-Колыбель"><img src="assets/kcradle-avatar.png" alt=""><span>Мастерская-Колыбель</span></a>
+      <div class="navlinks"><a href="index.html">← Портфолио AI</a>
+        <a href="#about">Обо мне</a><a href="#workshop">Колыбель</a><a href="#directions">Направления</a><a href="#works">Работы</a><a href="#exhibitions">Выставки</a><a href="#news">Новости</a><button id="themeBtn" class="theme-btn" type="button">Светлая тема</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Ксения Комарова · художник · основатель Мастерской-Колыбель</div>
+      <h1>Создаю<br><span>маленькие миры.</span></h1>
+      <p class="lead">Из образов, вдохновения и смысла — в осязаемую форму.</p>
+      <p class="hero-copy">Живопись, глина, предметы, символы и эксперименты. А ещё — технологии, аналитика и AI. Мне интересно находить связи между тем, что на первый взгляд находится в совершенно разных мирах.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="button" href="#about">Зайти в мастерскую ↓</a><a class="button" href="works/index.html">Смотреть работы →</a></div>
+    </div>
+    <img class="hero-art hero-art-img" src="assets/kcradle-hero.png" alt="Ксения Комарова в пространстве Мастерской-Колыбель">
+  </div>
+</section>
+
+<section class="entry-points">
+  <div class="container">
+    <div class="section-kicker">С чего начать</div>
+    <div class="entry-grid">
+      <a href="#works"><span>01</span><strong>Посмотреть работы</strong><small>картины · предметы · эксперименты</small></a>
+      <a href="#objects"><span>02</span><strong>Узнать про новую линию</strong><small>предметные картины и маленькие миры в рамке</small></a>
+      <a href="#about"><span>03</span><strong>Познакомиться со мной</strong><small>мой путь · образование · способы работы</small></a>
+      <a href="#news"><span>04</span><strong>Остаться в процессе</strong><small>VK · новые публикации и работы</small></a>
+      <a href="#setka"><span>05</span><strong>Профессиональная среда</strong><small>Сетка · AI · рабочие наблюдения</small></a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+<div class="container">
+  <div class="section-kicker">Кто я?</div>
+  <h2>Будем знакомы.</h2>
+  <div class="grid2">
+    <div>
+      <p class="intro">Меня зовут Ксения Комарова. Я художник, эзотерик и основатель Мастерской-Колыбель.</p>
+    </div>
+    <div class="text">
+      <p>Я пришла к мастерской через живопись: пробовала разные техники, экспериментировала с цветом, а потом меня всё сильнее стало тянуть к формам и предметам.</p>
+      <p>Так появились глиняные статуэтки, обложки для блокнотов, шкатулки, декор и украшения. Но рисунок всё равно оставался рядом.</p>
+      <p>В какой-то момент творчество перестало быть для меня просто творчеством. Мне захотелось создавать не только вещи, но и пространство смыслов вокруг них.</p>
+    </div>
+  </div>
+  <div class="quote">«Мастерская-Колыбель — это сотворение миров из образов и вдохновения, которые благодаря мастеру приобретают конечную форму».</div>
+</div>
+</section>
+
+<section id="workshop">
+<div class="container">
+  <div class="section-kicker">Почему именно Колыбель</div>
+  <h2>Место для своего<br>маленького мира.</h2>
+  <div class="grid2">
+    <div class="text">
+      <p><b style="color:var(--paper)">Мастерская</b> — место работы и экспериментов. Здесь вдохновение перетекает в осязаемую форму.</p>
+      <p><b style="color:var(--paper)">Колыбель</b> — первое личное пространство человека, маленький мир в большой вселенной. Образ тишины, спокойствия и защищённости.</p>
+      <p>Поэтому готовое изделие для меня — не просто предмет. Попадая к своему хозяину, оно начинает раскрываться и создавать ощущение собственного защищённого пространства.</p>
+    </div>
+    <div class="manifesto">Здесь искусство, образ и предмет становятся частью личного мира человека.</div>
+  </div>
+</div>
+</section>
+
+<section id="directions">
+<div class="container">
+  <div class="section-kicker">Что происходит внутри</div>
+  <h2>Разные материалы.<br>Один взгляд.</h2>
+  <div class="cards">
+    <article class="card"><div class="num">01</div><h3>Живопись</h3><p>Холст, бумага, ткань. Цвет, линия, композиция и образы, которые возвращаются в разных формах.</p></article>
+    <article class="card"><div class="num">02</div><h3>Глина и гипс</h3><p>Объём, фактура и работа руками. От мягкой массы к предмету, который можно держать и рассматривать со всех сторон.</p></article>
+    <article class="card"><div class="num">03</div><h3>Предметы</h3><p>Свечи, сумки, магнитики, шкатулки, акварельные краски, мелочи для шитья и другие вещи, в которых может поселиться образ.</p></article>
+    <article class="card"><div class="num">04</div><h3>Символы</h3><p>Смыслы, ассоциации, эзотерика и личные истории, стоящие за визуальным образом.</p><p>Руны, МАК, таро, архетипы, знаки и другие символические системы — как язык образов и личных смыслов.</p></article>
+  </div>
+  <div class="grid2 material-showcase">
+    <div>
+      <div class="section-kicker">Предметы в мастерской</div>
+      <div class="text"><p>Свечи, сумки, магнитики, шкатулки, акварельные краски, мелочи для шитья и другие небольшие вещи. Для меня это не отдельный «магазинный ассортимент», а ещё одна поверхность, на которой может появиться образ.</p><p>Некоторые предметы могут быть самостоятельными, другие — частью будущих маленьких миров.</p></div>
+    </div>
+    <div class="assortment"><img src="assets/kcradle-assortment.jpg" alt="Визуальный пример предметов и ассортимента Мастерской-Колыбель"></div>
+  </div>
+  <div class="grid2" style="margin-top:55px">
+    <div class="text"><p>Мне не хочется выбирать один материал и навсегда оставаться в нём. Иногда образу нужна краска, иногда — ткань, объём, дерево или глина.</p><p>Поэтому мастерская для меня — место эксперимента: я ищу не материал ради материала, а форму, в которой образ сможет раскрыться.</p></div>
+    <div class="manifesto">Сначала появляется образ. Потом я ищу для него материал, фактуру и форму.</div>
+  </div>
+  <div class="mindful"><h3>Осознанность — часть процесса.</h3><p>В мастерской я работаю через осознанность и медитации. Перед созданием работы я стараюсь очистить внимание, настроиться на образ и только потом переходить к материалу и форме.</p></div>
+</div>
+</section>
+
+<section id="objects">
+<div class="container">
+  <div class="section-kicker">Новая линия в процессе создания</div>
+  <h2>Предметные картины.<br>Маленькие миры в рамке.</h2>
+  <div class="grid2">
+    <div class="text"><p>Это направление сейчас рождается внутри мастерской. Мне интересно выводить рисунок за пределы обычного холста: работать с тканью, деревом, гипсом, глиной, объёмом и разными рамами.</p><p>Мне нравится, когда работа перестаёт быть просто изображением на поверхности и становится предметом, который можно держать, рассматривать со всех сторон, поставить рядом с собой.</p><p>Здесь материал становится частью образа. Рама — частью композиции. А маленький размер — не ограничением, а способом создать отдельный, почти камерный мир.</p></div>
+    <div class="manifesto">Не коллекция материалов, а коллекция маленьких миров.<br><br>Сначала появляется образ. Потом я ищу для него материал, фактуру, форму и рамку.</div>
+  </div>
+  <div class="process-line"><span>образ</span><i>→</i><span>материал</span><i>→</i><span>объём</span><i>→</i><span>рамка</span><i>→</i><span>маленький мир</span></div>
+</div>
+</section>
+
+<section id="works">
+<div class="container">
+  <div class="section-kicker">Витрина</div>
+  <h2>Работы Мастерской.</h2>
+  <div class="grid2">
+    <div class="text"><p>Здесь будут собираться работы, которые уже родились в мастерской: картины, предметы, эксперименты с материалами и новые маленькие миры.</p><p>Витрина будет постепенно расти вместе с мастерской.</p></div>
+    <div class="manifesto"><a href="works/index.html">Смотреть работы →</a></div>
+  </div>
+</div>
+</section>
+
+<section id="exhibitions">
+<div class="container">
+  <div class="section-kicker">2017 → 2021 · выставки и конкурсы</div>
+  <h2>Работы уже<br>путешествовали.</h2>
+  <div class="exhibition-list">
+    <article class="ex-card"><div class="ex-meta">2017 · Москва</div><h3>Конкурс «Битва художников»</h3><p class="text">Ссылка на запись пока не добавлена.</p></article>
+    <article class="ex-card"><div class="ex-meta">2019 · Москва</div><h3>Галерея Want&amp;Paint · «Экологический кризис»</h3><div class="vk-post-wrap" data-owner="-157175276" data-post="143" data-label="Галерея Want&amp;Paint · «Экологический кризис»"></div><a class="button" href="https://vk.ru/wall-157175276_143" target="_blank" rel="noopener">Открыть запись VK →</a></article>
+    <article class="ex-card"><div class="ex-meta">2019 · Москва</div><h3>Галерея Want&amp;Paint · «Выставка 25 молодых художников»</h3><div class="vk-post-wrap" data-owner="-157175276" data-post="134" data-label="Галерея Want&amp;Paint · «Выставка 25 молодых художников»"></div><a class="button" href="https://vk.ru/wall-157175276_134" target="_blank" rel="noopener">Открыть запись VK →</a></article>
+    <article class="ex-card"><div class="ex-meta">2019 · Лондон</div><h3>Галерея Menier · конкурс Pebeo Mixed Media</h3><p class="text">Ссылка на запись пока не добавлена.</p></article>
+    <article class="ex-card"><div class="ex-meta">2019 · Москва</div><h3>International Typomania Festival · конкурс стикеров</h3><p class="text">Ссылка на запись пока не добавлена.</p></article>
+    <article class="ex-card"><div class="ex-meta">2021 · Москва</div><h3>Персональная выставка-продажа · Пространство SiriusPark</h3><div class="vk-post-wrap" data-owner="-157175276" data-post="245" data-label="SiriusPark · 2021"></div><a class="button" href="https://vk.ru/wall-157175276_245" target="_blank" rel="noopener">Открыть запись →</a></article>
+    <article class="ex-card"><div class="ex-meta">2021 · Москва</div><h3>Персональная выставка-продажа · Гастромаркет и BlackHat бар · апрель</h3><div class="vk-post-wrap" data-owner="204412765" data-post="1679" data-label="Персональная выставка-продажа · Гастромаркет и BlackHat бар · апрель"></div><a class="button" href="https://vk.ru/wall204412765_1679" target="_blank" rel="noopener">Открыть запись VK →</a></article>
+    <article class="ex-card"><div class="ex-meta">2021 · Москва</div><h3>Персональная выставка-продажа · Гастромаркет и BlackHat бар · март</h3><div class="vk-post-wrap" data-owner="204412765" data-post="1658" data-label="Персональная выставка-продажа · Гастромаркет и BlackHat бар · март"></div><a class="button" href="https://vk.ru/wall204412765_1658" target="_blank" rel="noopener">Открыть запись VK →</a></article>
+    <article class="ex-card"><div class="ex-meta">2021 · Москва</div><h3>Центр искусств «Art коробка» · ART ANTIDOT 2</h3><div class="vk-post-wrap" data-owner="204412765" data-post="1632" data-label="Центр искусств «Art коробка» · ART ANTIDOT 2"></div><a class="button" href="https://vk.ru/wall204412765_1632" target="_blank" rel="noopener">Запись 1 →</a> <a class="button" href="https://vk.ru/wall204412765_1633" target="_blank" rel="noopener">Запись 2 →</a></article>
+    <article class="ex-card"><div class="ex-meta">2021 · Лондон / Афины</div><h3>Галерея Art Number 23 · онлайн-проект New Era</h3><div class="vk-post-wrap" data-owner="204412765" data-post="1617" data-label="Галерея Art Number 23 · онлайн-проект New Era"></div><a class="button" href="https://vk.ru/wall204412765_1617" target="_blank" rel="noopener">Открыть запись VK →</a></article>
+    <article class="ex-card"><div class="ex-meta">2021 · Москва</div><h3>Bidspirit · онлайн-аукцион LOT TV #16</h3><div class="vk-post-wrap" data-owner="204412765" data-post="1596" data-label="Bidspirit · онлайн-аукцион LOT TV #16"></div><a class="button" href="https://vk.ru/wall204412765_1596" target="_blank" rel="noopener">Открыть запись VK →</a></article>
+    <article class="ex-card"><div class="ex-meta">2021 · Москва</div><h3>Bidspirit · онлайн-аукцион LOT TV #21</h3><p class="text">Ссылка на запись пока не добавлена.</p></article>
+  </div>
+</div>
+</section>
+
+<section id="path">
+<div class="container">
+  <div class="section-kicker">Как я к этому пришла</div>
+  <h2>Я не разделяю<br>себя на две жизни.</h2>
+  <p class="intro">В моей работе рядом существуют экономика и искусство, цифры и образы, автоматизация и ручная работа. Для меня это не случайный набор занятий, а несколько способов смотреть на одну и ту же вещь — замечать, как она устроена, и придумывать, как сделать её иначе.</p>
+  <div class="path-grid">
+    <article class="path-card"><span class="year">2008–2021</span><h3>Экономика, учёт и e-commerce</h3><p><strong>Бухгалтерия, закупки, продажи, работа с товарами и бизнес-процессами.</strong> Этот этап научил меня видеть систему целиком: от цифры и документа до того, что в итоге получает человек.</p></article>
+    <article class="path-card"><span class="year">2017–сейчас</span><h3>Художник и Мастерская-Колыбель</h3><p><strong>Живопись, ручная работа, глина, предметы, символы, выставки.</strong> Здесь я работаю не только с формой, но и с тем, какое ощущение и какой образ остаются у человека.</p></article>
+    <article class="path-card"><span class="year">2021–сейчас</span><h3>Маркетплейсы, аналитика, AI</h3><p><strong>Управление маркетплейсами, коммерческие задачи, SMM, дашборды, автоматизация и AI.</strong> Здесь мне интересно превращать хаос ручной работы в понятную систему — и при этом оставлять место для эксперимента.</p></article>
+    <article class="path-card"><span class="year">Параллельно · 2021–сейчас</span><h3>Постоянно учусь</h3><p><strong>Дизайн, искусство, педагогика, арт-практики, Python, нейросети, аналитика, управление и другие направления.</strong> Мне важно не просто собирать курсы, а расширять инструментарий и переносить знания из одной области в другую.</p></article>
+  </div>
+  <div class="grid2" style="margin-top:55px">
+    <div class="manifesto">Мне интересно не выбирать что-то одно, а соединять.</div>
+    <div class="text"><p>Экономика даёт мне структуру. Аналитика — привычку замечать закономерности. AI и автоматизация — возможность быстро проверять идеи. Искусство — внимание к образу, фактуре, ощущению и тому, что не всегда можно измерить.</p><p>Когда эти области встречаются, я могу смотреть на задачу сразу с нескольких сторон. Именно поэтому в моём портфолио рядом существуют дашборды и картины, Python и глина, автоматизация и ручная работа.</p></div>
+  </div>
+  <div class="education">
+    <h3 class="education-title">Образование — от базы к новым инструментам.</h3>
+    <div class="row"><div class="edu-year">2012</div><div class="edu-detail"><strong>Коммерческо-банковский колледж №6</strong><br><span class="small">Экономика и бухгалтерский учёт</span><div class="edu-label">База</div></div></div>
+    <div class="row"><div class="edu-year">2016</div><div class="edu-detail"><strong>Финансовый университет при Правительстве РФ</strong><br><span class="small">Бакалавр экономики · бухгалтерский учёт, анализ и аудит</span><div class="edu-label">Высшее образование</div></div></div>
+    <div class="row"><div class="edu-year">2025–2026</div><div class="edu-detail"><strong>Дополнительное образование</strong><br><span class="small">Сейчас я собираю в одной практике знания из нескольких областей — от культуры и искусства до технологий и управления.</span><div class="edu-list">
+      <span class="edu-chip">методика доп. образования</span><span class="edu-chip">управление в культуре и искусстве</span><span class="edu-chip">преподавание ИЗО и черчения</span><span class="edu-chip">авторское право для дизайнера</span><span class="edu-chip">библиотечное дело</span><span class="edu-chip">арт-практики и МАК</span><span class="edu-chip">конфликтология</span><span class="edu-chip">дизайн и нейросети</span><span class="edu-chip">AI · n8n · Python · RAG</span><span class="edu-chip">анализ данных и AI-решения</span><span class="edu-chip">Excel · Power BI</span><span class="edu-chip">SMM и маркетплейсы</span><span class="edu-chip">искусство и дизайн</span>
+    </div></div></div>
+    <p class="edu-note">Мне важно учиться не ради списка дипломов. Новое знание должно становиться рабочим инструментом — в проекте, в мастерской или в том, как я смотрю на задачу.</p>
+  </div>
+</div>
+</section>
+
+<section id="live-contact">
+<div class="container">
+  <div class="section-kicker">ЖИВОЙ КОНТУР</div>
+  <div class="live-contact-grid">
+    <article class="live-contact-card" id="news">
+      <div class="section-kicker">Живой процесс</div>
+      <h2>Там, где мастерская продолжается между работами.</h2>
+      <p>Здесь появляются записи Мастерской-Колыбель: процесс, готовые работы, мысли, новые эксперименты и новости.</p>
+      <a class="button" href="https://vk.ru/kcradle" target="_blank" rel="noopener">Открыть мастерскую →</a>
+    </article>
+    <article class="live-contact-card" id="setka">
+      <div class="section-kicker">Профессиональная среда</div>
+      <h2>Сетка — отдельно.</h2>
+      <p>Моя рабочая социальная сеть от hh.ru. Здесь мне важны профессиональные заметки, AI, автоматизация, аналитика, рабочие наблюдения и люди, с которыми пересекаются эти темы.</p>
+      <a class="button" href="https://set.ki/JszES2c" target="_blank" rel="noopener">Открыть профиль →</a>
+    </article>
+    <article class="live-contact-card" id="contacts">
+      <div class="section-kicker">Связаться</div>
+      <h2>Если вам сюда — добро пожаловать.</h2>
+      <div class="contact-list">
+        <div class="contact-item"><b>Telegram</b><a href="https://t.me/ru2006kc">@ru2006kc</a></div>
+        <div class="contact-item"><b>Email</b><a href="mailto:ru-2006kc@yandex.ru">ru-2006kc@yandex.ru</a></div>
+        <div class="contact-item"><b>Портфолио</b><a href="https://rukc2006.github.io/Porttfolio/index.html">rukc2006.github.io/Porttfolio</a></div>
+      </div>
+    </article>
+  </div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container">© Ксения Комарова · Мастерская-Колыбель</div>
+</footer>
+<script src="https://vk.com/js/api/openapi.js?169" type="text/javascript"></script>
+<script>
+(function(){
+  function fallback(el){
+    var label = (el.dataset.label||'Запись мастерской').replace(/</g,'&lt;');
+    el.innerHTML='<div class="vk-fallback"><div class="vk-fallback-title">'+label+'</div><div class="vk-fallback-note">Фотографии публикации появятся здесь после загрузки записи VK на опубликованной странице.</div></div>';
+  }
+  function init(){
+    document.querySelectorAll('.vk-post-wrap').forEach(function(el){
+      if(location.protocol==='file:'){ fallback(el); return; }
+      if(window.VK && VK.Widgets && VK.Widgets.Post){
+        try{ VK.Widgets.Post(el.id || (el.id='vk_post_'+el.dataset.owner+'_'+el.dataset.post), Number(el.dataset.owner), Number(el.dataset.post), ''); }
+        catch(e){ fallback(el); }
+      } else { fallback(el); }
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+</body>
+</html>
