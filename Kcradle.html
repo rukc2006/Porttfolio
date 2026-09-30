@@ -393,39 +393,22 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 })();
 </script>
 <script>
-(function(){
-  const API='https://cloud-api.yandex.net/v1/disk/public/resources';
-  const KEY='https://disk.yandex.ru/d/hXwIR4kYK3endA';
-  const IMG=/\.(png|jpe?g|webp|gif|avif)$/i;
-  async function api(path=''){
-    const u=new URL(API); u.searchParams.set('public_key',KEY); if(path) u.searchParams.set('path',path); u.searchParams.set('limit','1000');
-    const r=await fetch(u.toString(),{cache:'no-store'}); if(!r.ok) throw 0; return r.json();
-  }
-  async function collect(path='',sectionName=''){
-    const d=await api(path), items=(d._embedded&&d._embedded.items)||[], files=[], dirs=[];
-    for(const x of items){
-      if(x.type==='file' && IMG.test(x.name||'') && x.preview) files.push({name:x.name,src:x.preview});
-      else if(x.type==='dir') dirs.push(x);
-    }
-    const sections=[];
-    if(sectionName && files.length) sections.push({name:sectionName,files});
-    for(const dir of dirs){
-      const child=await collect(dir.path||((path?path+'/':'')+dir.name),dir.name);
-      sections.push(...child);
-    }
-    return sections;
-  }
-  async function load(){
-    const out=document.getElementById('workPreview'),status=document.getElementById('workPreviewStatus');
-    const sections=await collect();
+(async function(){
+  try{
+    const r=await fetch('works-cache/manifest.json?v=28',{cache:'no-store'});
+    if(!r.ok) throw 0;
+    const data=await r.json();
+    const sections=data.sections||[];
+    const out=document.getElementById('workPreview'), status=document.getElementById('workPreviewStatus');
     if(!sections.length) throw 0;
     out.innerHTML=sections.map((s,i)=>{
       const first=s.files[0];
-      return '<a class="work-section-card" href="vitrina.html?v=27#section-'+i+'" aria-label="Открыть раздел '+s.name+'"><img loading="lazy" src="'+first.src+'" alt="'+s.name+'"><span class="work-label">'+s.name+'<span class="work-count">'+s.files.length+' '+(s.files.length===1?'работа':(s.files.length<5?'работы':'работ'))+'</span></span></a>';
+      return '<a class="work-section-card" href="vitrina.html?v=28#section-'+i+'" aria-label="Открыть раздел '+s.name+'"><img loading="lazy" src="'+first+'" alt="'+s.name+'"><span class="work-label">'+s.name+'<span class="work-count">'+s.files.length+' '+(s.files.length===1?'работа':(s.files.length<5?'работы':'работ'))+'</span></span></a>';
     }).join('');
     status.textContent='Разделы витрины обновляются из мастерской.';
+  }catch(e){
+    document.getElementById('workPreview').innerHTML='<div class="work-preview-empty">Разделы витрины появятся здесь.</div>';
   }
-  load().catch(function(){document.getElementById('workPreview').innerHTML='<div class="work-preview-empty">Разделы витрины появятся здесь.</div>';});
 })();
 </script>
 </body>
