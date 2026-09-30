@@ -155,7 +155,7 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
       <h1>Создаю<br><span>маленькие миры.</span></h1>
       <p class="lead">Из образов, вдохновения и смысла — в осязаемую форму.</p>
       <p class="hero-copy">Живопись, глина, предметы, символы и эксперименты. А ещё — технологии, аналитика и AI. Мне интересно находить связи между тем, что на первый взгляд находится в совершенно разных мирах.</p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="button" href="#about">Зайти в мастерскую ↓</a><a class="button" href="vitrina.html?v=21">Смотреть работы →</a></div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="button" href="#about">Зайти в мастерскую ↓</a><a class="button" href="vitrina.html?v=24">Смотреть работы →</a></div>
     </div>
     <img class="hero-art hero-art-img" src="assets/kcradle-hero.png" alt="Ксения Комарова в пространстве Мастерской-Колыбель">
   </div>
@@ -272,7 +272,7 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
   <h2>Работы Мастерской.</h2>
   <div class="work-preview-wrap">
     <div id="workPreview" class="work-preview-grid" aria-live="polite"></div>
-    <div class="work-preview-foot"><span id="workPreviewStatus">Работы из витрины.</span><a class="button" href="vitrina.html?v=21">Смотреть всю витрину →</a></div>
+    <div class="work-preview-foot"><span id="workPreviewStatus">Работы из витрины.</span><a class="button" href="vitrina.html?v=24">Смотреть всю витрину →</a></div>
   </div>
 </div>
 </section>
@@ -405,7 +405,7 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
     return (d.files||[]).map(x=>typeof x==='string'?x:x.name).filter(Boolean).map(x=>x.replace(/^\//,'')).filter(p=>p.startsWith('works/')&&IMG.test(p));
   }
   async function getManifest(){
-    const r=await fetch('works/manifest.json?v=21',{cache:'no-store'}); if(!r.ok) throw 0;
+    const r=await fetch('works/manifest.json?v=24',{cache:'no-store'}); if(!r.ok) throw 0;
     const d=await r.json(); return [...(d.root||[]),...(d.sections||[]).flatMap(x=>x.files||[])].filter(IMG.test.bind(IMG));
   }
   async function load(){
@@ -415,7 +415,7 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
     if(!files.length){try{files=await getManifest()}catch(e){}}
     if(!files.length) throw 0;
     files=files.slice().sort((a,b)=>a.localeCompare(b,'ru')).slice(0,4);
-    out.innerHTML=files.map((u,i)=>'<a class="work-preview-card" href="vitrina.html?v=21" aria-label="Открыть витрину"><img loading="lazy" src="'+imgUrl(u,branch)+'" alt="Работа '+(i+1)+'"><span class="work-label">Работа '+String(i+1).padStart(2,'0')+'</span></a>').join('');
+    out.innerHTML=files.map((u,i)=>'<a class="work-preview-card" href="vitrina.html?v=24" aria-label="Открыть витрину"><img loading="lazy" src="'+imgUrl(u,branch)+'" alt="Работа '+(i+1)+'"><span class="work-label">Работа '+String(i+1).padStart(2,'0')+'</span></a>').join('');
     status.textContent='Первые работы из витрины.';
   }
   load().catch(function(){document.getElementById('workPreview').innerHTML='<div class="work-preview-empty">Работы появятся здесь.</div>';});
