@@ -68,14 +68,15 @@ jobs:
           root_items = list_dir('')
           for d in sorted((x for x in root_items if x.get('type') == 'dir'), key=lambda x: x.get('name','').casefold()):
               section = d.get('name', 'Раздел')
-              rel_dir = section
+              # Yandex public API expects paths inside the shared folder with a leading '/'.
+              rel_dir = d.get('path') or ('/' + section)
               items = list_dir(rel_dir)
               files = []
               for x in sorted((x for x in items if x.get('type') == 'file'), key=lambda x: x.get('name','').casefold()):
                   name = x.get('name','')
                   if not EXT.search(name):
                       continue
-                  rel = f'{rel_dir}/{name}'
+                  rel = x.get('path') or f'{rel_dir.rstrip("/")}/{name}'
                   dest = OUT / safe_name(section) / safe_name(name)
                   dest.parent.mkdir(parents=True, exist_ok=True)
                   print(f'Downloading {rel}')
