@@ -120,6 +120,8 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 .vk-preview.single img{aspect-ratio:16/10}
 .vk-preview-empty{padding:28px;color:var(--muted);font-size:13px;text-align:left;width:100%}
 @media(max-width:800px){.current-line{grid-template-columns:1fr}.order-cta{flex-direction:column;align-items:flex-start}.order-cta .button{margin-top:8px}}
+
+.work-preview-wrap{margin-top:42px}.work-preview-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.work-preview-card{display:block;position:relative;aspect-ratio:1;overflow:hidden;border:1px solid var(--line);background:var(--bg2)}.work-preview-card img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .35s ease}.work-preview-card:hover img{transform:scale(1.035)}.work-preview-card .work-label{position:absolute;left:0;right:0;bottom:0;padding:34px 16px 13px;background:linear-gradient(transparent,rgba(10,14,10,.82));color:var(--paper);font-family:"Cormorant Garamond",serif;font-size:22px}.work-preview-empty{grid-column:1/-1;border:1px solid var(--line);padding:28px;color:var(--muted)}.work-preview-foot{margin-top:16px;display:flex;align-items:center;justify-content:space-between;gap:20px;color:var(--muted);font-size:13px}.work-preview-foot .button{margin-top:0;white-space:nowrap}@media(max-width:900px){.work-preview-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.work-preview-grid{grid-template-columns:1fr 1fr;gap:9px}.work-preview-card .work-label{font-size:18px;padding:28px 10px 9px}.work-preview-foot{align-items:flex-start;flex-direction:column}.order-cta{padding:30px 24px}.order-cta h3{font-size:34px}.order-cta .button{width:100%;justify-content:center}}
 </style>
 
 <script>
@@ -151,7 +153,7 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
       <h1>Создаю<br><span>маленькие миры.</span></h1>
       <p class="lead">Из образов, вдохновения и смысла — в осязаемую форму.</p>
       <p class="hero-copy">Живопись, глина, предметы, символы и эксперименты. А ещё — технологии, аналитика и AI. Мне интересно находить связи между тем, что на первый взгляд находится в совершенно разных мирах.</p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="button" href="#about">Зайти в мастерскую ↓</a><a class="button" href="works/index.html">Смотреть работы →</a></div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="button" href="#about">Зайти в мастерскую ↓</a><a class="button" href="vitrina.html?v=18">Смотреть работы →</a></div>
     </div>
     <img class="hero-art hero-art-img" src="assets/kcradle-hero.png" alt="Ксения Комарова в пространстве Мастерской-Колыбель">
   </div>
@@ -173,7 +175,13 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 <section class="order-section">
   <div class="container">
     <div class="order-cta" id="order">
-    <div><h3>Есть идея или хочется обсудить заказ?</h3><p>Можно написать мне напрямую. Расскажите, что хочется создать, для кого это и какой образ вы представляете — дальше вместе разберёмся с формой, материалами и деталями.</p></div>
+      <div>
+        <div class="section-kicker">Обсудить заказ</div>
+        <h3>Есть идея или хочется обсудить заказ?</h3>
+        <p>Напишите мне в личные сообщения VK. Расскажите, что хочется создать, для кого это и какой образ вы представляете — дальше вместе разберёмся с формой, материалами и деталями.</p>
+      </div>
+      <a class="button" href="https://vk.ru/ru2006kc" target="_blank" rel="noopener">Написать мне в VK →</a>
+    </div>
   </div>
 </section>
 
@@ -260,9 +268,9 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 <div class="container">
   <div class="section-kicker">Витрина</div>
   <h2>Работы Мастерской.</h2>
-  <div class="grid2">
-    <div class="text"><p>Здесь будут собираться работы, которые уже родились в мастерской: картины, предметы, эксперименты с материалами и новые маленькие миры.</p><p>Витрина будет постепенно расти вместе с мастерской.</p></div>
-    <div class="manifesto"><a href="works/index.html">Смотреть работы →</a></div>
+  <div class="work-preview-wrap">
+    <div id="workPreview" class="work-preview-grid" aria-live="polite"></div>
+    <div class="work-preview-foot"><span id="workPreviewStatus">Работы из витрины.</span><a class="button" href="vitrina.html?v=18">Смотреть всю витрину →</a></div>
   </div>
 </div>
 </section>
@@ -336,14 +344,13 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
       <h2>Если вам сюда — добро пожаловать.</h2>
       <div class="contact-list">
         <div class="contact-item"><b>Telegram</b><a href="https://t.me/ru2006kc">@ru2006kc</a></div>
+        <div class="contact-item"><b>VK · личные сообщения</b><a href="https://vk.ru/ru2006kc" target="_blank" rel="noopener">Написать мне в VK →</a></div>
         <div class="contact-item"><b>Email</b><a href="mailto:ru-2006kc@yandex.ru">ru-2006kc@yandex.ru</a></div>
         <div class="contact-item"><b>Портфолио</b><a href="https://rukc2006.github.io/Porttfolio/index.html">rukc2006.github.io/Porttfolio</a></div>
       </div>
     </article>
   </div>
-      <a class="button" href="mailto:ru-2006kc@yandex.ru?subject=Обсудить%20заказ%20в%20Мастерской-Колыбель">Обсудить заказ →</a>
   </div>
-</div>
 </section>
 </main>
 
@@ -387,6 +394,31 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
   }
   function init(){document.querySelectorAll('.vk-post-wrap').forEach(render)}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+<script>
+(function(){
+  const owner='rukc2006',repo='Porttfolio',root='works',ext=/\.(png|jpe?g|webp|gif|avif)$/i;
+  const out=document.getElementById('workPreview'), status=document.getElementById('workPreviewStatus');
+  if(!out)return;
+  function esc(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+  async function get(path,ref){const q=ref?'?ref='+encodeURIComponent(ref):'';const r=await fetch('https://api.github.com/repos/'+owner+'/'+repo+'/contents/'+path+q,{headers:{Accept:'application/vnd.github+json'}});if(!r.ok)throw new Error(r.status);return r.json()}
+  async function load(){
+    let rootItems=null;
+    for(const ref of [null,'main','master']){try{rootItems=await get(root,ref);break}catch(e){}}
+    if(!Array.isArray(rootItems))throw new Error('api');
+    const images=[];
+    for(const item of rootItems){
+      if(item.type==='file'&&ext.test(item.name)) images.push(item);
+      if(item.type==='dir'){try{const sub=await get(item.path);if(Array.isArray(sub))sub.filter(x=>x.type==='file'&&ext.test(x.name)).forEach(x=>images.push(x))}catch(e){}}
+      if(images.length>=4)break;
+    }
+    const first=images.slice(0,4);
+    if(!first.length)throw new Error('empty');
+    out.innerHTML=first.map((f,i)=>'<a class="work-preview-card" href="vitrina.html?v=18" aria-label="Открыть витрину"><img loading="lazy" src="'+esc(f.download_url)+'" alt="'+esc(f.name.replace(/\.[^.]+$/,''))+'"><span class="work-label">Работа '+String(i+1).padStart(2,'0')+'</span></a>').join('');
+    status.textContent='Первые работы из витрины.';
+  }
+  load().catch(()=>{out.innerHTML='<div class="work-preview-empty">Витрина уже здесь — сейчас она собирается из работ мастерской.</div>';status.textContent='Смотреть все работы в витрине.'});
 })();
 </script>
 </body>
