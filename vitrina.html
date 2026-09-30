@@ -1,1 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Витрина — Мастерская-Колыбель</title>
+<style>
+:root{--bg:#0d140e;--fg:#eee9dc;--muted:#a9a493;--line:#30382f;--accent:#b89a57}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--fg);font-family:Arial,sans-serif}a{color:inherit;text-decoration:none}.wrap{max-width:1120px;margin:auto;padding:0 28px}.top{display:flex;justify-content:space-between;align-items:center;padding:34px 0 26px;border-bottom:1px solid var(--line)}.back{color:var(--muted);font-size:14px}.theme{border:1px solid var(--line);border-radius:999px;padding:11px 16px;color:var(--muted);font-size:13px}.eyebrow{margin-top:90px;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;font-size:12px}.title{font-family:Georgia,serif;font-size:clamp(54px,8vw,100px);font-weight:400;line-height:.95;margin:22px 0}.intro{color:var(--muted);font-size:18px;line-height:1.7;max-width:720px;margin-bottom:80px}.section{padding:70px 0;border-top:1px solid var(--line)}.section h2{font-family:Georgia,serif;font-weight:400;font-size:clamp(36px,5vw,62px);margin:0 0 34px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.item{border:1px solid var(--line);background:#111a12;overflow:hidden}.item img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover}.empty{border:1px solid var(--line);padding:32px;color:var(--muted);line-height:1.7}.error{border-color:#5a4930}.light{background:#f3f0e7;color:#1b211b}.light .line,.light .section{border-color:#d5d0c2}.light .muted,.light .intro,.light .back,.light .theme{color:#666357}.light .item{background:#fff;border-color:#d5d0c2}@media(max-width:800px){.wrap{padding:0 18px}.top{padding:22px 0}.eyebrow{margin-top:55px}.intro{margin-bottom:50px}.section{padding:48px 0}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}@media(max-width:520px){.grid{grid-template-columns:1fr}.title{font-size:56px}.theme{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><a class="back" href="Kcradle.html">← Мастерская-Колыбель</a><button class="theme" id="theme" type="button">Светлая тема</button></header>
+<main>
+<div class="eyebrow">Витрина</div>
+<h1 class="title">Работы Мастерской.</h1>
+<p class="intro">Здесь собраны работы, которые уже появились в мастерской. Можно просто смотреть, переходить от одного маленького мира к другому и возвращаться к тем, которые хочется рассмотреть внимательнее.</p>
+<div id="gallery"></div>
+</main>
+</div>
+<script>
+const gallery=document.getElementById('gallery');
+const theme=document.getElementById('theme');
+const MANIFESTS=['works/manifest.json?v=23','./works/manifest.json?v=23'];
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function imagePath(p){return p.split('/').map(encodeURIComponent).join('/').replaceAll('%2F','/')}
+function render(data){
+ const sections=[];
+ if(Array.isArray(data.root)&&data.root.length) sections.push({name:'Работы',files:data.root});
+ if(Array.isArray(data.sections)) data.sections.forEach(s=>{if(s&&s.name&&Array.isArray(s.files)&&s.files.length) sections.push(s)});
+ if(!sections.length){gallery.innerHTML='<div class="empty">Витрина пока пуста.</div>';return}
+ gallery.innerHTML=sections.map(s=>`<section class="section"><h2>${esc(s.name)}</h2><div class="grid">${s.files.map((p,i)=>`<a class="item" href="${imagePath(p)}" target="_blank" rel="noopener"><img loading="lazy" src="${imagePath(p)}" alt="${esc(s.name)} — работа ${i+1}"></a>`).join('')}</div></section>`).join('');
+}
+async function load(){
+ for(const u of MANIFESTS){try{const r=await fetch(u,{cache:'no-store'});if(!r.ok)continue;const d=await r.json();render(d);return}catch(e){}}
+ gallery.innerHTML='<div class="empty error">Витрина не загрузилась. Попробуйте обновить страницу чуть позже.</div>';
+}
+theme.onclick=()=>{document.body.classList.toggle('light');theme.textContent=document.body.classList.contains('light')?'Тёмная тема':'Светлая тема'};
+load();
+</script>
+</body>
+</html>
 
