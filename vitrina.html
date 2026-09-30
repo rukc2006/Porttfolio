@@ -22,15 +22,20 @@
 <script>
 const gallery=document.getElementById('gallery');
 const theme=document.getElementById('theme');
-const MANIFESTS=['works/manifest.json?v=24','./works/manifest.json?v=24'];
+const MANIFESTS=[
+  'https://raw.githubusercontent.com/rukc2006/Porttfolio/main/works/manifest.json?v=25',
+  'works/manifest.json?v=25',
+  './works/manifest.json?v=25'
+];
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function imagePath(p){return p.split('/').map(encodeURIComponent).join('/').replaceAll('%2F','/')}
+function rawImagePath(p){return 'https://raw.githubusercontent.com/rukc2006/Porttfolio/main/'+p.split('/').map(encodeURIComponent).join('/').replaceAll('%2F','/')}
 function render(data){
  const sections=[];
  if(Array.isArray(data.root)&&data.root.length) sections.push({name:'Работы',files:data.root});
  if(Array.isArray(data.sections)) data.sections.forEach(s=>{if(s&&s.name&&Array.isArray(s.files)&&s.files.length) sections.push(s)});
  if(!sections.length){gallery.innerHTML='<div class="empty">Витрина пока пуста.</div>';return}
- gallery.innerHTML=sections.map(s=>`<section class="section"><h2>${esc(s.name)}</h2><div class="grid">${s.files.map((p,i)=>`<a class="item" href="${imagePath(p)}" target="_blank" rel="noopener"><img loading="lazy" src="${imagePath(p)}" alt="${esc(s.name)} — работа ${i+1}"></a>`).join('')}</div></section>`).join('');
+ gallery.innerHTML=sections.map(s=>`<section class="section"><h2>${esc(s.name)}</h2><div class="grid">${s.files.map((p,i)=>`<a class="item" href="${rawImagePath(p)}" target="_blank" rel="noopener"><img loading="lazy" src="${rawImagePath(p)}" alt="${esc(s.name)} — работа ${i+1}"></a>`).join('')}</div></section>`).join('');
 }
 async function load(){
  for(const u of MANIFESTS){try{const r=await fetch(u,{cache:'no-store'});if(!r.ok)continue;const d=await r.json();render(d);return}catch(e){}}
