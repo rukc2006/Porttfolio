@@ -162,6 +162,23 @@ footer a:hover{color:var(--gold)}
 
 @media(max-width:720px){.wrap{padding:0 20px}.top nav{display:none}.hero{padding:56px 0 48px}.facts{gap:32px}.sec-head{flex-direction:column; gap:10px}.sec-head p{max-width:none}.note{grid-template-columns:1fr; gap:16px; padding:40px 0}.item{padding:30px 26px}
 }
+
+#themeBtn{
+  margin-left:18px; flex:0 0 auto; display:inline-flex; align-items:center; gap:8px;
+  border:1px solid var(--line-strong); background:transparent; color:var(--ink-soft);
+  border-radius:999px; padding:9px 13px; font:300 11px/1 "Jost",sans-serif;
+  letter-spacing:.12em; text-transform:uppercase; cursor:pointer;
+}
+#themeBtn:hover{color:var(--gold);border-color:var(--gold)}
+#themeBtn i{font-style:normal;font-size:14px;line-height:1}
+@media(max-width:980px){#themeBtn{margin-left:8px;padding:8px 10px}.top nav{gap:16px}}
+@media(max-width:720px){.top{align-items:flex-start}.top nav{flex-wrap:wrap;justify-content:flex-end}.top nav a{font-size:10px}.mark{max-width:190px}}
+
+.ai-setka-link{display:flex;align-items:center;justify-content:space-between;gap:24px;margin:0 0 28px;padding:18px 22px;border:1px solid var(--line);background:var(--card)}
+.ai-setka-link span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.ai-setka-link a{color:var(--gold);text-decoration:none;font-size:13px;white-space:nowrap}
+.ai-setka-link a:hover{color:var(--gold-soft)}
+
 </style>
 <!-- portfolio-scrollbar -->
 <style id="pfScrollbar">
@@ -204,7 +221,7 @@ body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
    и ставим тёмную тему. Иначе браузер показывает прошлый запуск, и правки
    выглядят как непринятые. Вход, роль и имя не трогаем. */
 (function () {
-  var BUILD = 'pf-build-2026-09-02-11';
+  var BUILD = 'pf-build-2026-09-30-12';
   try {
     if (localStorage.getItem('pf-build') === BUILD) return;
     var drop = [];
@@ -234,6 +251,9 @@ body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
 })();
 </script>
 <!-- /portfolio-reset -->
+<style id="setka-card-style">.ai-social-note{border:1px solid var(--line-strong);padding:24px 26px;margin:6px 0 4px;background:var(--card);display:grid;grid-template-columns:auto 1fr auto;gap:10px 24px;align-items:center}.ai-social-note span{grid-column:1/-1;color:var(--gold);font-size:10px;letter-spacing:.16em;text-transform:uppercase}.ai-social-note strong{font-family:"Cormorant Garamond",serif;font-size:30px;font-weight:500}.ai-social-note p{margin:0;color:var(--ink-soft);font-size:13px}.ai-social-note a{white-space:nowrap}@media(max-width:720px){.ai-social-note{grid-template-columns:1fr}.ai-social-note span{grid-column:auto}}.ai-social-note-lower{margin-top:36px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px 24px}
+@media(max-width:720px){.ai-social-note-lower{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 
@@ -247,6 +267,7 @@ body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
       <a href="#code">Код</a>
       <a href="АРХИТЕКТУРА.html">Архитектура</a>
       <a href="ИИ-НАВЫКИ.html">ИИ и навыки</a>
+      <a href="https://set.ki/JszES2c" target="_blank" rel="noopener">Сетка</a>
       <a class="cradle-link" href="Kcradle.html">ОБО МНЕ : Мастерская Колыбель</a>
     </nav>
   </div>
@@ -267,7 +288,7 @@ body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
     </div>
   </div>
 
-  <section id="works">
+  <section id="works" class="setka-lower-section">
     <div class="sec-head">
       <div class="sec-num">01</div>
       <h2>Открывается и работает</h2>
@@ -440,6 +461,13 @@ body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
           <a href="07-small-dashboards/index.html">Все небольшие работы</a>
         </div>
       </div>
+
+    </div>
+    <div class="ai-social-note ai-social-note-lower">
+      <span>МОЯ ПРОФЕССИОНАЛЬНАЯ СРЕДА</span>
+      <strong>Сетка — рабочая соцсеть от hh.ru</strong>
+      <p>Профиль и заметки о работе, AI, автоматизации и профессиональных наблюдениях. Сетка создана hh.ru для IT, digital и креативных специалистов и профессионального нетворкинга.</p>
+      <a class="gold" href="https://set.ki/JszES2c" target="_blank" rel="noopener">Мой профиль в Сетке →</a>
     </div>
   </section>
 
@@ -494,33 +522,8 @@ body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
   </footer>
 
 </div>
-<!-- portfolio-theme -->
-<style>
-#themeBtn{
-  position:fixed; right:22px; top:20px; z-index:900;
-  display:flex; align-items:center; gap:9px; cursor:pointer;
-  padding:9px 15px; border:1px solid var(--line-strong); background:var(--card);
-  color:var(--ink-soft); font:400 11px/1 "Jost","Helvetica Neue",Arial,sans-serif;
-  letter-spacing:.16em; text-transform:uppercase; transition:.2s;
-}
-#themeBtn:hover{border-color:var(--gold); color:var(--gold)}
-#themeBtn i{font-style:normal; font-size:13px; line-height:1}
-@media(max-width:720px){
-  #themeBtn{right:12px; top:12px; padding:8px 11px}
-  #themeBtn span{display:none}
-}
-/* Полоса прокрутки в цвет темы: по умолчанию она белая и выбивается. */
-:root{color-scheme:dark}
-:root[data-theme="light"]{color-scheme:light}
-::-webkit-scrollbar{width:12px;height:12px}
-::-webkit-scrollbar-track{background:rgba(0,0,0,.18)}
-::-webkit-scrollbar-thumb{background:#3a352c;border-radius:6px;
-  border:3px solid transparent;background-clip:content-box}
-::-webkit-scrollbar-thumb:hover{background:#5a5142;background-clip:content-box}
-:root[data-theme="light"] ::-webkit-scrollbar-track{background:rgba(0,0,0,.06)}
-:root[data-theme="light"] ::-webkit-scrollbar-thumb{background:#cfc4ad;
-  background-clip:content-box}
-</style>
+
+
 <script>
 /* Тема: системная по умолчанию, дальше — то, что человек выбрал сам.
    Выбор пишем в корень страницы, оба набора цветов уже описаны в стилях. */
@@ -557,7 +560,8 @@ body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
       try { localStorage.setItem(KEY, next); } catch (e) {}
       apply(next);
     });
-    document.body.appendChild(btn);
+    var top = document.querySelector('.top');
+    if (top) top.appendChild(btn); else document.body.appendChild(btn);
     apply(current());
   }
 
