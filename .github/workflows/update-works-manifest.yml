@@ -1,0 +1,58 @@
+name: Update works manifest
+
+on:
+  push:
+    paths:
+      - 'works/**'
+      - '!works/manifest.json'
+      - '.github/workflows/update-works-manifest.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build manifest
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, os
+          root='works'
+          exts={'.png','.jpg','.jpeg','.webp','.gif','.avif'}
+          sections=[]
+          for name in sorted(os.listdir(root), key=str.casefold):
+              p=os.path.join(root,name)
+              if name.startswith('.') or not os.path.isdir(p):
+                  continue
+              files=[]
+              for dirpath, _, filenames in os.walk(p):
+                  for fn in sorted(filenames, key=str.casefold):
+                      fp=os.path.join(dirpath,fn)
+                      if os.path.splitext(fn)[1].lower() in exts:
+                          rel=os.path.relpath(fp, root).replace(os.sep,'/')
+                          files.append(f"works/{rel}")
+              files.sort(key=str.casefold)
+              if files:
+                  sections.append({'name':name,'files':files})
+          root_files=[]
+          for fn in sorted(os.listdir(root), key=str.casefold):
+              fp=os.path.join(root,fn)
+              if os.path.isfile(fp) and os.path.splitext(fn)[1].lower() in exts:
+                  root_files.append(f"works/{fn}")
+          data={'root':root_files,'sections':sections}
+          with open('works/manifest.json','w',encoding='utf-8') as f:
+              json.dump(data,f,ensure_ascii=False,indent=2)
+              f.write('\n')
+          PY
+      - name: Commit manifest
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add works/manifest.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Update works manifest'
+          git push
