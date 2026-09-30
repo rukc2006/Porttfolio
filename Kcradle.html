@@ -153,7 +153,7 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
       <h1>Создаю<br><span>маленькие миры.</span></h1>
       <p class="lead">Из образов, вдохновения и смысла — в осязаемую форму.</p>
       <p class="hero-copy">Живопись, глина, предметы, символы и эксперименты. А ещё — технологии, аналитика и AI. Мне интересно находить связи между тем, что на первый взгляд находится в совершенно разных мирах.</p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="button" href="#about">Зайти в мастерскую ↓</a><a class="button" href="vitrina.html?v=18">Смотреть работы →</a></div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="button" href="#about">Зайти в мастерскую ↓</a><a class="button" href="vitrina.html?v=19">Смотреть работы →</a></div>
     </div>
     <img class="hero-art hero-art-img" src="assets/kcradle-hero.png" alt="Ксения Комарова в пространстве Мастерской-Колыбель">
   </div>
@@ -270,7 +270,7 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
   <h2>Работы Мастерской.</h2>
   <div class="work-preview-wrap">
     <div id="workPreview" class="work-preview-grid" aria-live="polite"></div>
-    <div class="work-preview-foot"><span id="workPreviewStatus">Работы из витрины.</span><a class="button" href="vitrina.html?v=18">Смотреть всю витрину →</a></div>
+    <div class="work-preview-foot"><span id="workPreviewStatus">Работы из витрины.</span><a class="button" href="vitrina.html?v=19">Смотреть всю витрину →</a></div>
   </div>
 </div>
 </section>
@@ -360,66 +360,19 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 <script>
 (function(){
   function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]})}
-  function jsonp(url){return new Promise(function(resolve,reject){
-    var cb='vkKcradle_'+Math.random().toString(36).slice(2);
-    var script=document.createElement('script');
-    var timer=setTimeout(function(){cleanup();reject(new Error('timeout'))},9000);
-    function cleanup(){clearTimeout(timer);try{delete window[cb]}catch(e){window[cb]=undefined}script.remove()}
-    window[cb]=function(data){cleanup();resolve(data)};
-    script.onerror=function(){cleanup();reject(new Error('network'))};
-    script.src=url+(url.indexOf('?')>-1?'&':'?')+'callback='+cb;
-    document.head.appendChild(script);
-  })}
-  function photoUrl(p){
-    if(!p)return null;
-    if(Array.isArray(p.sizes)&&p.sizes.length)return p.sizes[p.sizes.length-1].url||p.sizes[p.sizes.length-1].src||null;
-    return p.photo_2560||p.photo_1280||p.photo_807||p.photo_604||p.photo_130||p.src_xxbig||p.src_xbig||p.src_big||p.src||null;
-  }
-  async function render(el){
+  document.querySelectorAll('.vk-post-wrap').forEach(function(el){
     var owner=el.dataset.owner, post=el.dataset.post, label=el.dataset.label||'Запись Мастерской-Колыбель';
     var link='https://vk.ru/wall'+owner+'_'+post;
-    if(location.protocol==='file:'){el.innerHTML='<div class="vk-preview-empty">Откройте опубликованную страницу, чтобы фотографии из записи VK могли загрузиться.<br><br><a class="button" href="'+link+'" target="_blank" rel="noopener">Открыть запись VK →</a></div>';return;}
-    try{
-      var data=await jsonp('https://api.vk.com/method/wall.getById?posts='+encodeURIComponent(owner+'_'+post)+'&extended=0&v=5.199');
-      var item=data&&data.response&&data.response[0];
-      var urls=[];
-      (item&&item.attachments||[]).forEach(function(a){if(a.type==='photo'){var u=photoUrl(a.photo);if(u&&urls.indexOf(u)<0)urls.push(u)}});
-      if(!urls.length && item && item.attachment && item.attachment.type==='photo'){var u=photoUrl(item.attachment.photo);if(u)urls.push(u)}
-      urls=urls.slice(0,4);
-      if(!urls.length)throw new Error('no photos');
-      el.innerHTML='<div class="vk-preview '+(urls.length===1?'single':'')+'"><div class="vk-images">'+urls.map(function(u){return '<a href="'+link+'" target="_blank" rel="noopener"><img loading="lazy" src="'+esc(u)+'" alt="'+esc(label)+'"></a>'}).join('')+'</div></div>';
-    }catch(e){
-      el.innerHTML='<div class="vk-preview-empty"><strong>'+esc(label)+'</strong><br><span>Фотографии этой записи VK сейчас не удалось получить автоматически.</span><br><a class="button" href="'+link+'" target="_blank" rel="noopener">Открыть запись VK →</a></div>';
-    }
-  }
-  function init(){document.querySelectorAll('.vk-post-wrap').forEach(render)}
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+    el.innerHTML='<div class="vk-preview-empty"><strong>'+esc(label)+'</strong><br><span>Фотографии можно посмотреть в самой записи VK.</span><br><a class="button" href="'+link+'" target="_blank" rel="noopener">Открыть запись VK →</a></div>';
+  });
 })();
 </script>
 <script>
 (function(){
-  const owner='rukc2006',repo='Porttfolio',root='works',ext=/\.(png|jpe?g|webp|gif|avif)$/i;
-  const out=document.getElementById('workPreview'), status=document.getElementById('workPreviewStatus');
-  if(!out)return;
-  function esc(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-  async function get(path,ref){const q=ref?'?ref='+encodeURIComponent(ref):'';const r=await fetch('https://api.github.com/repos/'+owner+'/'+repo+'/contents/'+path+q,{headers:{Accept:'application/vnd.github+json'}});if(!r.ok)throw new Error(r.status);return r.json()}
-  async function load(){
-    let rootItems=null;
-    for(const ref of [null,'main','master']){try{rootItems=await get(root,ref);break}catch(e){}}
-    if(!Array.isArray(rootItems))throw new Error('api');
-    const images=[];
-    for(const item of rootItems){
-      if(item.type==='file'&&ext.test(item.name)) images.push(item);
-      if(item.type==='dir'){try{const sub=await get(item.path);if(Array.isArray(sub))sub.filter(x=>x.type==='file'&&ext.test(x.name)).forEach(x=>images.push(x))}catch(e){}}
-      if(images.length>=4)break;
-    }
-    const first=images.slice(0,4);
-    if(!first.length)throw new Error('empty');
-    out.innerHTML=first.map((f,i)=>'<a class="work-preview-card" href="vitrina.html?v=18" aria-label="Открыть витрину"><img loading="lazy" src="'+esc(f.download_url)+'" alt="'+esc(f.name.replace(/\.[^.]+$/,''))+'"><span class="work-label">Работа '+String(i+1).padStart(2,'0')+'</span></a>').join('');
-    status.textContent='Первые работы из витрины.';
-  }
-  load().catch(()=>{out.innerHTML='<div class="work-preview-empty">Витрина уже здесь — сейчас она собирается из работ мастерской.</div>';status.textContent='Смотреть все работы в витрине.'});
-})();
+  const WORKS_CDN='https://cdn.jsdelivr.net/gh/rukc2006/Porttfolio@main/works/';
+  function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]})}
+  async function listDir(url){const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw 0;const h=await r.text();const d=new DOMParser().parseFromString(h,'text/html');return [...d.querySelectorAll('a[href]')].map(a=>new URL(a.getAttribute('href'),url).href).filter(u=>u.startsWith(url));}
+  (async function(){const out=document.getElementById('workPreview'),status=document.getElementById('workPreviewStatus');try{const links=await listDir(WORKS_CDN);const imgs=links.filter(u=>/\.(png|jpe?g|webp|gif|avif)$/i.test(u)).slice(0,4);if(!imgs.length){out.innerHTML='<div class="work-preview-empty">Работы появятся здесь по мере обновления витрины.</div>';return;}out.innerHTML=imgs.map((u,i)=>'<a class="work-preview-card" href="vitrina.html?v=19" aria-label="Открыть витрину"><img loading="lazy" src="'+esc(u)+'" alt="Работа '+(i+1)+'"><span class="work-label">Работа '+String(i+1).padStart(2,'0')+'</span></a>').join('');status.textContent='Первые работы из витрины.';}catch(e){out.innerHTML='<div class="work-preview-empty">Работы появятся здесь по мере обновления витрины.</div>';}})();
 </script>
 </body>
 </html>
