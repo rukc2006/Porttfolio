@@ -22,49 +22,22 @@
 </div>
 <script>
 const gallery=document.getElementById('gallery');
-const lightbox=document.createElement('div'); lightbox.className='lightbox'; lightbox.innerHTML='<button class="lightbox-close" type="button" aria-label="Закрыть">×</button><img alt="">'; document.body.appendChild(lightbox); const lightboxImg=lightbox.querySelector('img'); lightbox.addEventListener('click',e=>{if(e.target===lightbox||e.target.classList.contains('lightbox-close')) lightbox.classList.remove('open')});
+const lightbox=document.createElement('div'); lightbox.className='lightbox'; lightbox.innerHTML='<button class="lightbox-close" type="button" aria-label="Закрыть">×</button><img alt="">'; document.body.appendChild(lightbox);
+const lightboxImg=lightbox.querySelector('img');
+lightbox.addEventListener('click',e=>{if(e.target===lightbox||e.target.classList.contains('lightbox-close')) lightbox.classList.remove('open')});
 const theme=document.getElementById('theme');
-const YANDEX_PUBLIC_KEY='https://disk.yandex.ru/d/hXwIR4kYK3endA';
-const API='https://cloud-api.yandex.net/v1/disk/public/resources';
-const IMG=/\.(png|jpe?g|webp|gif|avif)$/i;
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-async function api(path=''){
- const u=new URL(API);
- u.searchParams.set('public_key',YANDEX_PUBLIC_KEY);
- if(path) u.searchParams.set('path',path);
- u.searchParams.set('limit','1000');
- const r=await fetch(u.toString(),{cache:'no-store'});
- if(!r.ok) throw new Error('Yandex API '+r.status);
- return r.json();
-}
-async function collect(path='',sectionName=''){
- const d=await api(path);
- const items=(d._embedded&&d._embedded.items)||[];
- const files=[];
- const dirs=[];
- for(const x of items){
-   if(x.type==='file' && IMG.test(x.name||'') && x.preview) files.push({name:x.name,src:x.preview});
-   else if(x.type==='dir') dirs.push(x);
- }
- const sections=[];
- if(sectionName && files.length) sections.push({name:sectionName,files});
- for(const dir of dirs){
-   const childPath=dir.path||((path?path+'/':'')+dir.name);
-   const child=await collect(childPath,dir.name);
-   sections.push(...child);
- }
- return sections;
-}
-function render(sections){
- if(!sections.length){gallery.innerHTML='<div class="empty">Витрина пока пуста.</div>';return}
- gallery.innerHTML=sections.map((s,si)=>`<section class="section" id="section-${si}"><h2>${esc(s.name)}</h2><div class="grid">${s.files.map((f,i)=>`<button class="item" type="button" data-src="${esc(f.src)}" data-alt="${esc(s.name)} — работа ${i+1}"><img loading="lazy" src="${esc(f.src)}" alt="${esc(s.name)} — работа ${i+1}"></button>`).join('')}</div></section>`).join('');
- gallery.querySelectorAll('.item').forEach(btn=>btn.addEventListener('click',()=>{lightboxImg.src=btn.dataset.src;lightboxImg.alt=btn.dataset.alt;lightbox.classList.add('open')}));
-}
 async function load(){
- try{const sections=await collect();render(sections)}catch(e){console.error(e);gallery.innerHTML='<div class="empty error">Витрина временно не загрузилась. Попробуйте обновить страницу чуть позже.</div>';}
+  const r=await fetch('works-cache/manifest.json?v=28',{cache:'no-store'});
+  if(!r.ok) throw new Error('manifest '+r.status);
+  const data=await r.json();
+  const sections=data.sections||[];
+  if(!sections.length){gallery.innerHTML='<div class="empty">Витрина пока пуста.</div>';return}
+  gallery.innerHTML=sections.map((s,si)=>`<section class="section" id="section-${si}"><h2>${esc(s.name)}</h2><div class="grid">${s.files.map((src,i)=>`<button class="item" type="button" data-src="${esc(src)}" data-alt="${esc(s.name)} — работа ${i+1}"><img loading="lazy" src="${esc(src)}" alt="${esc(s.name)} — работа ${i+1}"></button>`).join('')}</div></section>`).join('');
+  gallery.querySelectorAll('.item').forEach(btn=>btn.addEventListener('click',()=>{lightboxImg.src=btn.dataset.src;lightboxImg.alt=btn.dataset.alt;lightbox.classList.add('open')}));
 }
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 theme.onclick=()=>{document.body.classList.toggle('light');theme.textContent=document.body.classList.contains('light')?'Тёмная тема':'Светлая тема'};
-load();
+load().catch(e=>{console.error(e);gallery.innerHTML='<div class="empty error">Витрина временно не загрузилась. Попробуйте обновить страницу чуть позже.</div>';});
 </script>
 </body>
 </html>
