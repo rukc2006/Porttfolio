@@ -22,6 +22,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:10;background:color-mix(in sr
 nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .logo{display:flex;align-items:center;gap:11px;color:var(--cream);text-decoration:none}.logo img{width:42px;height:42px;border-radius:50%;display:block;object-fit:cover}.logo span{font-family:"Cormorant Garamond",serif;font-size:22px;line-height:1;font-weight:500;white-space:nowrap}
 .navlinks{display:flex;align-items:center;gap:22px;font-size:13px;color:var(--muted)}
+.mobile-menu-btn{display:none;border:1px solid var(--line);background:transparent;color:var(--paper);border-radius:999px;padding:9px 13px;font:inherit;font-size:12px;cursor:pointer}.mobile-menu{display:none}.mobile-menu a{display:block;padding:13px 0;border-bottom:1px solid var(--line);color:var(--paper);font-size:14px}.mobile-menu a:last-child{border-bottom:0}.mobile-menu-inner{padding:8px 0 16px}.mobile-menu.open{display:block}
 
 .navlinks a:hover{color:var(--cream)}
 .hero{min-height:100vh;display:grid;align-items:center;padding:130px 0 80px;position:relative;overflow:hidden}
@@ -84,7 +85,7 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 .contact-item a{overflow-wrap:anywhere}
 .entry-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:30px}.entry-grid a{border:1px solid var(--line);padding:20px;min-height:150px;display:flex;flex-direction:column;transition:.2s;background:color-mix(in srgb,var(--bg2) 35%,transparent)}.entry-grid a:hover{transform:translateY(-2px);border-color:var(--gold)}.entry-grid span{color:var(--gold);font-size:11px;letter-spacing:.14em}.entry-grid strong{font-family:"Cormorant Garamond",serif;font-size:25px;font-weight:500;margin-top:auto;color:var(--paper)}.entry-grid small{color:var(--muted);font-size:12px;margin-top:8px;line-height:1.45}.process-line{margin-top:50px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 10px;display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--paper);font-family:"Cormorant Garamond",serif;font-size:22px}.process-line i{color:var(--gold);font-style:normal}.material-showcase{align-items:center}.platform-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:45px}.platform-card{border:1px solid var(--line);padding:30px;min-height:230px;background:color-mix(in srgb,var(--bg2) 48%,transparent);display:flex;flex-direction:column}.platform-card:hover{border-color:var(--gold)}.platform-name{font-family:"Cormorant Garamond",serif;font-size:42px;color:var(--paper);margin-bottom:18px}.platform-card span:not(.platform-name){color:var(--muted);font-size:14px;max-width:520px}.platform-card b{font-size:12px;color:var(--gold);font-weight:400;letter-spacing:.05em;margin-top:auto;padding-top:25px}
 @media(max-width:850px){
- .navlinks{display:none}.hero-grid,.grid2,.contact,.path-grid,.info-grid{grid-template-columns:1fr}.hero{padding-top:110px}.hero-art{max-width:560px}
+ .navlinks{display:none}.mobile-menu-btn{display:inline-flex;align-items:center;justify-content:center}.hero-grid,.grid2,.contact,.path-grid,.info-grid{grid-template-columns:1fr}.hero{padding-top:110px}.hero-art{max-width:560px}
  .cards{grid-template-columns:1fr 1fr}.gallery{grid-template-columns:1fr 1fr}.entry-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.platform-grid{grid-template-columns:1fr}.process-line{flex-wrap:wrap;justify-content:flex-start}
  .edu-row{grid-template-columns:1fr;gap:5px}.order-cta{padding:34px 28px;display:block}.order-cta .button{margin-top:22px}
 }
@@ -182,7 +183,7 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 
 </head>
 <body>
-<header><div class="container"><nav><a class="logo" href="#top" aria-label="Мастерская-Колыбель"><img src="assets/kcradle-avatar.png" alt=""><span>Мастерская-Колыбель</span></a><div class="navlinks"><a href="#works">Работы</a><a href="#objects">Новая линия</a><a href="#about">Обо мне</a><a href="#exhibitions">Выставки</a><a href="#path">Мой путь</a><a href="#contacts">Контакты</a></div></nav></div></header>
+<header><div class="container"><nav><a class="logo" href="#top" aria-label="Мастерская-Колыбель"><img src="assets/kcradle-avatar.png" alt=""><span>Мастерская-Колыбель</span></a><div class="navlinks"><a href="#works">Работы</a><a href="#objects">Новая линия</a><a href="#about">Обо мне</a><a href="#exhibitions">Выставки</a><a href="#path">Мой путь</a><a href="#contacts">Контакты</a><a href="ИИ-НАВЫКИ.html">AI · резюме</a></div><button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu">Меню</button></nav><div class="mobile-menu" id="mobileMenu"><div class="mobile-menu-inner"><a href="#works">Работы</a><a href="#objects">Новая линия</a><a href="#about">Обо мне</a><a href="#exhibitions">Выставки</a><a href="#path">Мой путь</a><a href="#contacts">Контакты</a><a href="ИИ-НАВЫКИ.html">AI · резюме</a></div></div></div></header>
 
 <main id="top">
 <section class="hero">
@@ -387,6 +388,23 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
     console.error(e);
     document.getElementById('workPreview').innerHTML='<div class="work-preview-empty">Разделы витрины появятся здесь, когда она будет наполнена.</div>';
   }
+})();
+</script>
+<script>
+(function(){
+  const btn=document.getElementById('mobileMenuBtn');
+  const menu=document.getElementById('mobileMenu');
+  if(!btn||!menu) return;
+  btn.addEventListener('click',()=>{
+    const open=menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded',String(open));
+    btn.textContent=open?'Закрыть':'Меню';
+  });
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    menu.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+    btn.textContent='Меню';
+  }));
 })();
 </script>
 </body>
