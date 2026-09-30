@@ -1,0 +1,99 @@
+name: Sync Yandex vitrine
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Sync public Yandex folder
+        env:
+          YANDEX_PUBLIC_KEY: https://disk.yandex.ru/d/hXwIR4kYK3endA
+        run: |
+          python3 - <<'PY'
+          import json, os, re, shutil
+          from pathlib import Path
+          from urllib.parse import urlparse
+          import requests
+
+          KEY = os.environ['YANDEX_PUBLIC_KEY']
+          API = 'https://cloud-api.yandex.net/v1/disk/public/resources'
+          DOWNLOAD = 'https://cloud-api.yandex.net/v1/disk/public/resources/download'
+          OUT = Path('works-cache')
+          EXT = re.compile(r'\.(png|jpe?g|webp|gif|avif)$', re.I)
+
+          s = requests.Session()
+          s.headers.update({'User-Agent': 'Kcradle-Yandex-Sync/1.0'})
+
+          def get_json(url, params):
+              r = s.get(url, params=params, timeout=60)
+              r.raise_for_status()
+              return r.json()
+
+          def list_dir(rel=''):
+              p = {'public_key': KEY, 'limit': 1000}
+              if rel:
+                  p['path'] = rel
+              return get_json(API, p).get('_embedded', {}).get('items', [])
+
+          def download_file(rel, dest):
+              r = s.get(DOWNLOAD, params={'public_key': KEY, 'path': rel}, timeout=60)
+              r.raise_for_status()
+              href = r.json()['href']
+              with s.get(href, stream=True, timeout=120) as rr:
+                  rr.raise_for_status()
+                  with dest.open('wb') as f:
+                      for chunk in rr.iter_content(1024 * 1024):
+                          if chunk:
+                              f.write(chunk)
+
+          def safe_name(name):
+              name = name.replace('\\', '_').replace('/', '_').strip()
+              return name or 'untitled'
+
+          sections = []
+          if OUT.exists():
+              shutil.rmtree(OUT)
+          OUT.mkdir(parents=True, exist_ok=True)
+
+          root_items = list_dir('')
+          for d in sorted((x for x in root_items if x.get('type') == 'dir'), key=lambda x: x.get('name','').casefold()):
+              section = d.get('name', 'Раздел')
+              rel_dir = section
+              items = list_dir(rel_dir)
+              files = []
+              for x in sorted((x for x in items if x.get('type') == 'file'), key=lambda x: x.get('name','').casefold()):
+                  name = x.get('name','')
+                  if not EXT.search(name):
+                      continue
+                  rel = f'{rel_dir}/{name}'
+                  dest = OUT / safe_name(section) / safe_name(name)
+                  dest.parent.mkdir(parents=True, exist_ok=True)
+                  print(f'Downloading {rel}')
+                  download_file(rel, dest)
+                  files.append(f'works-cache/{safe_name(section)}/{safe_name(name)}')
+              if files:
+                  sections.append({'name': section, 'files': files})
+
+          data = {'root': [], 'sections': sections}
+          (OUT / 'manifest.json').write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          print(json.dumps(data, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Commit synced vitrine
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add works-cache
+          git diff --cached --quiet && exit 0
+          git commit -m 'Sync Yandex vitrine'
+          git push
