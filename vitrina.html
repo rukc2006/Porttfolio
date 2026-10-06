@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Витрина — Мастерская-Колыбель</title>
 <meta name="description" content="Витрина работ Мастерской-Колыбель: живопись, глина и гипс, предметы и символы. Разделы текущей коллекции Ксении Комаровой.">
-<link rel="icon" type="image/png" href="assets/kcradle-avatar.png">
+<link rel="icon" type="image/png" href="assets/kcradle-favicon.png">
 <link rel="canonical" href="https://rukc2006.github.io/Porttfolio/vitrina.html">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
@@ -21,17 +21,19 @@
 .lightbox{position:fixed;inset:0;background:rgba(5,8,5,.92);display:none;align-items:center;justify-content:center;padding:30px;z-index:20}.lightbox.open{display:flex}.lightbox img{max-width:min(1100px,94vw);max-height:88vh;object-fit:contain;box-shadow:0 20px 80px rgba(0,0,0,.45)}.lightbox-close{position:fixed;top:22px;right:28px;border:0;background:none;color:#eee9dc;font-size:42px;line-height:1;cursor:pointer}
 @media(max-width:900px){.wrap{padding:0 18px}.top{padding:22px 0}.eyebrow{margin-top:55px}.intro{margin-bottom:45px}.section-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding-bottom:65px}.section-view{padding:38px 0 65px}.section-view-head{align-items:flex-start;flex-direction:column}.section-back{order:-1}.title{font-size:58px}}
 @media(max-width:560px){.title{font-size:52px}.section-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.section-card{aspect-ratio:1/1}.section-card-copy{padding:48px 12px 12px}.section-card h2{font-size:30px}.section-card p{font-size:10px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.lightbox{padding:14px}}
+.vlogo{display:block}.vlogo img{display:block;height:46px;width:auto}.vfoot{margin:60px 0 30px;padding-top:30px;border-top:1px solid var(--line);text-align:center}.vfoot img{display:block;margin:0 auto 10px;height:auto;width:150px}.vfoot p{margin:0;color:var(--muted);font-size:13px}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header class="top"><a class="back" href="Kcradle.html">← Мастерская-Колыбель</a></header>
+<header class="top"><a class="back" href="Kcradle.html">← Мастерская-Колыбель</a><a class="vlogo" href="Kcradle.html" aria-label="Мастерская-Колыбель"><img src="assets/kcradle-wordmark-light.png" alt="KRADLE · Мастерская-Колыбель" width="120" height="60"></a></header>
 <main>
 <div class="eyebrow">Витрина</div>
 <h1 class="title">Работы Мастерской.</h1>
 <p class="intro">Сначала — направления. Выберите то, что хочется рассмотреть. Внутри каждого раздела собраны работы, которые уже появились в мастерской.</p>
 <div id="gallery"></div>
 </main>
+<footer class="vfoot"><a href="Kcradle.html" aria-label="Мастерская-Колыбель"><img src="assets/kcradle-wordmark-light.png" alt="KRADLE · Мастерская-Колыбель" width="170" height="85" loading="lazy"></a><p>Мастерская-Колыбель · Ксения Комарова</p></footer>
 </div>
 <script>
 const gallery=document.getElementById('gallery');
