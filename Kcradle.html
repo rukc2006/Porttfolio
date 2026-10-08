@@ -532,7 +532,9 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 /* Свой счётчик визитов: без cookies, без личных данных, не работает при включённом Do Not Track. Данные идут в Таблицу владелицы. */
 (function(){
   if (navigator.doNotTrack === '1') return;
+  try { if (location.search.indexOf('nocount=1') > -1) localStorage.setItem('kc_ignore', '1'); if (localStorage.getItem('kc_ignore') === '1') return; } catch (e) {}
   var U = 'https://script.google.com/macros/s/AKfycbxWan8OxqSeTzXon7ekzAIiOmTNcXmWjdGlkmxICi0umcYt91ZKAQsa2E3Go5ferXO7/exec';
+  var vid = ''; try { vid = localStorage.getItem('kc_vid') || ''; if (!vid) { vid = Math.random().toString(36).slice(2, 12) + Date.now().toString(36).slice(-4); localStorage.setItem('kc_vid', vid); } } catch (e) {}
   function send(ev, target) {
     try {
       var ref = ''; try { ref = document.referrer ? new URL(document.referrer).hostname : ''; } catch (e) {}
@@ -540,7 +542,7 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
         '&e=' + ev + '&t=' + encodeURIComponent((target || '').slice(0, 120)) +
         '&r=' + encodeURIComponent(ref) + '&w=' + innerWidth + '&l=' + encodeURIComponent(navigator.language || '') +
         '&u=' + encodeURIComponent((location.search.match(/utm_[a-z]+=[^&]+/g) || []).join('|').slice(0, 120));
-      fetch(U + '?' + q, { mode: 'no-cors', keepalive: true });
+      fetch(U + '?' + q + '&v=' + encodeURIComponent(vid), { mode: 'no-cors', keepalive: true });
     } catch (e) {}
   }
   send('view', '');
