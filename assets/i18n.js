@@ -12,6 +12,15 @@
   var ATTRS = ['alt', 'title', 'placeholder', 'aria-label'];
   var dict = {}, lang = 'ru', applying = false, timer = null;
 
+  function lookup(k) {
+    if (dict[k]) return dict[k];
+    var nums = k.match(/\d+/g);
+    if (!nums) return null;
+    var v = dict[k.replace(/\d+/g, '#')];
+    if (!v) return null;
+    var i = 0;
+    return v.replace(/#/g, function () { return nums[i++] || ''; });
+  }
   function norm(s) { return String(s).replace(/\s+/g, ' ').trim(); }
   function hasCyr(s) { return /[А-Яа-яЁё]/.test(s); }
   function getLang() {
@@ -49,7 +58,7 @@
         if (!e.hasAttribute(a)) return;
         var ru = e.getAttribute('data-ru-' + a);
         if (ru === null) { ru = e.getAttribute(a); if (!hasCyr(ru)) return; e.setAttribute('data-ru-' + a, ru); }
-        var t = toRu ? ru : dict[norm(ru)];
+        var t = toRu ? ru : lookup(norm(ru));
         if (t) e.setAttribute(a, t); else if (toRu) e.setAttribute(a, ru);
       });
     }
@@ -61,7 +70,7 @@
     items.forEach(function (x) {
       if (x.nodeType === 3) {
         if (x._ru === undefined) x._ru = x.nodeValue;
-        var t = lang === 'ru' ? null : dict[norm(x._ru)];
+        var t = lang === 'ru' ? null : lookup(norm(x._ru));
         x.nodeValue = t ? t : x._ru;
         return;
       }
@@ -71,7 +80,7 @@
         x.setAttribute('data-ru', x.innerHTML);
       }
       var ru = x.getAttribute('data-ru');
-      var t2 = lang === 'ru' ? null : dict[norm(ru)];
+      var t2 = lang === 'ru' ? null : lookup(norm(ru));
       var want = t2 ? t2 : ru;
       if (x.innerHTML !== want) x.innerHTML = want;
     });
@@ -81,7 +90,7 @@
   function translateTitle() {
     if (!document.documentElement.hasAttribute('data-ru-title')) document.documentElement.setAttribute('data-ru-title', document.title);
     var ru = document.documentElement.getAttribute('data-ru-title');
-    var t = lang === 'ru' ? null : dict[norm(ru)];
+    var t = lang === 'ru' ? null : lookup(norm(ru));
     document.title = t ? t : ru;
     var md = document.querySelector('meta[name="description"]');
     if (md) {
@@ -110,7 +119,7 @@
   function load(cb) {
     if (lang === 'ru' || lang === 'dump') { dict = {}; cb(); return; }
     var x = new XMLHttpRequest();
-    x.open('GET', BASE + 'i18n/' + lang + '.json?v=1', true);
+    x.open('GET', BASE + 'i18n/' + lang + '.json?v=20261011a', true);
     x.onload = function () { try { dict = JSON.parse(x.responseText) || {}; } catch (e) { dict = {}; } cb(); };
     x.onerror = function () { dict = {}; cb(); };
     x.send();
@@ -178,6 +187,18 @@
     pre.textContent = JSON.stringify(Object.keys(keys));
     document.body.appendChild(pre);
   }
+  window.kcT = function (x) { return (lang === 'ru' || !x) ? x : (lookup(norm(x)) || x); };
+  window.__i18nMissing = function () {
+    var items = []; collect(document.body, items); var out = {};
+    items.forEach(function (x) {
+      var ru = x.nodeType === 3 ? (x._ru !== undefined ? x._ru : x.nodeValue) : (x.getAttribute('data-ru') !== null ? x.getAttribute('data-ru') : x.innerHTML);
+      var k = norm(ru);
+      if (!hasCyr(k)) return;
+      if (lang === 'ru') return;
+      if (!lookup(k)) out[k] = 1;
+    });
+    return Object.keys(out);
+  };
   function init() {
     lang = getLang();
     injectSwitch();
