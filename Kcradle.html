@@ -249,9 +249,22 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 .logo img.logo-mark{width:auto;height:60px;margin:-6px 0;border-radius:0;object-fit:contain}@media(max-width:800px){.logo img.logo-mark{height:48px;margin:-4px 0}}.foot-brand{display:flex;align-items:center;gap:26px;flex-wrap:wrap}.foot-logo{display:block;opacity:.95}.foot-logo img{display:block;height:auto;width:150px}
 </style>
 
+<style>
+/* Главная: кнопка «Заказать», выставки и подарок под первым экраном */
+.nav-cta{display:inline-block;margin-left:10px;padding:9px 18px;border-radius:999px;background:var(--gold);color:var(--bg)!important;font-weight:700}
+.hero-main{background:linear-gradient(135deg,#e6cb93,#b69a68);color:#101710;border-color:#e6cb93;font-weight:700;padding:15px 24px;font-size:15px;box-shadow:0 10px 28px rgba(182,154,104,.3)}
+.hero-quiet{color:rgba(233,223,201,.7);font-size:14px;border-bottom:1px solid rgba(233,223,201,.25);padding-bottom:2px}
+.mk-strips{padding:0 0 10px}.mk-strips .container{display:grid;gap:14px}
+.mk-gift{display:flex;align-items:center;gap:18px;padding:18px 24px;border:1px solid rgba(230,203,147,.6);background:linear-gradient(135deg,rgba(182,154,104,.2),rgba(182,154,104,.06));border-radius:4px}
+.mk-gift-ico{font-size:30px}.mk-gift b{display:block;font-size:20px;font-family:"Cormorant Garamond",serif;color:#f1e3c0}.mk-gift small{display:block;margin-top:4px;color:rgba(233,223,201,.75);font-size:13px}
+.mk-gift:hover{border-color:#e6cb93}
+.mk-proof{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:12px;color:rgba(233,223,201,.55);letter-spacing:.04em}
+.mk-proof i{font-style:normal;padding:6px 12px;border:1px solid rgba(233,223,201,.16);border-radius:999px;color:rgba(233,223,201,.8)}
+@media(max-width:800px){.nav-cta{display:none}}
+</style>
 </head>
 <body>
-<header><div class="container"><nav><a class="logo" href="#top" aria-label="Мастерская-Колыбель"><img class="logo-mark" src="assets/kcradle-wordmark-light.png" alt="KRADLE · Мастерская-Колыбель" width="84" height="42"></a><div class="navlinks"><a href="#works">Работы</a><a href="#objects">Новая линия</a><a href="#about">Обо мне</a><a href="#exhibitions">Выставки</a><a href="#path">Мой путь</a><a href="#contacts">Контакты</a></div><button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu">Меню</button></nav><div class="mobile-menu" id="mobileMenu"><div class="mobile-menu-inner"><a href="#works">Работы</a><a href="#objects">Новая линия</a><a href="#about">Обо мне</a><a href="#exhibitions">Выставки</a><a href="#path">Мой путь</a><a href="#contacts">Контакты</a></div></div></div></header>
+<header><div class="container"><nav><a class="logo" href="#top" aria-label="Мастерская-Колыбель"><img class="logo-mark" src="assets/kcradle-wordmark-light.png" alt="KRADLE · Мастерская-Колыбель" width="84" height="42"></a><div class="navlinks"><a href="#works">Работы</a><a href="#objects">Новая линия</a><a href="#about">Обо мне</a><a href="#exhibitions">Выставки</a><a href="#path">Мой путь</a><a href="#contacts">Контакты</a><a class="nav-cta" href="#order">Заказать</a></div><button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu">Меню</button></nav><div class="mobile-menu" id="mobileMenu"><div class="mobile-menu-inner"><a href="#works">Работы</a><a href="#objects">Новая линия</a><a href="#about">Обо мне</a><a href="#exhibitions">Выставки</a><a href="#path">Мой путь</a><a href="#contacts">Контакты</a><a href="#order"><b>Заказать</b></a></div></div></div></header>
 
 <main id="top">
 <section class="hero">
@@ -261,11 +274,17 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
       <h1>Создаю<br><span>маленькие миры.</span></h1>
       <p class="lead">Из образов, вдохновения и смысла — в осязаемую форму.</p>
       <p class="hero-copy">Живопись, глина, ткань, дерево, найденные рамы, символы и эксперименты. Мне интересно искать для каждого образа ту форму, в которой он сможет стать отдельным маленьким миром.</p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="button" href="#works">Посмотреть работы ↓</a><a class="button" href="#objects">Зайти в мастерскую →</a></div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center"><a class="button hero-main" href="#order">Заказать картину по образу →</a><a class="hero-quiet" href="#works">Посмотреть работы ↓</a></div>
     </div>
     <img class="hero-art hero-art-img" src="assets/kcradle-hero.jpg" alt="Ксения Комарова в пространстве Мастерской-Колыбель">
   </div>
 </section>
+
+<section class="mk-strips"><div class="container">
+  <div class="mk-proof"><span>Работы участвовали в выставках и аукционах:</span><i>SiriusPark</i><i>Art коробка</i><i>Art Number 23 · Лондон / Афины</i><i>Bidspirit</i></div>
+  <a class="mk-gift" href="gift.html"><span class="mk-gift-ico">🎁</span><span><b>Тихая неделя: подарок для тех, кто устал</b><small>Семь коротких практик на каждый день, без экрана и без лишних слов. Забрать в подарок →</small></span></a>
+</div></section>
+
 
 <section class="entry-points">
   <div class="container">
