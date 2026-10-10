@@ -218,5 +218,6 @@ lb.addEventListener('touchend',function(e){if(sx===null)return;var d=e.changedTo
 })();
 </script>
 <script>(function(){var f=document.getElementById('exFilter');if(!f)return;var cards=document.querySelectorAll('.ex-card[data-k]');f.addEventListener('click',function(e){var b=e.target.closest('button[data-f]');if(!b)return;var k=b.dataset.f;f.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});cards.forEach(function(c){c.style.display=(k==='all'||c.dataset.k===k)?'':'none'})})})();</script>
+<script src="assets/i18n.js"></script>
 </body>
 </html>
