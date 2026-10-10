@@ -3,7 +3,7 @@ name: Sync Yandex vitrine
 on:
   workflow_dispatch:
   schedule:
-    - cron: '17 * * * *'
+    - cron: '17 */6 * * *'
 
 permissions:
   contents: write
@@ -20,7 +20,7 @@ jobs:
           YANDEX_PUBLIC_KEY: https://disk.yandex.ru/d/hXwIR4kYK3endA
         run: |
           python3 - <<'PY'
-          import json, os, re, shutil
+          import json, os, re, shutil, time
           from pathlib import Path
           from urllib.parse import urlparse
           import requests
@@ -45,24 +45,45 @@ jobs:
                   p['path'] = rel
               return get_json(API, p).get('_embedded', {}).get('items', [])
 
-          def download_file(rel, dest):
+          OLD = Path('works-cache.old')
+
+          def download_once(rel, dest):
               r = s.get(DOWNLOAD, params={'public_key': KEY, 'path': rel}, timeout=60)
               r.raise_for_status()
               href = r.json()['href']
-              with s.get(href, stream=True, timeout=120) as rr:
+              with s.get(href, stream=True, timeout=(15, 45)) as rr:
                   rr.raise_for_status()
                   with dest.open('wb') as f:
                       for chunk in rr.iter_content(1024 * 1024):
                           if chunk:
                               f.write(chunk)
 
+          def download_file(rel, dest):
+              # retries; if Yandex storage stays slow, keep the previous cached copy instead of failing the whole job
+              for attempt in range(1, 4):
+                  try:
+                      download_once(rel, dest)
+                      return True
+                  except Exception as e:
+                      print(f'  attempt {attempt} failed for {rel}: {type(e).__name__}')
+                      time.sleep(5 * attempt)
+              old = OLD / dest.relative_to(OUT)
+              if old.exists():
+                  shutil.copy2(old, dest)
+                  print(f'  kept previous copy of {rel}')
+                  return True
+              print(f'  SKIPPED {rel}')
+              return False
+
           def safe_name(name):
               name = name.replace('\\', '_').replace('/', '_').strip()
               return name or 'untitled'
 
           sections = []
+          if OLD.exists():
+              shutil.rmtree(OLD)
           if OUT.exists():
-              shutil.rmtree(OUT)
+              OUT.rename(OLD)
           OUT.mkdir(parents=True, exist_ok=True)
 
           root_items = list_dir('')
@@ -80,7 +101,8 @@ jobs:
                   dest = OUT / safe_name(section) / safe_name(name)
                   dest.parent.mkdir(parents=True, exist_ok=True)
                   print(f'Downloading {rel}')
-                  download_file(rel, dest)
+                  if not download_file(rel, dest):
+                      continue
                   files.append(f'works-cache/{safe_name(section)}/{safe_name(name)}')
               if files:
                   sections.append({'name': section, 'files': files})
@@ -88,6 +110,8 @@ jobs:
           data = {'root': [], 'sections': sections}
           (OUT / 'manifest.json').write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
           print(json.dumps(data, ensure_ascii=False, indent=2))
+          if OLD.exists():
+              shutil.rmtree(OLD)
           PY
 
       - name: Commit synced vitrine
