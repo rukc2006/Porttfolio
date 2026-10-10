@@ -247,6 +247,151 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 .lines-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:34px}.line-wide{grid-column:span 2}.line-img img.plain{transform:none;object-position:center 22%}.line-card{display:flex;flex-direction:column;border:1px solid var(--line);background:var(--bg2);color:var(--paper);text-decoration:none;transition:border-color .2s,transform .2s}.line-card:hover{border-color:rgba(182,154,104,.6);transform:translateY(-2px)}.line-img{display:block;aspect-ratio:4/3;overflow:hidden;background:#0b110b}.line-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transform:scale(1.7);transform-origin:85% 58%}.line-body{display:flex;flex-direction:column;gap:8px;padding:20px 22px 24px;flex:1}.line-body b{font-family:"Cormorant Garamond",Georgia,serif;font-size:26px;font-weight:600;line-height:1.1}.line-body span{color:var(--muted);font-size:14px;line-height:1.55}.line-body em{margin-top:auto;padding-top:8px;font-style:normal;color:var(--gold);font-size:13px}.line-solo{justify-content:center;min-height:210px}.line-soon{border-style:dashed;border-color:rgba(182,154,104,.45)}.line-body i{align-self:flex-start;font-style:normal;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(182,154,104,.5);padding:2px 10px;border-radius:999px}@media(max-width:1000px){.lines-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.lines-grid{grid-template-columns:1fr}.line-wide{grid-column:auto}}
 .proof-card{border:1px solid var(--line);background:color-mix(in srgb,var(--bg2) 55%,transparent);padding:22px 24px}.proof-head{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:14px}.proof-head .section-kicker{margin:0}.proof-link{color:var(--gold);font-size:13px}.proof-chips{display:flex;flex-wrap:wrap;gap:8px}.proof-chips span{border:1px solid var(--line);padding:6px 14px;border-radius:999px;color:var(--paper);font-size:14px}@media(min-width:1001px){.entry-grid a:nth-child(6){grid-column:span 2;min-height:170px}.entry-grid a:last-child{grid-column:span 3}}
 .logo img.logo-mark{width:auto;height:60px;margin:-6px 0;border-radius:0;object-fit:contain}@media(max-width:800px){.logo img.logo-mark{height:48px;margin:-4px 0}}.foot-brand{display:flex;align-items:center;gap:26px;flex-wrap:wrap}.foot-logo{display:block;opacity:.95}.foot-logo img{display:block;height:auto;width:150px}
+
+/* --- макет: меню, карточки, художник, иконки --- */
+.nav-pill{display:inline-block;margin-left:8px;padding:8px 14px;border:1px solid var(--gold);border-radius:999px;color:var(--paper)!important;font-size:13px}
+.nav-pill:hover{background:rgba(182,154,104,.18)}
+.navlinks a{white-space:nowrap}
+.ghost-gold{border:1px solid rgba(230,203,147,.7);background:transparent;color:#f1e3c0;padding:13px 22px;font-size:14px}
+.ghost-gold:hover{background:rgba(182,154,104,.18);border-color:#e6cb93}
+.hero-artist{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:16px}
+.mk-strips{padding:10px 0 20px}
+.mk-cards{display:grid;grid-template-columns:1fr 1.25fr 1.1fr;gap:18px}
+.mk-card{display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:30px 28px;border:1px solid rgba(230,203,147,.5);background:linear-gradient(135deg,rgba(182,154,104,.16),rgba(182,154,104,.04));border-radius:6px;color:var(--paper);text-decoration:none}
+.mk-card:hover{border-color:#e6cb93}
+.mk-k{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.mk-num{font-family:"Cormorant Garamond",serif;font-size:76px;line-height:.9;color:#f1e3c0}
+.mk-card h3{font-family:"Cormorant Garamond",serif;font-size:32px;line-height:1.05;margin:0;color:#f1e3c0;font-weight:500}
+.mk-card p{margin:0;color:rgba(233,223,201,.82);font-size:16px;line-height:1.6}
+.mk-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+.mk-card .button{margin-top:auto}
+@media(max-width:1000px){.mk-cards{grid-template-columns:1fr!important}}
+#artist-block{padding:70px 0}
+#artist-block h2{margin:14px 0 14px}
+.art-lead{max-width:640px;color:var(--ink-soft);line-height:1.75}
+.art-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:30px 0}
+.art-th{display:block;color:var(--paper);text-decoration:none;font-size:13px;line-height:1.3}
+.art-th img{width:100%;aspect-ratio:4/5;object-fit:cover;border:1px solid var(--line);display:block;margin-bottom:8px}
+.art-th:hover span{color:var(--gold)}
+.art-actions{display:flex;gap:12px;flex-wrap:wrap}
+@media(max-width:900px){.art-strip{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.art-strip{grid-template-columns:repeat(2,1fr)}}
+/* меню: гайды, «Ещё» */
+.nav-guides{color:#101710!important;background:linear-gradient(135deg,#e6cb93,#b69a68);padding:7px 14px;border-radius:999px;font-weight:700}
+.nav-more{position:relative}
+.nav-more summary{list-style:none;cursor:pointer;color:var(--muted);font-size:13px}
+.nav-more summary::-webkit-details-marker{display:none}
+.nav-more summary::after{content:" ▾";font-size:11px}
+.nav-more summary:hover{color:var(--cream)}
+.nav-drop{position:absolute;top:calc(100% + 14px);left:-14px;min-width:230px;padding:10px;background:#0b100b;border:1px solid var(--gold);border-radius:8px;display:flex;flex-direction:column;gap:2px;z-index:30}
+.nav-drop a{padding:8px 12px;border-radius:6px;white-space:nowrap}
+.nav-drop a:hover{background:rgba(182,154,104,.16)}
+.mk-cards{grid-template-columns:1.7fr 1fr!important}
+.mk-card-guides{border-color:#e6cb93;background:linear-gradient(135deg,rgba(230,203,147,.26),rgba(182,154,104,.08));box-shadow:0 14px 40px rgba(182,154,104,.18)}
+.mk-card-guides h3{font-size:34px}
+.mk-card-guides p{font-size:15px}
+.mk-card-art{opacity:.92}
+/* правки кнопок и плиток */
+.mk-card .hero-main{color:var(--cream)!important;background:rgba(233,223,201,.12)!important;border:1px solid var(--paper)!important;box-shadow:none!important;font-weight:600}
+.entry-grid a,.entry-grid a:nth-child(n){grid-column:auto!important}
+
+/* --- без золота --- */
+.nav-guides{color:var(--cream)!important;background:transparent!important;border-bottom:1px solid var(--paper2);border-radius:0!important;padding:4px 2px!important;font-weight:700!important}
+.nav-pill{border-color:rgba(233,223,201,.5)!important}
+.nav-drop{border-color:var(--line)!important}
+.ghost-gold{border:1px solid rgba(233,223,201,.5)!important;background:transparent!important;color:var(--cream)!important}
+.ghost-gold:hover{background:rgba(233,223,201,.12)!important;border-color:var(--paper)!important}
+.mk-card,.mk-card-guides{border:1px solid rgba(233,223,201,.28)!important;background:rgba(255,255,255,.025)!important;box-shadow:none!important}
+.mk-card-guides{border-color:rgba(233,223,201,.5)!important;background:rgba(255,255,255,.045)!important}
+.mk-k{color:var(--paper2)!important}
+.mk-card h3,.mk-num{color:var(--cream)!important}
+.mk-card:hover{border-color:var(--paper)!important}
+.mk-cards{grid-template-columns:1.6fr 1fr 1fr!important}
+.mk-card-guides .mk-btns .button:first-child{background:rgba(233,223,201,.12)!important;border-color:var(--paper)!important;font-weight:600}
+@media(max-width:1000px){.mk-cards{grid-template-columns:1fr!important}}
+.entry-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.entry-grid a:last-child{grid-column:auto!important;display:flex!important;flex-direction:column!important;min-height:120px!important;padding:18px!important}
+@media(max-width:1000px){.entry-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:680px){.entry-grid{grid-template-columns:1fr!important}}
+.art-actions .hero-main{background:transparent;border:1px solid rgba(233,223,201,.5);color:var(--cream);box-shadow:none}
+/* новая линия: фото */
+.mm-showcase{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;margin-top:50px}
+.mm-photos{position:relative}
+.mm-main{width:100%;display:block;border:1px solid var(--line);box-shadow:var(--shadow)}
+.mm-side{position:absolute;right:-18px;bottom:-26px;width:34%;border:1px solid var(--line);box-shadow:var(--shadow);background:var(--bg)}
+.mm-copy h3{font-family:"Cormorant Garamond",serif;font-size:clamp(28px,3vw,40px);line-height:1.08;margin:14px 0 14px;font-weight:500}
+.mm-copy p{color:var(--ink-soft);line-height:1.7}
+.mm-btn{margin-top:8px}
+.mm-note{font-size:12px;opacity:.6;margin-top:14px}
+@media(max-width:900px){.mm-showcase{grid-template-columns:1fr}.mm-side{right:8px}}
+
+/* --- 5 + 3 плиток --- */
+.entry-grid{grid-template-columns:repeat(15,minmax(0,1fr))!important}
+.entry-grid a,.entry-grid a:nth-child(n){grid-column:span 3!important}
+.entry-grid a:nth-child(n+6),.entry-grid a:last-child{grid-column:span 5!important}
+@media(max-width:1000px){.entry-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.entry-grid a,.entry-grid a:nth-child(n),.entry-grid a:last-child{grid-column:auto!important}}
+@media(max-width:680px){.entry-grid{grid-template-columns:1fr!important}}
+/* --- цвет и мягкое свечение карточек --- */
+.mk-card-guides{background:linear-gradient(135deg,rgba(214,160,86,.20),rgba(214,160,86,.05))!important;border-color:rgba(214,160,86,.55)!important;box-shadow:0 0 34px rgba(214,160,86,.14)!important}
+.mk-card-art{background:linear-gradient(135deg,rgba(79,163,165,.20),rgba(79,163,165,.05))!important;border-color:rgba(79,163,165,.5)!important;box-shadow:0 0 30px rgba(79,163,165,.12)!important;opacity:1!important}
+.mk-card-ai{background:linear-gradient(135deg,rgba(125,140,205,.20),rgba(125,140,205,.05))!important;border-color:rgba(125,140,205,.5)!important;box-shadow:0 0 30px rgba(125,140,205,.12)!important}
+.mk-card-guides .mk-k{color:#e0b878!important}.mk-card-art .mk-k{color:#8fd0d1!important}.mk-card-ai .mk-k{color:#aab6ee!important}
+/* --- воздух у линий между блоками --- */
+.mk-strips{padding:48px 0 40px!important}
+#subscribe{padding:72px 0!important}
+.entry-points{padding:56px 0 76px!important}
+.order-section{padding:60px 0 90px!important}
+.current-line-section{padding-top:70px;padding-bottom:70px}
+/* --- контакты: двойная плашка --- */
+.contact-duo{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.contact-duo .contact-item{border-bottom:0;padding:10px 0}
+@media(max-width:560px){.contact-duo{grid-template-columns:1fr}}
+/* --- цветные выставки --- */
+.ex-t-pers{--c:111,143,90}.ex-t-mkt{--c:201,138,63}.ex-t-intl{--c:95,132,184}.ex-t-onl{--c:79,163,165}.ex-t-auc{--c:154,111,176}.ex-t-exh{--c:184,106,122}.ex-t-cmp{--c:181,83,45}
+.ex-card[class*="ex-t-"]{border:1px solid rgba(var(--c),.4)!important;border-left:4px solid rgba(var(--c),.9)!important;background:rgba(var(--c),.09)!important}
+.ex-card[class*="ex-t-"] .ex-meta{color:rgb(var(--c))!important}
+.archive-row[class*="ex-t-"]{border-left:3px solid rgba(var(--c),.85);padding-left:12px}
+.ex-legend{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 4px}
+.ex-legend span{font-size:12px;letter-spacing:.06em;padding:5px 12px;border-radius:999px;border:1px solid rgba(var(--c),.55);background:rgba(var(--c),.12)}
+
+.pro-ai,.pro-art{margin-top:12px;padding:14px 16px;border:1px solid rgba(var(--pc),.5);border-left:4px solid rgba(var(--pc),.9);background:rgba(var(--pc),.1);border-top:1px solid rgba(var(--pc),.5)!important}
+.pro-ai{--pc:125,140,205}.pro-art{--pc:79,163,165}
+.pro-ai b,.pro-art b{display:block;margin-bottom:4px}
+.ex-legend button{font:inherit;color:inherit;cursor:pointer;font-size:12px;letter-spacing:.06em;padding:6px 14px;border-radius:999px;border:1px solid rgba(var(--c,233,223,201),.55);background:rgba(var(--c,233,223,201),.12)}
+.ex-legend button:hover{background:rgba(var(--c,233,223,201),.25)}
+.ex-legend button.on{background:rgba(var(--c,233,223,201),.35);box-shadow:0 0 0 1px rgba(var(--c,233,223,201),.8)}
+/* первый экран компактнее */
+.logo-name{font-family:"Cormorant Garamond",serif;font-size:15px;text-transform:uppercase;color:var(--paper);white-space:nowrap;letter-spacing:.1em;margin-left:4px;padding-left:12px;border-left:1px solid var(--line)}
+@media(max-width:1180px){.logo-name{display:none}}
+.hero{min-height:0!important;padding:112px 0 36px!important}
+.hero-grid{grid-template-columns:1.25fr .75fr!important;gap:48px!important}
+.hero h1{font-size:clamp(44px,5.4vw,76px)!important;line-height:1.02}
+.hero .eyebrow{font-size:12px;letter-spacing:.14em;margin-bottom:14px}
+.hero .lead{font-size:clamp(19px,1.7vw,24px)!important;line-height:1.4;margin:16px 0 12px}
+.hero .hero-copy{font-size:15px;margin-bottom:22px}
+.hero-art{max-width:400px;justify-self:end}
+.hero .button{padding:12px 20px;font-size:14px}
+.hero .hero-main{padding:13px 22px}
+.mk-strips{padding:48px 0 40px!important}
+.mk-cards{gap:14px}
+.mk-card{padding:20px 22px;gap:8px}
+.mk-num{font-size:44px}
+.mk-card h3{font-size:24px}
+.mk-card p{font-size:14px;line-height:1.5}
+.mk-card .button{padding:10px 18px;font-size:13px}
+.entry-points{padding-top:26px!important;padding-bottom:50px!important}
+.entry-grid a{min-height:120px!important;padding:18px!important}
+.entry-grid strong{font-size:clamp(19px,1.6vw,24px)!important}
+section[id],article[id]{scroll-margin-top:96px}
+/* контакты: значки */
+#live-contact .live-contact-card{overflow:visible}
+#live-contact .place-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+#live-contact .place{position:relative;width:56px;height:56px;padding:0;gap:0;justify-content:center;align-items:center;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}
+#live-contact .place>div{display:none}
+#live-contact .place .pi{width:26px;height:26px;margin:0;flex:0 0 26px}
+#live-contact .place:hover{border-color:var(--gold);background:rgba(182,154,104,.12)}
+#live-contact .place::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#0b100b;border:1px solid var(--gold);color:var(--paper);padding:7px 11px;border-radius:6px;font-size:12px;letter-spacing:.02em;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:20}
+#live-contact .place:hover::after,#live-contact .place:focus-visible::after{opacity:1}
 </style>
 
 <style>
@@ -264,25 +409,43 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 </style>
 </head>
 <body>
-<header><div class="container"><nav><a class="logo" href="#top" aria-label="Мастерская-Колыбель"><img class="logo-mark" src="assets/kcradle-wordmark-light.png" alt="KRADLE · Мастерская-Колыбель" width="84" height="42"></a><div class="navlinks"><a href="#works">Работы</a><a href="#objects">Новая линия</a><a href="#about">Обо мне</a><a href="#exhibitions">Выставки</a><a href="#path">Мой путь</a><a href="#contacts">Контакты</a><a class="nav-cta" href="#order">Заказать</a></div><button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu">Меню</button></nav><div class="mobile-menu" id="mobileMenu"><div class="mobile-menu-inner"><a href="#works">Работы</a><a href="#objects">Новая линия</a><a href="#about">Обо мне</a><a href="#exhibitions">Выставки</a><a href="#path">Мой путь</a><a href="#contacts">Контакты</a><a href="#order"><b>Заказать</b></a></div></div></div></header>
+<header><div class="container"><nav><a class="logo" href="#top" aria-label="Мастерская-Колыбель"><img class="logo-mark" src="assets/kcradle-wordmark-light.png" alt="KRADLE · Мастерская-Колыбель" width="84" height="42"><span class="logo-name">Ксения Комарова</span></a><div class="navlinks"><a href="#works">Работы</a><a href="artist.html">Художник</a><a class="nav-guides" href="guides.html">Гайды</a><a href="index.html">AI-резюме</a><a href="#contacts">Контакты</a><details class="nav-more"><summary>Ещё</summary><div class="nav-drop"><a href="#objects">Новая линия</a><a href="#about">Обо мне</a><a href="#exhibitions">Выставки и конкурсы</a><a href="#path">Мой путь</a><a href="#book">Книга «Лес и Небеса»</a><a href="gift.html">Подарок «Тихая неделя»</a></div></details><a class="nav-pill" href="cv.html">CV для галерей</a><a class="nav-cta" href="#order">Заказать</a></div><button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu">Меню</button></nav><div class="mobile-menu" id="mobileMenu"><div class="mobile-menu-inner"><a href="guides.html"><b>Гайды</b></a><a href="gift.html"><b>Подарок «Тихая неделя»</b></a><a href="artist.html"><b>Художник</b></a><a href="cv.html"><b>CV для галерей</b></a><a href="index.html">AI-резюме</a><a href="#works">Работы</a><a href="#objects">Новая линия</a><a href="#about">Обо мне</a><a href="#exhibitions">Выставки</a><a href="#path">Мой путь</a><a href="#contacts">Контакты</a><a href="#order"><b>Заказать</b></a></div></div></div></header>
 
 <main id="top">
 <section class="hero">
   <div class="container hero-grid">
     <div>
-      <div class="eyebrow">Ксения Комарова · художник · основатель Мастерской-Колыбель</div>
+      <div class="eyebrow">Мастерская Колыбель · Ксения Комарова</div>
       <h1>Создаю<br><span>маленькие миры.</span></h1>
-      <p class="lead">Из образов, вдохновения и смысла — в осязаемую форму.</p>
+      <p class="lead">Архитектор маленьких миров. Из образов, вдохновения и смысла — в осязаемую форму.</p>
       <p class="hero-copy">Живопись, глина, ткань, дерево, найденные рамы, символы и эксперименты. Мне интересно искать для каждого образа ту форму, в которой он сможет стать отдельным маленьким миром.</p>
-      <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center"><a class="button hero-main" href="#order">Заказать картину по образу →</a><a class="hero-quiet" href="#works">Посмотреть работы ↓</a></div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center"><a class="button hero-main" href="#order">Заказать картину по образу →</a><a class="button ghost-gold" href="artist.html">Портфолио художника</a><a class="button ghost-gold" href="cv.html">CV для галерей</a><a class="hero-quiet" href="#works">Смотреть работы ↓</a></div>
     </div>
     <img class="hero-art hero-art-img" src="assets/kcradle-hero.jpg" alt="Ксения Комарова в пространстве Мастерской-Колыбель">
   </div>
 </section>
 
 <section class="mk-strips"><div class="container">
-  <div class="mk-proof"><span>Работы участвовали в выставках и аукционах:</span><i>SiriusPark</i><i>Art коробка</i><i>Art Number 23 · Лондон / Афины</i><i>Bidspirit</i></div>
-  <a class="mk-gift" href="gift.html"><span class="mk-gift-ico">🎁</span><span><b>Тихая неделя: подарок для тех, кто устал</b><small>Семь коротких практик на каждый день, без экрана и без лишних слов. Забрать в подарок →</small></span></a>
+  <div class="mk-cards">
+    <div class="mk-card mk-card-guides">
+      <div class="mk-k">Гайды для мастеров и для себя</div>
+      <h3>Учимся. Делаем.</h3>
+      <p>Маркетплейсы и аналитика, нейросети, рисунок, символы и ритуалы дома. Начни с подарка: «Тихая неделя», семь коротких практик без экрана.</p>
+      <div class="mk-btns"><a class="button hero-main" href="gift.html">🎁 Забрать подарок: Тихая неделя</a><a class="button ghost-gold" href="guides.html">Все гайды →</a></div>
+    </div>
+    <div class="mk-card mk-card-art">
+      <div class="mk-k">Художник</div>
+      <h3>Портфолио и CV для галерей</h3>
+      <p>Избранные работы маслом и акварелью, краткая творческая биография, выставки.</p>
+      <div class="mk-btns"><a class="button ghost-gold" href="artist.html">Портфолио →</a><a class="button ghost-gold" href="cv.html">CV для галерей</a></div>
+    </div>
+    <div class="mk-card mk-card-ai">
+      <div class="mk-k">Другая сторона</div>
+      <h3>AI-резюме и портфолио</h3>
+      <p>Аналитика, дашборды, автоматизация, AI.</p>
+      <div class="mk-btns"><a class="button ghost-gold" href="index.html">Открыть →</a></div>
+    </div>
+  </div>
 </div></section>
 
 
@@ -296,12 +459,13 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
       <a href="#news"><span>04</span><strong>Остаться в процессе</strong><small>VK · новые публикации и работы</small></a>
       <a href="#book"><span>05</span><strong>Прочитать книгу</strong><small>«Лес и Небеса» · городское фэнтези · Литрес</small></a>
       <a href="guides.html"><span>06</span><strong>Гайды и обучение</strong><small>для мастеров · рисунок · творчество · ритуалы</small></a>
-      <a href="index.html"><span>07</span><strong>Моё AI-резюме и портфолио</strong><small>другая сторона: аналитика · дашборды · автоматизация · AI</small></a>
+      <a href="#exhibitions"><span>07</span><strong>Выставки и конкурсы</strong><small>12 выставок, аукционов и конкурсов · 2017–2021 · три персональные</small></a>
+      <a href="index.html"><span>08</span><strong>Моё AI-резюме и портфолио</strong><small>другая сторона: аналитика · дашборды · автоматизация · AI</small></a>
     </div>
   </div>
 </section>
 
-<section class="proof-strip"><div class="container"><div class="proof-card"><div class="proof-head"><div class="section-kicker">Выставки и конкурсы · 2017–2021</div><a class="proof-link" href="#exhibitions">Все выставки &rarr;</a></div><div class="proof-chips"><span>SiriusPark</span><span>Art коробка</span><span>Art Number 23 · Лондон / Афины</span><span>Bidspirit</span></div></div></div></section>
+
 <section id="subscribe"><div class="container">
   <div class="subscribe-card">
     <div>
@@ -311,9 +475,9 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
     </div>
     <div class="subscribe-actions">
       <a class="button gift" data-track href="gift.html">🎁 Получить подарок</a>
-      <a class="button" data-track href="https://t.me/KCradle_me" target="_blank" rel="noopener"><img class="pi" src="assets/icons/telegram.svg" alt="" width="20" height="20">Telegram</a>
+      <a class="button" data-track href="https://www.instagram.com/ru2006kc" target="_blank" rel="noopener"><img class="pi" src="assets/icons/instagram.svg" alt="" width="20" height="20">Instagram</a>
       <a class="button alt" data-track href="https://vk.ru/kcradle" target="_blank" rel="noopener"><img class="pi" src="assets/icons/vk.svg" alt="" width="20" height="20">ВКонтакте</a>
-      <a class="button alt" data-track href="https://www.instagram.com/ru2006kc" target="_blank" rel="noopener"><img class="pi" src="assets/icons/instagram.svg" alt="" width="20" height="20">Instagram</a>
+      <a class="button alt" data-track href="https://t.me/KCradle_me" target="_blank" rel="noopener"><img class="pi" src="assets/icons/telegram.svg" alt="" width="20" height="20">Telegram</a>
       <a class="button alt" data-track href="https://set.ki/JszES2c" target="_blank" rel="noopener"><img class="pi" src="assets/icons/setka.png" alt="" width="20" height="20">Сетка</a>
       <a class="button alt" data-track href="#live-contact">Все контакты ↓</a>
     </div>
@@ -416,6 +580,18 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
     <div class="manifesto">Не коллекция материалов, а коллекция маленьких миров.<br><br>Сначала появляется образ. Потом я ищу для него материал, фактуру, форму и рамку.</div>
   </div>
   <div class="process-line"><span>образ</span><i>→</i><span>материал</span><i>→</i><span>объём</span><i>→</i><span>рамка</span><i>→</i><span>маленький мир</span></div>
+  <div class="mm-showcase">
+    <div class="mm-photos">
+      <img class="mm-main" src="assets/mm/mm-portrait.jpg" alt="Ксения с первым маленьким миром в рамке: миниатюрная картина с гусем" loading="lazy">
+    </div>
+    <div class="mm-copy">
+      <div class="section-kicker">Первые маленькие миры</div>
+      <h3>Первый из них уже живёт в рамке.</h3>
+      <p>Это только начало: линия пополняется. Новые маленькие миры будут появляться здесь и на витрине.</p>
+      <a class="button ghost-gold mm-btn" href="vitrina.html">Перейти смотреть →</a>
+      <p class="mm-note">Фото сделаны как визуализация. Работы пополняются.</p>
+    </div>
+  </div>
 </div>
 </section>
 
@@ -428,20 +604,28 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 </div>
 </section>
 
-<section id="exhibitions"><div class="container"><div class="section-kicker">2017 → 2021 · выставки и конкурсы</div><h2>Работы уже<br>путешествовали.</h2><p class="featured-intro">Несколько событий, через которые прошли мои работы. Полный архив оставила ниже — без тяжёлых встроенных лент, чтобы сама история оставалась лёгкой и читаемой.</p><div class="exhibition-featured">
-<article class="ex-card compact"><div class="ex-meta">2021 · Москва</div><h3>Персональная выставка-продажа · Пространство SiriusPark</h3><a class="button" href="https://vk.ru/wall-157175276_245" target="_blank" rel="noopener">Смотреть запись →</a></article>
-<article class="ex-card compact"><div class="ex-meta">2021 · Москва</div><h3>Гастромаркет и BlackHat бар · апрель</h3><a class="button" href="https://vk.ru/wall204412765_1679" target="_blank" rel="noopener">Смотреть запись →</a></article>
-<article class="ex-card compact"><div class="ex-meta">2021 · Москва</div><h3>Гастромаркет и BlackHat бар · март</h3><a class="button" href="https://vk.ru/wall204412765_1658" target="_blank" rel="noopener">Смотреть запись →</a></article>
-<article class="ex-card compact"><div class="ex-meta">2021 · Москва</div><h3>Центр искусств «Art коробка» · ART ANTIDOT 2</h3><a class="button" href="https://vk.ru/wall204412765_1632" target="_blank" rel="noopener">Смотреть записи →</a></article>
-<article class="ex-card compact"><div class="ex-meta">2021 · Лондон / Афины</div><h3>Галерея Art Number 23 · онлайн-проект New Era</h3><a class="button" href="https://vk.ru/wall204412765_1617" target="_blank" rel="noopener">Смотреть запись →</a></article>
-<article class="ex-card compact"><div class="ex-meta">2021 · Москва</div><h3>Bidspirit · онлайн-аукцион LOT TV #16</h3><a class="button" href="https://vk.ru/wall204412765_1596" target="_blank" rel="noopener">Смотреть запись →</a></article></div>
-<details class="archive"><summary>Открыть полный архив выставок и конкурсов →</summary>
-<div class="archive-row"><span class="archive-year">2021</span><strong>Bidspirit · онлайн-аукцион LOT TV #21</strong><span>запись не добавлена</span></div>
-<div class="archive-row"><span class="archive-year">2019</span><strong>Галерея Want&amp;Paint · «Экологический кризис»</strong><a href="https://vk.ru/wall-157175276_143" target="_blank" rel="noopener">VK →</a></div>
-<div class="archive-row"><span class="archive-year">2019</span><strong>Галерея Want&amp;Paint · «Выставка 25 молодых художников»</strong><a href="https://vk.ru/wall-157175276_134" target="_blank" rel="noopener">VK →</a></div>
-<div class="archive-row"><span class="archive-year">2019</span><strong>Галерея Menier · конкурс Pebeo Mixed Media</strong><span>запись не добавлена</span></div>
-<div class="archive-row"><span class="archive-year">2019</span><strong>International Typomania Festival · конкурс стикеров</strong><span>запись не добавлена</span></div>
-<div class="archive-row"><span class="archive-year">2017</span><strong>Конкурс «Битва художников»</strong><span>запись не добавлена</span></div></details></div></section>
+<section id="artist-block"><div class="container">
+  <div class="section-kicker">Художник Ксения Комарова</div>
+  <h2>Живопись: маслом и акварелью.</h2>
+  <p class="art-lead">Символизм, экспрессионизм, абстракция. Избранные работы, краткая творческая биография и выставки собраны на отдельной странице и в CV для галерей.</p>
+  <div class="art-strip"><a href="artist.html" class="art-th"><img src="assets/artist/thumb/11_chumnoy_doktor.jpg" alt="Чумной доктор" loading="lazy"><span>Чумной доктор</span></a><a href="artist.html" class="art-th"><img src="assets/artist/thumb/04_kod_dostupa.jpg" alt="20.20 — Код доступа к игре" loading="lazy"><span>20.20 — Код доступа к игре</span></a><a href="artist.html" class="art-th"><img src="assets/artist/thumb/06_koleso_sansary.jpg" alt="Колесо Сансары" loading="lazy"><span>Колесо Сансары</span></a><a href="artist.html" class="art-th"><img src="assets/artist/thumb/08_pod_krylom.jpg" alt="Под крылом" loading="lazy"><span>Под крылом</span></a><a href="artist.html" class="art-th"><img src="assets/artist/thumb/09_kto_ty.jpg" alt="Кто ты?" loading="lazy"><span>Кто ты?</span></a><a href="artist.html" class="art-th"><img src="assets/artist/thumb/13_imago.jpg" alt="Imago" loading="lazy"><span>Imago</span></a></div>
+  <div class="art-actions"><a class="button hero-main" href="artist.html">Все работы →</a><a class="button ghost-gold" href="cv.html">CV для галерей</a><a class="button ghost-gold" href="cv/Komarova_Ksenia_CV.pdf">Скачать CV (PDF)</a></div>
+</div></section>
+<section id="exhibitions"><div class="container"><div class="section-kicker">2017 → 2021 · выставки и конкурсы</div><h2>Работы уже<br>путешествовали.</h2><p class="featured-intro">Несколько событий, через которые прошли мои работы. Полный архив оставила ниже — без тяжёлых встроенных лент, чтобы сама история оставалась лёгкой и читаемой.</p><div class="ex-legend" id="exMenu"><button type="button" class="ex-all on" data-f="all">Все</button><button type="button" class="ex-t-pers" data-f="pers">Персональные · 3</button><button type="button" class="ex-t-intl" data-f="intl">Международные · 1</button><button type="button" class="ex-t-onl" data-f="onl">Онлайн-выставки · 1</button><button type="button" class="ex-t-auc" data-f="auc">Аукционы · 2</button><button type="button" class="ex-t-exh" data-f="exh">Выставки · 2</button><button type="button" class="ex-t-cmp" data-f="cmp">Конкурсы · 3</button></div><div class="exhibition-featured" id="exCards">
+<article class="ex-card compact ex-t-intl" data-k="intl"><div class="ex-meta">2021 · Москва</div><h3>Центр искусств «Art коробка» · ART ANTIDOT 2</h3><a class="button" href="https://vk.ru/wall204412765_1632" target="_blank" rel="noopener">Смотреть записи →</a></article>
+<article class="ex-card compact ex-t-onl" data-k="onl"><div class="ex-meta">2021 · Лондон / Афины</div><h3>Галерея Art Number 23 · онлайн-проект New Era</h3><a class="button" href="https://vk.ru/wall204412765_1617" target="_blank" rel="noopener">Смотреть запись →</a></article>
+<article class="ex-card compact ex-t-pers" data-k="pers"><div class="ex-meta">2021 · Москва</div><h3>Персональная выставка-продажа · Пространство SiriusPark</h3><a class="button" href="https://vk.ru/wall-157175276_245" target="_blank" rel="noopener">Смотреть запись →</a></article>
+<article class="ex-card compact ex-t-pers" data-k="pers"><div class="ex-meta">2021 · Москва</div><h3>Персональная выставка · Гастромаркет и BlackHat бар · апрель</h3><a class="button" href="https://vk.ru/wall204412765_1679" target="_blank" rel="noopener">Смотреть запись →</a></article>
+<article class="ex-card compact ex-t-pers" data-k="pers"><div class="ex-meta">2021 · Москва</div><h3>Персональная выставка · Гастромаркет и BlackHat бар · март</h3><a class="button" href="https://vk.ru/wall204412765_1658" target="_blank" rel="noopener">Смотреть запись →</a></article>
+<article class="ex-card compact ex-t-auc" data-k="auc"><div class="ex-meta">2021 · Москва</div><h3>Bidspirit · онлайн-аукцион LOT TV #21</h3><a class="button" href="https://youtu.be/C_ihJNLrWIw?t=2598" target="_blank" rel="noopener">Смотреть запись (с 43:18) →</a></article>
+<article class="ex-card compact ex-t-auc" data-k="auc"><div class="ex-meta">2021 · Москва</div><h3>Bidspirit · онлайн-аукцион LOT TV #16</h3><a class="button" href="https://vk.ru/wall204412765_1596" target="_blank" rel="noopener">Смотреть запись →</a></article>
+<article class="ex-card compact ex-t-exh" data-k="exh"><div class="ex-meta">2019 · Москва</div><h3>Галерея Want&amp;Paint · «Экологический кризис»</h3><a class="button" href="https://vk.ru/wall-157175276_143" target="_blank" rel="noopener">Смотреть запись →</a></article>
+<article class="ex-card compact ex-t-exh" data-k="exh"><div class="ex-meta">2019 · Москва</div><h3>Галерея Want&amp;Paint · «Выставка 25 молодых художников»</h3><a class="button" href="https://vk.ru/wall-157175276_134" target="_blank" rel="noopener">Смотреть запись →</a></article>
+</div>
+<details class="archive" id="exArchive"><summary>Конкурсы и события без записи →</summary>
+<div class="archive-row ex-t-cmp" data-k="cmp"><span class="archive-year">2019</span><strong>Галерея Menier · конкурс Pebeo Mixed Media</strong><span>запись не добавлена</span></div>
+<div class="archive-row ex-t-cmp" data-k="cmp"><span class="archive-year">2019</span><strong>International Typomania Festival · конкурс стикеров</strong><span>запись не добавлена</span></div>
+<div class="archive-row ex-t-cmp" data-k="cmp"><span class="archive-year">2017</span><strong>Конкурс «Битва художников»</strong><span>запись не добавлена</span></div></details></div></section>
 <section id="path">
 <div class="container">
   <div class="section-kicker">Как я к этому пришла</div>
@@ -479,19 +663,18 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
   <div class="live-contact-grid">
     <article class="live-contact-card" id="news">
       <div class="section-kicker">Живой процесс</div>
-      <h2>Там, где мастерская продолжается между работами.</h2>
-      <p>Записи Мастерской-Колыбель: процесс, готовые работы, мысли, новые эксперименты и новости.</p>
+      <h2>Где следить за процессом.</h2>
+      <p>Записи Мастерской-Колыбель: процесс, готовые работы, мысли, новые эксперименты и новости. Наведи на значок, чтобы увидеть подпись.</p>
       <div class="place-list">
-        <a class="place" data-track href="https://vk.ru/kcradle" target="_blank" rel="noopener"><img class="pi" src="assets/icons/vk.svg" alt="" width="22" height="22"><div><b>ВКонтакте</b><span>группа мастерской</span></div></a>
-        <a class="place" data-track href="https://t.me/KCradle_me" target="_blank" rel="noopener"><img class="pi" src="assets/icons/telegram.svg" alt="" width="22" height="22"><div><b>Telegram</b><span>@KCradle_me</span></div></a>
-        <a class="place" data-track href="https://dzen.ru/kcradle" target="_blank" rel="noopener"><img class="pi" src="assets/icons/dzen.png" alt="" width="22" height="22"><div><b>Дзен</b><span>статьи и истории</span></div></a>
         <a class="place" data-track href="https://www.instagram.com/ru2006kc" target="_blank" rel="noopener"><img class="pi" src="assets/icons/instagram.svg" alt="" width="22" height="22"><div><b>Instagram</b><span>@ru2006kc</span></div></a>
-        <a class="place" data-track href="https://www.threads.com/@ru2006kc" target="_blank" rel="noopener"><img class="pi" src="assets/icons/threads.svg" alt="" width="22" height="22"><div><b>Threads</b><span>@ru2006kc</span></div></a>
+        <a class="place" data-track href="https://vk.ru/kcradle" target="_blank" rel="noopener"><img class="pi" src="assets/icons/vk.svg" alt="" width="22" height="22"><div><b>ВКонтакте</b><span>группа мастерской</span></div></a>
         <a class="place" data-track href="https://www.youtube.com/@kcradle" target="_blank" rel="noopener"><img class="pi" src="assets/icons/youtube.svg" alt="" width="22" height="22"><div><b>YouTube</b><span>@kcradle, видео процесса</span></div></a>
         <a class="place" data-track href="https://www.tiktok.com/@ru2006kc" target="_blank" rel="noopener"><img class="pi" src="assets/icons/tiktok.svg" alt="" width="22" height="22"><div><b>TikTok</b><span>@ru2006kc</span></div></a>
-        <a class="place" data-track href="https://vc.ru/id6141556" target="_blank" rel="noopener"><img class="pi" src="assets/icons/vcru.svg" alt="" width="22" height="22"><div><b>vc.ru</b><span>статьи о работе и маркетплейсах</span></div></a>
-        <a class="place" data-track href="https://www.facebook.com/ru2006kc" target="_blank" rel="noopener"><img class="pi" src="assets/icons/facebook.svg" alt="" width="22" height="22"><div><b>Facebook</b><span>ru2006kc</span></div></a>
+        <a class="place" data-track href="https://t.me/KCradle_me" target="_blank" rel="noopener"><img class="pi" src="assets/icons/telegram.svg" alt="" width="22" height="22"><div><b>Telegram</b><span>@KCradle_me</span></div></a>
+        <a class="place" data-track href="https://dzen.ru/kcradle" target="_blank" rel="noopener"><img class="pi" src="assets/icons/dzen.png" alt="" width="22" height="22"><div><b>Дзен</b><span>статьи и истории</span></div></a>
+        <a class="place" data-track href="https://www.threads.com/@ru2006kc" target="_blank" rel="noopener"><img class="pi" src="assets/icons/threads.svg" alt="" width="22" height="22"><div><b>Threads</b><span>@ru2006kc</span></div></a>
         <a class="place" data-track href="https://www.facebook.com/KCradleMe/" target="_blank" rel="noopener"><img class="pi" src="assets/icons/facebook.svg" alt="" width="22" height="22"><div><b>Facebook · Страница</b><span>Мастерская Колыбель</span></div></a>
+        <a class="place" data-track href="https://www.facebook.com/ru2006kc" target="_blank" rel="noopener"><img class="pi" src="assets/icons/facebook.svg" alt="" width="22" height="22"><div><b>Facebook</b><span>ru2006kc</span></div></a>
       </div>
     </article>
     <article class="live-contact-card" id="setka">
@@ -499,19 +682,23 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
       <h2>Смотреть работы. И Сетка — отдельно.</h2>
       <p>Образы и портфолио здесь. Сетка моя рабочая социальная сеть от hh.ru: профессиональные заметки, AI, автоматизация и аналитика.</p>
       <div class="place-list">
-        <a class="place" data-track href="https://pin.it/5vPnUHx" target="_blank" rel="noopener"><img class="pi" src="assets/icons/pinterest.svg" alt="" width="22" height="22"><div><b>Pinterest</b><span>образы и вдохновение</span></div></a>
-        <a class="place" data-track href="https://www.behance.net/ru2006kc" target="_blank" rel="noopener"><img class="pi" src="assets/icons/behance.svg" alt="" width="22" height="22"><div><b>Behance</b><span>портфолио</span></div></a>
         <a class="place" data-track href="https://set.ki/JszES2c" target="_blank" rel="noopener"><img class="pi" src="assets/icons/setka.png" alt="" width="22" height="22"><div><b>Сетка</b><span>профессиональная среда</span></div></a>
+        <a class="place" data-track href="https://www.behance.net/ru2006kc" target="_blank" rel="noopener"><img class="pi" src="assets/icons/behance.svg" alt="" width="22" height="22"><div><b>Behance</b><span>портфолио</span></div></a>
+        <a class="place" data-track href="https://pin.it/5vPnUHx" target="_blank" rel="noopener"><img class="pi" src="assets/icons/pinterest.svg" alt="" width="22" height="22"><div><b>Pinterest</b><span>образы и вдохновение</span></div></a>
+        <a class="place" data-track href="https://vc.ru/id6141556" target="_blank" rel="noopener"><img class="pi" src="assets/icons/vcru.svg" alt="" width="22" height="22"><div><b>vc.ru</b><span>статьи о работе и маркетплейсах</span></div></a>
       </div>
     </article>
     <article class="live-contact-card" id="contacts">
       <div class="section-kicker">Связаться</div>
       <h2>Если вам сюда — добро пожаловать.</h2>
       <div class="contact-list">
-        <div class="contact-item"><img class="pi" src="assets/icons/telegram.svg" alt="" width="22" height="22"><div><b>Telegram · написать мне</b><a data-track href="https://t.me/ru2006kc">@ru2006kc</a></div></div>
-        <div class="contact-item"><img class="pi" src="assets/icons/vk.svg" alt="" width="22" height="22"><div><b>VK · личные сообщения</b><a data-track href="https://vk.ru/ru2006kc" target="_blank" rel="noopener">Написать мне в VK →</a></div></div>
+        <div class="contact-duo">
+          <div class="contact-item"><img class="pi" src="assets/icons/telegram.svg" alt="" width="22" height="22"><div><b>Telegram</b><a data-track href="https://t.me/ru2006kc">@ru2006kc</a></div></div>
+          <div class="contact-item"><img class="pi" src="assets/icons/vk.svg" alt="" width="22" height="22"><div><b>VK</b><a data-track href="https://vk.ru/ru2006kc" target="_blank" rel="noopener">Написать →</a></div></div>
+        </div>
         <div class="contact-item"><img class="pi" src="assets/icons/mail.svg" alt="" width="22" height="22"><div><b>Email · личная почта</b><a href="mailto:ru-2006kc@yandex.ru">ru-2006kc@yandex.ru</a></div></div>
-        <div class="contact-item contact-pro"><img class="pi" src="assets/icons/work.svg" alt="" width="22" height="22"><div><b>Для работодателей и партнёров</b><a data-track href="index.html">Моё AI-резюме и портфолио: аналитика, дашборды, автоматизация →</a></div></div>
+        <div class="contact-item contact-pro pro-ai"><img class="pi" src="assets/icons/work.svg" alt="" width="22" height="22"><div><b>Для работодателей и партнёров</b><a data-track href="index.html">Моё AI-резюме и портфолио →</a></div></div>
+        <div class="contact-item contact-pro pro-art"><img class="pi" src="assets/icons/mail.svg" alt="" width="22" height="22"><div><b>Для галерей и кураторов</b><a data-track href="cv.html">CV художника →</a></div></div>
       </div>
     </article>
   </div>
@@ -524,8 +711,12 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 </main>
 
 <footer>
-<div class="container foot-brand"><a class="foot-logo" href="#top" aria-label="Наверх"><img src="assets/kcradle-wordmark-light.png" alt="KRADLE · Мастерская-Колыбель" width="190" height="94" loading="lazy"></a><div>© Ксения Комарова · Мастерская-Колыбель<br><span style="opacity:.6;font-size:12px">Сайт считает визиты без cookies и без личных данных.</span></div>
+<div class="container foot-brand"><a class="foot-logo" href="#top" aria-label="Наверх"><img src="assets/kcradle-wordmark-light.png" alt="KRADLE · Мастерская-Колыбель" width="190" height="94" loading="lazy"></a><div>© Ксения Комарова · Мастерская-Колыбель<br><span style="opacity:.6;font-size:12px">Сайт считает визиты без cookies и без личных данных.</span></div><div class="foot-links" style="margin-top:10px"><a href="artist.html">Художник</a> · <a href="cv.html">CV для галерей</a> · <a href="gift.html">Подарок</a> · <a href="guides.html">Гайды</a></div>
 </footer>
+<script>window.addEventListener('load',function(){if(location.hash.length>1){var el=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(el){document.documentElement.style.scrollBehavior='auto';setTimeout(function(){el.scrollIntoView();},400)}}});</script>
+<script>(function(){var m=document.getElementById('exMenu');if(!m)return;var items=document.querySelectorAll('#exhibitions [data-k]');var arch=document.getElementById('exArchive');m.addEventListener('click',function(e){var b=e.target.closest('button[data-f]');if(!b)return;var k=b.dataset.f;m.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});items.forEach(function(c){if(c.closest('#exMenu'))return;c.style.display=(k==='all'||c.dataset.k===k)?'':'none'});if(arch&&k==='cmp')arch.open=true;if(arch&&k!=='all'&&k!=='cmp')arch.style.display='none';else if(arch)arch.style.display=''})})();</script>
+<script>document.querySelectorAll('#live-contact .place').forEach(function(a){var b=a.querySelector('b'),sp=a.querySelector('span');var t=(b?b.textContent:'')+(sp?' · '+sp.textContent:'');a.dataset.tip=t;a.setAttribute('aria-label',t);a.setAttribute('title',t)});</script>
+
 <script>
 (async function(){
   const manifestUrl='works-cache/manifest.json?v=32';

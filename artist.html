@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ксения Комарова · художник · портфолио</title>
+<meta name="description" content="Ксения Комарова — художник, Москва. Масло и акварель: символизм, экспрессионизм, импрессионизм, абстракция. Портфолио, краткая биография, выставки и конкурсы 2017–2021, CV для галерей.">
+<link rel="canonical" href="https://rukc2006.github.io/Porttfolio/artist.html">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Ксения Комарова · художник">
+<meta property="og:description" content="Ксения Комарова — художник, Москва. Масло и акварель: символизм, экспрессионизм, импрессионизм, абстракция. Портфолио, краткая биография, выставки и конкурсы 2017–2021, CV для галерей.">
+<meta property="og:url" content="https://rukc2006.github.io/Porttfolio/artist.html">
+<meta property="og:image" content="https://rukc2006.github.io/Porttfolio/assets/artist/portrait.jpg">
+<meta name="theme-color" content="#101710">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/artist/site.css">
+<style>
+.hero{padding:96px 0 36px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 78% 28%,rgba(102,117,73,.22),transparent 34%),radial-gradient(circle at 15% 80%,rgba(150,112,56,.12),transparent 32%);pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:64px;align-items:center}
+.hero h1{font-size:clamp(34px,4.6vw,66px);line-height:1.08;color:var(--paper)}
+.hero h1 em{display:block;font-style:normal;color:var(--gold2);margin-top:6px}
+.hero-sub{margin:22px 0 0;font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.hero-line{margin:18px 0 0;max-width:520px;font-size:16px;line-height:1.8;color:var(--muted)}
+.button.key{border-color:var(--gold2);color:var(--gold2)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.portrait{margin:0;position:relative;justify-self:end;width:100%;max-width:350px}
+.portrait img{display:block;width:100%;aspect-ratio:1/1.08;max-height:min(480px,calc(100vh - 300px));min-height:340px;object-fit:cover;object-position:50% 14%;border:1px solid var(--line);box-shadow:var(--shadow);background:#000}
+.portrait:after{content:"";position:absolute;left:-14px;top:14px;right:14px;bottom:-14px;border:1px solid rgba(182,154,104,.35);z-index:-1}
+section.blk{padding:60px 0 70px;border-top:1px solid var(--line)}
+section.blk h2{font-size:clamp(34px,4.4vw,60px);line-height:1.05;color:var(--paper);margin-bottom:14px}
+.lede{max-width:760px;font-size:15px;line-height:1.7;color:var(--muted);margin:0}
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:56px 34px;margin-top:44px;align-items:start}
+.work{margin:0}
+.work-btn{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;color:inherit;font:inherit;text-align:left}
+.work-btn .frame{display:flex;align-items:center;justify-content:center;aspect-ratio:4/5;background:#0b110b;border:1px solid var(--line);transition:border-color .25s}
+.work-btn img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;transition:transform .35s}
+.work-btn:hover .frame{border-color:var(--gold)}.work-btn:hover img{transform:scale(1.015)}
+.work figcaption{padding:16px 2px 0}
+.work figcaption b{display:block;font-family:var(--display);font-weight:400;font-size:19px;letter-spacing:.07em;text-transform:uppercase;line-height:1.2;color:var(--paper)}
+.work figcaption span{display:block;margin-top:6px;font-size:12.5px;letter-spacing:.04em;color:var(--muted);line-height:1.5}
+.work figcaption .cap{margin:10px 0 0;font-size:14px;line-height:1.6;color:var(--paper);opacity:.85}
+.work figcaption i{display:inline-block;margin-top:8px;font-style:normal;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+/* биография и контакты */
+.bulb{display:block;color:var(--gold);margin-bottom:12px}
+.bio-blk h2{font-size:clamp(22px,2.6vw,32px)!important}
+.bio{margin:0 0 14px;max-width:760px;font-size:15.5px;line-height:1.85;color:var(--muted)}
+.bio-contacts{margin:22px 0 0;font-size:14px;color:var(--muted)}
+.bio-contacts a{color:var(--gold2);border-bottom:1px solid rgba(182,154,104,.4)}
+/* выставки: маленький блок внизу */
+.ex-blk{padding:54px 0 64px!important;background:rgba(182,154,104,.03)}
+.ex-blk h2{font-size:clamp(20px,2.2vw,28px)!important;margin-bottom:22px!important}
+.ex-geo{margin:-8px 0 22px;font-size:13px;color:var(--muted)}
+.ex-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.ex-card{display:flex;flex-direction:column;border:1px solid var(--line);padding:16px 18px 14px;background:rgba(255,255,255,.018)}
+.ex-card.t-pers{border-color:rgba(230,203,147,.5)}
+.ex-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:8px}
+.ex-yr{font-family:var(--display);font-size:30px;line-height:1;color:var(--gold2);letter-spacing:.04em}
+.ex-type{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);text-align:right}
+.ex-card h3{font-size:14px;letter-spacing:.05em;line-height:1.35;color:var(--paper)}
+.ex-card p{margin:6px 0 0;font-size:12.5px;line-height:1.5;color:var(--muted)}
+.ex-more{margin-top:auto;padding-top:10px;font-size:12px;color:var(--gold2)}
+.ex-more:hover{border-bottom:1px solid var(--gold)}
+.ex-w{display:block;font-size:12px;color:#8d8576}
+/* лайтбокс */
+.lb{position:fixed;inset:0;z-index:100;display:none;background:rgba(8,12,8,.96);align-items:center;justify-content:center;flex-direction:column;padding:18px 70px 12px}
+.lb.open{display:flex}
+.lb-fig{margin:0;width:100%;display:flex;flex-direction:column;align-items:center;max-width:100%;min-height:0;flex:1 1 auto;justify-content:center}
+.lb-fig img{max-width:100%;object-fit:contain;max-height:calc(100vh - 200px);width:auto;height:auto;display:block;box-shadow:0 20px 70px rgba(0,0,0,.6);border:1px solid var(--line)}
+.lb-cap{margin-top:16px;text-align:center;max-width:760px;width:100%;padding:0 4px}
+.lb-cap h3{font-size:22px;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);line-height:1.2}
+.lb-cap p{margin:6px 0 0;font-size:13px;letter-spacing:.04em;color:var(--muted);line-height:1.5}
+.lb-cap .lb-ex{display:block;margin-top:6px;color:var(--gold2);font-size:12.5px}
+.lb-cap .lb-capt{color:var(--paper);font-size:15px;line-height:1.6;margin-top:10px}
+.lb-cnt{margin-top:8px;font-size:11px;letter-spacing:.2em;color:#8d8576}
+.lb-btn{position:absolute;border:1px solid var(--line);background:rgba(16,23,16,.7);color:var(--paper);width:48px;height:48px;border-radius:50%;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:var(--sans)}
+.lb-btn:hover{border-color:var(--gold2);color:var(--gold2)}
+.lb-prev{left:14px;top:50%;margin-top:-24px}.lb-next{right:14px;top:50%;margin-top:-24px}.lb-close{right:14px;top:14px}
+body.lb-lock{overflow:hidden}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr;gap:44px}.portrait{max-width:380px;justify-self:start}.portrait img{max-height:none}.ex-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.hero{padding:92px 0 44px}section.blk{padding:56px 0 50px}.gallery{grid-template-columns:1fr;gap:40px;margin-top:30px}.ex-grid{grid-template-columns:1fr}.lb{padding:14px 10px 10px}.lb-btn{width:42px;height:42px;top:auto;bottom:14px;margin:0}.lb-prev{left:14px}.lb-next{right:14px}.lb-close{top:10px;right:10px}.lb-fig img{max-height:calc(100vh - 250px)}.lb-cnt{margin-bottom:46px}}
+
+.cv-banner{padding:10px 0 30px}
+.cvb{display:flex;gap:28px;align-items:center;justify-content:space-between;flex-wrap:wrap;border:1px solid rgba(233,223,201,.45);background:rgba(233,223,201,.05);padding:28px 32px}
+.cvb h2{margin:8px 0 8px;font-size:clamp(28px,3vw,40px)}
+.cvb p{margin:0;max-width:56ch;color:rgba(233,223,201,.8)}
+.cvb-btns,.bio-cta{display:flex;gap:12px;flex-wrap:wrap}
+.bio-cta{margin:26px 0 12px}
+.button.big{padding:16px 28px;font-size:16px}
+.works-fold>summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;border:1px solid rgba(233,223,201,.4);background:rgba(233,223,201,.05);padding:18px 24px;margin-bottom:22px}
+.works-fold>summary::-webkit-details-marker{display:none}
+.works-fold>summary:hover{background:rgba(233,223,201,.1)}
+.wf-k{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.75}
+.wf-t{font-family:var(--display);font-size:clamp(24px,3vw,34px);text-transform:uppercase;letter-spacing:.06em}
+.wf-h{margin-left:auto;font-size:14px;border:1px solid rgba(233,223,201,.5);padding:8px 16px;border-radius:999px}
+.wf-h b{font-weight:600}
+.works-fold[open] .wf-closed,.works-fold:not([open]) .wf-open{display:none}
+.works-fold[open] .wf-h::after{content:" ▴"}
+.works-fold:not([open]) .wf-h::after{content:" ▾"}
+.works-fold:not([open])>summary{animation:wfPulse 2.4s ease-in-out infinite}
+@keyframes wfPulse{0%,100%{box-shadow:0 0 0 0 rgba(233,223,201,0)}50%{box-shadow:0 0 0 6px rgba(233,223,201,.12)}}
+
+.t-pers,.x-pers,.lg-pers{--c:111,143,90}.t-mkt,.x-mkt,.lg-mkt{--c:201,138,63}.t-intl,.x-intl,.lg-intl{--c:95,132,184}.t-onl,.x-onl,.lg-onl{--c:79,163,165}
+.t-auc,.x-auc,.lg-auc{--c:154,111,176}.t-exh,.x-exh,.lg-exh{--c:184,106,122}.t-cmp,.x-cmp,.lg-cmp{--c:181,83,45}
+.ex-card[class*="t-"]{border:1px solid rgba(var(--c),.4);border-left:4px solid rgba(var(--c),.9);background:rgba(var(--c),.09)}
+.ex-card[class*="t-"] .ex-type{color:rgb(var(--c))}
+.ex-legend{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 22px}
+.ex-legend span,.ex-legend button{font:inherit;color:inherit;cursor:pointer;font-size:12px;letter-spacing:.06em;padding:6px 14px;border-radius:999px;border:1px solid rgba(var(--c,233,223,201),.55);background:rgba(var(--c,233,223,201),.12)}
+.ex-legend button:hover{background:rgba(var(--c,233,223,201),.25)}
+.ex-legend button.on{background:rgba(var(--c,233,223,201),.35);box-shadow:0 0 0 1px rgba(var(--c,233,223,201),.8)}
+.lg-all{--c:233,223,201}
+</style>
+</head>
+<body id="top">
+<header class="site"><div class="container"><nav><a class="logo" href="Kcradle.html" aria-label="Мастерская-Колыбель, на главную"><img class="logo-mark" src="assets/kcradle-wordmark-light.png" alt="KRADLE · Мастерская-Колыбель" width="84" height="42"><span class="logo-name">Ксения Комарова</span></a><div class="navlinks"><a href="artist.html" class="active">Художник</a><a href="Kcradle.html#exhibitions">Выставки</a><a href="Kcradle.html#about">Обо мне</a><a href="Kcradle.html#path">Мой путь</a><a href="gift.html">Подарок</a><a href="cv.html" class="nav-key">CV для галерей</a><a href="Kcradle.html#contacts">Контакты</a><a class="nav-cta" href="Kcradle.html#contacts">Связаться</a></div><button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu">Меню</button></nav><div class="mobile-menu" id="mobileMenu"><div class="mobile-menu-inner"><a href="artist.html" class="active">Художник</a><a href="Kcradle.html#exhibitions">Выставки</a><a href="Kcradle.html#about">Обо мне</a><a href="Kcradle.html#path">Мой путь</a><a href="gift.html">Подарок</a><a href="cv.html" class="nav-key">CV для галерей</a><a href="Kcradle.html#contacts">Контакты</a><a href="Kcradle.html#contacts"><b>Связаться</b></a></div></div></div></header>
+<main>
+<section class="hero"><div class="container hero-grid">
+  <div>
+    <div class="eyebrow">Художник</div>
+    <h1>Ксения Комарова,<em>художник</em></h1>
+    <p class="hero-sub">Живопись · Москва</p>
+    <p class="hero-line">Масло и акварель. Символизм, экспрессионизм, импрессионизм, абстракция.</p>
+    <div class="hero-actions">
+      <a class="button solid" href="#works">Смотреть портфолио</a>
+      <a class="button key" href="cv.html">CV для галерей</a>
+      <a class="button" href="Kcradle.html#contacts">Связаться со мной</a>
+    </div>
+  </div>
+  <figure class="portrait"><img src="assets/artist/portrait.jpg" alt="Ксения Комарова, портрет" width="1205" height="1400" fetchpriority="high"></figure>
+</div></section>
+
+<section class="cv-banner"><div class="container"><div class="cvb">
+  <div><div class="section-kicker">Для галерей и кураторов</div><h2>CV художника</h2><p>Избранные работы, техники, выставки и конкурсы, биография, контакты. Одна страница и PDF для отправки.</p></div>
+  <div class="cvb-btns"><a class="button solid big" href="cv.html">Открыть CV</a><a class="button big" href="cv/Komarova_Ksenia_CV.pdf" download>Скачать PDF</a></div>
+</div></div></section>
+
+<section class="blk" id="works"><div class="container">
+  <details class="works-fold" open>
+    <summary><span class="wf-k">Портфолио · 12 работ</span><span class="wf-t">Избранные работы</span><span class="wf-h"><b class="wf-open">Свернуть</b><b class="wf-closed">Развернуть</b></span></summary>
+    <p class="lede">Нажмите на работу, чтобы увидеть её крупно.</p>
+    <div class="gallery">
+<figure class="work"><button class="work-btn" type="button" data-src="assets/artist/01_starica_shamanka.jpg" data-alt="Старица-Шаманка. Портрет пожилой женщины с белыми прядями, закрывающими половину лица." data-title="Старица-Шаманка" data-meta="Масло, холст на подрамнике · 30×40 см · 2021" data-ex="" data-cap="Портрет старой женщины: глубокие морщины, тяжёлый внимательный взгляд и белые пряди, которые падают на лицо, как занавес. Масло лежит плотными рельефными мазками, и вблизи лицо разглядываешь как карту. Возраст здесь не прячут и не приукрашивают." aria-label="Открыть крупно: Старица-Шаманка"><span class="frame"><img src="assets/artist/01_starica_shamanka.jpg" alt="Старица-Шаманка. Портрет пожилой женщины с белыми прядями, закрывающими половину лица." width="1194" height="1600" loading="lazy"></span></button><figcaption><b>Старица-Шаманка</b><span>Масло, холст на подрамнике · 30×40 см · 2021</span><p class="cap">Портрет старой женщины: глубокие морщины, тяжёлый внимательный взгляд и белые пряди, которые падают на лицо, как занавес. Масло лежит плотными рельефными мазками, и вблизи лицо разглядываешь как карту. Возраст здесь не прячут и не приукрашивают.</p></figcaption></figure>
+<figure class="work"><button class="work-btn" type="button" data-src="assets/artist/02_tristitia.jpg" data-alt="Tristitia. Портрет грустного Пьеро с чёрными дорожками слёз." data-title="Tristitia" data-meta="Акварель, бумага · 26×19 см" data-ex="" data-cap="Пьеро в чёрной шапочке и высоком воротнике, на щеках чёрные дорожки слёз. Светлое лицо будто светится на тёмном, дымном акварельном фоне. Название с латыни значит «печаль», и показана она прямо и спокойно, без театральности." aria-label="Открыть крупно: Tristitia"><span class="frame"><img src="assets/artist/02_tristitia.jpg" alt="Tristitia. Портрет грустного Пьеро с чёрными дорожками слёз." width="1190" height="1600" loading="lazy"></span></button><figcaption><b>Tristitia</b><span>Акварель, бумага · 26×19 см</span><p class="cap">Пьеро в чёрной шапочке и высоком воротнике, на щеках чёрные дорожки слёз. Светлое лицо будто светится на тёмном, дымном акварельном фоне. Название с латыни значит «печаль», и показана она прямо и спокойно, без театральности.</p></figcaption></figure>
+<figure class="work"><button class="work-btn" type="button" data-src="assets/artist/04_kod_dostupa.jpg" data-alt="20.20 — Код доступа к игре. Девочка в защитной маске и светло-голубом платье на фоне тёмного города." data-title="20.20 — Код доступа к игре" data-meta="Масло, холст на подрамнике · 60×70 см · 2020" data-ex="" data-cap="2020 год: пандемия, карантин, маски, пустые улицы и ощущение чужого, замершего города. В центре девочка в защитной маске, в её фигуре страх перед будущим и растерянность: как жить дальше. Но светло-голубое платье, хоть и испачканное, оставляет надежду, что всё пройдёт." aria-label="Открыть крупно: 20.20 — Код доступа к игре"><span class="frame"><img src="assets/artist/04_kod_dostupa.jpg" alt="20.20 — Код доступа к игре. Девочка в защитной маске и светло-голубом платье на фоне тёмного города." width="1359" height="1600" loading="lazy"></span></button><figcaption><b>20.20 — Код доступа к игре</b><span>Масло, холст на подрамнике · 60×70 см · 2020</span><p class="cap">2020 год: пандемия, карантин, маски, пустые улицы и ощущение чужого, замершего города. В центре девочка в защитной маске, в её фигуре страх перед будущим и растерянность: как жить дальше. Но светло-голубое платье, хоть и испачканное, оставляет надежду, что всё пройдёт.</p></figcaption></figure>
+<figure class="work"><button class="work-btn" type="button" data-src="assets/artist/05_ruki.jpg" data-alt="Руки. Три пары рук на сине-бирюзовом фоне." data-title="Руки" data-meta="Акварель, бумага · 21×30 см" data-ex="" data-cap="Три пары рук с раскрытыми пальцами на глубоком сине-бирюзовом фоне, между ними тонкие линии, словно что-то невидимое их соединяет. Акварель оставляет много воздуха и света. На эти руки можно смотреть долго, пытаясь прочитать жест." aria-label="Открыть крупно: Руки"><span class="frame"><img src="assets/artist/05_ruki.jpg" alt="Руки. Три пары рук на сине-бирюзовом фоне." width="1141" height="1600" loading="lazy"></span></button><figcaption><b>Руки</b><span>Акварель, бумага · 21×30 см</span><p class="cap">Три пары рук с раскрытыми пальцами на глубоком сине-бирюзовом фоне, между ними тонкие линии, словно что-то невидимое их соединяет. Акварель оставляет много воздуха и света. На эти руки можно смотреть долго, пытаясь прочитать жест.</p></figcaption></figure>
+<figure class="work"><button class="work-btn" type="button" data-src="assets/artist/06_koleso_sansary.jpg" data-alt="Колесо Сансары. Колесо телеги на размытой дороге, вдали просвет между деревьями." data-title="Колесо Сансары" data-meta="Масло, холст на подрамнике · 50×60 см · 2020" data-ex="Art Number 23 | Онлайн-выставка project &#x27;New Era&#x27; | Лондон, Афины (2021)" data-cap="Колесо сансары здесь не золотое и не парадное, а простое колесо телеги, увязшее в грязи, боли и страхе этого мира. Но оно движется и тянет всё это за собой, а в конце пути ждёт просвет и золото солнца. Работа показывалась на онлайн-проекте New Era." aria-label="Открыть крупно: Колесо Сансары"><span class="frame"><img src="assets/artist/06_koleso_sansary.jpg" alt="Колесо Сансары. Колесо телеги на размытой дороге, вдали просвет между деревьями." width="1600" height="1299" loading="lazy"></span></button><figcaption><b>Колесо Сансары</b><span>Масло, холст на подрамнике · 50×60 см · 2020</span><p class="cap">Колесо сансары здесь не золотое и не парадное, а простое колесо телеги, увязшее в грязи, боли и страхе этого мира. Но оно движется и тянет всё это за собой, а в конце пути ждёт просвет и золото солнца. Работа показывалась на онлайн-проекте New Era.</p><i>Участвовала в выставке</i></figcaption></figure>
+<figure class="work"><button class="work-btn" type="button" data-src="assets/artist/07_lunny_svet.jpg" data-alt="Лунный свет. Ночной пейзаж с луной над водой и горой." data-title="Лунный свет" data-meta="Масло, холст на подрамнике · 50×60 см · 2020" data-ex="" data-cap="Ночной пейзаж: луна пробивается сквозь облака, на воде холодные синие и серебристые блики, вдали тёмная гора. Масло передаёт и движение воды, и тяжесть неба. В картине много тишины и простора." aria-label="Открыть крупно: Лунный свет"><span class="frame"><img src="assets/artist/07_lunny_svet.jpg" alt="Лунный свет. Ночной пейзаж с луной над водой и горой." width="1333" height="1600" loading="lazy"></span></button><figcaption><b>Лунный свет</b><span>Масло, холст на подрамнике · 50×60 см · 2020</span><p class="cap">Ночной пейзаж: луна пробивается сквозь облака, на воде холодные синие и серебристые блики, вдали тёмная гора. Масло передаёт и движение воды, и тяжесть неба. В картине много тишины и простора.</p></figcaption></figure>
+<figure class="work"><button class="work-btn" type="button" data-src="assets/artist/08_pod_krylom.jpg" data-alt="Под крылом. Портрет девушки с совой, прижатой к её плечу, на фоне тёмных крыльев." data-title="Под крылом" data-meta="Масло, холст на подрамнике · 50×60 см · 2020" data-ex="" data-cap="Девушка с бледным серьёзным лицом, к её плечу прижалась сова, а вокруг тёмные крылья. Приглушённая зелёно-серая гамма делает сцену тихой и камерной. Взгляд героини спокоен, и от этого соседство с птицей выглядит доверчивым." aria-label="Открыть крупно: Под крылом"><span class="frame"><img src="assets/artist/08_pod_krylom.jpg" alt="Под крылом. Портрет девушки с совой, прижатой к её плечу, на фоне тёмных крыльев." width="1312" height="1600" loading="lazy"></span></button><figcaption><b>Под крылом</b><span>Масло, холст на подрамнике · 50×60 см · 2020</span><p class="cap">Девушка с бледным серьёзным лицом, к её плечу прижалась сова, а вокруг тёмные крылья. Приглушённая зелёно-серая гамма делает сцену тихой и камерной. Взгляд героини спокоен, и от этого соседство с птицей выглядит доверчивым.</p></figcaption></figure>
+<figure class="work"><button class="work-btn" type="button" data-src="assets/artist/09_kto_ty.jpg" data-alt="Кто ты?. Женский профиль на фоне круга с золотой поталью, жёлтая накидка." data-title="Кто ты?" data-meta="Масло, поталь, холст на подрамнике · 50×40 см · 2020" data-ex="" data-cap="Женщина склонила голову, на ней яркая жёлтая накидка, а за спиной большой круг с золотой поталью. Золото блестит по-разному в зависимости от света, поэтому картина немного меняется, пока идёшь мимо. Вопрос из названия остаётся открытым, и каждый отвечает на него по-своему." aria-label="Открыть крупно: Кто ты?"><span class="frame"><img src="assets/artist/09_kto_ty.jpg" alt="Кто ты?. Женский профиль на фоне круга с золотой поталью, жёлтая накидка." width="1225" height="1600" loading="lazy"></span></button><figcaption><b>Кто ты?</b><span>Масло, поталь, холст на подрамнике · 50×40 см · 2020</span><p class="cap">Женщина склонила голову, на ней яркая жёлтая накидка, а за спиной большой круг с золотой поталью. Золото блестит по-разному в зависимости от света, поэтому картина немного меняется, пока идёшь мимо. Вопрос из названия остаётся открытым, и каждый отвечает на него по-своему.</p></figcaption></figure>
+<figure class="work"><button class="work-btn" type="button" data-src="assets/artist/10_lesnaya_vedma.jpg" data-alt="Лесная ведьма с грибами. Портрет девушки с растрёпанными волосами; в нижнем углу тёмные грибы." data-title="Лесная ведьма с грибами" data-meta="Акварель, бумага · 21×30 см" data-ex="" data-cap="Девушка с растрёпанными волосами и ясным, прямым взглядом, в нижнем углу тёмные грибы. Акварель в мягких серо-сиреневых тонах, с прозрачными переходами. Образ тихий и немного дикий." aria-label="Открыть крупно: Лесная ведьма с грибами"><span class="frame"><img src="assets/artist/10_lesnaya_vedma.jpg" alt="Лесная ведьма с грибами. Портрет девушки с растрёпанными волосами; в нижнем углу тёмные грибы." width="1226" height="1600" loading="lazy"></span></button><figcaption><b>Лесная ведьма с грибами</b><span>Акварель, бумага · 21×30 см</span><p class="cap">Девушка с растрёпанными волосами и ясным, прямым взглядом, в нижнем углу тёмные грибы. Акварель в мягких серо-сиреневых тонах, с прозрачными переходами. Образ тихий и немного дикий.</p></figcaption></figure>
+<figure class="work"><button class="work-btn" type="button" data-src="assets/artist/11_chumnoy_doktor.jpg" data-alt="Чумной доктор. Фигура в маске чумного доктора с фонарём и вороном на плече." data-title="Чумной доктор" data-meta="Масло, холст на подрамнике · 50×60 см · 2020" data-ex="Art Number 23 | Онлайн-выставка project &#x27;New Era&#x27; | Лондон, Афины (2021)" data-cap="Фигура в клювастой маске чумного доктора, в руке горящий фонарь, на плече синий ворон. Тёплый свет фонаря собирает на себя всё внимание на холодном розово-сером фоне города. Образ родом из эпох чумных эпидемий, написанный в ярком современном цвете." aria-label="Открыть крупно: Чумной доктор"><span class="frame"><img src="assets/artist/11_chumnoy_doktor.jpg" alt="Чумной доктор. Фигура в маске чумного доктора с фонарём и вороном на плече." width="1321" height="1600" loading="lazy"></span></button><figcaption><b>Чумной доктор</b><span>Масло, холст на подрамнике · 50×60 см · 2020</span><p class="cap">Фигура в клювастой маске чумного доктора, в руке горящий фонарь, на плече синий ворон. Тёплый свет фонаря собирает на себя всё внимание на холодном розово-сером фоне города. Образ родом из эпох чумных эпидемий, написанный в ярком современном цвете.</p><i>Участвовала в выставке</i></figcaption></figure>
+<figure class="work"><button class="work-btn" type="button" data-src="assets/artist/12_flamingo.jpg" data-alt="Фламинго. Четыре розовых фламинго на сине-зелёном фоне с бледным солнцем." data-title="Фламинго" data-meta="Акварель, бумага · 11×17 см" data-ex="" data-cap="Четыре розовых фламинго стоят в сине-зелёной воде, над ними бледное солнце. Акварель лёгкая и прозрачная, розовое будто светится на глубоком фоне. Небольшая работа, которую приятно рассматривать близко." aria-label="Открыть крупно: Фламинго"><span class="frame"><img src="assets/artist/12_flamingo.jpg" alt="Фламинго. Четыре розовых фламинго на сине-зелёном фоне с бледным солнцем." width="1077" height="1600" loading="lazy"></span></button><figcaption><b>Фламинго</b><span>Акварель, бумага · 11×17 см</span><p class="cap">Четыре розовых фламинго стоят в сине-зелёной воде, над ними бледное солнце. Акварель лёгкая и прозрачная, розовое будто светится на глубоком фоне. Небольшая работа, которую приятно рассматривать близко.</p></figcaption></figure>
+<figure class="work"><button class="work-btn" type="button" data-src="assets/artist/13_imago.jpg" data-alt="Imago. Абстракция мастихином в пастельной гамме с белым центром." data-title="Imago" data-meta="Масло, холст на подрамнике · 30×40 см · 2021" data-ex="" data-cap="Абстракция, написанная мастихином: пастельные розовый, зелёный и жёлтый и светлый центр, от которого расходятся резкие штрихи. Много рельефа и мазков, поэтому её лучше смотреть крупно. Название с латыни переводится как «образ»." aria-label="Открыть крупно: Imago"><span class="frame"><img src="assets/artist/13_imago.jpg" alt="Imago. Абстракция мастихином в пастельной гамме с белым центром." width="1190" height="1600" loading="lazy"></span></button><figcaption><b>Imago</b><span>Масло, холст на подрамнике · 30×40 см · 2021</span><p class="cap">Абстракция, написанная мастихином: пастельные розовый, зелёный и жёлтый и светлый центр, от которого расходятся резкие штрихи. Много рельефа и мазков, поэтому её лучше смотреть крупно. Название с латыни переводится как «образ».</p></figcaption></figure>
+    </div>
+  </details>
+</div></section>
+
+<section class="blk bio-blk" id="bio"><div class="container">
+  <svg class="bulb" viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M24 14c-5.5 0-9.5 4-9.5 9 0 3.4 1.8 5.6 3.6 7.6 1 1.1 1.6 2.3 1.6 3.9v.5h8.6v-.5c0-1.6.6-2.8 1.6-3.9 1.8-2 3.6-4.2 3.6-7.6 0-5-4-9-9.5-9z"/><path d="M20 38h8M21.2 41.6h5.6"/><path d="M24 3.5v4.6M11.8 8.4l3.1 3.3M36.2 8.4l-3.1 3.3"/></svg>
+  <h2>Краткая творческая биография</h2>
+  <p class="bio">Я архитектор маленьких миров. Соединяю рисунок и IT: в живописи ищу образ, в работе с данными и автоматизацией строю системы, и в обоих случаях меня занимает одно и то же: как из смысла и вдохновения собрать устойчивую форму.</p><p class="bio">Родилась и живу в Москве. Рисовать начала в изостудии «Планета молодых» под руководством А. А. Соловьёва (член СХ СССР с 1985 г.): направление «художественно-графический рисунок», 2005 год.</p><p class="bio">Основные материалы: холст, бумага, масло и акварель. Техники: алла прима, импасто, традиционная, а в ряде работ мастихин. Направления, в которых я работаю: символизм, экспрессионизм, импрессионизм и абстракция. Постоянно ищу новые формы и добавляю в работы что-то новое.</p><p class="bio">Учусь и сейчас. В 2025 году прошла курсы «Академический рисунок» и «История изобразительного искусства» (Пентаскул), арт-терапию (НИИДОПО), основы Adobe Photoshop (Нетология). В 2026 году добавились переподготовка «Преподаватель изобразительного искусства и черчения», программа «Менеджмент в сфере культуры и искусства», курс «Авторское право для дизайнера» (НАРХСИ) и мини-курс по дизайну и нейросетям (Formfactor).</p><p class="bio">С 2017 года участвую в конкурсах и выставках в Москве и онлайн: от конкурса «Битва художников» до персональных выставок 2021 года и международных онлайн-проектов (список выставок отдельно). Развиваю проект «Мастерская-Колыбель»: маленькие миры, символы и тёплые предметы.</p>
+  <div class="bio-cta"><a class="button solid big" href="Kcradle.html#contacts">Связаться со мной</a><a class="button big" href="cv.html">CV для галерей</a><a class="button big" href="cv/Komarova_Ksenia_CV.pdf" download>Скачать CV (PDF)</a></div>
+  <p class="bio-contacts">Почта: <a href="mailto:ru-2006kc@yandex.ru">ru-2006kc@yandex.ru</a> · Telegram: <a href="https://t.me/ru2006kc" target="_blank" rel="noopener">@ru2006kc</a></p>
+</div></section>
+
+<section class="blk ex-blk" id="exhibitions"><div class="container">
+  <svg class="bulb" viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M24 14c-5.5 0-9.5 4-9.5 9 0 3.4 1.8 5.6 3.6 7.6 1 1.1 1.6 2.3 1.6 3.9v.5h8.6v-.5c0-1.6.6-2.8 1.6-3.9 1.8-2 3.6-4.2 3.6-7.6 0-5-4-9-9.5-9z"/><path d="M20 38h8M21.2 41.6h5.6"/><path d="M24 3.5v4.6M11.8 8.4l3.1 3.3M36.2 8.4l-3.1 3.3"/></svg>
+  <h2>Выставки и конкурсы</h2>
+  <p class="ex-geo">География участия: Москва, Лондон и Афины (онлайн-проекты).</p>
+  <div class="ex-legend" id="exFilter"><button type="button" class="lg-all on" data-f="all">Все</button><button type="button" class="lg-pers" data-f="pers">Персональные</button><button type="button" class="lg-intl" data-f="intl">Международные</button><button type="button" class="lg-onl" data-f="onl">Онлайн-выставки</button><button type="button" class="lg-auc" data-f="auc">Аукционы</button><button type="button" class="lg-exh" data-f="exh">Выставки</button><button type="button" class="lg-cmp" data-f="cmp">Конкурсы</button></div>
+  <div class="ex-grid">
+<article class="ex-card t-intl" data-k="intl"><div class="ex-top"><span class="ex-yr">2021</span><span class="ex-type">Международная выставка</span></div><h3>Центр искусств «Art коробка», ТРЦ «Ривьера»</h3><p>Международная выставка «ART ANTIDOT 2»; Москва</p><a class="ex-more" href="https://vk.ru/wall204412765_1632" target="_blank" rel="noopener">Подробнее ↗</a></article>
+<article class="ex-card t-onl" data-k="onl"><div class="ex-top"><span class="ex-yr">2021</span><span class="ex-type">Онлайн-выставка</span></div><h3>Галерея Art Number 23</h3><p>Онлайн-выставка project &#x27;New Era&#x27;; Лондон, Афины</p><a class="ex-more" href="https://vk.ru/wall204412765_1617" target="_blank" rel="noopener">Подробнее ↗</a></article>
+<article class="ex-card t-pers" data-k="pers"><div class="ex-top"><span class="ex-yr">2021</span><span class="ex-type">Персональная</span></div><h3>Пространство SiriusPark, бизнес-центр, Каширское ш., 3, к. 2</h3><p>Персональная выставка; Москва</p><a class="ex-more" href="https://vk.ru/wall-157175276_245" target="_blank" rel="noopener">Подробнее ↗</a></article>
+<article class="ex-card t-pers" data-k="pers"><div class="ex-top"><span class="ex-yr">2021</span><span class="ex-type">Персональная</span></div><h3>Гастромаркет и BlackHat бар, ул. Балчуг, 5</h3><p>Персональная выставка, апрель; Москва</p><a class="ex-more" href="https://vk.ru/wall204412765_1679" target="_blank" rel="noopener">Подробнее ↗</a></article>
+<article class="ex-card t-pers" data-k="pers"><div class="ex-top"><span class="ex-yr">2021</span><span class="ex-type">Персональная</span></div><h3>Гастромаркет и BlackHat бар, ул. Балчуг, 5</h3><p>Персональная выставка, март; Москва</p><a class="ex-more" href="https://vk.ru/wall204412765_1658" target="_blank" rel="noopener">Подробнее ↗</a></article>
+<article class="ex-card t-auc" data-k="auc"><div class="ex-top"><span class="ex-yr">2021</span><span class="ex-type">Онлайн-аукцион</span></div><h3>Онлайн-аукцион LOT TV #21</h3><p>Bidspirit; Москва</p><a class="ex-more" href="https://youtu.be/C_ihJNLrWIw?t=2598" target="_blank" rel="noopener">Подробнее ↗</a></article>
+<article class="ex-card t-auc" data-k="auc"><div class="ex-top"><span class="ex-yr">2021</span><span class="ex-type">Онлайн-аукцион</span></div><h3>Онлайн-аукцион LOT TV #16</h3><p>Bidspirit; Москва</p><a class="ex-more" href="https://vk.ru/wall204412765_1596" target="_blank" rel="noopener">Подробнее ↗</a></article>
+<article class="ex-card t-exh" data-k="exh"><div class="ex-top"><span class="ex-yr">2019</span><span class="ex-type">Выставка</span></div><h3>Галерея Want&amp;Paint</h3><p>«Экологический кризис»; Москва</p><a class="ex-more" href="https://vk.ru/wall-157175276_143" target="_blank" rel="noopener">Подробнее ↗</a></article>
+<article class="ex-card t-exh" data-k="exh"><div class="ex-top"><span class="ex-yr">2019</span><span class="ex-type">Выставка</span></div><h3>Галерея Want&amp;Paint</h3><p>«Выставка 25 молодых художников»; Москва</p><a class="ex-more" href="https://vk.ru/wall-157175276_134" target="_blank" rel="noopener">Подробнее ↗</a></article>
+<article class="ex-card t-cmp" data-k="cmp"><div class="ex-top"><span class="ex-yr">2019</span><span class="ex-type">Конкурс</span></div><h3>Галерея Menier</h3><p>Конкурс «Pebeo mixed media»; Лондон</p></article>
+<article class="ex-card t-cmp" data-k="cmp"><div class="ex-top"><span class="ex-yr">2019</span><span class="ex-type">Конкурс</span></div><h3>International Typomania Festival 2019</h3><p>Конкурс стикеров; Москва</p></article>
+<article class="ex-card t-cmp" data-k="cmp"><div class="ex-top"><span class="ex-yr">2017</span><span class="ex-type">Конкурс</span></div><h3>Конкурс «Битва художников»</h3><p>Москва</p></article>
+  </div>
+</div></section>
+</main>
+<footer class="site"><div class="container foot-brand"><a class="foot-logo" href="Kcradle.html" aria-label="На главную"><img src="assets/kcradle-wordmark-light.png" alt="KRADLE · Мастерская-Колыбель" width="190" height="94" loading="lazy"></a><div class="foot-col"><div class="foot-links"><a href="artist.html">Художник</a><a href="cv.html" class="foot-key">CV для галерей</a><a href="gift.html">Подарок</a><a href="guides.html">Гайды</a><a href="Kcradle.html#contacts">Связаться со мной</a><a href="mailto:ru-2006kc@yandex.ru">ru-2006kc@yandex.ru</a></div><div>© Ксения Комарова · Мастерская-Колыбель</div></div></div></footer>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Просмотр работы">
+  <button class="lb-btn lb-close" type="button" aria-label="Закрыть">×</button>
+  <button class="lb-btn lb-prev" type="button" aria-label="Предыдущая работа">‹</button>
+  <button class="lb-btn lb-next" type="button" aria-label="Следующая работа">›</button>
+  <figure class="lb-fig"><img id="lbImg" src="" alt="">
+    <figcaption class="lb-cap"><h3 id="lbTitle"></h3><p id="lbMeta"></p><p class="lb-capt" id="lbCap"></p><p class="lb-ex" id="lbEx"></p><div class="lb-cnt" id="lbCnt"></div></figcaption></figure>
+</div>
+<script>
+(function(){var b=document.getElementById('mobileMenuBtn'),m=document.getElementById('mobileMenu');if(!b||!m)return;
+b.addEventListener('click',function(){var o=m.classList.toggle('open');b.setAttribute('aria-expanded',String(o));b.textContent=o?'Закрыть':'Меню'});
+m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');b.setAttribute('aria-expanded','false');b.textContent='Меню'})})})();
+</script>
+<script>
+(function(){
+var items=[].slice.call(document.querySelectorAll('.work-btn')),lb=document.getElementById('lb'),img=document.getElementById('lbImg'),
+t=document.getElementById('lbTitle'),m=document.getElementById('lbMeta'),x=document.getElementById('lbEx'),cp=document.getElementById('lbCap'),c=document.getElementById('lbCnt'),i=0,last=null;
+function show(n){i=(n+items.length)%items.length;var b=items[i];img.src=b.dataset.src;img.alt=b.dataset.alt;t.textContent=b.dataset.title;m.textContent=b.dataset.meta;
+cp.textContent=b.dataset.cap||'';x.textContent=b.dataset.ex||'';x.style.display=b.dataset.ex?'block':'none';c.textContent=(i+1)+' / '+items.length}
+function open(n){last=document.activeElement;show(n);lb.classList.add('open');document.body.classList.add('lb-lock');lb.querySelector('.lb-close').focus()}
+function close(){lb.classList.remove('open');document.body.classList.remove('lb-lock');if(last)last.focus()}
+items.forEach(function(b,k){b.addEventListener('click',function(){open(k)})});
+
+lb.querySelector('.lb-close').addEventListener('click',close);
+lb.querySelector('.lb-prev').addEventListener('click',function(){show(i-1)});
+lb.querySelector('.lb-next').addEventListener('click',function(){show(i+1)});
+lb.addEventListener('click',function(e){if(e.target===lb)close()});
+document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;
+if(e.key==='Escape')close();else if(e.key==='ArrowLeft')show(i-1);else if(e.key==='ArrowRight')show(i+1)});
+var sx=null;lb.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
+lb.addEventListener('touchend',function(e){if(sx===null)return;var d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>50)show(i+(d<0?1:-1));sx=null});
+})();
+</script>
+<script>(function(){var f=document.getElementById('exFilter');if(!f)return;var cards=document.querySelectorAll('.ex-card[data-k]');f.addEventListener('click',function(e){var b=e.target.closest('button[data-f]');if(!b)return;var k=b.dataset.f;f.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});cards.forEach(function(c){c.style.display=(k==='all'||c.dataset.k===k)?'':'none'})})})();</script>
+</body>
+</html>
