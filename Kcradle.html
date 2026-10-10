@@ -138,6 +138,19 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 .place:hover .pi{opacity:1;filter:invert(.78) sepia(.9) saturate(2.2) hue-rotate(-12deg)}
 .place:hover .pi-text{border-color:var(--gold);color:var(--gold)}
 @media(max-width:800px){.subscribe-card{display:block;padding:26px 22px}.subscribe-actions{width:auto;margin-top:20px}}
+/* Блок подписки: подарок яркий, сети цветные, «Все контакты» приглушён */
+.subscribe-actions .button.gift{grid-column:1/-1;justify-content:center;padding:17px 22px;font-size:16px;font-weight:700;letter-spacing:.02em;color:#101710;background:linear-gradient(135deg,#e6cb93,#b69a68 60%,#c9a96a);border:1px solid #e6cb93;box-shadow:0 0 0 4px rgba(182,154,104,.16),0 12px 32px rgba(182,154,104,.38);animation:giftGlow 3.2s ease-in-out infinite}
+.subscribe-actions .button.gift:hover{filter:brightness(1.07);transform:translateY(-1px)}
+@keyframes giftGlow{0%,100%{box-shadow:0 0 0 4px rgba(182,154,104,.14),0 12px 30px rgba(182,154,104,.32)}50%{box-shadow:0 0 0 7px rgba(182,154,104,.2),0 14px 38px rgba(182,154,104,.5)}}
+@media(prefers-reduced-motion:reduce){.subscribe-actions .button.gift{animation:none}}
+.subscribe-actions .button[href*="t.me"]{background:rgba(42,171,238,.14);border-color:rgba(42,171,238,.55)}
+.subscribe-actions .button[href*="vk.ru"]{background:rgba(0,119,255,.14);border-color:rgba(0,119,255,.55)}
+.subscribe-actions .button[href*="instagram"]{background:linear-gradient(135deg,rgba(245,133,41,.14),rgba(221,42,123,.16),rgba(129,52,175,.14));border-color:rgba(221,42,123,.55)}
+.subscribe-actions .button[href*="set.ki"]{background:rgba(160,140,255,.13);border-color:rgba(160,140,255,.5)}
+.subscribe-actions .button[href*="t.me"]:hover,.subscribe-actions .button[href*="vk.ru"]:hover,.subscribe-actions .button[href*="instagram"]:hover,.subscribe-actions .button[href*="set.ki"]:hover{filter:brightness(1.25)}
+.subscribe-actions .button[href="#live-contact"]{background:rgba(255,255,255,.015);border-color:rgba(233,223,201,.16);color:rgba(233,223,201,.5);opacity:.75}
+.subscribe-actions .button[href="#live-contact"]:hover{opacity:1;color:var(--paper)}
+
 /* Где меня найти + Книга */
 #places,#book{padding:64px 0 8px}
 .places-title{font-size:clamp(30px,3vw,48px);line-height:1.05;margin:16px 0 0}
@@ -278,7 +291,7 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
       <p>Новые работы, процесс, мысли между работами и анонсы книги. Выберите, где удобнее: везде одно и то же, без лишнего шума. А за подписку есть подарок: гайд «Тихая неделя» с семью короткими практиками без экрана.</p>
     </div>
     <div class="subscribe-actions">
-      <a class="button" data-track href="gift.html">🎁 Получить подарок</a>
+      <a class="button gift" data-track href="gift.html">🎁 Получить подарок</a>
       <a class="button" data-track href="https://t.me/KCradle_me" target="_blank" rel="noopener"><img class="pi" src="assets/icons/telegram.svg" alt="" width="20" height="20">Telegram</a>
       <a class="button alt" data-track href="https://vk.ru/kcradle" target="_blank" rel="noopener"><img class="pi" src="assets/icons/vk.svg" alt="" width="20" height="20">ВКонтакте</a>
       <a class="button alt" data-track href="https://www.instagram.com/ru2006kc" target="_blank" rel="noopener"><img class="pi" src="assets/icons/instagram.svg" alt="" width="20" height="20">Instagram</a>
