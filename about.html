@@ -31,8 +31,6 @@ a{color:inherit;text-decoration:none}
 header{position:fixed;top:0;left:0;right:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .logo{display:flex;align-items:center;gap:11px;color:var(--cream);text-decoration:none}.logo img{width:42px;height:42px;border-radius:50%;display:block;object-fit:cover}.logo span{font-family:"Cormorant Garamond",serif;font-size:22px;line-height:1;font-weight:500;white-space:nowrap}
-.navlinks{display:flex;align-items:center;gap:22px;font-size:13px;color:var(--muted)}
-.mobile-menu-btn{display:none;border:1px solid var(--line);background:transparent;color:var(--paper);border-radius:999px;padding:9px 13px;font:inherit;font-size:12px;cursor:pointer}.mobile-menu{display:none}.mobile-menu a{display:block;padding:13px 0;border-bottom:1px solid var(--line);color:var(--paper);font-size:14px}.mobile-menu a:last-child{border-bottom:0}.mobile-menu-inner{padding:8px 0 16px}.mobile-menu.open{display:block}
 
 .navlinks a:hover{color:var(--cream)}
 .hero{min-height:100vh;display:grid;align-items:center;padding:130px 0 80px;position:relative;overflow:hidden}
@@ -394,7 +392,8 @@ section[id],article[id]{scroll-margin-top:96px}
 #live-contact .place:hover{border-color:var(--gold);background:rgba(182,154,104,.12)}
 #live-contact .place::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#0b100b;border:1px solid var(--gold);color:var(--paper);padding:7px 11px;border-radius:6px;font-size:12px;letter-spacing:.02em;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:20}
 #live-contact .place:hover::after,#live-contact .place:focus-visible::after{opacity:1}
-#all-contacts{scroll-margin-top:110px}</style>
+#all-contacts{scroll-margin-top:110px}.edu-card{position:relative;display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:50px;padding:26px 28px;border:1px solid rgba(182,154,104,.45);border-radius:12px;background:linear-gradient(135deg,rgba(23,32,24,.9),rgba(16,23,16,.9))}.edu-card:hover{border-color:var(--gold)}.edu-card .ec-ic{color:var(--gold);display:flex}.edu-card .ec-tx{flex:1;min-width:220px}.edu-card h3{font-size:clamp(28px,3.4vw,38px);color:var(--paper)}.edu-card p{margin:6px 0 0;color:var(--muted);font-size:15px}.edu-card .ec-btn{margin-top:0}.edu-card .ec-btn:after{content:"";position:absolute;inset:0;border-radius:12px}
+</style>
 
 <style>
 /* Главная: кнопка героя, выставки и подарок под первым экраном */
@@ -645,14 +644,7 @@ section[id],article[id]{scroll-margin-top:96px}
     <div class="manifesto">Мне интересно не выбирать что-то одно, а соединять.</div>
     <div class="text"><p>Экономика даёт мне структуру. Аналитика — привычку замечать закономерности. AI и автоматизация — возможность быстро проверять идеи. Искусство — внимание к образу, фактуре, ощущению и тому, что не всегда можно измерить.</p><p>Когда эти области встречаются, я могу смотреть на задачу сразу с нескольких сторон. Именно поэтому в моём портфолио рядом существуют дашборды и картины, Python и глина, автоматизация и ручная работа.</p></div>
   </div>
-  <div class="education"><details><summary>Образование и дополнительные инструменты →</summary><div class="education-inner">
-    <div class="row"><div class="edu-year">2012</div><div class="edu-detail"><strong>Коммерческо-банковский колледж №6</strong><br><span class="small">Экономика и бухгалтерский учёт</span><div class="edu-label">База</div></div></div>
-    <div class="row"><div class="edu-year">2016</div><div class="edu-detail"><strong>Финансовый университет при Правительстве РФ</strong><br><span class="small">Бакалавр экономики · бухгалтерский учёт, анализ и аудит</span><div class="edu-label">Высшее образование</div></div></div>
-    <div class="row"><div class="edu-year">2025–2026</div><div class="edu-detail"><strong>Дополнительное образование</strong><br><span class="small">Сейчас я собираю в одной практике знания из нескольких областей — от культуры и искусства до технологий и управления.</span><div class="edu-list">
-      <span class="edu-chip">методика доп. образования</span><span class="edu-chip">управление в культуре и искусстве</span><span class="edu-chip">преподавание ИЗО и черчения</span><span class="edu-chip">авторское право для дизайнера</span><span class="edu-chip">библиотечное дело</span><span class="edu-chip">арт-практики и МАК</span><span class="edu-chip">конфликтология</span><span class="edu-chip">дизайн и нейросети</span><span class="edu-chip">AI · n8n · Python · RAG</span><span class="edu-chip">анализ данных и AI-решения</span><span class="edu-chip">Excel · Power BI</span><span class="edu-chip">SMM и маркетплейсы</span><span class="edu-chip">искусство и дизайн</span>
-    </div></div></div>
-    <p class="edu-note">Мне важно учиться не ради списка дипломов. Новое знание должно становиться рабочим инструментом — в проекте, в работе или в том, как я смотрю на задачу.</p>
-</div></details></div>
+  <div class="edu-card"><span class="ec-ic"><svg viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 18 L24 8 L45 18 L24 28 Z"/><path d="M12 23 V32 C16 37 32 37 36 32 V23"/><path d="M45 18 V31"/></svg></span><div class="ec-tx"><h3>Образование и путь</h3><p>Экономика, ИЗО, маркетплейсы, AI: как это связано</p></div><a class="button ec-btn" data-track="обомне-образование-карточка" href="education.html">Открыть страницу образования →</a></div>
 </div>
 </section>
 

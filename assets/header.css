@@ -28,8 +28,13 @@ header .logo-name{font-family:"Cormorant Garamond",serif;font-size:15px;text-tra
 .mobile-menu a:last-child{border-bottom:0}
 .mobile-menu-inner{padding:8px 0 16px}
 .mobile-menu.open{display:block}
+header .container{width:min(1380px,calc(100% - 48px))}
+header nav{min-width:0}
+header .logo{flex:0 0 auto}
+.navlinks{flex:0 1 auto;min-width:0}
 @media(max-width:1320px){header .logo-name{display:none}}
-@media(max-width:850px){
+@media(max-width:1180px){.navlinks{gap:14px}.nav-pill{margin-left:2px}.nav-cta{margin-left:4px}}
+@media(max-width:1040px){
   .navlinks{display:none}
   .mobile-menu-btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;font-size:13px}
   .nav-cta-m{display:inline-flex;align-items:center;justify-content:center;min-height:40px;margin-left:auto;padding:0 16px;border-radius:999px;background:var(--gold);color:var(--bg);font-weight:700;font-size:14px;white-space:nowrap}
