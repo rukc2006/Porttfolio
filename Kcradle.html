@@ -74,6 +74,8 @@ h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;margin:0;li
 .mailline{margin:18px 0 0}.mailline a{color:var(--gold);border-bottom:1px solid var(--line);padding:6px 0}
 footer{background:var(--bg);text-align:center;color:var(--muted);font-size:14px;padding:28px 16px 36px}
 footer .fl{margin:0 0 14px;display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px}footer .fl a{padding:8px 2px}
+.goose{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;margin-bottom:6px}.goose img{width:120px;height:160px;object-fit:cover;object-position:50% 52%;border-radius:12px}.goose p{margin:0}
+.giftcard{margin-top:26px;padding:22px 18px;border:1px solid var(--gold);border-radius:18px;background:linear-gradient(160deg,#1f2a1e,#172018);text-align:center}.giftcard .gem{font-size:64px;line-height:1;margin-bottom:8px}.giftcard h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:34px;margin:0 0 6px}.giftcard p{margin:0 auto 16px}
 @media(min-width:620px){.sec{padding:56px 0}.hero{padding:48px 0 60px}.tiles{grid-template-columns:repeat(4,1fr)}.tiles li a{min-height:96px}.menu ul{right:max(16px,calc((100% - 720px)/2 + 16px))}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -87,6 +89,7 @@ footer .fl{margin:0 0 14px;display:flex;flex-wrap:wrap;justify-content:center;ga
   <details class="menu" id="menu"><summary aria-label="Меню"><span></span></summary>
     <ul>
       <li><a href="#worlds">Работы</a></li>
+      <li><a href="#artist">Художник и CV</a></li>
       <li><a href="#gift">Подарок</a></li>
       <li><a href="#book">Книга</a></li>
       <li><a href="#guides">Гайды</a></li>
@@ -113,16 +116,18 @@ footer .fl{margin:0 0 14px;display:flex;flex-wrap:wrap;justify-content:center;ga
 
 <section class="sec s-b" id="worlds" aria-labelledby="h-worlds"><div class="wrap">
   <h2 id="h-worlds">Маленькие миры и картины</h2>
-  <p>Мини-картины, предметы и живопись, сделанные руками.</p>
-  <img class="pic" src="assets/mm/mm-goose.jpg" alt="Маленький мир в рамке: миниатюрная картина с гусем" width="675" height="900" loading="lazy">
+  <div class="goose">
+    <img src="assets/mm/mm-goose.jpg" alt="Маленький мир в рамке: миниатюрная картина с гусем" width="120" height="160" loading="lazy">
+    <p>Мини-картины, предметы и живопись, сделанные руками.</p>
+  </div>
   <a class="btn solid" data-track="блок-работы" href="vitrina.html">Выбрать работу</a>
-  <a class="tlink" data-track="блок-художник" href="artist.html">Портфолио художника</a>
 </div></section>
 
-<section class="sec s-a" id="gift" aria-labelledby="h-gift"><div class="wrap">
-  <h2 id="h-gift">Подарок «Тихая неделя»</h2>
-  <p>Семь коротких практик без экрана, чтобы вернуть немного живого внимания.</p>
-  <a class="btn solid" data-track="блок-подарок" href="gift.html">Получить подарок</a>
+<section class="sec s-a" id="artist" aria-labelledby="h-artist"><div class="wrap">
+  <h2 id="h-artist">Художник: портфолио и CV для галерей</h2>
+  <p>Картины и резюме художника в одном месте.</p>
+  <a class="btn solid" data-track="блок-художник" href="artist.html">Портфолио художника</a>
+  <a class="btn" data-track="блок-cv" href="cv.html">CV для галерей</a>
 </div></section>
 
 <section class="sec s-b" id="book" aria-labelledby="h-book"><div class="wrap">
@@ -145,6 +150,12 @@ footer .fl{margin:0 0 14px;display:flex;flex-wrap:wrap;justify-content:center;ga
     <li><a href="guides.html#automation">Автоматизация и ИИ</a></li>
   </ul>
   <a class="btn solid" data-track="блок-гайды" href="guides.html">Все гайды</a>
+  <div class="giftcard" id="gift">
+    <div class="gem" aria-hidden="true">🎁</div>
+    <h3>Тихая неделя</h3>
+    <p>Семь коротких практик без экрана, чтобы вернуть немного живого внимания.</p>
+    <a class="btn paper" data-track="блок-подарок" href="gift.html">Получить подарок</a>
+  </div>
 </div></section>
 
 <section class="sec s-b" id="resume" aria-labelledby="h-resume"><div class="wrap">
@@ -154,9 +165,9 @@ footer .fl{margin:0 0 14px;display:flex;flex-wrap:wrap;justify-content:center;ga
 </div></section>
 
 <section class="sec s-a" id="about" aria-labelledby="h-about"><div class="wrap">
-  <h2 id="h-about">Обо мне</h2>
-  <p>Я Ксения, художница из Москвы. Рисую, леплю маленькие миры и пишу книги.</p>
-  <a class="btn solid" data-track="блок-обо-мне" href="about.html">Читать обо мне</a>
+  <h2 id="h-about">Окунуться в мой мир</h2>
+  <p>Где лес помнит имена,<br>а гипс становится маленьким миром.</p>
+  <a class="btn solid" data-track="блок-обо-мне" href="about.html">Заглянуть</a>
 </div></section>
 
 <section class="sec s-b contact" id="contacts" aria-labelledby="h-contacts"><div class="wrap">
@@ -165,6 +176,7 @@ footer .fl{margin:0 0 14px;display:flex;flex-wrap:wrap;justify-content:center;ga
   <p class="lead">Если у вас есть собственные идеи, которые хочется воплотить, пишите! Да и просто так тоже пишите 🤍</p>
   <a class="btn solid" data-track="контакты-низ-instagram" href="https://www.instagram.com/ru2006kc/" target="_blank" rel="noopener">Instagram</a>
   <a class="btn paper" data-track="контакты-низ-вк" href="https://vk.ru/kcradle" target="_blank" rel="noopener">ВКонтакте</a>
+  <a class="btn" data-track="контакты-низ-все" href="about.html#all-contacts" style="margin-top:14px">Посмотреть все контакты</a>
   <div class="mailline"><a data-track="контакты-низ-почта" href="mailto:ru-2006kc@yandex.ru">ru-2006kc@yandex.ru</a></div>
 </div></section>
 
