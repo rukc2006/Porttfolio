@@ -57,16 +57,18 @@ h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;margin:0;li
 .hero h1{font-size:clamp(42px,12vw,64px);margin:10px 0 8px}
 .hero .line{margin:0 auto 18px;max-width:28em;color:var(--muted);font-size:18px}
 .hero .btn{max-width:420px;margin:0 auto 20px;min-height:58px;font-size:18px;text-align:left}
-.want{margin:0 0 10px;font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:26px;color:var(--gold)}
-.tiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.tiles li a{display:flex;align-items:center;justify-content:center;text-align:center;min-height:64px;padding:8px 12px;border:1px solid var(--line);border-radius:14px;background:rgba(182,154,104,.1);font-weight:600;font-size:17px;line-height:1.25;transition:background .2s,color .2s}
-.tiles li a:hover{background:var(--gold);color:var(--ink)}
-.pic{width:100%;height:120px;object-fit:cover;object-position:center 55%;border-radius:12px;margin-bottom:16px}
-.book{display:grid;grid-template-columns:84px 1fr;gap:16px;align-items:start}
-.book img{width:84px;height:auto;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
-.chips{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.chips li a{display:inline-flex;align-items:center;min-height:48px;padding:0 14px;border:1px solid var(--line);border-radius:999px;font-size:16px;background:rgba(233,223,201,.05)}
-.chips li a:hover{border-color:var(--gold);background:rgba(182,154,104,.14)}
+.tiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:18px;background:rgba(182,154,104,.08);overflow:hidden;transition:border-color .2s,background .2s}
+.tile:hover{border-color:var(--gold);background:rgba(182,154,104,.16)}
+.tile.wide{grid-column:1/-1}
+.tl{display:flex;flex-direction:column;gap:4px;padding:16px 14px;flex:1;min-height:132px}
+.ic{font-size:34px;line-height:1.1}
+.tl b{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:23px;line-height:1.1;color:var(--cream)}
+.tl .sub{font-size:16px;color:var(--muted);line-height:1.35}
+.tile.wide .tl{min-height:0}
+.gift{display:flex;align-items:center;gap:12px;margin:0 12px 12px;padding:12px 14px;min-height:64px;border:1px solid var(--gold);border-radius:14px;background:var(--gold);color:var(--ink);font-weight:600;font-size:18px}
+.gift:hover{background:var(--paper)}
+.ge{font-size:36px;line-height:1}
 .contact{text-align:center}
 .contact h2{font-size:clamp(40px,11vw,56px)}
 .contact p.lead{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:clamp(22px,6vw,27px);color:var(--paper);margin:0 auto 22px;line-height:1.3}
@@ -74,9 +76,7 @@ h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;margin:0;li
 .mailline{margin:18px 0 0}.mailline a{color:var(--gold);border-bottom:1px solid var(--line);padding:6px 0}
 footer{background:var(--bg);text-align:center;color:var(--muted);font-size:14px;padding:28px 16px 36px}
 footer .fl{margin:0 0 14px;display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px}footer .fl a{padding:8px 2px}
-.goose{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;margin-bottom:6px}.goose img{width:120px;height:160px;object-fit:cover;object-position:50% 52%;border-radius:12px}.goose p{margin:0}
-.giftcard{margin-top:26px;padding:22px 18px;border:1px solid var(--gold);border-radius:18px;background:linear-gradient(160deg,#1f2a1e,#172018);text-align:center}.giftcard .gem{font-size:64px;line-height:1;margin-bottom:8px}.giftcard h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:34px;margin:0 0 6px}.giftcard p{margin:0 auto 16px}
-@media(min-width:620px){.sec{padding:56px 0}.hero{padding:48px 0 60px}.tiles{grid-template-columns:repeat(4,1fr)}.tiles li a{min-height:96px}.menu ul{right:max(16px,calc((100% - 720px)/2 + 16px))}}
+@media(min-width:620px){.sec{padding:56px 0}.hero{padding:48px 0 60px}.tiles{grid-template-columns:repeat(3,1fr)}.tile.wide{grid-column:span 2}.tile.wide:last-child{grid-column:span 1}.menu ul{right:max(16px,calc((100% - 720px)/2 + 16px))}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -88,13 +88,13 @@ footer .fl{margin:0 0 14px;display:flex;flex-wrap:wrap;justify-content:center;ga
   <a class="hbtn" href="#contacts" data-track="контакты-шапка">Контакты</a>
   <details class="menu" id="menu"><summary aria-label="Меню"><span></span></summary>
     <ul>
-      <li><a href="#worlds">Работы</a></li>
-      <li><a href="#artist">Художник и CV</a></li>
-      <li><a href="#gift">Подарок</a></li>
-      <li><a href="#book">Книга</a></li>
-      <li><a href="#guides">Гайды</a></li>
-      <li><a href="#resume">Резюме</a></li>
-      <li><a href="#about">Обо мне</a></li>
+      <li><a href="vitrina.html">Работы</a></li>
+      <li><a href="artist.html">Художник</a></li>
+      <li><a href="cv.html">CV для галерей</a></li>
+      <li><a href="gift.html">Подарок</a></li>
+      <li><a href="guides.html">Гайды</a></li>
+      <li><a href="index.html">Резюме</a></li>
+      <li><a href="about.html">Обо мне</a></li>
     </ul>
   </details>
 </div></header>
@@ -105,69 +105,19 @@ footer .fl{margin:0 0 14px;display:flex;flex-wrap:wrap;justify-content:center;ga
   <h1>Мастерская-Колыбель</h1>
   <p class="line">Рисую, леплю маленькие миры, пишу книги и считаю маркетплейсы.</p>
   <a class="btn solid" data-track="герой-контакты" href="#contacts">Все контакты</a>
-  <p class="want">Я хочу:</p>
+</div></section>
+
+<section class="sec s-b" id="tiles" aria-label="Разделы"><div class="wrap">
   <ul class="tiles">
-    <li><a href="#worlds" data-track="герой-работы">Посмотреть работы</a></li>
-    <li><a href="#book" data-track="герой-книга">Прочитать книгу</a></li>
-    <li><a href="guides.html#marketplaces" data-track="герой-цена">Научиться считать цену</a></li>
-    <li><a href="#resume" data-track="герой-резюме">Нанять специалиста по AI</a></li>
+    <li class="tile"><a class="tl" data-track="плитка-миры" href="vitrina.html"><span class="ic" aria-hidden="true">🖼️</span><b>Маленькие миры и картины</b><span class="sub">Мини-картины и живопись</span></a></li>
+    <li class="tile"><a class="tl" data-track="плитка-художник" href="artist.html"><span class="ic" aria-hidden="true">🎨</span><b>Портфолио художника</b><span class="sub">Работы художника</span></a></li>
+    <li class="tile"><a class="tl" data-track="плитка-cv" href="cv.html"><span class="ic" aria-hidden="true">📜</span><b>CV для галерей</b><span class="sub">Для галерей и кураторов</span></a></li>
+    <li class="tile"><a class="tl" data-track="плитка-книга" href="https://www.litres.ru/book/anaska-beglova-34089074/les-i-nebesa-poka-les-pomnit-eio-imia-74554034/" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">📖</span><b>Книга: Лес и Небеса</b><span class="sub">Яга потеряла своё имя</span></a></li>
+    <li class="tile wide" id="guides"><a class="tl" data-track="плитка-гайды" href="guides.html"><span class="ic" aria-hidden="true">📚</span><b>Гайды</b><span class="sub">Практика простым языком</span></a><a class="gift" id="gift" data-track="плитка-подарок" href="gift.html"><span class="ge" aria-hidden="true">🎁</span><span class="gt">Тихая неделя в подарок</span></a></li>
+    <li class="tile"><a class="tl" data-track="плитка-новое" href="guides.html#marketplaces"><span class="ic" aria-hidden="true">🌱</span><b>Научиться чему-то новому</b><span class="sub">Гайды</span></a></li>
+    <li class="tile" id="resume"><a class="tl" data-track="плитка-резюме" href="index.html"><span class="ic" aria-hidden="true">💼</span><b>Резюме: AI и маркетплейсы</b><span class="sub">Аналитика и автоматизация</span></a></li>
+    <li class="tile wide" id="about"><a class="tl" data-track="плитка-обо-мне" href="about.html"><span class="ic" aria-hidden="true">🌲</span><b>Обо мне</b><span class="sub">Окунуться в мой мир</span></a></li>
   </ul>
-</div></section>
-
-<section class="sec s-b" id="worlds" aria-labelledby="h-worlds"><div class="wrap">
-  <h2 id="h-worlds">Маленькие миры и картины</h2>
-  <div class="goose">
-    <img src="assets/mm/mm-goose.jpg" alt="Маленький мир в рамке: миниатюрная картина с гусем" width="120" height="160" loading="lazy">
-    <p>Мини-картины, предметы и живопись, сделанные руками.</p>
-  </div>
-  <a class="btn solid" data-track="блок-работы" href="vitrina.html">Выбрать работу</a>
-</div></section>
-
-<section class="sec s-a" id="artist" aria-labelledby="h-artist"><div class="wrap">
-  <h2 id="h-artist">Художник: портфолио и CV для галерей</h2>
-  <p>Картины и резюме художника в одном месте.</p>
-  <a class="btn solid" data-track="блок-художник" href="artist.html">Портфолио художника</a>
-  <a class="btn" data-track="блок-cv" href="cv.html">CV для галерей</a>
-</div></section>
-
-<section class="sec s-b" id="book" aria-labelledby="h-book"><div class="wrap">
-  <h2 id="h-book">Книга «Лес и Небеса»</h2>
-  <div class="book">
-    <img src="assets/book-les-i-nebesa.webp" alt="Обложка книги «Лес и Небеса. Пока лес помнит её имя»" width="84" height="120" loading="lazy">
-    <p>Яга просыпается, а домовой её не узнаёт: она потеряла своё имя.</p>
-  </div>
-  <a class="btn solid" data-track="блок-книга" href="https://www.litres.ru/book/anaska-beglova-34089074/les-i-nebesa-poka-les-pomnit-eio-imia-74554034/" target="_blank" rel="noopener">Книга на Литрес</a>
-</div></section>
-
-<section class="sec s-a" id="guides" aria-labelledby="h-guides"><div class="wrap">
-  <h2 id="h-guides">Гайды</h2>
-  <p>Практика из моей работы простым языком. Часть гайдов в разработке.</p>
-  <ul class="chips">
-    <li><a href="guides.html#marketplaces">Маркетплейсы и цена</a></li>
-    <li><a href="guides.html#calm">Творчество без давления</a></li>
-    <li><a href="guides.html#drawing">Рисунок и живопись</a></li>
-    <li><a href="guides.html#cycles">Символы и год</a></li>
-    <li><a href="guides.html#automation">Автоматизация и ИИ</a></li>
-  </ul>
-  <a class="btn solid" data-track="блок-гайды" href="guides.html">Все гайды</a>
-  <div class="giftcard" id="gift">
-    <div class="gem" aria-hidden="true">🎁</div>
-    <h3>Тихая неделя</h3>
-    <p>Семь коротких практик без экрана, чтобы вернуть немного живого внимания.</p>
-    <a class="btn paper" data-track="блок-подарок" href="gift.html">Получить подарок</a>
-  </div>
-</div></section>
-
-<section class="sec s-b" id="resume" aria-labelledby="h-resume"><div class="wrap">
-  <h2 id="h-resume">Резюме: AI и маркетплейсы</h2>
-  <p>Аналитика и автоматизация: пять рабочих систем, 13 дашбордов.</p>
-  <a class="btn solid" data-track="блок-резюме" href="index.html">Открыть резюме</a>
-</div></section>
-
-<section class="sec s-a" id="about" aria-labelledby="h-about"><div class="wrap">
-  <h2 id="h-about">Окунуться в мой мир</h2>
-  <p>Где лес помнит имена,<br>а гипс становится маленьким миром.</p>
-  <a class="btn solid" data-track="блок-обо-мне" href="about.html">Заглянуть</a>
 </div></section>
 
 <section class="sec s-b contact" id="contacts" aria-labelledby="h-contacts"><div class="wrap">
