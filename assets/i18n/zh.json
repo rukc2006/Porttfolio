@@ -1210,7 +1210,6 @@
 "<a href=\"#resume\">Резюме</a>": "<a href=\"#resume\">简历</a>",
 "<a href=\"#about\">Обо мне</a>": "<a href=\"#about\">关于我</a>",
 "Рисую, леплю маленькие миры, пишу книги и считаю маркетплейсы.": "我画画、塑造小世界、写书，也研究电商平台的数字。",
-"Все контакты": "全部联系方式",
 "Я хочу:": "我想：",
 "<a href=\"#worlds\" data-track=\"герой-работы\">Посмотреть работы</a>": "<a href=\"#worlds\" data-track=\"герой-работы\">看看作品</a>",
 "<a href=\"#book\" data-track=\"герой-книга\">Прочитать книгу</a>": "<a href=\"#book\" data-track=\"герой-книга\">读这本书</a>",
@@ -1262,5 +1261,11 @@
 "<b>Научиться чему-то новому</b><span class=\"sub\">Гайды</span>": "<b>学点新东西</b><span class=\"sub\">指南</span>",
 "Тихая неделя в подарок": "赠你《安静的一周》",
 "<b>Резюме: AI и маркетплейсы</b><span class=\"sub\">Аналитика и автоматизация</span>": "<b>简历：AI 与电商平台</b><span class=\"sub\">数据分析与自动化</span>",
-"<b>Обо мне</b><span class=\"sub\">Окунуться в мой мир</span>": "<b>关于我</b><span class=\"sub\">潜入我的世界</span>"
+"<b>Обо мне</b><span class=\"sub\">Окунуться в мой мир</span>": "<b>关于我</b><span class=\"sub\">潜入我的世界</span>",
+"Главная": "首页",
+"Чего желает путник?": "旅人想要什么？",
+"Написать на почту<small>ru-2006kc@yandex.ru</small>": "发邮件给我<small>ru-2006kc@yandex.ru</small>",
+"Дополнительные способы связи": "其他联系方式",
+"<a href=\"about.html\">Обо мне</a><a href=\"https://www.litres.ru/book/anaska-beglova-34089074/les-i-nebesa-poka-les-pomnit-eio-imia-74554034/\" target=\"_blank\" rel=\"noopener\">Книга «Лес и Небеса»</a><a href=\"gift.html\">Подарок «Тихая неделя»</a><a href=\"about.html#order\">Идеи для реализации</a>": "<a href=\"about.html\">关于我</a><a href=\"https://www.litres.ru/book/anaska-beglova-34089074/les-i-nebesa-poka-les-pomnit-eio-imia-74554034/\" target=\"_blank\" rel=\"noopener\">书《森林与天空》</a><a href=\"gift.html\">礼物《安静的一周》</a><a href=\"about.html#order\">把想法变成现实</a>",
+"<a href=\"Kcradle.html\"><b>Главная</b></a><a href=\"guides.html\"><b>Гайды</b></a><a href=\"gift.html\"><b>Подарок «Тихая неделя»</b></a><a href=\"artist.html\"><b>Художник</b></a><a href=\"cv.html\"><b>CV для галерей</b></a><a href=\"index.html\">AI-резюме</a><a href=\"vitrina.html\">Работы</a><a href=\"about.html\">Обо мне</a><a href=\"#contacts\">Контакты</a>": "<a href=\"Kcradle.html\"><b>首页</b></a><a href=\"guides.html\"><b>指南</b></a><a href=\"gift.html\"><b>礼物《安静的一周》</b></a><a href=\"artist.html\"><b>艺术家</b></a><a href=\"cv.html\"><b>画廊简历</b></a><a href=\"index.html\">AI 简历</a><a href=\"vitrina.html\">作品</a><a href=\"about.html\">关于我</a><a href=\"#contacts\">联系方式</a>"
 }

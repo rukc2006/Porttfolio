@@ -1210,7 +1210,6 @@
 "<a href=\"#resume\">Резюме</a>": "<a href=\"#resume\">Résumé</a>",
 "<a href=\"#about\">Обо мне</a>": "<a href=\"#about\">About me</a>",
 "Рисую, леплю маленькие миры, пишу книги и считаю маркетплейсы.": "I draw, sculpt small worlds, write books and count marketplaces.",
-"Все контакты": "All contacts",
 "Я хочу:": "I want to:",
 "<a href=\"#worlds\" data-track=\"герой-работы\">Посмотреть работы</a>": "<a href=\"#worlds\" data-track=\"герой-работы\">See the works</a>",
 "<a href=\"#book\" data-track=\"герой-книга\">Прочитать книгу</a>": "<a href=\"#book\" data-track=\"герой-книга\">Read the book</a>",
@@ -1262,5 +1261,11 @@
 "<b>Научиться чему-то новому</b><span class=\"sub\">Гайды</span>": "<b>Learn something new</b><span class=\"sub\">Guides</span>",
 "Тихая неделя в подарок": "Quiet Week as a gift",
 "<b>Резюме: AI и маркетплейсы</b><span class=\"sub\">Аналитика и автоматизация</span>": "<b>Résumé: AI and marketplaces</b><span class=\"sub\">Analytics and automation</span>",
-"<b>Обо мне</b><span class=\"sub\">Окунуться в мой мир</span>": "<b>About me</b><span class=\"sub\">Dive into my world</span>"
+"<b>Обо мне</b><span class=\"sub\">Окунуться в мой мир</span>": "<b>About me</b><span class=\"sub\">Dive into my world</span>",
+"Главная": "Home",
+"Чего желает путник?": "What does the traveller seek?",
+"Написать на почту<small>ru-2006kc@yandex.ru</small>": "Write by email<small>ru-2006kc@yandex.ru</small>",
+"Дополнительные способы связи": "Other ways to reach me",
+"<a href=\"about.html\">Обо мне</a><a href=\"https://www.litres.ru/book/anaska-beglova-34089074/les-i-nebesa-poka-les-pomnit-eio-imia-74554034/\" target=\"_blank\" rel=\"noopener\">Книга «Лес и Небеса»</a><a href=\"gift.html\">Подарок «Тихая неделя»</a><a href=\"about.html#order\">Идеи для реализации</a>": "<a href=\"about.html\">About me</a><a href=\"https://www.litres.ru/book/anaska-beglova-34089074/les-i-nebesa-poka-les-pomnit-eio-imia-74554034/\" target=\"_blank\" rel=\"noopener\">Book “Forest and Heavens”</a><a href=\"gift.html\">Gift “Quiet Week”</a><a href=\"about.html#order\">Ideas to bring to life</a>",
+"<a href=\"Kcradle.html\"><b>Главная</b></a><a href=\"guides.html\"><b>Гайды</b></a><a href=\"gift.html\"><b>Подарок «Тихая неделя»</b></a><a href=\"artist.html\"><b>Художник</b></a><a href=\"cv.html\"><b>CV для галерей</b></a><a href=\"index.html\">AI-резюме</a><a href=\"vitrina.html\">Работы</a><a href=\"about.html\">Обо мне</a><a href=\"#contacts\">Контакты</a>": "<a href=\"Kcradle.html\"><b>Home</b></a><a href=\"guides.html\"><b>Guides</b></a><a href=\"gift.html\"><b>Gift “Quiet Week”</b></a><a href=\"artist.html\"><b>Artist</b></a><a href=\"cv.html\"><b>CV for galleries</b></a><a href=\"index.html\">AI résumé</a><a href=\"vitrina.html\">Works</a><a href=\"about.html\">About me</a><a href=\"#contacts\">Contacts</a>"
 }

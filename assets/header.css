@@ -1,0 +1,40 @@
+/* Общая шапка Мастерской-Колыбель (одинаковая на Kcradle.html и about.html). Правила скопированы с about.html. */
+.container{width:min(1180px,calc(100% - 48px));margin:auto}
+header{position:fixed;top:0;left:0;right:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+header nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+header .logo{display:flex;align-items:center;gap:11px;color:var(--cream);text-decoration:none}
+header .logo img.logo-mark{width:auto;height:60px;margin:-6px 0;border-radius:0;object-fit:contain;display:block}
+header .logo-name{font-family:"Cormorant Garamond",serif;font-size:15px;text-transform:uppercase;color:var(--paper);white-space:nowrap;letter-spacing:.1em;margin-left:4px;padding-left:12px;border-left:1px solid var(--line)}
+.navlinks{display:flex;align-items:center;gap:22px;font-size:13px;color:var(--muted)}
+.navlinks a{white-space:nowrap}
+.navlinks a:hover{color:var(--cream)}
+.navlinks a.cur{color:var(--cream);border-bottom:1px solid var(--gold);padding-bottom:2px}
+.nav-guides{color:var(--cream)!important;background:transparent!important;border-bottom:1px solid var(--paper2);border-radius:0!important;padding:4px 2px!important;font-weight:700!important}
+.nav-more{position:relative}
+.nav-more summary{list-style:none;cursor:pointer;color:var(--muted);font-size:13px}
+.nav-more summary::-webkit-details-marker{display:none}
+.nav-more summary::after{content:" \25BE";font-size:11px}
+.nav-more summary:hover{color:var(--cream)}
+.nav-drop{position:absolute;top:calc(100% + 14px);left:-14px;min-width:230px;padding:10px;background:#0b100b;border:1px solid var(--gold);border-radius:8px;display:flex;flex-direction:column;gap:2px;z-index:30}
+.nav-drop a{padding:8px 12px;border-radius:6px;white-space:nowrap}
+.nav-drop a:hover{background:rgba(182,154,104,.16)}
+.nav-pill{display:inline-block;margin-left:8px;padding:8px 14px;border:1px solid rgba(233,223,201,.5);border-radius:999px;color:var(--paper)!important;font-size:13px}
+.nav-pill:hover{background:rgba(182,154,104,.18)}
+.nav-cta{display:inline-block;margin-left:10px;padding:9px 18px;border-radius:999px;background:var(--gold);color:var(--bg)!important;font-weight:700}
+.nav-cta-m{display:none}
+.mobile-menu-btn{display:none;border:1px solid var(--line);background:transparent;color:var(--paper);border-radius:999px;padding:9px 13px;font:inherit;font-size:12px;cursor:pointer}
+.mobile-menu{display:none}
+.mobile-menu a{display:block;padding:13px 0;border-bottom:1px solid var(--line);color:var(--paper);font-size:14px}
+.mobile-menu a:last-child{border-bottom:0}
+.mobile-menu-inner{padding:8px 0 16px}
+.mobile-menu.open{display:block}
+@media(max-width:1320px){header .logo-name{display:none}}
+@media(max-width:850px){
+  .navlinks{display:none}
+  .mobile-menu-btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;font-size:13px}
+  .nav-cta-m{display:inline-flex;align-items:center;justify-content:center;min-height:40px;margin-left:auto;padding:0 16px;border-radius:999px;background:var(--gold);color:var(--bg);font-weight:700;font-size:14px;white-space:nowrap}
+  .mobile-menu a{min-height:44px}
+  header nav{gap:10px}
+}
+@media(max-width:800px){header .logo img.logo-mark{height:48px;margin:-4px 0}}
+@media(max-width:400px){header .container{width:calc(100% - 24px)}header nav{gap:8px}header .logo img.logo-mark{height:38px;margin:0}.nav-cta-m{padding:0 12px}.mobile-menu-btn{padding:0 11px}}

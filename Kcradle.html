@@ -16,32 +16,19 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/header.css">
 <style>
-:root{--bg:#101710;--bg2:#172018;--paper:#e9dfc9;--ink:#182018;--cream:#f1eadb;--muted:#cbc1ac;--gold:#b69a68;--amber:#c98a3d;--line:rgba(233,223,201,.18);--hh:64px}
+:root{--bg:#101710;--bg2:#172018;--paper:#e9dfc9;--paper2:#cfc0a3;--ink:#182018;--cream:#f1eadb;--muted:#cbc1ac;--gold:#b69a68;--amber:#c98a3d;--line:rgba(233,223,201,.18);--hh:64px}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:76px}
-body{margin:0;background:var(--bg);color:var(--cream);font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--cream);font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%;padding-top:72px}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;margin:0;line-height:1.05}
 :focus-visible{outline:2px solid var(--amber);outline-offset:3px}
 .wrap{width:min(720px,100%);margin:0 auto;padding:0 16px}
 .kick{color:var(--gold);font-size:12px;letter-spacing:.22em;text-transform:uppercase}
-.top{position:sticky;top:0;z-index:50;background:rgba(16,23,16,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.top .wrap{height:var(--hh);display:flex;align-items:center;gap:8px;position:relative}
-.logo{flex:none;display:block}.logo img{height:30px;width:auto}
-.top .sp{flex:1}
-.hbtn{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:12px;background:var(--gold);color:var(--ink);font-weight:600;font-size:16px}
 .hbtn:hover{background:var(--paper)}
-.top .lang-switch{margin:0}.top .lang-switch button{padding:8px 7px;font-size:12px}
-.menu{flex:none}
-.menu summary{list-style:none;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:12px}
-.menu summary::-webkit-details-marker{display:none}
-.menu summary span,.menu summary span:before,.menu summary span:after{display:block;width:18px;height:2px;background:var(--cream);position:relative;content:""}
-.menu summary span:before{position:absolute;top:-6px}.menu summary span:after{position:absolute;top:6px}
-.menu ul{list-style:none;margin:0;padding:8px;position:absolute;right:16px;top:calc(var(--hh) - 4px);width:min(260px,calc(100% - 32px));background:#141c15;border:1px solid var(--gold);border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.5)}
-.menu li a{display:flex;align-items:center;min-height:48px;padding:0 12px;border-radius:10px;font-size:17px}
-.menu li a:hover{background:rgba(182,154,104,.16)}
 .sec{padding:30px 0}
 .s-a{background:var(--bg)}.s-b{background:var(--bg2)}
 .sec h2{font-size:clamp(32px,9vw,46px);margin-bottom:8px}
@@ -56,7 +43,6 @@ h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;margin:0;li
 .hero{text-align:center;padding:22px 0 30px}
 .hero h1{font-size:clamp(42px,12vw,64px);margin:10px 0 8px}
 .hero .line{margin:0 auto 18px;max-width:28em;color:var(--muted);font-size:18px}
-.hero .btn{max-width:420px;margin:0 auto 20px;min-height:58px;font-size:18px;text-align:left}
 .tiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .tile{position:relative;display:flex;flex-direction:column;border:1px solid rgba(182,154,104,.35);border-radius:9px;background-color:#1a2418;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .91 0 0 0 0 .87 0 0 0 0 .79 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");overflow:hidden;transition:border-color .2s}
 .tile:hover{border-color:rgba(182,154,104,.8)}
@@ -78,37 +64,36 @@ h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;margin:0;li
 footer{background:var(--bg);text-align:center;color:var(--muted);font-size:14px;padding:28px 16px 36px}
 footer .fl{margin:0 0 14px;display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px}footer .fl a{padding:8px 2px}
 .tl b,.tl .sub{overflow-wrap:anywhere;hyphens:auto}
-@media(max-width:400px){.top .wrap{padding:0 10px;gap:6px}.logo img{height:26px}.top .lang-switch button{padding:12px 6px;font-size:12px}.hbtn{min-height:40px;padding:0 10px;font-size:15px}.menu summary{width:40px;height:40px}.tl{padding-left:12px;padding-right:12px}.ic{padding-left:12px;padding-right:12px}}
-@media(max-width:340px){.tl b{font-size:20px}.hbtn{padding:0 8px;font-size:14px}.top .lang-switch button{padding:12px 5px;font-size:11px}}
-@media(min-width:620px){.sec{padding:56px 0}.hero{padding:48px 0 60px}.tiles{grid-template-columns:repeat(3,1fr)}.tile.wide{grid-column:span 2}.tile.w2{grid-column:span 2}.menu ul{right:max(16px,calc((100% - 720px)/2 + 16px))}}
+.hero .ask{display:flex;flex-direction:column;align-items:center;gap:6px;margin:6px auto 4px;max-width:420px;padding:8px 0;color:var(--cream)}
+.ask span{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:clamp(36px,10.5vw,44px);line-height:1.05}
+.ask svg{color:var(--gold);animation:bob 1.6s ease-in-out infinite}
+.ask:hover svg{color:var(--paper)}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+.contact .btn.mail{min-height:76px;justify-content:flex-start;gap:12px;padding:12px 14px;font-size:19px;margin-bottom:6px;text-align:left}.contact .btn.mail:after{display:none}
+.mail .mt{display:flex;flex-direction:column;line-height:1.2}.mail .mt small{font-size:15px;font-weight:500;opacity:.85;white-space:nowrap}
+.mail svg{flex:none;color:var(--ink)}
+.more{margin:22px 0 12px;font-size:14px;color:var(--muted)}
+.circ{list-style:none;margin:0 0 6px;padding:0;display:flex;justify-content:center;gap:26px}
+.circ li{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+.cb{display:flex;align-items:center;justify-content:center;width:56px;height:56px;border:1px solid var(--gold);border-radius:50%;color:var(--gold);transition:background .2s,color .2s}
+.cb:hover{background:var(--gold);color:var(--ink)}
+.contact .btn.all{margin-top:22px}
+@media(prefers-reduced-motion:reduce){.ask svg{animation:none}}
+@media(max-width:340px){.tl b{font-size:20px}}
+@media(max-width:400px){.tl{padding-left:12px;padding-right:12px}.ic{padding-left:12px;padding-right:12px}}
+@media(min-width:620px){.sec{padding:56px 0}.hero{padding:48px 0 60px}.tiles{grid-template-columns:repeat(3,1fr)}.tile.wide{grid-column:span 2}.tile.w2{grid-column:span 2}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<header class="top"><div class="wrap">
-  <a class="logo" href="#top" aria-label="Мастерская-Колыбель"><img src="assets/kcradle-wordmark-light.png" alt="KRADLE · Мастерская-Колыбель" width="60" height="30"></a>
-  <span class="sp"></span>
-  <span data-lang-slot></span>
-  <a class="hbtn" href="#contacts" data-track="контакты-шапка">Контакты</a>
-  <details class="menu" id="menu"><summary aria-label="Меню"><span></span></summary>
-    <ul>
-      <li><a href="vitrina.html">Работы</a></li>
-      <li><a href="artist.html">Художник</a></li>
-      <li><a href="cv.html">CV для галерей</a></li>
-      <li><a href="gift.html">Подарок</a></li>
-      <li><a href="guides.html">Гайды</a></li>
-      <li><a href="index.html">Резюме</a></li>
-      <li><a href="about.html">Обо мне</a></li>
-    </ul>
-  </details>
-</div></header>
+<header><div class="container"><nav><a class="logo" href="#top" aria-label="Мастерская-Колыбель"><img class="logo-mark" src="assets/kcradle-wordmark-light.png" alt="KRADLE · Мастерская-Колыбель" width="84" height="42"><span class="logo-name">Ксения Комарова</span></a><div class="navlinks"><a class="cur" href="Kcradle.html">Главная</a><a href="vitrina.html">Работы</a><a href="artist.html">Художник</a><a class="nav-guides" href="guides.html">Гайды</a><a href="index.html">AI-резюме</a><a href="#contacts">Контакты</a><details class="nav-more"><summary>Ещё</summary><div class="nav-drop"><a href="about.html">Обо мне</a><a href="https://www.litres.ru/book/anaska-beglova-34089074/les-i-nebesa-poka-les-pomnit-eio-imia-74554034/" target="_blank" rel="noopener">Книга «Лес и Небеса»</a><a href="gift.html">Подарок «Тихая неделя»</a><a href="about.html#order">Идеи для реализации</a></div></details><a class="nav-pill" href="cv.html">CV для галерей</a><a class="nav-cta" data-track="шапка-написать" href="#contacts">Написать</a></div><a class="nav-cta-m" data-track="шапка-написать" href="#contacts">Написать</a><button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu">Меню</button></nav><div class="mobile-menu" id="mobileMenu"><div class="mobile-menu-inner"><a href="Kcradle.html"><b>Главная</b></a><a href="guides.html"><b>Гайды</b></a><a href="gift.html"><b>Подарок «Тихая неделя»</b></a><a href="artist.html"><b>Художник</b></a><a href="cv.html"><b>CV для галерей</b></a><a href="index.html">AI-резюме</a><a href="vitrina.html">Работы</a><a href="about.html">Обо мне</a><a href="#contacts">Контакты</a></div></div></div></header>
 <main id="top">
 
 <section class="sec s-a hero"><div class="wrap">
   <div class="kick">Ксения Комарова</div>
   <h1>Мастерская-Колыбель</h1>
-  <p class="line">Рисую, леплю маленькие миры, пишу книги и считаю маркетплейсы.</p>
-  <a class="btn solid" data-track="герой-контакты" href="#contacts">Все контакты</a>
+  <p class="line">Архитектор маленьких миров. Из образов, вдохновения и смысла — в осязаемую форму.</p>
+  <a class="ask" data-track="герой-вопрос" href="#tiles"><span>Чего желает путник?</span><svg viewBox="0 0 40 40" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 L20.4 31"/><path d="M10 22.5 C14 26 17.5 29.5 20.2 33.5 C23 29.5 26.5 26 30.2 22.4"/></svg></a>
 </div></section>
 
 <section class="sec s-b" id="tiles" aria-label="Разделы"><div class="wrap">
@@ -127,11 +112,14 @@ footer .fl{margin:0 0 14px;display:flex;flex-wrap:wrap;justify-content:center;ga
   <div class="kick">Мастерская-Колыбель</div>
   <h2 id="h-contacts">Контакты</h2>
   <p class="lead">Если у вас есть собственные идеи, которые хочется воплотить, пишите! Да и просто так тоже пишите 🤍</p>
-  <a class="btn solid" data-track="контакты-низ-instagram" href="https://www.instagram.com/ru2006kc/" target="_blank" rel="noopener">Instagram</a>
-  <a class="btn paper" data-track="контакты-низ-вк" href="https://vk.ru/kcradle" target="_blank" rel="noopener">ВКонтакте</a>
-  <a class="btn" data-track="контакты-низ-все" href="about.html#all-contacts" style="margin-top:14px">Посмотреть все контакты</a>
-  <div class="mailline"><a data-track="контакты-низ-почта" href="mailto:ru-2006kc@yandex.ru">ru-2006kc@yandex.ru</a></div>
-</div></section>
+  <a class="btn solid mail" data-track="контакты-почта" href="mailto:ru-2006kc@yandex.ru"><svg viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 12.5 L41.5 12 L41 35.8 L7 36.4 Z"/><path d="M7.5 13.5 C14 21 19.5 26 24 28 C28.5 26 34.5 21 40.6 13"/><path d="M7.6 35.6 L19 24.6"/><path d="M40.5 35.2 L29 24.4"/></svg><span class="mt">Написать на почту<small>ru-2006kc@yandex.ru</small></span></a>
+  <p class="more">Дополнительные способы связи</p>
+  <ul class="circ">
+    <li><a class="cb" data-track="контакты-вк" href="https://vk.ru/kcradle" target="_blank" rel="noopener" aria-label="ВКонтакте"><svg viewBox="0 0 48 48" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 9 L41 8.6 C42.4 8.6 42.6 9.8 42.4 11 L42 37 C42 39.4 40.6 40 39 40 L9 40.4 C7 40.4 6.4 39 6.4 37.4 L6.8 11 C6.8 9.8 6.6 9 7 9 Z"/><path d="M12.5 17 L18.5 31 L24.5 17"/><path d="M29.5 17 L29.7 31"/><path d="M38 17 L29.7 24 L38.3 31"/></svg></a><div>ВКонтакте</div></li>
+    <li><a class="cb" data-track="контакты-instagram" href="https://www.instagram.com/ru2006kc/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 48 48" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 7.5 L34.5 7 C39.5 7 41.4 9 41.2 14 L40.8 34 C40.8 39.2 38.6 41 34 41 L13.6 41.4 C8.8 41.4 7 39.2 7.2 34 L7.6 13.8 C7.6 9.4 9.6 7.6 14 7.5 Z"/><circle cx="24.2" cy="24.2" r="7.6"/><circle cx="34.4" cy="13.8" r="1.2"/></svg></a><div>Instagram</div></li>
+  </ul>
+  <a class="btn all" data-track="контакты-низ-все" href="about.html#all-contacts">Посмотреть все контакты</a>
+  </div></section>
 
 </main>
 <footer>
@@ -140,8 +128,8 @@ footer .fl{margin:0 0 14px;display:flex;flex-wrap:wrap;justify-content:center;ga
   <div style="opacity:.7;font-size:12px;margin-top:4px">Ксения Комарова. Все права на работы и тексты принадлежат автору.<br>Сайт считает визиты без cookies и без личных данных.</div>
 </footer>
 
-<script>document.getElementById('menu').addEventListener('click',function(e){if(e.target.closest('a'))this.open=false});document.addEventListener('click',function(e){var m=document.getElementById('menu');if(m.open&&!m.contains(e.target))m.open=false});</script>
+<script src="assets/header.js"></script>
 <script src="assets/counter.js"></script>
-<script src="assets/i18n.js?v=2"></script>
+<script src="assets/i18n.js?v=3"></script>
 </body>
 </html>
