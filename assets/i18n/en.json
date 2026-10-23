@@ -1356,5 +1356,9 @@
 "Excel": "Excel",
 "Excel и таблицы": "Excel and spreadsheets",
 "Экономика и финансы": "Economics and finance",
-"Выставки и книги": "Exhibitions and books"
+"Выставки и книги": "Exhibitions and books",
+"Диплом": "Diploma",
+"Сертификат": "Certificate",
+"Удостоверение": "Attestation",
+"<span class=\"tp d\">Диплом</span> о переподготовке <span class=\"tp s\">Сертификат</span> об окончании курса <span class=\"tp u\">Удостоверение</span> о повышении квалификации": "<span class=\"tp d\">Diploma</span> professional retraining <span class=\"tp s\">Certificate</span> course completion <span class=\"tp u\">Attestation</span> advanced training"
 }
