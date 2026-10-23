@@ -154,11 +154,13 @@
       '.lang-switch button:hover{color:#fff}.lang-switch button.on{background:rgba(233,223,201,.9);color:#101710}' +
       '.lang-switch{flex:0 0 auto;white-space:nowrap}.lang-switch button{white-space:nowrap}.navlinks{gap:16px!important}.nav-more summary{white-space:nowrap}@media print{.lang-switch{display:none!important}}' +
       '.lang-switch.fixed{position:fixed;bottom:16px;right:16px;top:auto;z-index:60;margin:0;background:rgba(16,23,16,.92);box-shadow:0 4px 18px rgba(0,0,0,.4)}' +
-      '.lang-switch.mob{margin:14px 0 0}' +
+      '.lang-switch.mob{margin:14px 0 0}.lang-switch.slot{margin:0}' +
       'html[lang="zh-CN"] body,html[lang="zh-CN"] h1,html[lang="zh-CN"] h2,html[lang="zh-CN"] h3,html[lang="zh-CN"] button{font-family:"Manrope","PingFang SC","Microsoft YaHei","Noto Sans SC","Hiragino Sans GB",sans-serif!important;letter-spacing:0!important}' +
       'html[lang="zh-CN"] h1,html[lang="zh-CN"] h2,html[lang="zh-CN"] h3{text-transform:none!important;font-weight:500}' +
       '@media(max-width:900px){.lang-switch.nav{display:none}}';
     document.head.appendChild(css);
+    var slot = document.querySelector('[data-lang-slot]');
+    if (slot) { slot.appendChild(buildSwitch('slot')); return; }
     var nl = document.querySelector('.navlinks');
     if (nl) nl.appendChild(buildSwitch('nav'));
     var mm = document.querySelector('.mobile-menu-inner, .mobile-menu');

@@ -17,176 +17,166 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#101710;--bg2:#172018;--paper:#e9dfc9;--ink:#182018;--cream:#f1eadb;--muted:#cbc1ac;--gold:#b69a68;--amber:#c98a3d;--rust:#a8532d;--line:rgba(233,223,201,.18)}
+:root{--bg:#101710;--bg2:#172018;--paper:#e9dfc9;--ink:#182018;--cream:#f1eadb;--muted:#cbc1ac;--gold:#b69a68;--amber:#c98a3d;--line:rgba(233,223,201,.18);--hh:64px}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--cream);font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:400;font-size:16px;line-height:1.65;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--cream);font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
-h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;margin:0;line-height:1.08}
-.wrap{width:min(720px,100%);margin:0 auto;padding:0 16px}
-.hero{text-align:center;padding:34px 0 26px}
-.hero .logo{width:150px;height:auto;margin:0 auto 18px}
-.kick{color:var(--gold);font-size:11px;letter-spacing:.22em;text-transform:uppercase}
-.hero h1{font-size:clamp(40px,11vw,60px);margin:10px 0 6px}
-.hero .slogan{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:clamp(22px,6vw,28px);color:var(--gold);margin:0 0 12px}
-.hero p.line{margin:0 auto;max-width:30em;color:var(--muted)}
-.card{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:22px 18px;margin:14px 0;overflow:hidden}
-.card h2{font-size:clamp(28px,7.5vw,36px);margin-bottom:8px}
-.card p{margin:0 0 14px;color:var(--muted)}
-.card p.lead{color:var(--cream)}
-.btn{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:54px;padding:12px 18px;border-radius:14px;border:1px solid var(--gold);background:transparent;color:var(--cream);font-weight:600;font-size:16px;line-height:1.3;transition:background .2s,color .2s}
-.btn:after{content:"\2192";color:var(--gold);font-size:20px;flex:none;transition:color .2s}
-.btn:hover,.btn:focus-visible{background:var(--gold);color:var(--ink)}
-.btn:hover:after,.btn:focus-visible:after{color:var(--ink)}
-.btn.solid{background:var(--gold);color:var(--ink)}
-.btn.solid:after{color:var(--ink)}
-.btn.solid:hover{background:var(--paper)}
-.btn small{display:block;font-weight:400;font-size:13px;opacity:.85}
-.btn+.btn{margin-top:10px}
+h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;margin:0;line-height:1.05}
 :focus-visible{outline:2px solid var(--amber);outline-offset:3px}
-.grid{display:grid;gap:10px;margin:0 0 14px}
-.sub{display:block;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:rgba(233,223,201,.04);min-height:54px;transition:border-color .2s,background .2s}
-.sub:hover,.sub:focus-visible{border-color:var(--gold);background:rgba(182,154,104,.12)}
-.sub b{display:block;font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:22px;color:var(--cream);line-height:1.15}
-.sub span{display:block;color:var(--muted);font-size:14px;margin-top:2px}
-.media{display:grid;gap:14px;align-items:start}
-.media img{border-radius:12px;width:100%;height:auto;max-height:380px;object-fit:cover;object-position:center 60%}
-.book{display:grid;grid-template-columns:104px 1fr;gap:16px;align-items:start}
-.book img{width:104px;height:auto;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
-.two{display:grid;gap:10px}
-.nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;margin:30px 0 10px;font-size:15px}
-.nav a{padding:8px 4px;color:var(--muted);border-bottom:1px solid transparent}
-.nav a:hover{color:var(--gold);border-color:var(--gold)}
-footer{text-align:center;padding-left:16px;padding-right:16px;color:var(--muted);font-size:13px;padding:6px 0 44px;opacity:.9}
-footer img{width:130px;margin:0 auto 10px;opacity:.9}
-@media(min-width:620px){.grid.g2{grid-template-columns:1fr 1fr}.media{grid-template-columns:260px 1fr}.two{grid-template-columns:1fr 1fr}.two .btn+.btn{margin-top:0}.card{padding:28px 26px}}
-.quick{display:grid;gap:10px;margin:4px 0 8px}.quick-one{max-width:420px;margin:4px auto 8px;min-height:58px;font-size:17px}.quick .btn+.btn{margin-top:0}.quick .btn{min-height:58px;font-size:17px}.quick-foot{margin-top:18px;text-align:left}footer .quick{max-width:720px;margin-left:auto;margin-right:auto;padding:0 16px}.mailline{margin:10px 0 18px}.mailline a{color:var(--gold);border-bottom:1px solid var(--line);padding:6px 0}
-.contact-card{background:linear-gradient(160deg,#1b251b,#141c15);border-color:var(--gold);padding:30px 20px;text-align:center}.contact-card h2{font-size:clamp(34px,9vw,46px)}.contact-card p.lead{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:clamp(22px,6vw,26px);color:var(--paper);margin-bottom:14px}.asks{list-style:none;margin:0 0 20px;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}.asks li{border:1px solid var(--line);border-radius:999px;padding:5px 14px;font-size:14px;color:var(--muted)}.btn.big{min-height:64px;font-size:18px;text-align:left}.contact-card .mailline{margin:16px 0 0}.btn small{display:inline;margin-left:6px}
-@media(min-width:620px){.contact-card{padding:40px 36px}}
+.wrap{width:min(720px,100%);margin:0 auto;padding:0 16px}
+.kick{color:var(--gold);font-size:12px;letter-spacing:.22em;text-transform:uppercase}
+.top{position:sticky;top:0;z-index:50;background:rgba(16,23,16,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{height:var(--hh);display:flex;align-items:center;gap:8px;position:relative}
+.logo{flex:none;display:block}.logo img{height:30px;width:auto}
+.top .sp{flex:1}
+.hbtn{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:12px;background:var(--gold);color:var(--ink);font-weight:600;font-size:16px}
+.hbtn:hover{background:var(--paper)}
+.top .lang-switch{margin:0}.top .lang-switch button{padding:8px 7px;font-size:12px}
+.menu{flex:none}
+.menu summary{list-style:none;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:12px}
+.menu summary::-webkit-details-marker{display:none}
+.menu summary span,.menu summary span:before,.menu summary span:after{display:block;width:18px;height:2px;background:var(--cream);position:relative;content:""}
+.menu summary span:before{position:absolute;top:-6px}.menu summary span:after{position:absolute;top:6px}
+.menu ul{list-style:none;margin:0;padding:8px;position:absolute;right:16px;top:calc(var(--hh) - 4px);width:min(260px,calc(100% - 32px));background:#141c15;border:1px solid var(--gold);border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.5)}
+.menu li a{display:flex;align-items:center;min-height:48px;padding:0 12px;border-radius:10px;font-size:17px}
+.menu li a:hover{background:rgba(182,154,104,.16)}
+.sec{padding:30px 0}
+.s-a{background:var(--bg)}.s-b{background:var(--bg2)}
+.sec h2{font-size:clamp(32px,9vw,46px);margin-bottom:8px}
+.sec p{margin:0 0 16px;color:var(--muted);max-width:34em}
+.btn{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:52px;padding:12px 18px;border-radius:14px;border:1px solid var(--gold);color:var(--cream);font-weight:600;font-size:17px;line-height:1.3;transition:background .2s,color .2s}
+.btn:after{content:"\2192";color:var(--gold);font-size:20px;flex:none}
+.btn:hover{background:var(--gold);color:var(--ink)}.btn:hover:after{color:var(--ink)}
+.btn.solid{background:var(--gold);color:var(--ink)}.btn.solid:after{color:var(--ink)}.btn.solid:hover{background:var(--paper)}
+.btn.paper{background:var(--paper);color:var(--ink)}.btn.paper:after{color:var(--ink)}.btn.paper:hover{background:var(--gold)}
+.btn+.btn{margin-top:10px}
+.tlink{display:inline-block;margin-top:14px;color:var(--gold);border-bottom:1px solid var(--line);padding:6px 0}
+.hero{text-align:center;padding:22px 0 30px}
+.hero h1{font-size:clamp(42px,12vw,64px);margin:10px 0 8px}
+.hero .line{margin:0 auto 18px;max-width:28em;color:var(--muted);font-size:18px}
+.hero .btn{max-width:420px;margin:0 auto 20px;min-height:58px;font-size:18px;text-align:left}
+.want{margin:0 0 10px;font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:26px;color:var(--gold)}
+.tiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tiles li a{display:flex;align-items:center;justify-content:center;text-align:center;min-height:64px;padding:8px 12px;border:1px solid var(--line);border-radius:14px;background:rgba(182,154,104,.1);font-weight:600;font-size:17px;line-height:1.25;transition:background .2s,color .2s}
+.tiles li a:hover{background:var(--gold);color:var(--ink)}
+.pic{width:100%;height:120px;object-fit:cover;object-position:center 55%;border-radius:12px;margin-bottom:16px}
+.book{display:grid;grid-template-columns:84px 1fr;gap:16px;align-items:start}
+.book img{width:84px;height:auto;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.chips{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.chips li a{display:inline-flex;align-items:center;min-height:48px;padding:0 14px;border:1px solid var(--line);border-radius:999px;font-size:16px;background:rgba(233,223,201,.05)}
+.chips li a:hover{border-color:var(--gold);background:rgba(182,154,104,.14)}
+.contact{text-align:center}
+.contact h2{font-size:clamp(40px,11vw,56px)}
+.contact p.lead{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:clamp(22px,6vw,27px);color:var(--paper);margin:0 auto 22px;line-height:1.3}
+.contact .btn{min-height:64px;font-size:19px;text-align:left}
+.mailline{margin:18px 0 0}.mailline a{color:var(--gold);border-bottom:1px solid var(--line);padding:6px 0}
+footer{background:var(--bg);text-align:center;color:var(--muted);font-size:14px;padding:28px 16px 36px}
+footer .fl{margin:0 0 14px;display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px}footer .fl a{padding:8px 2px}
+@media(min-width:620px){.sec{padding:56px 0}.hero{padding:48px 0 60px}.tiles{grid-template-columns:repeat(4,1fr)}.tiles li a{min-height:96px}.menu ul{right:max(16px,calc((100% - 720px)/2 + 16px))}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<main class="wrap" id="top">
+<header class="top"><div class="wrap">
+  <a class="logo" href="#top" aria-label="Мастерская-Колыбель"><img src="assets/kcradle-wordmark-light.png" alt="KRADLE · Мастерская-Колыбель" width="60" height="30"></a>
+  <span class="sp"></span>
+  <span data-lang-slot></span>
+  <a class="hbtn" href="#contacts" data-track="контакты-шапка">Контакты</a>
+  <details class="menu" id="menu"><summary aria-label="Меню"><span></span></summary>
+    <ul>
+      <li><a href="#worlds">Работы</a></li>
+      <li><a href="#gift">Подарок</a></li>
+      <li><a href="#book">Книга</a></li>
+      <li><a href="#guides">Гайды</a></li>
+      <li><a href="#resume">Резюме</a></li>
+      <li><a href="#about">Обо мне</a></li>
+    </ul>
+  </details>
+</div></header>
+<main id="top">
 
-<header class="hero">
-  <img class="logo" src="assets/kcradle-wordmark-light.png" alt="KRADLE · Мастерская-Колыбель" width="150" height="74">
+<section class="sec s-a hero"><div class="wrap">
   <div class="kick">Ксения Комарова</div>
   <h1>Мастерская-Колыбель</h1>
-  <p class="slogan">Маленькие миры</p>
-  <p class="line">Здесь картины, маленькие миры из гипса, гайды и книга. Выберите, что вам ближе.</p>
-</header>
+  <p class="line">Рисую, леплю маленькие миры, пишу книги и считаю маркетплейсы.</p>
+  <a class="btn solid" data-track="герой-контакты" href="#contacts">Все контакты</a>
+  <p class="want">Я хочу:</p>
+  <ul class="tiles">
+    <li><a href="#worlds" data-track="герой-работы">Посмотреть работы</a></li>
+    <li><a href="#book" data-track="герой-книга">Прочитать книгу</a></li>
+    <li><a href="guides.html#marketplaces" data-track="герой-цена">Научиться считать цену</a></li>
+    <li><a href="#resume" data-track="герой-резюме">Нанять специалиста по AI</a></li>
+  </ul>
+</div></section>
 
-<a class="btn solid quick-one" id="quick" href="#guides">Выбрать, что мне нужно</a>
-
-<section class="card" id="guides" aria-labelledby="h-guides">
-  <h2 id="h-guides">Гайды</h2>
-  <p>Практика из моей работы и мастерской, простым языком. Часть гайдов ещё в разработке, темы можно посмотреть на странице.</p>
-  <div class="grid g2">
-    <a class="sub" href="guides.html#marketplaces"><b>Маркетплейсы и цена</b><span>себестоимость, цена, комиссии, остаток в днях</span></a>
-    <a class="sub" href="guides.html#calm"><b>Творчество без давления</b><span>практики, чтобы отдохнуть от экрана</span></a>
-    <a class="sub" href="guides.html#drawing"><b>Рисунок и живопись</b><span>начать или вернуться к рисованию</span></a>
-    <a class="sub" href="guides.html#cycles"><b>Символы и год</b><span>ритм года, уют дома, намерения</span></a>
-    <a class="sub" href="guides.html#automation"><b>Автоматизация и ИИ</b><span>для небольшого дела и личного бренда</span></a>
-  </div>
-  <a class="btn solid" href="guides.html">Все гайды</a>
-</section>
-
-<section class="card" id="worlds" aria-labelledby="h-worlds">
+<section class="sec s-b" id="worlds" aria-labelledby="h-worlds"><div class="wrap">
   <h2 id="h-worlds">Маленькие миры и картины</h2>
-  <div class="media">
-    <img src="assets/mm/mm-goose.jpg" alt="Маленький мир в рамке: миниатюрная картина с гусем" width="675" height="900" loading="lazy">
-    <div>
-      <p class="lead">Мини-картины, предметы и живопись, сделанные руками.</p>
-      <a class="btn solid" href="vitrina.html">Витрина работ</a>
-      <a class="btn" href="artist.html">Картины и портфолио художника</a>
-    </div>
-  </div>
-</section>
+  <p>Мини-картины, предметы и живопись, сделанные руками.</p>
+  <img class="pic" src="assets/mm/mm-goose.jpg" alt="Маленький мир в рамке: миниатюрная картина с гусем" width="675" height="900" loading="lazy">
+  <a class="btn solid" data-track="блок-работы" href="vitrina.html">Выбрать работу</a>
+  <a class="tlink" data-track="блок-художник" href="artist.html">Портфолио художника</a>
+</div></section>
 
-<section class="card" id="book" aria-labelledby="h-book">
-  <h2 id="h-book">Книга «Лес и Небеса»</h2>
-  <div class="book">
-    <img src="assets/book-les-i-nebesa.webp" alt="Обложка книги «Лес и Небеса. Пока лес помнит её имя»" width="104" height="149" loading="lazy">
-    <div>
-      <p class="lead">Яга просыпается, а домовой её не узнаёт: она потеряла своё имя.</p>
-      <p>Автор Анаска Беглова, это мой псевдоним.</p>
-    </div>
-  </div>
-  <a class="btn solid" data-track href="https://www.litres.ru/book/anaska-beglova-34089074/les-i-nebesa-poka-les-pomnit-eio-imia-74554034/" target="_blank" rel="noopener">Книга на Литрес</a>
-</section>
-
-<section class="card" id="gift" aria-labelledby="h-gift">
+<section class="sec s-a" id="gift" aria-labelledby="h-gift"><div class="wrap">
   <h2 id="h-gift">Подарок «Тихая неделя»</h2>
   <p>Семь коротких практик без экрана, чтобы вернуть немного живого внимания.</p>
-  <a class="btn solid" href="gift.html">Получить подарок</a>
-</section>
+  <a class="btn solid" data-track="блок-подарок" href="gift.html">Получить подарок</a>
+</div></section>
 
-<section class="card" id="about" aria-labelledby="h-about">
-  <h2 id="h-about">Обо мне</h2>
-  <p>Я Ксения, художница из Москвы. Рисую, леплю маленькие миры и пишу книги. Если хочется знакомства, вся история здесь.</p>
-  <a class="btn" href="about.html">Читать обо мне</a>
-</section>
+<section class="sec s-b" id="book" aria-labelledby="h-book"><div class="wrap">
+  <h2 id="h-book">Книга «Лес и Небеса»</h2>
+  <div class="book">
+    <img src="assets/book-les-i-nebesa.webp" alt="Обложка книги «Лес и Небеса. Пока лес помнит её имя»" width="84" height="120" loading="lazy">
+    <p>Яга просыпается, а домовой её не узнаёт: она потеряла своё имя.</p>
+  </div>
+  <a class="btn solid" data-track="блок-книга" href="https://www.litres.ru/book/anaska-beglova-34089074/les-i-nebesa-poka-les-pomnit-eio-imia-74554034/" target="_blank" rel="noopener">Книга на Литрес</a>
+</div></section>
 
-<section class="card" id="resume" aria-labelledby="h-resume">
+<section class="sec s-a" id="guides" aria-labelledby="h-guides"><div class="wrap">
+  <h2 id="h-guides">Гайды</h2>
+  <p>Практика из моей работы простым языком. Часть гайдов в разработке.</p>
+  <ul class="chips">
+    <li><a href="guides.html#marketplaces">Маркетплейсы и цена</a></li>
+    <li><a href="guides.html#calm">Творчество без давления</a></li>
+    <li><a href="guides.html#drawing">Рисунок и живопись</a></li>
+    <li><a href="guides.html#cycles">Символы и год</a></li>
+    <li><a href="guides.html#automation">Автоматизация и ИИ</a></li>
+  </ul>
+  <a class="btn solid" data-track="блок-гайды" href="guides.html">Все гайды</a>
+</div></section>
+
+<section class="sec s-b" id="resume" aria-labelledby="h-resume"><div class="wrap">
   <h2 id="h-resume">Резюме: AI и маркетплейсы</h2>
-  <p>Другая моя сторона: отдел маркетплейсов, аналитика, дашборды и автоматизация с помощью AI.</p>
-  <p>Пять рабочих систем, 13 дашбордов, сбор данных из шести кабинетов.</p>
-  <a class="btn" href="index.html">Смотреть AI-резюме и портфолио</a>
-</section>
+  <p>Аналитика и автоматизация: пять рабочих систем, 13 дашбордов.</p>
+  <a class="btn solid" data-track="блок-резюме" href="index.html">Открыть резюме</a>
+</div></section>
 
-<section class="card contact-card" id="contacts" aria-labelledby="h-contacts">
+<section class="sec s-a" id="about" aria-labelledby="h-about"><div class="wrap">
+  <h2 id="h-about">Обо мне</h2>
+  <p>Я Ксения, художница из Москвы. Рисую, леплю маленькие миры и пишу книги.</p>
+  <a class="btn solid" data-track="блок-обо-мне" href="about.html">Читать обо мне</a>
+</div></section>
+
+<section class="sec s-b contact" id="contacts" aria-labelledby="h-contacts"><div class="wrap">
   <div class="kick">Мастерская-Колыбель</div>
   <h2 id="h-contacts">Контакты</h2>
   <p class="lead">Если у вас есть собственные идеи, которые хочется воплотить, пишите! Да и просто так тоже пишите 🤍</p>
-  <a class="btn solid big" data-track href="https://www.instagram.com/ru2006kc/" target="_blank" rel="noopener">Instagram <small>@ru2006kc</small></a>
-  <a class="btn big" data-track href="https://vk.ru/kcradle" target="_blank" rel="noopener">ВКонтакте</a>
-  <div class="mailline"><a data-track href="mailto:ru-2006kc@yandex.ru">ru-2006kc@yandex.ru</a></div>
-</section>
-
-<nav class="nav" aria-label="Разделы сайта">
-  <a href="guides.html">Гайды</a>
-  <a href="vitrina.html">Витрина</a>
-  <a href="artist.html">Художник</a>
-  <a href="cv.html">CV для галерей</a>
-  <a href="about.html">Обо мне</a>
-  <a href="gift.html">Подарок</a>
-  <a href="#contacts">Контакты</a>
-</nav>
+  <a class="btn solid" data-track="контакты-низ-instagram" href="https://www.instagram.com/ru2006kc/" target="_blank" rel="noopener">Instagram</a>
+  <a class="btn paper" data-track="контакты-низ-вк" href="https://vk.ru/kcradle" target="_blank" rel="noopener">ВКонтакте</a>
+  <div class="mailline"><a data-track="контакты-низ-почта" href="mailto:ru-2006kc@yandex.ru">ru-2006kc@yandex.ru</a></div>
+</div></section>
 
 </main>
 <footer>
-<div class="mailline"><a href="#contacts">Контакты</a> · <a data-track href="mailto:ru-2006kc@yandex.ru">ru-2006kc@yandex.ru</a></div>
+  <div class="fl"><a href="vitrina.html">Витрина</a><a href="artist.html">Художник</a><a href="cv.html">CV для галерей</a><a href="#contacts">Контакты</a></div>
   <div>© Ксения Комарова · Мастерская-Колыбель</div>
   <div style="opacity:.7;font-size:12px;margin-top:4px">Ксения Комарова. Все права на работы и тексты принадлежат автору.<br>Сайт считает визиты без cookies и без личных данных.</div>
 </footer>
 
-<script>
-/* Свой счётчик визитов: без cookies, без личных данных, не работает при включённом Do Not Track. Данные идут в Таблицу владелицы. */
-(function(){
-  if (navigator.doNotTrack === '1') return;
-  try { if (location.search.indexOf('nocount=1') > -1) localStorage.setItem('kc_ignore', '1'); if (localStorage.getItem('kc_ignore') === '1') return; } catch (e) {}
-  var U = 'https://script.google.com/macros/s/AKfycbxWan8OxqSeTzXon7ekzAIiOmTNcXmWjdGlkmxICi0umcYt91ZKAQsa2E3Go5ferXO7/exec';
-  var vid = ''; try { vid = localStorage.getItem('kc_vid') || ''; if (!vid) { vid = Math.random().toString(36).slice(2, 12) + Date.now().toString(36).slice(-4); localStorage.setItem('kc_vid', vid); } } catch (e) {}
-  function send(ev, target) {
-    try {
-      var ref = ''; try { ref = document.referrer ? new URL(document.referrer).hostname : ''; } catch (e) {}
-      var q = 'a=hit&p=' + encodeURIComponent((location.pathname.split('/').pop() || 'index')) +
-        '&e=' + ev + '&t=' + encodeURIComponent((target || '').slice(0, 120)) +
-        '&r=' + encodeURIComponent(ref) + '&w=' + innerWidth + '&l=' + encodeURIComponent(navigator.language || '') +
-        '&u=' + encodeURIComponent((location.search.match(/utm_[a-z]+=[^&]+/g) || []).join('|').slice(0, 120));
-      fetch(U + '?' + q + '&v=' + encodeURIComponent(vid), { mode: 'no-cors', keepalive: true });
-    } catch (e) {}
-  }
-  send('view', '');
-  document.addEventListener('click', function (ev) {
-    var a = ev.target.closest && ev.target.closest('a[href]');
-    if (!a) return;
-    if (a.hasAttribute('data-track') || a.host !== location.host) send('click', a.href.replace(/^https?:\/\//, '').replace(/\?.*$/, ''));
-  }, true);
-})();
-</script>
-<script src="assets/i18n.js"></script>
+<script>document.getElementById('menu').addEventListener('click',function(e){if(e.target.closest('a'))this.open=false});document.addEventListener('click',function(e){var m=document.getElementById('menu');if(m.open&&!m.contains(e.target))m.open=false});</script>
+<script src="assets/counter.js"></script>
+<script src="assets/i18n.js?v=2"></script>
 </body>
 </html>
