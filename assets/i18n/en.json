@@ -184,7 +184,6 @@
 "<span>образ</span><i>→</i><span>материал</span><i>→</i><span>объём</span><i>→</i><span>рамка</span><i>→</i><span>маленький мир</span>": "<span>image</span><i>→</i><span>material</span><i>→</i><span>volume</span><i>→</i><span>frame</span><i>→</i><span>small world</span>",
 "<span>славянская и восточная мифология</span><span>детектив</span><span>слоуберн</span>": "<span>Slavic and Eastern mythology</span><span>detective</span><span>slow burn</span>",
 "<strong>Бухгалтерия, закупки, продажи, работа с товарами и бизнес-процессами.</strong> Этот этап научил меня видеть систему целиком: от цифры и документа до того, что в итоге получает человек.": "<strong>Accounting, purchasing, sales, work with goods and business processes.</strong> This stage taught me to see the whole system: from a number and a document to what a person finally receives.",
-"<strong>Дизайн, искусство, педагогика, арт-практики, Python, нейросети, аналитика, управление и другие направления.</strong> Мне важно не просто собирать курсы, а расширять инструментарий и переносить знания из одной области в другую.": "<strong>Design, art, pedagogy, art practices, Python, neural networks, analytics, management and other fields.</strong> It matters to me not just to collect courses, but to widen my toolkit and carry knowledge from one area to another.",
 "<strong>Живопись, ручная работа, глина, предметы, символы, выставки.</strong> Здесь я работаю не только с формой, но и с тем, какое ощущение и какой образ остаются у человека.": "<strong>Painting, handwork, clay, objects, symbols, exhibitions.</strong> Here I work not only with form, but with the feeling and the image that stay with a person.",
 "<strong>Управление маркетплейсами, коммерческие задачи, SMM, дашборды, автоматизация и AI.</strong> Здесь мне интересно превращать хаос ручной работы в понятную систему — и при этом оставлять место для эксперимента.": "<strong>Marketplace management, commercial tasks, SMM, dashboards, automation and AI.</strong> Here I enjoy turning the chaos of manual work into a clear system, while still leaving room for experiment.",
 "AI-резюме": "AI résumé",
@@ -428,7 +427,6 @@
 "Открыть крупно: Старица-Шаманка": "View larger: The Shaman Crone",
 "Открыть крупно: Фламинго": "View larger: Flamingos",
 "Открыть крупно: Чумной доктор": "View larger: Plague Doctor",
-"Параллельно · 2021–сейчас": "In parallel · 2021–present",
 "Первая книга ещё пишется: главы выходят на Литрес по мере готовности.": "The first book is still being written: chapters come out on Litres as they are ready.",
 "Первые маленькие миры": "The first small worlds",
 "Первый из них уже живёт в рамке.": "The first of them already lives in a frame.",
@@ -457,7 +455,6 @@
 "Портфолио": "Portfolio",
 "Портфолио и CV для галерей": "Portfolio and CV for galleries",
 "Посмотреть концепцию →": "See the concept →",
-"Постоянно учусь": "Always learning",
 "Почему именно Колыбель": "Why Kradle in particular",
 "Почему я об этом пишу": "Why I write about this",
 "Почта: <a href=\"mailto:ru-2006kc@yandex.ru\">ru-2006kc@yandex.ru</a> · Instagram: <a href=\"https://www.instagram.com/ru2006kc/\" target=\"_blank\" rel=\"noopener\">@ru2006kc</a>": "Email: <a href=\"mailto:ru-2006kc@yandex.ru\">ru-2006kc@yandex.ru</a> · Instagram: <a href=\"https://www.instagram.com/ru2006kc/\" target=\"_blank\" rel=\"noopener\">@ru2006kc</a>",
@@ -534,7 +531,7 @@
 "Участвовала в выставке": "Took part in the exhibition",
 "Учимся. Делаем.": "We learn. We make.",
 "Учимся. Делаем.<br>Пробуем.": "We learn. We make.<br>We try.",
-"Учусь и сейчас. В 2025 году прошла курсы «Академический рисунок» и «История изобразительного искусства» (Пентаскул), арт-терапию (НИИДОПО), основы Adobe Photoshop (Нетология). В 2026 году добавились переподготовка «Преподаватель изобразительного искусства и черчения», программа «Менеджмент в сфере культуры и искусства», курс «Авторское право для дизайнера» (НАРХСИ) и мини-курс по дизайну и нейросетям (Formfactor).": "I am still learning. In 2025 I took the courses “Academic Drawing” and “History of Fine Art” (Pentaskul), art therapy (NIIDOPO), and the basics of Adobe Photoshop (Netology). In 2026 I added professional retraining as a teacher of fine art and technical drawing, the program “Management in Culture and Art”, the course “Copyright for Designers” (NARKHSI) and a mini-course on design and neural networks (Formfactor).",
+"Есть дополнительное образование, и я постоянно узнаю новое.": "I have further education, and I keep learning new things.",
 "Фигура в клювастой маске чумного доктора, в руке горящий фонарь, на плече синий ворон. Тёплый свет фонаря собирает на себя всё внимание на холодном розово-сером фоне города. Образ родом из эпох чумных эпидемий, написанный в ярком современном цвете.": "A figure in the beaked mask of a plague doctor, a burning lantern in one hand, a blue raven on the shoulder. The lantern's warm light draws all the attention on a cold pink-gray city background. An image born of the eras of plague epidemics, painted in a bright, modern color.",
 "Финансовый университет при Правительстве РФ": "Financial University under the Government of the Russian Federation",
 "Фламинго": "Flamingos",
@@ -1359,5 +1356,6 @@
 "Диплом": "Diploma",
 "Сертификат": "Certificate",
 "Удостоверение": "Attestation",
-"<span class=\"tp d\">Диплом</span> о переподготовке <span class=\"tp s\">Сертификат</span> об окончании курса <span class=\"tp u\">Удостоверение</span> о повышении квалификации": "<span class=\"tp d\">Diploma</span> professional retraining <span class=\"tp s\">Certificate</span> course completion <span class=\"tp u\">Attestation</span> advanced training"
+"<span class=\"tp d\">Диплом</span> о переподготовке <span class=\"tp s\">Сертификат</span> об окончании курса <span class=\"tp u\">Удостоверение</span> о повышении квалификации": "<span class=\"tp d\">Diploma</span> professional retraining <span class=\"tp s\">Certificate</span> course completion <span class=\"tp u\">Attestation</span> advanced training",
+"Параллельно": "In parallel"
 }
