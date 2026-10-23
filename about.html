@@ -350,6 +350,11 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 .ex-t-pers{--c:111,143,90}.ex-t-mkt{--c:201,138,63}.ex-t-intl{--c:95,132,184}.ex-t-onl{--c:79,163,165}.ex-t-auc{--c:154,111,176}.ex-t-exh{--c:184,106,122}.ex-t-cmp{--c:181,83,45}
 .ex-card[class*="ex-t-"]{border:1px solid rgba(var(--c),.4)!important;border-left:4px solid rgba(var(--c),.9)!important;background:rgba(var(--c),.09)!important}
 .ex-card[class*="ex-t-"] .ex-meta{color:rgb(var(--c))!important}
+.ex-split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:18px;border:1px solid rgba(var(--c),.4)}
+.ex-split a{display:flex;flex-direction:column;justify-content:space-between;gap:10px;padding:14px 16px;color:inherit;text-decoration:none;font-size:14px;transition:background .2s}
+.ex-split a+a{border-left:1px solid rgba(var(--c),.4)}
+.ex-split a:hover{background:rgba(var(--c),.16)}
+.ex-split span{font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1.2}
 .archive-row[class*="ex-t-"]{border-left:3px solid rgba(var(--c),.85);padding-left:12px}
 .ex-legend{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 4px}
 .ex-legend span{font-size:12px;letter-spacing:.06em;padding:5px 12px;border-radius:999px;border:1px solid rgba(var(--c),.55);background:rgba(var(--c),.12)}
@@ -617,12 +622,9 @@ section[id],article[id]{scroll-margin-top:96px}
 <article class="ex-card compact ex-t-intl" data-k="intl"><div class="ex-meta">2021 · Москва</div><h3>Центр искусств «Art коробка» · ART ANTIDOT 2</h3><a class="button" href="https://vk.ru/wall204412765_1632" target="_blank" rel="noopener">Смотреть записи →</a></article>
 <article class="ex-card compact ex-t-onl" data-k="onl"><div class="ex-meta">2021 · Лондон / Афины</div><h3>Галерея Art Number 23 · онлайн-проект New Era</h3><a class="button" href="https://vk.ru/wall204412765_1617" target="_blank" rel="noopener">Смотреть запись →</a></article>
 <article class="ex-card compact ex-t-pers" data-k="pers"><div class="ex-meta">2021 · Москва</div><h3>Персональная выставка-продажа · Пространство SiriusPark</h3><a class="button" href="https://vk.ru/wall-157175276_245" target="_blank" rel="noopener">Смотреть запись →</a></article>
-<article class="ex-card compact ex-t-pers" data-k="pers"><div class="ex-meta">2021 · Москва</div><h3>Персональная выставка · Гастромаркет и BlackHat бар · апрель</h3><a class="button" href="https://vk.ru/wall204412765_1679" target="_blank" rel="noopener">Смотреть запись →</a></article>
-<article class="ex-card compact ex-t-pers" data-k="pers"><div class="ex-meta">2021 · Москва</div><h3>Персональная выставка · Гастромаркет и BlackHat бар · март</h3><a class="button" href="https://vk.ru/wall204412765_1658" target="_blank" rel="noopener">Смотреть запись →</a></article>
-<article class="ex-card compact ex-t-auc" data-k="auc"><div class="ex-meta">2021 · Москва</div><h3>Bidspirit · онлайн-аукцион LOT TV #21</h3><a class="button" href="https://youtu.be/C_ihJNLrWIw?t=2598" target="_blank" rel="noopener">Смотреть запись (с 43:18) →</a></article>
-<article class="ex-card compact ex-t-auc" data-k="auc"><div class="ex-meta">2021 · Москва</div><h3>Bidspirit · онлайн-аукцион LOT TV #16</h3><a class="button" href="https://vk.ru/wall204412765_1596" target="_blank" rel="noopener">Смотреть запись →</a></article>
-<article class="ex-card compact ex-t-exh" data-k="exh"><div class="ex-meta">2019 · Москва</div><h3>Галерея Want&amp;Paint · «Экологический кризис»</h3><a class="button" href="https://vk.ru/wall-157175276_143" target="_blank" rel="noopener">Смотреть запись →</a></article>
-<article class="ex-card compact ex-t-exh" data-k="exh"><div class="ex-meta">2019 · Москва</div><h3>Галерея Want&amp;Paint · «Выставка 25 молодых художников»</h3><a class="button" href="https://vk.ru/wall-157175276_134" target="_blank" rel="noopener">Смотреть запись →</a></article>
+<article class="ex-card compact ex-t-pers" data-k="pers"><div class="ex-meta">2021 · Москва</div><h3>Персональная выставка · Гастромаркет и BlackHat бар</h3><div class="ex-split"><a href="https://vk.ru/wall204412765_1679" target="_blank" rel="noopener"><span>Апрель</span>Смотреть запись →</a><a href="https://vk.ru/wall204412765_1658" target="_blank" rel="noopener"><span>Март</span>Смотреть запись →</a></div></article>
+<article class="ex-card compact ex-t-auc" data-k="auc"><div class="ex-meta">2021 · Москва</div><h3>Bidspirit · онлайн-аукцион LOT TV</h3><div class="ex-split"><a href="https://youtu.be/C_ihJNLrWIw?t=2598" target="_blank" rel="noopener"><span>#21 · с 43:18</span>Смотреть запись →</a><a href="https://vk.ru/wall204412765_1596" target="_blank" rel="noopener"><span>#16</span>Смотреть запись →</a></div></article>
+<article class="ex-card compact ex-t-exh" data-k="exh"><div class="ex-meta">2019 · Москва</div><h3>Галерея Want&amp;Paint</h3><div class="ex-split"><a href="https://vk.ru/wall-157175276_143" target="_blank" rel="noopener"><span>«Экологический кризис»</span>Смотреть запись →</a><a href="https://vk.ru/wall-157175276_134" target="_blank" rel="noopener"><span>«Выставка 25 молодых художников»</span>Смотреть запись →</a></div></article>
 </div>
 <details class="archive" id="exArchive"><summary>Конкурсы и события без записи →</summary>
 <div class="archive-row ex-t-cmp" data-k="cmp"><span class="archive-year">2019</span><strong>Галерея Menier · конкурс Pebeo Mixed Media</strong><span>запись не добавлена</span></div>
