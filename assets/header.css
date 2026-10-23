@@ -43,3 +43,18 @@ header .logo{flex:0 0 auto}
 }
 @media(max-width:800px){header .logo img.logo-mark{height:48px;margin:-4px 0}}
 @media(max-width:400px){header .container{width:calc(100% - 24px)}header nav{gap:8px}header .logo img.logo-mark{height:38px;margin:0}.nav-cta-m{padding:0 12px}.mobile-menu-btn{padding:0 11px}}
+
+/* Круглые контурные иконки контактов (about.html, раздел «Живой контур»; в духе блока контактов главной) */
+.kc-ico-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 8px;margin-top:20px;justify-items:center}
+.kc-ico{display:flex;flex-direction:column;align-items:center;gap:7px;width:100%;color:var(--gold);text-decoration:none;text-align:center}
+.kc-ring{display:flex;align-items:center;justify-content:center;width:56px;height:56px;border:1px solid var(--gold,#b69a68);border-radius:50%;color:var(--gold,#b69a68);transition:border-color .2s,color .2s,transform .2s,background .2s}
+.kc-ico:hover .kc-ring,.kc-ico:focus-visible .kc-ring{border-color:#e9dfc9;color:#e9dfc9;background:rgba(182,154,104,.1);transform:translateY(-3px)}
+.kc-ico:focus-visible{outline:none}.kc-ico:focus-visible .kc-ring{outline:2px solid #e9dfc9;outline-offset:3px}
+.kc-lb{font:500 12px/1.25 "Manrope",sans-serif;color:var(--muted,#a9a28f);overflow-wrap:anywhere;max-width:100%}
+.kc-ico:hover .kc-lb{color:#e9dfc9}
+.kc-ico-duo{display:flex;justify-content:center;gap:26px;margin-top:6px}.kc-ico-duo .kc-ico{width:auto}
+.kc-mail{display:flex;align-items:center;gap:12px;min-height:76px;padding:12px 14px;border:1px solid var(--gold,#b69a68);border-radius:14px;background:var(--gold,#b69a68);color:#101710;font:600 19px/1.3 "Manrope",sans-serif;text-decoration:none;transition:background .2s}
+.kc-mail:hover{background:#e9dfc9}.kc-mail svg{flex:none}
+.kc-mail .mt{display:flex;flex-direction:column;line-height:1.2;min-width:0}.kc-mail small{font-size:15px;font-weight:500;opacity:.85;overflow-wrap:anywhere}
+.kc-more{margin:22px 0 12px;font-size:14px;color:var(--muted,#a9a28f);text-align:center}
+@media(max-width:560px){.kc-ico-list:not(.kc-ico-duo){gap:16px 4px}.kc-mail{font-size:18px}.kc-mail small{font-size:14px}}
