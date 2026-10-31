@@ -45,8 +45,8 @@ header .logo{flex:0 0 auto}
 @media(max-width:400px){header .container{width:calc(100% - 24px)}header nav{gap:8px}header .logo img.logo-mark{height:38px;margin:0}.nav-cta-m{padding:0 12px}.mobile-menu-btn{padding:0 11px}}
 
 /* Круглые контурные иконки контактов (about.html, раздел «Живой контур»; в духе блока контактов главной) */
-.kc-ico-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 8px;margin-top:20px;justify-items:center}
-.kc-ico{display:flex;flex-direction:column;align-items:center;gap:7px;width:100%;color:var(--gold);text-decoration:none;text-align:center}
+.kc-ico-list{display:flex;flex-wrap:wrap;justify-content:center;gap:18px 14px;margin:20px auto 0;max-width:390px}
+.kc-ico{display:flex;flex-direction:column;align-items:center;gap:7px;width:76px;color:var(--gold);text-decoration:none;text-align:center}
 .kc-ring{display:flex;align-items:center;justify-content:center;width:56px;height:56px;border:1px solid var(--gold,#b69a68);border-radius:50%;color:var(--gold,#b69a68);transition:border-color .2s,color .2s,transform .2s,background .2s}
 .kc-ico:hover .kc-ring,.kc-ico:focus-visible .kc-ring{border-color:#e9dfc9;color:#e9dfc9;background:rgba(182,154,104,.1);transform:translateY(-3px)}
 .kc-ico:focus-visible{outline:none}.kc-ico:focus-visible .kc-ring{outline:2px solid #e9dfc9;outline-offset:3px}
