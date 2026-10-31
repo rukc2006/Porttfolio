@@ -143,7 +143,7 @@ h2{
 .chips{display:flex; flex-wrap:wrap; gap:8px}
 /* Кнопка раздела — в золотой рамке: это вход внутрь приложения,
    и он должен читаться как кнопка, а не как подпись. */
-.chips a{
+.chips a,.chips span{
   font-size:13px; text-decoration:none; padding:8px 16px;
   border:1px solid var(--gold); color:var(--ink-soft); transition:.2s;
 }
@@ -324,7 +324,7 @@ body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
         <div class="stack">JS без фреймворков · Google Apps Script ·
           SheetJS · Electron · Android WebView · PWA</div>
         <div class="acts">
-          <a class="gold" href="06-dashboard-center/ПК-Windows/site/Projects.html">Открыть витрину</a>
+          <a class="gold" href="АРХИТЕКТУРА.html#center">Разбор проекта</a>
           <a href="АРХИТЕКТУРА.html#center">Архитектура</a>
           <a href="АРХИТЕКТУРА.html#dashboards">Разбор всех разделов</a>
         </div>
@@ -333,19 +333,19 @@ body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
       <div class="feature-side">
         <div class="lbl">Разделы</div>
         <div class="chips">
-          <a href="06-dashboard-center/ПК-Windows/site/index.html">Прибыли и убытки · 1С</a>
-          <a href="06-dashboard-center/ПК-Windows/site/KapsDash.html">Разбор заказа на сырьё</a>
-          <a href="06-dashboard-center/ПК-Windows/site/foxdash.html">Производство</a>
-          <a href="06-dashboard-center/ПК-Windows/site/SOWY.html">Остатки по площадкам</a>
-          <a href="06-dashboard-center/ПК-Windows/site/ADSdash.html">Реклама и ставки</a>
-          <a href="06-dashboard-center/ПК-Windows/site/OMDash.html">Календарь отгрузок</a>
-          <a href="06-dashboard-center/ПК-Windows/site/EXEC.html">Сводка руководителя</a>
-          <a href="06-dashboard-center/ПК-Windows/site/calcOZONlog.html">Калькулятор Ozon</a>
-          <a href="06-dashboard-center/ПК-Windows/site/calcWB.html">Калькулятор Wildberries</a>
-          <a href="06-dashboard-center/ПК-Windows/site/reglament/index.html">Академия регламентов</a>
-          <a href="06-dashboard-center/ПК-Windows/site/monkey_bot_dashboard.html">Единый портал</a>
-          <a href="06-dashboard-center/ПК-Windows/site/data.html">Справочник источников</a>
-          <a href="06-dashboard-center/ПК-Windows/site/start.html">Стартовая</a>
+          <span>Прибыли и убытки · 1С</span>
+          <span>Разбор заказа на сырьё</span>
+          <span>Производство</span>
+          <span>Остатки по площадкам</span>
+          <span>Реклама и ставки</span>
+          <span>Календарь отгрузок</span>
+          <span>Сводка руководителя</span>
+          <span>Калькулятор Ozon</span>
+          <span>Калькулятор Wildberries</span>
+          <span>Академия регламентов</span>
+          <span>Единый портал</span>
+          <span>Справочник источников</span>
+          <span>Стартовая</span>
         </div>
       </div>
     </div>
@@ -361,7 +361,7 @@ body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
           снимков остатков за прошлые дни.</p>
         <div class="stack">Python · JS · SVG-карта · один файл</div>
         <div class="acts">
-          <a class="gold" href="02-ozon-logistics-dashboard/Дашборд_логистика_Ozon.html">Открыть</a>
+          <a class="gold" href="АРХИТЕКТУРА.html#logistics">Разбор проекта</a>
           <a href="АРХИТЕКТУРА.html#logistics">Как устроено</a>
         </div>
       </div>
@@ -376,8 +376,7 @@ body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
         <div class="stack">Docker Compose · FastAPI · PostgreSQL · NGINX ·
           Grafana · Loki · Jaeger · React · TypeScript</div>
         <div class="acts">
-          <a class="gold" href="08-dance-studio/nginx/static/prototype.html">Открыть интерфейс</a>
-          <a href="08-dance-studio/index.html">Разбор проекта</a>
+          <a class="gold" href="АРХИТЕКТУРА.html#dance">Разбор проекта</a>
         </div>
       </div>
 
@@ -389,7 +388,7 @@ body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
           системы на том же движке карточек.</p>
         <div class="stack">JS · SM-2 · PWA · Android · Electron</div>
         <div class="acts">
-          <a class="gold" href="04-koro-app/index.html">Открыть</a>
+          <a class="gold" href="АРХИТЕКТУРА.html#koro">Разбор проекта</a>
           <a href="АРХИТЕКТУРА.html#koro">Как устроено</a>
         </div>
       </div>
@@ -405,7 +404,7 @@ body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
         <div class="stack">SVG-карта своей отрисовкой · прогноз по истории ·
           страховой запас · без внешних библиотек</div>
         <div class="acts">
-          <a class="gold" href="10-map-forecast/index.html">Открыть</a>
+          <a class="gold" href="АРХИТЕКТУРА.html#forecast">Разбор проекта</a>
           <a href="АРХИТЕКТУРА.html#forecast">Как устроено</a>
         </div>
       </div>
@@ -430,7 +429,7 @@ body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
           повторы при отказе площадки по лимиту и то, что остановилось совсем.</p>
         <div class="stack">n8n-логика · расписание · повторы · один файл</div>
         <div class="acts">
-          <a class="gold" href="07-small-dashboards/automations.html">Открыть</a>
+          <a class="gold" href="АРХИТЕКТУРА.html#small">Разбор проекта</a>
           <a href="АРХИТЕКТУРА.html#small">Как устроено</a>
         </div>
       </div>
@@ -442,7 +441,7 @@ body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
           и где ставить очередь вместо прямого запроса.</p>
         <div class="stack">квоты · 429 и повторы · задержки по часам</div>
         <div class="acts">
-          <a class="gold" href="07-small-dashboards/integrations.html">Открыть</a>
+          <a class="gold" href="АРХИТЕКТУРА.html#small">Разбор проекта</a>
           <a href="АРХИТЕКТУРА.html#small">Как устроено</a>
         </div>
       </div>
@@ -454,7 +453,7 @@ body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
           <strong>какую модель ставить в какой шаг</strong>.</p>
         <div class="stack">набор примеров · оценка · стоимость токенов</div>
         <div class="acts">
-          <a class="gold" href="07-small-dashboards/model-quality.html">Открыть</a>
+          <a class="gold" href="АРХИТЕКТУРА.html#small">Разбор проекта</a>
           <a href="АРХИТЕКТУРА.html#small">Как устроено</a>
         </div>
       </div>
@@ -469,7 +468,7 @@ body.om-light-theme *::-webkit-scrollbar-thumb{ background:rgba(120,90,25,.32);
         <div class="acts">
           <a class="gold" href="ИИ-НАВЫКИ.html">Открыть</a>
           <a href="АРХИТЕКТУРА.html#ai">Как устроено</a>
-          <a href="07-small-dashboards/index.html">Все небольшие работы</a>
+          <a href="index.html#small">Все небольшие работы</a>
         </div>
       </div>
 
