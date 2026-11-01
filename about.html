@@ -812,7 +812,7 @@ section[id],article[id]{scroll-margin-top:96px}
   if(!link || !/Android/i.test(navigator.userAgent)) return;
   var target=new URL(link.href);
   var fallback=encodeURIComponent(target.href);
-  link.href='intent://'+target.host+target.pathname+target.search+'#Intent;scheme=https;package=com.tencent.mm;S.browser_fallback_url='+fallback+';end';
+  link.href='intent://'+target.host+target.pathname+target.search+'#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url='+fallback+';end';
 })();
 </script>
 <script src="assets/i18n.js"></script>
