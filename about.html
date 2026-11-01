@@ -399,6 +399,17 @@ section[id],article[id]{scroll-margin-top:96px}
 #live-contact .place::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#0b100b;border:1px solid var(--gold);color:var(--paper);padding:7px 11px;border-radius:6px;font-size:12px;letter-spacing:.02em;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:20}
 #live-contact .place:hover::after,#live-contact .place:focus-visible::after{opacity:1}
 #all-contacts{scroll-margin-top:110px}.edu-card{position:relative;display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:50px;padding:26px 28px;border:1px solid rgba(182,154,104,.45);border-radius:12px;background:linear-gradient(135deg,rgba(23,32,24,.9),rgba(16,23,16,.9))}.edu-card:hover{border-color:var(--gold)}.edu-card .ec-ic{color:var(--gold);display:flex}.edu-card .ec-tx{flex:1;min-width:220px}.edu-card h3{font-size:clamp(28px,3.4vw,38px);color:var(--paper)}.edu-card p{margin:6px 0 0;color:var(--muted);font-size:15px}.edu-card .ec-btn{margin-top:0}.edu-card .ec-btn:after{content:"";position:absolute;inset:0;border-radius:12px}
+/* Мобильная защита от горизонтального сдвига контактного блока */
+@media(max-width:900px){
+ html,body{max-width:100%;overflow-x:clip}
+ #live-contact,#live-contact>.container,#live-contact .live-contact-grid,#live-contact .live-contact-card{min-width:0;max-width:100%}
+ #live-contact .live-contact-grid{grid-template-columns:minmax(0,1fr)!important;width:100%}
+ #live-contact .live-contact-card{width:100%;padding-inline:20px}
+ #live-contact .kc-ico-list,#live-contact .book-platform-icons,#live-contact .contact-book-icons{width:100%;max-width:100%;min-width:0;flex-wrap:wrap;justify-content:center}
+ #live-contact .kc-ico,#live-contact .book-platform-icon{flex:0 1 68px;max-width:100%}
+ #live-contact p,#live-contact .kc-lb{overflow-wrap:anywhere}
+ #live-contact .kc-mail{width:100%;max-width:100%;min-width:0}
+}
 </style>
 
 <style>
@@ -696,7 +707,7 @@ section[id],article[id]{scroll-margin-top:96px}
         <a class="kc-ico" data-track href="https://www.behance.net/ru2006kc" target="_blank" rel="noopener" aria-label="Behance" title="Behance"><span class="kc-ring"><svg viewBox="0 0 48 48" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 12 L8.4 36 L21 36 C29.6 36 29.6 24.6 21 24.6 L8.2 24.6"/><path d="M8.2 12 L20 12 C27 12 27 24.6 20 24.6"/><path d="M29.6 15.4 L40.4 15.4"/><path d="M29.6 28.4 L41.4 28.4 C41.4 21.6 30 20.6 29.6 29.4 C29.8 38 38.6 37.6 40.6 33.6"/></svg></span><span class="kc-lb">Behance</span></a>
         <a class="kc-ico" data-track href="https://pin.it/5vPnUHx" target="_blank" rel="noopener" aria-label="Pinterest" title="Pinterest"><span class="kc-ring"><svg viewBox="0 0 48 48" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="17"/><path d="M22 41 L25.4 28"/><path d="M19.6 28 C15.4 20 21 14.6 26.4 15.4 C32 16.4 32.4 23 29 26.4 C27 28.4 24 27.6 23.2 24.8"/></svg></span><span class="kc-lb">Pinterest</span></a>
         <a class="kc-ico" data-track href="https://vc.ru/id6141556" target="_blank" rel="noopener" aria-label="vc.ru" title="vc.ru"><span class="kc-ring"><svg viewBox="0 0 48 48" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 16 L13.4 33 L20.5 16"/><path d="M41 19.6 C34 11.4 25.6 20 27.6 27 C29.6 34 37.4 33 41.4 28.6"/></svg></span><span class="kc-lb">vc.ru</span></a>
-        <a class="kc-ico" data-track href="weixin://contacts/profile/wxid_lbjwub7kws0322" aria-label="Открыть контакт в WeChat" title="WeChat"><span class="kc-ring"><svg viewBox="0 0 48 48" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M23 9C13.6 9 6 14.6 6 21.5c0 4 2.5 7.5 6.5 9.7l-1.4 5.3 6.8-3.6c1.6.4 3.3.6 5.1.6 9.4 0 17-5.6 17-12.5S32.4 9 23 9Z"/><path d="M29 27.5c0 5.2 5.4 9.5 12 9.5 1.2 0 2.4-.2 3.5-.5l-4.7-2.8"/><circle cx="17" cy="20" r=".8" fill="currentColor"/><circle cx="28" cy="20" r=".8" fill="currentColor"/><circle cx="35" cy="32" r=".6" fill="currentColor"/></svg></span><span class="kc-lb">WeChat</span></a>
+        <a class="kc-ico" data-track href="https://u.wechat.com/kJ5VTCiAlnc9YOWy1Ge_UTc?s=4" aria-label="Добавить меня в WeChat" title="WeChat"><span class="kc-ring"><svg viewBox="0 0 48 48" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M23 9C13.6 9 6 14.6 6 21.5c0 4 2.5 7.5 6.5 9.7l-1.4 5.3 6.8-3.6c1.6.4 3.3.6 5.1.6 9.4 0 17-5.6 17-12.5S32.4 9 23 9Z"/><path d="M29 27.5c0 5.2 5.4 9.5 12 9.5 1.2 0 2.4-.2 3.5-.5l-4.7-2.8"/><circle cx="17" cy="20" r=".8" fill="currentColor"/><circle cx="28" cy="20" r=".8" fill="currentColor"/><circle cx="35" cy="32" r=".6" fill="currentColor"/></svg></span><span class="kc-lb">WeChat</span></a>
       </div>
     </article>
     <article class="live-contact-card" id="contacts">
