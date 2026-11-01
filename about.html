@@ -410,6 +410,19 @@ section[id],article[id]{scroll-margin-top:96px}
  #live-contact p,#live-contact .kc-lb{overflow-wrap:anywhere}
  #live-contact .kc-mail{width:100%;max-width:100%;min-width:0}
 }
+
+/* WeChat QR popup */
+.kc-wechat-trigger{appearance:none;border:0;background:none;padding:0;font:inherit;cursor:pointer}
+.wechat-qr-dialog{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.76);backdrop-filter:blur(5px)}
+.wechat-qr-dialog[hidden]{display:none}
+.wechat-qr-card{position:relative;width:min(420px,100%);padding:32px 24px 26px;border:1px solid var(--gold);border-radius:18px;background:var(--bg2);color:var(--cream);text-align:center;box-shadow:0 24px 80px rgba(0,0,0,.55)}
+.wechat-qr-card h2{font-size:36px;line-height:1.1;margin:0 36px 10px}
+.wechat-qr-card p{margin:0 0 20px;color:var(--muted);font-size:14px;line-height:1.5}
+.wechat-qr-image{display:block;width:min(300px,100%);height:auto;margin:0 auto;padding:10px;border-radius:12px;background:#fff;image-rendering:pixelated}
+.wechat-qr-close{position:absolute;top:10px;right:12px;width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--cream);font:300 28px/1 Manrope, sans-serif;cursor:pointer}
+.wechat-qr-close:hover,.wechat-qr-close:focus-visible{border-color:var(--gold);color:var(--gold)}
+.wechat-qr-close:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media(max-width:480px){.wechat-qr-card{padding:30px 18px 22px}.wechat-qr-card h2{font-size:31px}.wechat-qr-image{width:min(270px,100%)}}
 </style>
 
 <style>
@@ -707,7 +720,7 @@ section[id],article[id]{scroll-margin-top:96px}
         <a class="kc-ico" data-track href="https://www.behance.net/ru2006kc" target="_blank" rel="noopener" aria-label="Behance" title="Behance"><span class="kc-ring"><svg viewBox="0 0 48 48" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 12 L8.4 36 L21 36 C29.6 36 29.6 24.6 21 24.6 L8.2 24.6"/><path d="M8.2 12 L20 12 C27 12 27 24.6 20 24.6"/><path d="M29.6 15.4 L40.4 15.4"/><path d="M29.6 28.4 L41.4 28.4 C41.4 21.6 30 20.6 29.6 29.4 C29.8 38 38.6 37.6 40.6 33.6"/></svg></span><span class="kc-lb">Behance</span></a>
         <a class="kc-ico" data-track href="https://pin.it/5vPnUHx" target="_blank" rel="noopener" aria-label="Pinterest" title="Pinterest"><span class="kc-ring"><svg viewBox="0 0 48 48" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="17"/><path d="M22 41 L25.4 28"/><path d="M19.6 28 C15.4 20 21 14.6 26.4 15.4 C32 16.4 32.4 23 29 26.4 C27 28.4 24 27.6 23.2 24.8"/></svg></span><span class="kc-lb">Pinterest</span></a>
         <a class="kc-ico" data-track href="https://vc.ru/id6141556" target="_blank" rel="noopener" aria-label="vc.ru" title="vc.ru"><span class="kc-ring"><svg viewBox="0 0 48 48" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 16 L13.4 33 L20.5 16"/><path d="M41 19.6 C34 11.4 25.6 20 27.6 27 C29.6 34 37.4 33 41.4 28.6"/></svg></span><span class="kc-lb">vc.ru</span></a>
-        <a class="kc-ico" data-track href="https://msngr.link/wc/wxid_Ibjwub7kws0322" aria-label="Добавить меня в WeChat" title="WeChat"><span class="kc-ring"><svg viewBox="0 0 48 48" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M23 9C13.6 9 6 14.6 6 21.5c0 4 2.5 7.5 6.5 9.7l-1.4 5.3 6.8-3.6c1.6.4 3.3.6 5.1.6 9.4 0 17-5.6 17-12.5S32.4 9 23 9Z"/><path d="M29 27.5c0 5.2 5.4 9.5 12 9.5 1.2 0 2.4-.2 3.5-.5l-4.7-2.8"/><circle cx="17" cy="20" r=".8" fill="currentColor"/><circle cx="28" cy="20" r=".8" fill="currentColor"/><circle cx="35" cy="32" r=".6" fill="currentColor"/></svg></span><span class="kc-lb">WeChat</span></a>
+        <button class="kc-ico kc-wechat-trigger" type="button" aria-label="Показать QR-код WeChat" title="WeChat" aria-haspopup="dialog" aria-controls="wechatQrDialog"><span class="kc-ring"><svg viewBox="0 0 48 48" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M23 9C13.6 9 6 14.6 6 21.5c0 4 2.5 7.5 6.5 9.7l-1.4 5.3 6.8-3.6c1.6.4 3.3.6 5.1.6 9.4 0 17-5.6 17-12.5S32.4 9 23 9Z"/><path d="M29 27.5c0 5.2 5.4 9.5 12 9.5 1.2 0 2.4-.2 3.5-.5l-4.7-2.8"/><circle cx="17" cy="20" r=".8" fill="currentColor"/><circle cx="28" cy="20" r=".8" fill="currentColor"/><circle cx="35" cy="32" r=".6" fill="currentColor"/></svg></span><span class="kc-lb">WeChat</span></button>
       </div>
     </article>
     <article class="live-contact-card" id="contacts">
@@ -734,6 +747,16 @@ section[id],article[id]{scroll-margin-top:96px}
 </div>
 </section>
 </main>
+
+
+<div class="wechat-qr-dialog" id="wechatQrDialog" hidden>
+  <section class="wechat-qr-card" role="dialog" aria-modal="true" aria-labelledby="wechatQrTitle" aria-describedby="wechatQrHint">
+    <button class="wechat-qr-close" type="button" aria-label="Закрыть QR-код">×</button>
+    <h2 id="wechatQrTitle">WeChat</h2>
+    <p id="wechatQrHint">Отсканируй QR-код в WeChat, чтобы добавить меня в друзья.</p>
+    <img class="wechat-qr-image" src="assets/icons/wechat-qr.svg?v=1" width="300" height="300" alt="QR-код WeChat: ru2006kc">
+  </section>
+</div>
 
 <footer>
 <div class="container foot-brand"><a class="foot-logo" href="#top" aria-label="Наверх"><img src="assets/kcradle-wordmark-light.png" alt="KRADLE · Мастерская-Колыбель" width="190" height="94" loading="lazy"></a><div>© Ксения Комарова · Мастерская-Колыбель<br><span style="opacity:.6;font-size:12px">Сайт считает визиты без cookies и без личных данных.</span><br><span class="legal-short" style="font-size:12px;color:#e9dfc9;opacity:.6">Материалы сайта носят ознакомительный характер и не являются публичной офертой. Цены ориентировочные.</span></div><div class="foot-links" style="margin-top:10px"><a href="Kcradle.html">Главная</a> · <a href="artist.html">Художник</a> · <a href="cv.html">CV для галерей</a> · <a href="gift.html">Подарок</a> · <a href="guides.html">Гайды</a></div>
@@ -807,6 +830,22 @@ section[id],article[id]{scroll-margin-top:96px}
 })();
 </script>
 
+
+<script>
+(function(){
+  const trigger=document.querySelector('.kc-wechat-trigger');
+  const overlay=document.getElementById('wechatQrDialog');
+  if(!trigger||!overlay)return;
+  const closeButton=overlay.querySelector('.wechat-qr-close');
+  let previousFocus=null;
+  function openDialog(){previousFocus=document.activeElement;overlay.hidden=false;document.body.style.overflow='hidden';closeButton.focus()}
+  function closeDialog(){overlay.hidden=true;document.body.style.overflow='';if(previousFocus)previousFocus.focus()}
+  trigger.addEventListener('click',openDialog);
+  closeButton.addEventListener('click',closeDialog);
+  overlay.addEventListener('click',function(event){if(event.target===overlay)closeDialog()});
+  document.addEventListener('keydown',function(event){if(!overlay.hidden&&event.key==='Escape')closeDialog()});
+})();
+</script>
 <script src="assets/i18n.js"></script>
 </body>
 </html>
