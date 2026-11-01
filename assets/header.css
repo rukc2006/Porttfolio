@@ -47,7 +47,7 @@ header .logo{flex:0 0 auto}
 /* Круглые контурные иконки контактов (about.html, раздел «Живой контур»; в духе блока контактов главной) */
 .kc-ico-list{display:flex;flex-wrap:wrap;justify-content:center;gap:18px 14px;margin:20px auto 0;max-width:390px}
 .kc-ico{display:flex;flex-direction:column;align-items:center;gap:7px;width:76px;color:var(--gold);text-decoration:none;text-align:center}
-.wechat-copy{border:0;background:transparent;padding:0;font:inherit;cursor:pointer}.wechat-copy-hint,.wechat-copy-status{margin:12px auto 0;max-width:36em;text-align:center;color:var(--muted,#a9a28f);font-size:13px}.wechat-copy-status:empty{display:none}
+
 .kc-ring{display:flex;align-items:center;justify-content:center;width:56px;height:56px;border:1px solid var(--gold,#b69a68);border-radius:50%;color:var(--gold,#b69a68);transition:border-color .2s,color .2s,transform .2s,background .2s}
 .kc-ico:hover .kc-ring,.kc-ico:focus-visible .kc-ring{border-color:#e9dfc9;color:#e9dfc9;background:rgba(182,154,104,.1);transform:translateY(-3px)}
 .kc-ico:focus-visible{outline:none}.kc-ico:focus-visible .kc-ring{outline:2px solid #e9dfc9;outline-offset:3px}
