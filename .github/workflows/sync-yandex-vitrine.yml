@@ -108,6 +108,13 @@ jobs:
                   sections.append({'name': section, 'files': files})
 
           data = {'root': [], 'sections': sections}
+          from pathlib import Path
+          import sys
+          sys.path.insert(0, '.github/scripts')
+          from works_overrides import apply_overrides
+          override_path = Path('.works-manifest-overrides.json')
+          if override_path.is_file():
+              data = apply_overrides(data, json.loads(override_path.read_text(encoding='utf-8')))
           (OUT / 'manifest.json').write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
           print(json.dumps(data, ensure_ascii=False, indent=2))
           if OLD.exists():
