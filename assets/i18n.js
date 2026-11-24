@@ -120,7 +120,7 @@
   function load(cb) {
     if (lang === 'ru' || lang === 'dump') { dict = {}; cb(); return; }
     var x = new XMLHttpRequest();
-    x.open('GET', BASE + 'i18n/' + lang + '.json?v=20261124a', true);
+    x.open('GET', BASE + 'i18n/' + lang + '.json?v=20261124b', true);
     x.onload = function () { try { dict = JSON.parse(x.responseText) || {}; } catch (e) { dict = {}; } cb(); };
     x.onerror = function () { dict = {}; cb(); };
     x.send();
@@ -136,7 +136,10 @@
     document.querySelectorAll('iframe').forEach(function (frame) {
       try { frame.contentWindow.postMessage({ type: 'kc-language-change', lang: l }, location.origin); } catch (e) {}
     });
-    load(applyAll);
+    load(function () {
+      applyAll();
+      document.dispatchEvent(new CustomEvent('kc:language-change', { detail: { lang: lang } }));
+    });
     try { var u = new URL(location.href); u.searchParams.delete('lang'); history.replaceState(null, '', u.toString()); } catch (e) {}
   }
   window.addEventListener('message', function (event) {
@@ -222,7 +225,11 @@
       setTimeout(dump, 2500);
       return;
     }
-    load(function () { applyAll(); observe(); });
+    load(function () {
+      applyAll();
+      observe();
+      document.dispatchEvent(new CustomEvent('kc:language-change', { detail: { lang: lang } }));
+    });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();

@@ -136,14 +136,17 @@ body.lb-lock{overflow:hidden}
 @media(prefers-reduced-motion:reduce){.portrait{animation:none}}
  .embedded .artist-cv-header{display:none!important}
 .ex-blk .container{position:relative}
-.travel-eyes{display:flex;align-items:center;gap:8px;width:max-content;margin:22px 0 24px;color:#b8c3b7}
-.travel-eye{position:relative;display:block;width:47px;height:28px;border:1px solid rgba(223,155,130,.72);border-radius:50% 50% 48% 48% / 60% 60% 40% 40%;background:#e9dfc9;overflow:hidden;transform:rotate(-3deg)}
-.travel-eye:nth-child(2){transform:rotate(3deg)}
-.travel-eye:before{content:"";position:absolute;inset:4px 12px;border-radius:50%;background:#49675f}
-.travel-eye i{position:absolute;left:50%;top:50%;width:9px;height:9px;border-radius:50%;background:#101710;transform:translate(-50%,-50%);transition:transform .12s ease-out}
-.travel-eyes small{margin-left:8px;font:8px/1.6 "DM Mono",monospace;letter-spacing:.12em;color:#9eafa4}
-@media(max-width:700px){.travel-eyes{margin:18px 0 20px}.travel-eye{width:40px;height:24px}}
-@media(prefers-reduced-motion:reduce){.travel-eye i{transition:none}}
+ .ex-timeline{margin:26px 0 24px;padding:16px 18px;border:1px solid rgba(233,223,201,.2);background:rgba(7,24,22,.54)}
+ .ex-timeline-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:13px}
+ .ex-timeline-head div{display:grid;gap:4px}.ex-timeline-head span{font:8px/1.4 "DM Mono",monospace;letter-spacing:.14em;color:#df9b82}
+ .ex-timeline-head strong{font:400 20px/1.2 "Cormorant Garamond",Georgia,serif;color:#e9dfc9}
+ .ex-timeline-head output{font:9px/1.4 "DM Mono",monospace;letter-spacing:.08em;color:#a9c9c5;white-space:nowrap}
+ .ex-years{display:flex;gap:7px;overflow-x:auto;padding:1px 1px 6px;scrollbar-width:thin;scrollbar-color:rgba(223,155,130,.45) transparent}
+ .ex-years button{flex:0 0 auto;border:1px solid rgba(233,223,201,.24);border-radius:999px;padding:8px 12px;background:transparent;color:#e9dfc9;font:11px/1.2 "Manrope",sans-serif;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+ .ex-years button:hover{border-color:#df9b82;transform:translateY(-1px)}.ex-years button[aria-pressed="true"]{background:#df9b82;border-color:#df9b82;color:#10211e}
+ .ex-card[hidden]{display:none!important}.ex-card{transition:opacity .2s,transform .2s}
+ @media(max-width:700px){.ex-timeline{margin:20px 0;padding:13px}.ex-timeline-head strong{font-size:18px}.ex-years button{padding:8px 10px;font-size:10px}}
+ @media(prefers-reduced-motion:reduce){.ex-years button{transition:none}}
 </style></head>
 <body id="top">
 <header class="site artist-cv-header"><div class="container"><nav><a class="logo" href="https://rukc2006.github.io/Porttfolio/artist.html#view" target="_top" aria-label="Ксения Комарова — страница художницы"><img class="logo-mark" src="assets/hudozhnik/artist-logo.webp" alt="" width="44" height="44"><span class="logo-name">Ксения Комарова</span></a><div class="navlinks" data-i18n-descend><a href="https://rukc2006.github.io/Porttfolio/artist.html#view" target="_top">Мой взгляд</a><a href="#works">Работы</a><a href="#exhibitions">Выставки</a><a href="#bio">Обо мне</a><a href="https://rukc2006.github.io/Porttfolio/about.html#all-contacts" target="_top">Контакты</a></div><button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu">Меню</button></nav><div class="mobile-menu" id="mobileMenu"><div class="mobile-menu-inner"><a href="https://rukc2006.github.io/Porttfolio/artist.html#view" target="_top">Мой взгляд</a><a href="#works">Работы</a><a href="#exhibitions">Выставки</a><a href="#bio">Обо мне</a><a href="https://rukc2006.github.io/Porttfolio/about.html#all-contacts" target="_top">Контакты</a></div></div></div></header>
@@ -207,7 +210,10 @@ body.lb-lock{overflow:hidden}
   <div class="section-kicker">Выставки и конкурсы художника</div>
   <h2>Работы уже<br>путешествовали.</h2>
   <p class="ex-geo">Выставки, аукционы и конкурсы собраны в одном списке. Он обновляется вместе со страницами «Художник» и CV; сначала показаны новые события.</p>
-  <div class="travel-eyes" data-travel-eyes aria-label="Взгляд следует за указателем" role="img"><span class="travel-eye"><i></i></span><span class="travel-eye"><i></i></span><small>ВЗГЛЯД СЛЕДУЕТ<br>ЗА ИСТОРИЕЙ</small></div>
+  <div class="ex-timeline" aria-label="Хронология выставок">
+    <div class="ex-timeline-head"><div><span>ХРОНИКА ВЫСТАВОК</span><strong>Весь путь</strong></div><output data-ex-count aria-live="polite">15 событий</output></div>
+    <div class="ex-years" id="exYears" aria-label="Выбрать год"></div>
+  </div>
   <div class="ex-legend" id="exFilter"></div>
   <div class="ex-grid" id="exhibitionCards" aria-live="polite"></div>
 </div></section>

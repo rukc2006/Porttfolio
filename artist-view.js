@@ -32,12 +32,75 @@ artDialog?.addEventListener('click', (event) => {
   if (event.target === artDialog) artDialog.close();
 });
 
-// Artwork interactions: a tactile compare slider, a magnifying glass bubble,
-// and a small card-swap carousel. All controls remain usable by touch/keyboard.
+// Compare any two paintings from the page, then move the divider to inspect them.
 document.querySelectorAll('[data-compare]').forEach((stage) => {
   const range = stage.querySelector('input[type="range"]');
+  const selects = [...document.querySelectorAll('[data-compare-layer]')];
+  const base = stage.querySelector(':scope > img');
+  const top = stage.querySelector('.compare-top img');
+  const baseLabel = stage.querySelector('.compare-label-a');
+  const topLabel = stage.querySelector('.compare-label-b');
+  const note = stage.parentElement.querySelector('[data-compare-description]') || stage.nextElementSibling;
+  const current = { base: base?.getAttribute('src'), top: top?.getAttribute('src') };
+  const choices = new Map();
+  const clean = (value) => (value || '').replace(/\s+/g, ' ').trim();
+  const sourceName = (node, image) => {
+    const button = node.matches('button') ? node : node.closest('button');
+    const named = button?.dataset.artName || button?.dataset.name;
+    if (named) return clean(named);
+    const title = node.querySelector?.('h3')?.getAttribute('data-ru') || node.querySelector?.('h3')?.textContent;
+    if (title) return clean(title.replace(/<[^>]+>/g, ' '));
+    return clean(image.getAttribute('data-ru-alt') || image.alt || image.getAttribute('src').split('/').pop().replace(/[-_]/g, ' ').replace(/\.[^.]+$/, ''));
+  };
+  const gatherChoices = () => {
+    document.querySelectorAll('.artwork-slide, .swap-art, .study-art').forEach((node) => {
+      const image = node.matches('img') ? node : node.querySelector('img');
+      if (!image) return;
+      const src = image.getAttribute('src');
+      if (!src || choices.has(src)) return;
+      choices.set(src, { src, name: sourceName(node, image) });
+    });
+    [base, top].filter(Boolean).forEach((image) => {
+      const src = image.getAttribute('src');
+      if (src && !choices.has(src)) choices.set(src, { src, name: sourceName(image, image) });
+    });
+  };
+  const translatedName = (name) => typeof window.kcT === 'function' ? window.kcT(name) : name;
+  const updateLayer = (select, image, label) => {
+    const choice = choices.get(select.value);
+    if (!choice || !image) return;
+    image.src = choice.src;
+    image.alt = translatedName(choice.name);
+    if (label) label.textContent = translatedName(choice.name).toUpperCase();
+  };
+  const buildPickers = () => {
+    if (!choices.size) gatherChoices();
+    selects.forEach((select) => {
+      const layer = select.dataset.compareLayer;
+      const wanted = current[layer] || select.value;
+      select.replaceChildren(...[...choices.values()].map((choice) => {
+        const option = document.createElement('option');
+        option.value = choice.src;
+        option.textContent = translatedName(choice.name);
+        return option;
+      }));
+      if (choices.has(wanted)) select.value = wanted;
+      const image = layer === 'base' ? base : top;
+      const label = layer === 'base' ? baseLabel : topLabel;
+      updateLayer(select, image, label);
+      select.onchange = () => {
+        current[layer] = select.value;
+        updateLayer(select, image, label);
+      };
+    });
+    if (note) note.textContent = translatedName('Выберите любые две работы и двигайте границу, чтобы сравнить их цвет и фактуру.');
+  };
   range?.addEventListener('input', () => stage.style.setProperty('--compare', `${range.value}%`));
+  document.addEventListener('kc:language-change', buildPickers);
+  if (window.kcT) buildPickers();
 });
+
+// Artwork interactions: a magnifying glass bubble and a card-swap carousel.
 
 document.querySelectorAll('[data-glass]').forEach((stage) => {
   const image = stage.querySelector('img');

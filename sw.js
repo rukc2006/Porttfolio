@@ -280,7 +280,7 @@ self.addEventListener("fetch", (event) => {
   // художницы и обратно сразу отражали актуальные ссылки.
   if ([
     "Kcradle.html", "about.html", "artist.html", "artist-view.html",
-    "artist-cv.html", "cv.html", "cv_print.html",
+    "artist-cv.html", "book.html", "cv.html", "cv_print.html",
     "assets/i18n.js", "assets/i18n/en.json", "assets/i18n/zh.json",
     "artist-view.css", "artist-view.js", "assets/artist/exhibitions-ui.js"
   ].includes(key)) return;

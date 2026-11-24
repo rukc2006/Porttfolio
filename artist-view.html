@@ -50,6 +50,10 @@
         <div class="interactive-grid">
           <article class="interactive-card compare-card">
             <p class="interactive-kicker">ДВА СОСТОЯНИЯ ЦВЕТА</p><h4>Передвигайте границу</h4>
+            <div class="compare-pickers">
+              <label><span>Фоновый слой</span><select data-compare-layer="base" aria-label="Выбрать картину для фонового слоя"></select></label>
+              <label><span>Передний слой</span><select data-compare-layer="top" aria-label="Выбрать картину для переднего слоя"></select></label>
+            </div>
             <div class="image-compare" data-compare style="--compare:50%">
               <img src="assets/artist/12_flamingo.jpg" alt="Акварель Фламинго, розовые птицы на бирюзовом фоне" loading="lazy">
               <div class="compare-top"><img src="assets/artist/07_lunny_svet.jpg" alt="Масло Лунный свет, ночной синий пейзаж" loading="lazy"></div>
@@ -57,7 +61,7 @@
               <input type="range" min="0" max="100" value="50" aria-label="Сравнить две картины">
               <span class="compare-handle" aria-hidden="true">↔</span>
             </div>
-            <p class="interactive-note">Акварель «Фламинго» и масляный «Лунный свет»: два разных способа собрать цвет.</p>
+            <p class="interactive-note">Выберите любые две работы и двигайте границу, чтобы сравнить их цвет и фактуру.</p>
           </article>
           <article class="interactive-card bubble-card">
             <p class="interactive-kicker">СЛОИ И МАЗКИ</p><h4>Посмотрите сквозь стекло</h4>
