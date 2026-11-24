@@ -10,7 +10,7 @@
 <meta property="og:title" content="CV для галерей · Ксения Комарова (Komarova Ksenia)">
 <meta property="og:description" content="Резюме художника Ксении Комаровой (Komarova Ksenia) для галерей: избранные работы, материалы и техники, выставки и конкурсы 2017–2026, краткая творческая биография.">
 <meta property="og:url" content="https://rukc2006.github.io/Porttfolio/cv.html">
-<meta property="og:image" content="https://rukc2006.github.io/Porttfolio/assets/artist/portrait.jpg">
+<meta property="og:image" content="https://rukc2006.github.io/Porttfolio/assets/artist/portrait-cv-head.jpg">
 <meta name="theme-color" content="#101710">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap">
 <link rel="stylesheet" href="assets/artist/site.css">
@@ -54,10 +54,14 @@ tr{break-inside:avoid}
 .cv-ex-y .ex-w{display:block;font-size:11.5px;color:#5a6254}
 .cv-geo{font-size:12.5px;color:#4d5547;margin:0 0 6px!important}
 .cv-bio p{font-size:13px;line-height:1.6}
+.cv-bio-portrait{float:right;width:32%;margin:1px 0 8px 14px}
+.cv-bio-portrait img{display:block;width:100%;height:auto}
+.cv-bio:after{content:"";display:block;clear:both}
 .print-only{display:none}
 @media(max-width:700px){.cv-wrap{padding-top:92px}.sheet{padding:30px 20px 28px;font-size:14px}.cv-head{grid-template-columns:92px 1fr;gap:16px}.cv-head img{width:92px;height:115px}.cv-head h1{font-size:23px}.cv-head h1 small{font-size:12px}
  .two,.two.bottom{display:block}.two dl.kv{grid-template-columns:1fr}.two.bottom>div+div{margin-top:24px}
  dl.kv{grid-template-columns:1fr;gap:0}dl.kv dd{margin-bottom:10px}
+ .cv-bio-portrait{width:34%;margin:1px 0 8px 10px}
  .thumbs{grid-template-columns:repeat(4,1fr)}
  table.wk{font-size:12px}table.wk th,table.wk td{padding-right:6px}table.wk .c-med{display:none}}
 @media print{
@@ -80,6 +84,7 @@ tr{break-inside:avoid}
  .two.bottom{margin-top:0;gap:0 8mm;grid-template-columns:1.25fr 1fr;break-before:page}
  .cv-ex-y{grid-template-columns:11mm 1fr;border-bottom:.4pt solid #999;padding:1mm 0}
  .cv-ex-y h3{font-size:9.5pt}.cv-ex-y ul{font-size:8.5pt;line-height:1.35}.cv-bio p{font-size:9pt}
+ .cv-bio-portrait{width:30mm;margin:0 0 1.5mm 3mm}
  .print-only{display:block;margin-top:5mm;font-size:8pt;color:#333}
  a{color:#000!important}
 }
@@ -95,7 +100,7 @@ tr{break-inside:avoid}
   <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="button solid" type="button" onclick="window.print()">Скачать PDF / печать</button><a class="button" href="cv/Komarova_Ksenia_CV.pdf" download>Готовый PDF</a><a class="button" data-track="cv-образование" href="education.html">Образование и путь</a><a class="button" href="artist.html">Портфолио</a></div></div>
 <article class="sheet">
   <div class="cv-head">
-    <img src="assets/artist/portrait.jpg" alt="Ксения Комарова" width="256" height="320">
+    <img class="cv-head-portrait" src="assets/artist/portrait-cv-head.jpg" alt="Ксения Комарова" width="800" height="1000">
     <div>
       <h1>Ксения Комарова<small>Komarova Ksenia</small></h1>
       <p class="cv-role">Художник · Москва</p>
@@ -132,7 +137,7 @@ tr{break-inside:avoid}
       <p class="cv-geo">География участия: Москва, Лондон и Афины (онлайн-проекты).</p>
 <div id="cvExhibitions"></div>
     </div>
-    <div class="cv-bio"><svg class="bulb" viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M24 14c-5.5 0-9.5 4-9.5 9 0 3.4 1.8 5.6 3.6 7.6 1 1.1 1.6 2.3 1.6 3.9v.5h8.6v-.5c0-1.6.6-2.8 1.6-3.9 1.8-2 3.6-4.2 3.6-7.6 0-5-4-9-9.5-9z"/><path d="M20 38h8M21.2 41.6h5.6"/><path d="M24 3.5v4.6M11.8 8.4l3.1 3.3M36.2 8.4l-3.1 3.3"/></svg><h2>Краткая творческая биография</h2>
+    <div class="cv-bio"><svg class="bulb" viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M24 14c-5.5 0-9.5 4-9.5 9 0 3.4 1.8 5.6 3.6 7.6 1 1.1 1.6 2.3 1.6 3.9v.5h8.6v-.5c0-1.6.6-2.8 1.6-3.9 1.8-2 3.6-4.2 3.6-7.6 0-5-4-9-9.5-9z"/><path d="M20 38h8M21.2 41.6h5.6"/><path d="M24 3.5v4.6M11.8 8.4l3.1 3.3M36.2 8.4l-3.1 3.3"/></svg><h2>Краткая творческая биография</h2><figure class="cv-bio-portrait"><img src="assets/artist/portrait-cv-full.jpg" alt="Ксения Комарова, полный портрет" width="1100" height="1650" loading="lazy"></figure>
       <p>Я архитектор маленьких миров. Соединяю рисунок и IT: в живописи ищу образ, в работе с данными и автоматизацией строю системы, и в обоих случаях меня занимает одно и то же: как из смысла и вдохновения собрать устойчивую форму.</p><p>Родилась и живу в Москве. Рисовать начала в изостудии «Планета молодых» под руководством А. А. Соловьёва (член СХ СССР с 1985 г.): направление «художественно-графический рисунок», 2005 год.</p><p>Основные материалы: холст, бумага, масло и акварель. Техники: алла прима, импасто, традиционная, а в ряде работ мастихин. Направления, в которых я работаю: символизм, экспрессионизм, импрессионизм и абстракция. Постоянно ищу новые формы и добавляю в работы что-то новое.</p><p>Есть дополнительное образование, и я постоянно узнаю новое.</p><p>С 2017 года участвую в конкурсах и выставках в Москве и онлайн: от конкурса «Битва художников» до персональных выставок 2021 года и международных онлайн-проектов (список выставок отдельно). Развиваю проект «Мастерская-Колыбель»: маленькие миры, символы и тёплые предметы.</p>
     </div>
   </div>
