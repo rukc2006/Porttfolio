@@ -338,3 +338,13 @@
 .author-intro .author-copy h1{font-family:var(--serif);font-weight:400;letter-spacing:-.055em;line-height:1.08}
 .author-intro .author-copy h1 em{font-weight:400;font-style:italic;color:var(--clay-pale)}
 
+
+
+.artist-tabs{display:flex;justify-content:center;gap:10px;padding:14px 20px;background:#0b1d1b;border-bottom:1px solid var(--line);position:relative;z-index:5}
+.artist-tab{appearance:none;border:1px solid var(--line);border-radius:999px;background:transparent;color:#b6c2b8;padding:11px 28px;font:500 12px/1.2 var(--sans);letter-spacing:.03em;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.artist-tab:hover{border-color:var(--clay-pale);color:var(--paper)}
+.artist-tab.is-active,.artist-tab[aria-selected="true"]{background:var(--clay);border-color:var(--clay);color:#10211e}
+.artist-panel[hidden]{display:none!important}
+.cv-panel{background:#f7f4ec;min-height:80vh}
+.cv-panel iframe{display:block;width:100%;min-height:1100px;border:0;background:#f7f4ec}
+@media(max-width:680px){.artist-tabs{padding:11px 12px;gap:8px}.artist-tab{padding:10px 18px;font-size:11px}.cv-panel iframe{min-height:1000px}}
