@@ -1,6 +1,14 @@
 const menuButton = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.main-nav');
 
+window.addEventListener('message', (event) => {
+  if (event.origin !== location.origin || event.data?.type !== 'kc-scroll-exhibitions') return;
+  document.querySelector('#exhibitions')?.scrollIntoView({
+    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+    block: 'start'
+  });
+});
+
 menuButton?.addEventListener('click', () => {
   const expanded = menuButton.getAttribute('aria-expanded') === 'true';
   menuButton.setAttribute('aria-expanded', String(!expanded));

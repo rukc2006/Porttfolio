@@ -1,46 +1,249 @@
-(function(){
+(function () {
   'use strict';
-  var labels={pers:'Персональные',intl:'Международные',onl:'Онлайн-выставки',auc:'Аукционы',exh:'Выставки',cmp:'Конкурсы',mkt:'Маркеты'};
-  var views=[{root:'exCards',menu:'exMenu',timeline:'exYears'},{root:'exhibitionCards',menu:'exFilter',timeline:'exYears'},{root:'cvExhibitions',mode:'years'}];
-  var states={},items=[];
-  function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-  function tr(v){return typeof window.kcT==='function'?window.kcT(v):v}
-  function validType(v){return Object.prototype.hasOwnProperty.call(labels,v)?v:'exh'}
-  function eventCard(x){
-    var type=validType(x.type),place=x.place?(' · '+tr(x.place)):'';
-    return '<article class="ex-card compact ex-t-'+type+' t-'+type+' x-'+type+'" data-k="'+type+'" data-y="'+Number(x.year)+'"><div class="ex-meta">'+esc(x.year)+esc(place)+'</div><h3>'+esc(tr(x.title))+'</h3><p>'+esc(tr(x.detail||''))+'</p>'+(x.note?'<p class="ex-note">'+esc(tr(x.note))+'</p>':'')+(x.url?'<a class="button" href="'+esc(x.url)+'" target="_blank" rel="noopener">'+esc(tr('Подробнее →'))+'</a>':'')+'</article>';
+
+  var labels = {
+    pers: 'Персональные',
+    intl: 'Международные',
+    onl: 'Онлайн-выставки',
+    auc: 'Аукционы',
+    exh: 'Выставки',
+    cmp: 'Конкурсы',
+    mkt: 'Маркеты'
+  };
+  var views = [
+    { root: 'exCards', menu: 'exMenu', timeline: 'exYears' },
+    { root: 'exhibitionCards', menu: 'exFilter', timeline: 'exYears' },
+    { root: 'cvExhibitions', mode: 'years' }
+  ];
+  var states = {};
+  var items = [];
+
+  function esc(value) {
+    return String(value == null ? '' : value).replace(/[&<>"']/g, function (char) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char];
+    });
   }
-  function yearList(list){
-    var years={};list.forEach(function(x){(years[x.year]||(years[x.year]=[])).push(x)});
-    return Object.keys(years).sort(function(a,b){return Number(b)-Number(a)}).map(function(y){return '<section class="cv-ex-y" aria-label="'+esc(y)+'"><h3>'+esc(y)+'</h3><ul>'+years[y].map(function(x){var type=validType(x.type);return '<li class="x-'+type+'"><strong>'+esc(tr(x.title))+'</strong>'+(x.detail?'<span class="ex-w">'+esc(tr(x.detail))+'</span>':'')+(x.url?'<a class="cv-ex-link" href="'+esc(x.url)+'" target="_blank" rel="noopener">'+esc(tr('Открыть материал ↗'))+'</a>':'')+'</li>'}).join('')+'</ul></section>'}).join('');
+
+  function tr(value) {
+    return typeof window.kcT === 'function' ? window.kcT(value) : value;
   }
-  function makeYearButtons(view,root){
-    var years={};items.forEach(function(x){years[x.year]=(years[x.year]||0)+1});
-    var timeline=document.getElementById(view.timeline);if(!timeline)return;
-    timeline.innerHTML='<button type="button" data-y="all" aria-pressed="true">'+esc(tr('Весь путь'))+' · '+items.length+'</button>'+Object.keys(years).sort(function(a,b){return Number(a)-Number(b)}).map(function(y){return '<button type="button" data-y="'+esc(y)+'" aria-pressed="false">'+esc(y)+' · '+years[y]+'</button>'}).join('');
-    timeline.onclick=function(e){var b=e.target.closest('button[data-y]');if(!b)return;states[view.root].year=b.dataset.y;timeline.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});applyFilter(view,root)};
+
+  function validType(value) {
+    return Object.prototype.hasOwnProperty.call(labels, value) ? value : 'exh';
   }
-  function applyFilter(view,root){
-    var state=states[view.root],visible=0;
-    root.querySelectorAll('.ex-card[data-k]').forEach(function(c){var show=(state.type==='all'||c.dataset.k===state.type)&&(state.year==='all'||c.dataset.y===state.year);c.hidden=!show;if(show)visible++});
-    var output=document.querySelector('.ex-timeline [data-ex-count]');
-    if(output&&view.timeline){var year=state.year==='all'?tr('Все годы'):state.year;output.textContent=year+' · '+visible+' '+tr('событий')}
+
+  function filteredEvents(state) {
+    return items.filter(function (item) {
+      return (state.type === 'all' || validType(item.type) === state.type)
+        && (state.year === 'all' || String(item.year) === state.year);
+    });
   }
-  function render(){
-    views.forEach(function(view){
-      var root=document.getElementById(view.root),menu=view.menu&&document.getElementById(view.menu);if(!root)return;
-      if(!states[view.root])states[view.root]={type:'all',year:'all'};
-      root.innerHTML=view.mode==='years'?yearList(items):items.map(eventCard).join('');
-      if(view.mode==='years')return;
-      if(menu){
-        menu.innerHTML='<button type="button" class="ex-all on" data-f="all" aria-pressed="true">'+esc(tr('Все'))+' · '+items.length+'</button>'+Object.keys(labels).filter(function(k){return items.some(function(x){return validType(x.type)===k})}).map(function(k){return '<button type="button" class="ex-t-'+k+' lg-'+k+' x-'+k+'" data-f="'+k+'" aria-pressed="false">'+esc(tr(labels[k]))+' · '+items.filter(function(x){return validType(x.type)===k}).length+'</button>'}).join('');
-        menu.onclick=function(e){var b=e.target.closest('button[data-f]');if(!b)return;states[view.root].type=b.dataset.f;menu.querySelectorAll('button[data-f]').forEach(function(x){x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});applyFilter(view,root)};
+
+  function eventCard(item) {
+    var type = validType(item.type);
+    var place = item.place ? ' · ' + tr(item.place) : '';
+    return '<article class="ex-card compact ex-t-' + type + ' t-' + type + ' x-' + type + '" data-k="' + type + '" data-y="' + Number(item.year) + '">'
+      + '<div class="ex-meta">' + esc(item.year) + esc(place) + '</div>'
+      + '<h3>' + esc(tr(item.title)) + '</h3>'
+      + '<p>' + esc(tr(item.detail || '')) + '</p>'
+      + (item.note ? '<p class="ex-note">' + esc(tr(item.note)) + '</p>' : '')
+      + (item.url ? '<a class="button" href="' + esc(item.url) + '" target="_blank" rel="noopener">' + esc(tr('Подробнее →')) + '</a>' : '')
+      + '</article>';
+  }
+
+  function eventExplorer(view, root) {
+    var state = states[view.root];
+    var visible = filteredEvents(state);
+    var output = document.querySelector('.ex-timeline [data-ex-count]');
+    if (output) {
+      var yearLabel = state.year === 'all' ? tr('Все годы') : state.year;
+      output.textContent = yearLabel + ' · ' + visible.length + ' ' + tr('событий');
+    }
+    if (!visible.length) {
+      root.innerHTML = '<div class="ex-explorer-empty">' + esc(tr('Для этого фильтра событий нет.')) + '</div>';
+      return;
+    }
+
+    var active = visible.find(function (item) { return item._id === state.selectedId; }) || visible[0];
+    state.selectedId = active._id;
+    var activeIndex = visible.indexOf(active);
+    var type = validType(active.type);
+    var place = active.place ? ' · ' + tr(active.place) : '';
+    var choices = visible.map(function (item, index) {
+      var itemType = validType(item.type);
+      return '<button class="ex-event-choice" type="button" data-event-select="' + item._id + '" aria-pressed="' + (item._id === active._id) + '">'
+        + '<span class="ex-choice-year">' + esc(item.year) + '</span>'
+        + '<span class="ex-choice-title">' + esc(tr(item.title)) + '</span>'
+        + '<span class="ex-choice-type ex-choice-' + itemType + '">' + esc(tr(labels[itemType])) + '</span>'
+        + '<span class="ex-choice-index">' + String(index + 1).padStart(2, '0') + '</span>'
+        + '</button>';
+    }).join('');
+
+    root.innerHTML = '<div class="ex-explorer">'
+      + '<article class="ex-event-spotlight ex-event-' + type + '" aria-live="polite">'
+      + '<div class="ex-spotlight-top"><span class="ex-spotlight-label">' + esc(tr('ВЫСТАВОЧНОЕ СОБЫТИЕ')) + '</span>'
+      + '<span class="ex-spotlight-count">' + String(activeIndex + 1).padStart(2, '0') + ' / ' + String(visible.length).padStart(2, '0') + '</span></div>'
+      + '<div class="ex-spotlight-meta"><span>' + esc(active.year) + esc(place) + '</span><span class="ex-spotlight-type">' + esc(tr(labels[type])) + '</span></div>'
+      + '<h3>' + esc(tr(active.title)) + '</h3>'
+      + '<p class="ex-spotlight-detail">' + esc(tr(active.detail || '')) + '</p>'
+      + (active.note ? '<p class="ex-spotlight-note">' + esc(tr(active.note)) + '</p>' : '')
+      + '<div class="ex-spotlight-controls">'
+      + '<button type="button" data-ex-step="-1" aria-label="' + esc(tr('Предыдущее событие')) + '">←</button>'
+      + '<span>' + String(activeIndex + 1).padStart(2, '0') + ' / ' + String(visible.length).padStart(2, '0') + '</span>'
+      + '<button type="button" data-ex-step="1" aria-label="' + esc(tr('Следующее событие')) + '">→</button>'
+      + (active.url ? '<a href="' + esc(active.url) + '" target="_blank" rel="noopener">' + esc(tr('Посмотреть публикацию ↗')) + '</a>' : '')
+      + '</div></article>'
+      + '<aside class="ex-event-rail" aria-label="' + esc(tr('Хронология событий')) + '">'
+      + '<div class="ex-rail-head"><span>' + esc(tr('ЛИНИЯ ВРЕМЕНИ')) + '</span><span>' + String(visible.length).padStart(2, '0') + '</span></div>'
+      + '<div class="ex-event-list">' + choices + '</div></aside></div>';
+  }
+
+  function yearList(list) {
+    var years = {};
+    list.forEach(function (item) { (years[item.year] || (years[item.year] = [])).push(item); });
+    return Object.keys(years).sort(function (a, b) { return Number(b) - Number(a); }).map(function (year) {
+      return '<section class="cv-ex-y" aria-label="' + esc(year) + '"><h3>' + esc(year) + '</h3><ul>'
+        + years[year].map(function (item) {
+          var type = validType(item.type);
+          return '<li class="x-' + type + '"><strong>' + esc(tr(item.title)) + '</strong>'
+            + (item.detail ? '<span class="ex-w">' + esc(tr(item.detail)) + '</span>' : '')
+            + (item.url ? '<a class="cv-ex-link" href="' + esc(item.url) + '" target="_blank" rel="noopener">' + esc(tr('Открыть материал ↗')) + '</a>' : '')
+            + '</li>';
+        }).join('') + '</ul></section>';
+    }).join('');
+  }
+
+  function updateCount(view, state) {
+    var timeline = document.getElementById(view.timeline);
+    if (!timeline) return;
+    var count = filteredEvents(state).length;
+    var year = state.year === 'all' ? tr('Все годы') : state.year;
+    var output = document.querySelector('.ex-timeline [data-ex-count]');
+    if (output) output.textContent = year + ' · ' + count + ' ' + tr('событий');
+  }
+
+  function makeYearButtons(view, root) {
+    var years = {};
+    items.forEach(function (item) { years[item.year] = (years[item.year] || 0) + 1; });
+    var timeline = document.getElementById(view.timeline);
+    if (!timeline) return;
+    timeline.innerHTML = '<button type="button" data-y="all" aria-pressed="true">' + esc(tr('Весь путь')) + ' · ' + items.length + '</button>'
+      + Object.keys(years).sort(function (a, b) { return Number(a) - Number(b); }).map(function (year) {
+        return '<button type="button" data-y="' + esc(year) + '" aria-pressed="false">' + esc(year) + ' · ' + years[year] + '</button>';
+      }).join('');
+    timeline.onclick = function (event) {
+      var button = event.target.closest('button[data-y]');
+      if (!button) return;
+      states[view.root].year = button.dataset.y;
+      timeline.querySelectorAll('button').forEach(function (item) { item.setAttribute('aria-pressed', String(item === button)); });
+      applyFilter(view, root);
+    };
+  }
+
+  function setupExplorer(view, root) {
+    if (root.dataset.explorerReady) return;
+    root.dataset.explorerReady = 'true';
+    root.addEventListener('click', function (event) {
+      var state = states[view.root];
+      var select = event.target.closest('[data-event-select]');
+      if (select) {
+        state.selectedId = Number(select.dataset.eventSelect);
+        eventExplorer(view, root);
+        return;
       }
-      if(view.timeline)makeYearButtons(view,root);
-      applyFilter(view,root);
+      var step = event.target.closest('[data-ex-step]');
+      if (step) {
+        var visible = filteredEvents(state);
+        var currentIndex = visible.findIndex(function (item) { return item._id === state.selectedId; });
+        var nextIndex = (currentIndex + Number(step.dataset.exStep) + visible.length) % visible.length;
+        state.selectedId = visible[nextIndex]._id;
+        eventExplorer(view, root);
+      }
+    });
+    var start = null;
+    root.addEventListener('touchstart', function (event) {
+      if (event.target.closest('.ex-event-spotlight')) start = { x: event.changedTouches[0].clientX, y: event.changedTouches[0].clientY };
+    }, { passive: true });
+    root.addEventListener('touchend', function (event) {
+      if (!start) return;
+      var dx = event.changedTouches[0].clientX - start.x;
+      var dy = event.changedTouches[0].clientY - start.y;
+      start = null;
+      if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy) * 1.25) return;
+      var state = states[view.root];
+      var visible = filteredEvents(state);
+      var currentIndex = visible.findIndex(function (item) { return item._id === state.selectedId; });
+      var nextIndex = (currentIndex + (dx < 0 ? 1 : -1) + visible.length) % visible.length;
+      state.selectedId = visible[nextIndex]._id;
+      eventExplorer(view, root);
+    }, { passive: true });
+  }
+
+  function applyFilter(view, root) {
+    var state = states[view.root];
+    if (root.closest('.exhibitions-interactive')) {
+      eventExplorer(view, root);
+      return;
+    }
+    var visible = 0;
+    root.querySelectorAll('.ex-card[data-k]').forEach(function (card) {
+      var show = (state.type === 'all' || card.dataset.k === state.type)
+        && (state.year === 'all' || card.dataset.y === state.year);
+      card.hidden = !show;
+      if (show) visible++;
+    });
+    updateCount(view, state);
+  }
+
+  function render() {
+    views.forEach(function (view) {
+      var root = document.getElementById(view.root);
+      var menu = view.menu && document.getElementById(view.menu);
+      if (!root) return;
+      if (!states[view.root]) states[view.root] = { type: 'all', year: 'all', selectedId: null };
+      if (view.mode === 'years') {
+        root.innerHTML = yearList(items);
+        return;
+      }
+      var explorer = root.closest('.exhibitions-interactive');
+      root.innerHTML = explorer ? '' : items.map(eventCard).join('');
+      if (explorer) setupExplorer(view, root);
+      if (menu) {
+        menu.innerHTML = '<button type="button" class="ex-all on" data-f="all" aria-pressed="true">' + esc(tr('Все')) + ' · ' + items.length + '</button>'
+          + Object.keys(labels).filter(function (key) { return items.some(function (item) { return validType(item.type) === key; }); }).map(function (key) {
+            return '<button type="button" class="ex-t-' + key + ' lg-' + key + ' x-' + key + '" data-f="' + key + '" aria-pressed="false">'
+              + esc(tr(labels[key])) + ' · ' + items.filter(function (item) { return validType(item.type) === key; }).length + '</button>';
+          }).join('');
+        menu.onclick = function (event) {
+          var button = event.target.closest('button[data-f]');
+          if (!button) return;
+          states[view.root].type = button.dataset.f;
+          menu.querySelectorAll('button[data-f]').forEach(function (item) {
+            item.classList.toggle('on', item === button);
+            item.setAttribute('aria-pressed', String(item === button));
+          });
+          applyFilter(view, root);
+        };
+      }
+      if (view.timeline) makeYearButtons(view, root);
+      applyFilter(view, root);
     });
     document.dispatchEvent(new Event('exhibitions:ready'));
   }
-  fetch('exhibitions.json?v=20261124-interactives-v2').then(function(r){if(!r.ok)throw Error('load');return r.json()}).then(function(data){items=data.slice().sort(function(a,b){return Number(b.year)-Number(a.year)});render()}).catch(function(){views.forEach(function(v){var root=document.getElementById(v.root);if(root)root.textContent=tr('Список выставок временно не загрузился.')});document.dispatchEvent(new Event('exhibitions:ready'))});
-  document.addEventListener('kc:language-change',function(){if(items.length)render()});
+
+  fetch('exhibitions.json?v=20261124-explorer-v1')
+    .then(function (response) { if (!response.ok) throw Error('load'); return response.json(); })
+    .then(function (data) {
+      items = data.slice().sort(function (a, b) { return Number(b.year) - Number(a.year); });
+      items.forEach(function (item, index) { item._id = index; });
+      render();
+    })
+    .catch(function () {
+      views.forEach(function (view) {
+        var root = document.getElementById(view.root);
+        if (root) root.textContent = tr('Список выставок временно не загрузился.');
+      });
+      document.dispatchEvent(new Event('exhibitions:ready'));
+    });
+  document.addEventListener('kc:language-change', function () { if (items.length) render(); });
 })();

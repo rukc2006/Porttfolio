@@ -464,3 +464,43 @@ html{scrollbar-color:#526b64 #0b1d1b;scrollbar-width:thin}
 .image-compare,.glass-art,.art-swap{border-radius:4px}
 .palette-sample>span{overflow-wrap:normal;word-break:normal;text-wrap:balance}
 @media(max-width:760px){.interactive-card h4{min-height:0}.interactive-note{font-size:13px}.compare-pickers select,.glass-picker select{font-size:13px}.palette-sample>span{font-size:8.5px}}
+
+/* Exhibition story: browse a year or type, then move through individual events. */
+.exhibitions-interactive .ex-timeline{border:0;padding:0;background:none;margin:0 0 12px}
+.exhibitions-interactive .ex-timeline-head{margin-bottom:12px}
+.exhibitions-interactive .ex-timeline-head strong{font-size:23px}
+.exhibitions-interactive .ex-years,.exhibitions-interactive .ex-legend{gap:7px}
+.exhibitions-interactive .ex-years button,.exhibitions-interactive .ex-legend button{min-height:36px;border-radius:3px;font-size:10px;letter-spacing:.02em}
+.exhibitions-interactive .ex-years button[aria-pressed=true],.exhibitions-interactive .ex-legend button.on{box-shadow:0 5px 18px rgba(213,140,115,.17)}
+.exhibitions-interactive .ex-legend{margin-bottom:16px}
+.exhibitions-interactive .ex-explorer{display:grid;grid-template-columns:minmax(0,1.38fr) minmax(270px,.72fr);gap:14px;min-height:440px}
+.exhibitions-interactive .ex-event-spotlight{position:relative;isolation:isolate;overflow:hidden;min-height:440px;padding:clamp(26px,4vw,52px);display:flex;flex-direction:column;align-items:flex-start;border:1px solid rgba(233,223,201,.2);border-left:3px solid var(--clay);background:radial-gradient(ellipse at 88% 15%,rgba(213,140,115,.13),transparent 38%),linear-gradient(135deg,#18332e,#0a1b19 78%);transition:background .3s,border-color .3s}
+.exhibitions-interactive .ex-event-spotlight:after{content:"";position:absolute;z-index:-1;width:280px;height:280px;right:-118px;top:-130px;border:1px solid rgba(231,155,130,.22);border-radius:50%;box-shadow:0 0 0 24px rgba(231,155,130,.025),0 0 0 54px rgba(231,155,130,.02)}
+.exhibitions-interactive .ex-spotlight-top,.exhibitions-interactive .ex-spotlight-meta{width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.exhibitions-interactive .ex-spotlight-label,.exhibitions-interactive .ex-spotlight-count,.exhibitions-interactive .ex-spotlight-meta,.exhibitions-interactive .ex-rail-head{font:9px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.exhibitions-interactive .ex-spotlight-label{color:var(--clay-pale)}
+.exhibitions-interactive .ex-spotlight-count{color:#81968c}
+.exhibitions-interactive .ex-spotlight-meta{justify-content:flex-start;margin-top:clamp(38px,7vh,76px);color:#b9c3b8}
+.exhibitions-interactive .ex-spotlight-type{padding:5px 8px;border:1px solid rgba(213,140,115,.35);color:var(--clay-pale);letter-spacing:.06em}
+.exhibitions-interactive .ex-event-spotlight h3{max-width:18ch;margin:18px 0 12px;font:400 clamp(31px,4vw,54px)/1.02 var(--serif);letter-spacing:-.035em;color:var(--paper)}
+.exhibitions-interactive .ex-spotlight-detail,.exhibitions-interactive .ex-spotlight-note{max-width:48ch;margin:0;color:#b7c4ba;font-size:14px;line-height:1.65}
+.exhibitions-interactive .ex-spotlight-note{margin-top:9px;color:#94aaa0;font-size:12px}
+.exhibitions-interactive .ex-spotlight-controls{display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:26px;color:#a9b8ad;font:10px var(--mono);letter-spacing:.08em}
+.exhibitions-interactive .ex-spotlight-controls button{width:38px;height:36px;border:1px solid rgba(233,223,201,.26);background:rgba(7,24,22,.32);color:var(--clay-pale);font-size:17px;cursor:pointer;transition:background .18s,color .18s,transform .18s}
+.exhibitions-interactive .ex-spotlight-controls button:hover{background:var(--clay);color:#10211e;transform:translateY(-2px)}
+.exhibitions-interactive .ex-spotlight-controls a{margin-left:12px;color:var(--clay-pale);text-decoration:none;border-bottom:1px solid rgba(213,140,115,.5);padding:0 0 4px;font:11px var(--sans);letter-spacing:0}
+.exhibitions-interactive .ex-event-rail{min-width:0;display:flex;flex-direction:column;padding:18px 18px 12px;border:1px solid rgba(233,223,201,.16);background:rgba(7,24,22,.38)}
+.exhibitions-interactive .ex-rail-head{display:flex;justify-content:space-between;padding:1px 2px 13px;color:#9eafa4}
+.exhibitions-interactive .ex-event-list{overflow:auto;max-height:390px;scrollbar-width:thin;scrollbar-color:#49635a transparent}
+.exhibitions-interactive .ex-event-choice{width:100%;display:grid;grid-template-columns:44px minmax(0,1fr) 78px;gap:9px;align-items:center;padding:13px 7px;border:0;border-top:1px solid rgba(233,223,201,.1);background:transparent;color:var(--paper);text-align:left;cursor:pointer;transition:background .18s,padding .18s}
+.exhibitions-interactive .ex-event-choice:hover,.exhibitions-interactive .ex-event-choice[aria-pressed=true]{padding-left:12px;background:linear-gradient(90deg,rgba(213,140,115,.14),transparent)}
+.exhibitions-interactive .ex-choice-year,.exhibitions-interactive .ex-choice-type,.exhibitions-interactive .ex-choice-index{font:8px/1.4 var(--mono);letter-spacing:.04em;color:#98aaa0}
+.exhibitions-interactive .ex-choice-title{font:400 16px/1.18 var(--serif);color:#d8d8cb}
+.exhibitions-interactive .ex-event-choice[aria-pressed=true] .ex-choice-title{color:var(--clay-pale)}
+.exhibitions-interactive .ex-choice-type{text-align:right}
+.exhibitions-interactive .ex-choice-index{color:#647a70;text-align:right}
+.exhibitions-interactive .ex-explorer-empty{padding:35px;border:1px solid var(--line);color:#b7c4ba}
+.exhibitions-interactive .exhibitions-more{margin-top:22px}
+@media(max-width:760px){.exhibitions-interactive .ex-explorer{grid-template-columns:1fr;min-height:0}.exhibitions-interactive .ex-event-spotlight{min-height:390px;padding:24px}.exhibitions-interactive .ex-spotlight-meta{margin-top:42px}.exhibitions-interactive .ex-event-spotlight h3{font-size:clamp(32px,9vw,46px)}.exhibitions-interactive .ex-event-rail{padding:15px 12px 8px}.exhibitions-interactive .ex-event-list{max-height:270px}.exhibitions-interactive .ex-event-choice{grid-template-columns:42px minmax(0,1fr) 70px;padding:12px 5px}.exhibitions-interactive .ex-spotlight-controls{flex-wrap:wrap}.exhibitions-interactive .ex-spotlight-controls a{margin-left:auto}}
+@media(max-width:420px){.exhibitions-interactive .ex-event-spotlight{min-height:370px;padding:20px}.exhibitions-interactive .ex-spotlight-meta{align-items:flex-start;flex-direction:column;gap:8px;margin-top:38px}.exhibitions-interactive .ex-event-choice{grid-template-columns:38px minmax(0,1fr) 62px;gap:6px}.exhibitions-interactive .ex-choice-title{font-size:15px}.exhibitions-interactive .ex-choice-type{font-size:7px}}
+@media(prefers-reduced-motion:reduce){.exhibitions-interactive .ex-event-choice,.exhibitions-interactive .ex-spotlight-controls button{transition:none}}
