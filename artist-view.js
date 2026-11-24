@@ -63,9 +63,11 @@ document.querySelectorAll('[data-glass]').forEach((stage) => {
 });
 
 document.querySelectorAll('[data-swap]').forEach((stack) => {
-  const cards = [...stack.querySelectorAll('.swap-art')];
+  let cards = [...stack.querySelectorAll('.swap-art')];
   const count = stack.parentElement.querySelector('[data-swap-count]');
   let front = 0;
+  let drag = null;
+  let suppressClickUntil = 0;
   const render = (step = 0) => {
     front = (front + step + cards.length) % cards.length;
     cards.forEach((card, i) => {
@@ -76,7 +78,65 @@ document.querySelectorAll('[data-swap]').forEach((stack) => {
     });
     if (count) count.textContent = `${String(front + 1).padStart(2, '0')} / ${String(cards.length).padStart(2, '0')}`;
   };
-  cards.forEach((card, i) => card.addEventListener('click', () => render((i - front + cards.length) % cards.length || 1)));
+  cards.forEach((card) => {
+    card.addEventListener('pointerdown', (event) => {
+      if (!event.isPrimary || event.button !== 0) return;
+      drag = { card, id: event.pointerId, x: event.clientX, y: event.clientY, active: false };
+    });
+    card.addEventListener('click', (event) => {
+      if (Date.now() < suppressClickUntil) { event.preventDefault(); event.stopPropagation(); return; }
+      const index = cards.indexOf(card);
+      render((index - front + cards.length) % cards.length || 1);
+    });
+  });
+  window.addEventListener('pointermove', (event) => {
+    if (!drag || event.pointerId !== drag.id) return;
+    const dx = event.clientX - drag.x, dy = event.clientY - drag.y;
+    if (!drag.active) {
+      if (Math.hypot(dx, dy) < 9) return;
+      if (event.pointerType === 'touch' && Math.abs(dy) > Math.abs(dx)) return;
+      drag.active = true;
+      drag.card.classList.add('is-dragging');
+      stack.classList.add('is-reordering');
+    }
+    if (event.cancelable) event.preventDefault();
+    drag.card.style.setProperty('--drag-x', `${dx}px`);
+    drag.card.style.setProperty('--drag-y', `${dy - 8}px`);
+    stack.querySelectorAll('.is-drop-target').forEach((card) => card.classList.remove('is-drop-target'));
+    const target = document.elementFromPoint(event.clientX, event.clientY)?.closest('.swap-art');
+    if (target && target !== drag.card && target.parentElement === stack) target.classList.add('is-drop-target');
+  }, { passive: false });
+  window.addEventListener('pointerup', (event) => {
+    if (!drag || event.pointerId !== drag.id) return;
+    const state = drag;
+    if (state.active) {
+      const target = document.elementFromPoint(event.clientX, event.clientY)?.closest('.swap-art');
+      if (target && target !== state.card && target.parentElement === stack) {
+        const rect = target.getBoundingClientRect();
+        const after = event.clientX > rect.left + rect.width / 2;
+        stack.insertBefore(state.card, after ? target.nextSibling : target);
+        cards = [...stack.querySelectorAll('.swap-art')];
+        front = cards.indexOf(state.card);
+        render();
+      }
+      suppressClickUntil = Date.now() + 500;
+    }
+    stack.querySelectorAll('.is-drop-target').forEach((card) => card.classList.remove('is-drop-target'));
+    state.card.classList.remove('is-dragging');
+    state.card.style.removeProperty('--drag-x');
+    state.card.style.removeProperty('--drag-y');
+    stack.classList.remove('is-reordering');
+    drag = null;
+  });
+  window.addEventListener('pointercancel', () => {
+    if (!drag) return;
+    drag.card.classList.remove('is-dragging');
+    drag.card.style.removeProperty('--drag-x');
+    drag.card.style.removeProperty('--drag-y');
+    stack.querySelectorAll('.is-drop-target').forEach((card) => card.classList.remove('is-drop-target'));
+    stack.classList.remove('is-reordering');
+    drag = null;
+  });
   stack.parentElement.querySelector('[data-swap-prev]')?.addEventListener('click', () => render(-1));
   stack.parentElement.querySelector('[data-swap-next]')?.addEventListener('click', () => render(1));
   render();

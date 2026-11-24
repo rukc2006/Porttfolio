@@ -120,18 +120,29 @@
   function load(cb) {
     if (lang === 'ru' || lang === 'dump') { dict = {}; cb(); return; }
     var x = new XMLHttpRequest();
-    x.open('GET', BASE + 'i18n/' + lang + '.json?v=20261024a', true);
+    x.open('GET', BASE + 'i18n/' + lang + '.json?v=20261124a', true);
     x.onload = function () { try { dict = JSON.parse(x.responseText) || {}; } catch (e) { dict = {}; } cb(); };
     x.onerror = function () { dict = {}; cb(); };
     x.send();
   }
-  function setLang(l) {
+  function setLang(l, fromParent) {
+    if (l !== 'ru' && l !== 'en' && l !== 'zh') return;
     lang = l;
     try { localStorage.setItem('kc_lang', l); } catch (e) {}
-    try { if (window.parent && window.parent !== window) window.parent.postMessage({ type: 'kc-language-change', lang: l }, location.origin); } catch (e) {}
+    if (!fromParent) {
+      try { if (window.parent && window.parent !== window) window.parent.postMessage({ type: 'kc-language-change', lang: l }, location.origin); } catch (e) {}
+    }
+    // Keep embedded pages in step with the language switch in their parent page.
+    document.querySelectorAll('iframe').forEach(function (frame) {
+      try { frame.contentWindow.postMessage({ type: 'kc-language-change', lang: l }, location.origin); } catch (e) {}
+    });
     load(applyAll);
     try { var u = new URL(location.href); u.searchParams.delete('lang'); history.replaceState(null, '', u.toString()); } catch (e) {}
   }
+  window.addEventListener('message', function (event) {
+    if (event.origin !== location.origin || !event.data || event.data.type !== 'kc-language-change') return;
+    if (event.data.lang === 'ru' || event.data.lang === 'en' || event.data.lang === 'zh') setLang(event.data.lang, true);
+  });
   // переключатель
   function buildSwitch(cls) {
     var w = document.createElement('div');

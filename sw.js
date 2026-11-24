@@ -278,7 +278,12 @@ self.addEventListener("fetch", (event) => {
   // Эти страницы обновляются как обычные файлы GitHub Pages. Не отдаём
   // устаревшие копии из архивных пакетов, чтобы переходы на портфолио
   // художницы и обратно сразу отражали актуальные ссылки.
-  if (["Kcradle.html", "about.html", "artist.html", "cv.html"].includes(key)) return;
+  if ([
+    "Kcradle.html", "about.html", "artist.html", "artist-view.html",
+    "artist-cv.html", "cv.html", "cv_print.html",
+    "assets/i18n.js", "assets/i18n/en.json", "assets/i18n/zh.json",
+    "artist-view.css", "artist-view.js", "assets/artist/exhibitions-ui.js"
+  ].includes(key)) return;
 
   const entry = FILES[key];
   if (!entry) return;   // настоящий файл на сервере — не мешаем
