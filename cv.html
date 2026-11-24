@@ -54,7 +54,12 @@ tr{break-inside:avoid}
 .cv-ex-y .ex-w{display:block;font-size:11.5px;color:#5a6254}
 .cv-geo{font-size:12.5px;color:#4d5547;margin:0 0 6px!important}
 .cv-bio p{font-size:13px;line-height:1.6}
-.cv-exhibitions,.cv-bio{grid-column:1/-1}
+.cv-exhibitions,.cv-bio,.cv-education{grid-column:1/-1}
+.cv-education{margin:0 0 19px}
+.cv-education h2{margin-top:0}
+.cv-education-list{columns:2;column-gap:26px;list-style:none;margin:0;padding:0;font-size:12px;line-height:1.45}
+.cv-education-list li{break-inside:avoid;margin:0 0 5px;padding-left:32px;position:relative}
+.cv-education-list li strong{position:absolute;left:0;color:#6b5a36;font-weight:600}
 .cv-ex-years{margin-top:10px}
 .cv-ex-y{display:grid;grid-template-columns:52px minmax(0,1fr);gap:0 10px;padding:7px 0;border-bottom:1px solid #d9d0bb;break-inside:avoid}
 .cv-ex-y h3{font-size:14px;letter-spacing:.06em;color:#6b5a36;line-height:1.5;margin:0}
@@ -68,6 +73,7 @@ tr{break-inside:avoid}
 .print-only{display:none}
 @media(max-width:700px){.cv-wrap{padding-top:92px}.sheet{padding:30px 20px 28px;font-size:14px}.cv-head{grid-template-columns:92px 1fr;gap:16px}.cv-head img{width:92px;height:115px}.cv-head h1{font-size:23px}.cv-head h1 small{font-size:12px}
  .two,.two.bottom{display:block}.two dl.kv{grid-template-columns:1fr}.two.bottom>div+div{margin-top:24px}
+ .cv-education-list{columns:1}
  dl.kv{grid-template-columns:1fr;gap:0}dl.kv dd{margin-bottom:10px}
  .cv-bio-portrait{width:34%;margin:1px 0 8px 10px}
  .thumbs{grid-template-columns:repeat(4,1fr)}
@@ -91,6 +97,12 @@ tr{break-inside:avoid}
  .two.bottom .bulb{color:#000;width:9mm;height:9mm;margin-bottom:1mm}
  .two.bottom{margin-top:0;gap:0 8mm;grid-template-columns:1.25fr 1fr;break-before:page;break-inside:auto}
  .cv-exhibitions,.cv-bio{grid-column:auto}
+ .cv-education{grid-column:1/-1}
+ .cv-education{margin-bottom:3mm}
+ .cv-education h2{font-size:11pt;margin:0 0 1.5mm;padding-bottom:1mm}
+ .cv-education-list{font-size:7.8pt;line-height:1.27;column-gap:7mm}
+ .cv-education-list li{margin-bottom:.8mm;padding-left:10mm}
+ .cv-education-list li strong{color:#222}
  .cv-ex-years{margin-top:1mm}
  .cv-ex-y{grid-template-columns:11mm 1fr;border-bottom:.4pt solid #999;padding:1mm 0}
  .cv-ex-y li[class^="x-"]{border-left:1mm solid rgb(var(--c));padding-left:1.5mm;margin:0 0 .5mm}
@@ -144,12 +156,24 @@ tr{break-inside:avoid}
   <p>Символизм, экспрессионизм, импрессионизм, абстракция.</p></div></div>
 
   <div class="two bottom">
+    <div class="cv-education" data-i18n-descend><h2>Художественное образование</h2><ul class="cv-education-list">
+<li data-i18n-descend><strong>2026</strong> Преподаватель изобразительного искусства и черчения — ЮРГПУ (НПИ), диплом о профессиональной переподготовке.</li>
+<li data-i18n-descend><strong>2026</strong> Методист дополнительного образования — МИППиПКП, диплом о профессиональной переподготовке.</li>
+<li data-i18n-descend><strong>2026</strong> Менеджмент в сфере культуры и искусства — КУЦ НПО «Меркурий Урал», диплом о профессиональной переподготовке.</li>
+<li data-i18n-descend><strong>2026</strong> Авторское право для дизайнера — НАРХСИ, удостоверение о повышении квалификации.</li>
+<li data-i18n-descend><strong>2026</strong> Основы дизайна — Formfactor Product Design School, сертификат.</li>
+<li data-i18n-descend><strong>2025</strong> Академический рисунок — Пентаскул, удостоверение о повышении квалификации.</li>
+<li data-i18n-descend><strong>2025</strong> История изобразительного искусства — Пентаскул, удостоверение о повышении квалификации.</li>
+<li data-i18n-descend><strong>2025</strong> Основы Adobe Photoshop — Нетология, сертификат.</li>
+<li data-i18n-descend><strong>2025</strong> Арт-терапия — НИИДОПО, удостоверение о повышении квалификации.</li>
+<li data-i18n-descend><strong>2005</strong> Изостудия «Планета молодых» — художественно-графический рисунок.</li>
+</ul></div>
     <div class="cv-exhibitions"><svg class="bulb" viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M24 14c-5.5 0-9.5 4-9.5 9 0 3.4 1.8 5.6 3.6 7.6 1 1.1 1.6 2.3 1.6 3.9v.5h8.6v-.5c0-1.6.6-2.8 1.6-3.9 1.8-2 3.6-4.2 3.6-7.6 0-5-4-9-9.5-9z"/><path d="M20 38h8M21.2 41.6h5.6"/><path d="M24 3.5v4.6M11.8 8.4l3.1 3.3M36.2 8.4l-3.1 3.3"/></svg><h2>Выставки и конкурсы</h2>
       <p class="cv-geo">География участия: Москва, Лондон и Афины (онлайн-проекты).</p>
 <div class="cv-ex-years" id="cvExhibitions" aria-live="polite"></div>
     </div>
     <div class="cv-bio"><svg class="bulb" viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M24 14c-5.5 0-9.5 4-9.5 9 0 3.4 1.8 5.6 3.6 7.6 1 1.1 1.6 2.3 1.6 3.9v.5h8.6v-.5c0-1.6.6-2.8 1.6-3.9 1.8-2 3.6-4.2 3.6-7.6 0-5-4-9-9.5-9z"/><path d="M20 38h8M21.2 41.6h5.6"/><path d="M24 3.5v4.6M11.8 8.4l3.1 3.3M36.2 8.4l-3.1 3.3"/></svg><h2>Краткая творческая биография</h2><figure class="cv-bio-portrait"><img src="assets/artist/portrait-cv-full.jpg" alt="Ксения Комарова, полный портрет" width="1100" height="1650" loading="lazy"></figure>
-      <p>Я архитектор маленьких миров. Соединяю рисунок и IT: в живописи ищу образ, в работе с данными и автоматизацией строю системы, и в обоих случаях меня занимает одно и то же: как из смысла и вдохновения собрать устойчивую форму.</p><p>Родилась и живу в Москве. Рисовать начала в изостудии «Планета молодых» под руководством А. А. Соловьёва (член СХ СССР с 1985 г.): направление «художественно-графический рисунок», 2005 год.</p><p>Основные материалы: холст, бумага, масло и акварель. Техники: алла прима, импасто, традиционная, а в ряде работ мастихин. Направления, в которых я работаю: символизм, экспрессионизм, импрессионизм и абстракция. Постоянно ищу новые формы и добавляю в работы что-то новое.</p><p>Есть дополнительное образование, и я постоянно узнаю новое.</p><p>С 2017 года участвую в конкурсах и выставках в Москве и онлайн: от конкурса «Битва художников» до персональных выставок 2021 года и международных онлайн-проектов (список выставок отдельно). Развиваю проект «Мастерская-Колыбель»: маленькие миры, символы и тёплые предметы.</p>
+      <p>Я архитектор маленьких миров. Соединяю рисунок и IT: в живописи ищу образ, в работе с данными и автоматизацией строю системы, и в обоих случаях меня занимает одно и то же: как из смысла и вдохновения собрать устойчивую форму.</p><p>Родилась и живу в Москве. Рисовать начала в изостудии «Планета молодых» под руководством А. А. Соловьёва (член СХ СССР с 1985 г.): направление «художественно-графический рисунок», 2005 год.</p><p>Основные материалы: холст, бумага, масло и акварель. Техники: алла прима, импасто, традиционная, а в ряде работ мастихин. Направления, в которых я работаю: символизм, экспрессионизм, импрессионизм и абстракция. Постоянно ищу новые формы и добавляю в работы что-то новое.</p><p>Продолжаю художественное образование: академический рисунок, история искусства, дизайн и преподавание изобразительного искусства.</p><p>С 2017 года участвую в конкурсах и выставках в Москве и онлайн: от конкурса «Битва художников» до персональных выставок 2021 года и международных онлайн-проектов (список выставок отдельно). Развиваю проект «Мастерская-Колыбель»: маленькие миры, символы и тёплые предметы.</p>
     </div>
   </div>
   <p class="print-only">Komarova Ksenia · https://rukc2006.github.io/Porttfolio/cv.html</p>
@@ -162,8 +186,8 @@ b.addEventListener('click',function(){var o=m.classList.toggle('open');b.setAttr
 m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');b.setAttribute('aria-expanded','false');b.textContent='Меню'})})})();
 </script>
 <script>if(new URLSearchParams(location.search).get('print')==='1'){document.addEventListener('exhibitions:ready',function(){if(document.querySelector('#cvExhibitions .cv-ex-y'))setTimeout(function(){window.print()},450)},{once:true})}</script>
-<script src="assets/artist/exhibitions-ui.js?v=20261124-explorer-v1"></script>
+<script src="assets/artist/exhibitions-ui.js?v=20261125-timeline-v1"></script>
 <script src="assets/counter.js"></script>
-<script src="assets/i18n-runtime.js?v=20261124-locale-v3"></script>
+<script src="assets/i18n-runtime.js?v=20261125-locale-v1"></script>
 </body>
 </html>

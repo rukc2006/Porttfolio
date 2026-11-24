@@ -110,6 +110,64 @@ document.querySelectorAll('[data-compare]').forEach((stage) => {
   if (window.kcT) buildPickers();
 });
 
+// Let visitors test the palette by applying a chosen color to the reproduction.
+document.querySelectorAll('.study-card').forEach((card) => {
+  const image = card.querySelector('.study-art');
+  const palette = card.querySelector('.palette');
+  if (!image || !palette || palette.dataset.colorPlayReady) return;
+  palette.dataset.colorPlayReady = 'true';
+
+  const frame = document.createElement('div');
+  frame.className = 'study-art-frame';
+  image.parentNode.insertBefore(frame, image);
+  frame.appendChild(image);
+  const tint = document.createElement('span');
+  tint.className = 'study-art-tint';
+  tint.setAttribute('aria-hidden', 'true');
+  frame.appendChild(tint);
+
+  const feedback = document.createElement('p');
+  feedback.className = 'palette-feedback';
+  feedback.setAttribute('aria-live', 'polite');
+  feedback.textContent = 'Клик по цвету изменит тон картины; повторный клик сбросит эффект.';
+  palette.insertAdjacentElement('afterend', feedback);
+
+  const samples = [...palette.querySelectorAll('.palette-sample')];
+  const reset = () => {
+    card.classList.remove('has-color-accent');
+    card.style.removeProperty('--active-color');
+    samples.forEach((sample) => sample.setAttribute('aria-pressed', 'false'));
+    feedback.textContent = typeof window.kcT === 'function'
+      ? window.kcT('Клик по цвету изменит тон картины; повторный клик сбросит эффект.')
+      : 'Клик по цвету изменит тон картины; повторный клик сбросит эффект.';
+  };
+  const activate = (sample) => {
+    const chip = sample.querySelector('i');
+    const name = sample.querySelector('span')?.textContent.trim() || '';
+    const color = chip?.style.getPropertyValue('--swatch').trim();
+    if (!color) return;
+    if (sample.getAttribute('aria-pressed') === 'true') { reset(); return; }
+    card.style.setProperty('--active-color', color);
+    card.classList.add('has-color-accent');
+    samples.forEach((item) => item.setAttribute('aria-pressed', String(item === sample)));
+    feedback.textContent = (typeof window.kcT === 'function' ? window.kcT('Цветовой акцент:') : 'Цветовой акцент:')
+      + ' ' + (typeof window.kcT === 'function' ? window.kcT(name) : name)
+      + ' · ' + (typeof window.kcT === 'function' ? window.kcT('повторный клик сбросит оттенок') : 'повторный клик сбросит оттенок');
+  };
+  samples.forEach((sample) => {
+    sample.setAttribute('aria-pressed', 'false');
+    sample.addEventListener('click', () => activate(sample));
+  });
+  document.addEventListener('kc:language-change', () => {
+    const active = samples.find((sample) => sample.getAttribute('aria-pressed') === 'true');
+    if (!active) { reset(); return; }
+    const name = active.querySelector('span')?.textContent.trim() || '';
+    feedback.textContent = (typeof window.kcT === 'function' ? window.kcT('Цветовой акцент:') : 'Цветовой акцент:')
+      + ' ' + (typeof window.kcT === 'function' ? window.kcT(name) : name)
+      + ' · ' + (typeof window.kcT === 'function' ? window.kcT('повторный клик сбросит оттенок') : 'повторный клик сбросит оттенок');
+  });
+});
+
 // Artwork interactions: a magnifying glass bubble and a card-swap carousel.
 
 document.querySelectorAll('[data-glass]').forEach((stage) => {

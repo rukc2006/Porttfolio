@@ -66,36 +66,20 @@
 
     var active = visible.find(function (item) { return item._id === state.selectedId; }) || visible[0];
     state.selectedId = active._id;
-    var activeIndex = visible.indexOf(active);
-    var type = validType(active.type);
-    var place = active.place ? ' · ' + tr(active.place) : '';
-    var choices = visible.map(function (item, index) {
-      var itemType = validType(item.type);
-      return '<button class="ex-event-choice" type="button" data-event-select="' + item._id + '" aria-pressed="' + (item._id === active._id) + '">'
-        + '<span class="ex-choice-year">' + esc(item.year) + '</span>'
-        + '<span class="ex-choice-title">' + esc(tr(item.title)) + '</span>'
-        + '<span class="ex-choice-type ex-choice-' + itemType + '">' + esc(tr(labels[itemType])) + '</span>'
-        + '<span class="ex-choice-index">' + String(index + 1).padStart(2, '0') + '</span>'
-        + '</button>';
-    }).join('');
-
-    root.innerHTML = '<div class="ex-explorer">'
-      + '<article class="ex-event-spotlight ex-event-' + type + '" aria-live="polite">'
-      + '<div class="ex-spotlight-top"><span class="ex-spotlight-label">' + esc(tr('ВЫСТАВОЧНОЕ СОБЫТИЕ')) + '</span>'
-      + '<span class="ex-spotlight-count">' + String(activeIndex + 1).padStart(2, '0') + ' / ' + String(visible.length).padStart(2, '0') + '</span></div>'
-      + '<div class="ex-spotlight-meta"><span>' + esc(active.year) + esc(place) + '</span><span class="ex-spotlight-type">' + esc(tr(labels[type])) + '</span></div>'
-      + '<h3>' + esc(tr(active.title)) + '</h3>'
-      + '<p class="ex-spotlight-detail">' + esc(tr(active.detail || '')) + '</p>'
-      + (active.note ? '<p class="ex-spotlight-note">' + esc(tr(active.note)) + '</p>' : '')
-      + '<div class="ex-spotlight-controls">'
-      + '<button type="button" data-ex-step="-1" aria-label="' + esc(tr('Предыдущее событие')) + '">←</button>'
-      + '<span>' + String(activeIndex + 1).padStart(2, '0') + ' / ' + String(visible.length).padStart(2, '0') + '</span>'
-      + '<button type="button" data-ex-step="1" aria-label="' + esc(tr('Следующее событие')) + '">→</button>'
-      + (active.url ? '<a href="' + esc(active.url) + '" target="_blank" rel="noopener">' + esc(tr('Посмотреть публикацию ↗')) + '</a>' : '')
-      + '</div></article>'
-      + '<aside class="ex-event-rail" aria-label="' + esc(tr('Хронология событий')) + '">'
-      + '<div class="ex-rail-head"><span>' + esc(tr('ЛИНИЯ ВРЕМЕНИ')) + '</span><span>' + String(visible.length).padStart(2, '0') + '</span></div>'
-      + '<div class="ex-event-list">' + choices + '</div></aside></div>';
+    root.innerHTML = '<div class="ex-event-timeline" aria-label="' + esc(tr('Интерактивная хронология выставок')) + '">'
+      + visible.map(function (item, index) {
+        var type = validType(item.type);
+        var place = item.place ? ' · ' + tr(item.place) : '';
+        var isOpen = item._id === active._id;
+        return '<details class="ex-event-step ex-event-' + type + '" data-event-id="' + item._id + '"' + (isOpen ? ' open' : '') + '>'
+          + '<summary><span class="ex-event-step-meta"><span>' + esc(item.year) + esc(place) + '</span><span class="ex-event-step-type">' + esc(tr(labels[type])) + '</span></span>'
+          + '<span class="ex-event-step-title">' + esc(tr(item.title)) + '</span>'
+          + '<span class="ex-event-step-index">' + String(index + 1).padStart(2, '0') + ' / ' + String(visible.length).padStart(2, '0') + '</span></summary>'
+          + '<div class="ex-event-step-body"><p>' + esc(tr(item.detail || '')) + '</p>'
+          + (item.note ? '<p class="ex-event-step-note">' + esc(tr(item.note)) + '</p>' : '')
+          + (item.url ? '<a href="' + esc(item.url) + '" target="_blank" rel="noopener">' + esc(tr('Посмотреть публикацию ↗')) + '</a>' : '')
+          + '</div></details>';
+      }).join('') + '</div>';
   }
 
   function yearList(list) {
@@ -145,38 +129,16 @@
     root.dataset.explorerReady = 'true';
     root.addEventListener('click', function (event) {
       var state = states[view.root];
-      var select = event.target.closest('[data-event-select]');
-      if (select) {
-        state.selectedId = Number(select.dataset.eventSelect);
-        eventExplorer(view, root);
-        return;
-      }
-      var step = event.target.closest('[data-ex-step]');
-      if (step) {
-        var visible = filteredEvents(state);
-        var currentIndex = visible.findIndex(function (item) { return item._id === state.selectedId; });
-        var nextIndex = (currentIndex + Number(step.dataset.exStep) + visible.length) % visible.length;
-        state.selectedId = visible[nextIndex]._id;
-        eventExplorer(view, root);
-      }
+      var summary = event.target.closest('.ex-event-step > summary');
+      if (summary) state.selectedId = Number(summary.parentElement.dataset.eventId);
     });
-    var start = null;
-    root.addEventListener('touchstart', function (event) {
-      if (event.target.closest('.ex-event-spotlight')) start = { x: event.changedTouches[0].clientX, y: event.changedTouches[0].clientY };
-    }, { passive: true });
-    root.addEventListener('touchend', function (event) {
-      if (!start) return;
-      var dx = event.changedTouches[0].clientX - start.x;
-      var dy = event.changedTouches[0].clientY - start.y;
-      start = null;
-      if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy) * 1.25) return;
-      var state = states[view.root];
-      var visible = filteredEvents(state);
-      var currentIndex = visible.findIndex(function (item) { return item._id === state.selectedId; });
-      var nextIndex = (currentIndex + (dx < 0 ? 1 : -1) + visible.length) % visible.length;
-      state.selectedId = visible[nextIndex]._id;
-      eventExplorer(view, root);
-    }, { passive: true });
+    root.addEventListener('toggle', function (event) {
+      if (!event.target.matches('.ex-event-step') || !event.target.open) return;
+      root.querySelectorAll('.ex-event-step[open]').forEach(function (step) {
+        if (step !== event.target) step.open = false;
+      });
+      states[view.root].selectedId = Number(event.target.dataset.eventId);
+    }, true);
   }
 
   function applyFilter(view, root) {
@@ -231,7 +193,7 @@
     document.dispatchEvent(new Event('exhibitions:ready'));
   }
 
-  fetch('exhibitions.json?v=20261124-explorer-v1')
+  fetch('exhibitions.json?v=20261125-timeline-v1')
     .then(function (response) { if (!response.ok) throw Error('load'); return response.json(); })
     .then(function (data) {
       items = data.slice().sort(function (a, b) { return Number(b.year) - Number(a.year); });

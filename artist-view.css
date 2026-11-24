@@ -504,3 +504,62 @@ html{scrollbar-color:#526b64 #0b1d1b;scrollbar-width:thin}
 @media(max-width:760px){.exhibitions-interactive .ex-explorer{grid-template-columns:1fr;min-height:0}.exhibitions-interactive .ex-event-spotlight{min-height:390px;padding:24px}.exhibitions-interactive .ex-spotlight-meta{margin-top:42px}.exhibitions-interactive .ex-event-spotlight h3{font-size:clamp(32px,9vw,46px)}.exhibitions-interactive .ex-event-rail{padding:15px 12px 8px}.exhibitions-interactive .ex-event-list{max-height:270px}.exhibitions-interactive .ex-event-choice{grid-template-columns:42px minmax(0,1fr) 70px;padding:12px 5px}.exhibitions-interactive .ex-spotlight-controls{flex-wrap:wrap}.exhibitions-interactive .ex-spotlight-controls a{margin-left:auto}}
 @media(max-width:420px){.exhibitions-interactive .ex-event-spotlight{min-height:370px;padding:20px}.exhibitions-interactive .ex-spotlight-meta{align-items:flex-start;flex-direction:column;gap:8px;margin-top:38px}.exhibitions-interactive .ex-event-choice{grid-template-columns:38px minmax(0,1fr) 62px;gap:6px}.exhibitions-interactive .ex-choice-title{font-size:15px}.exhibitions-interactive .ex-choice-type{font-size:7px}}
 @media(prefers-reduced-motion:reduce){.exhibitions-interactive .ex-event-choice,.exhibitions-interactive .ex-spotlight-controls button{transition:none}}
+
+/* Color-study palette: each chip is an interactive color choice. */
+.study-art-frame{position:relative;min-width:0;height:245px;overflow:hidden;background:#091a18}
+.study-art-frame .study-art{height:100%;position:relative;z-index:0}
+.study-art-tint{position:absolute;z-index:1;inset:12px;pointer-events:none;background:var(--active-color);opacity:0;mix-blend-mode:color;transition:opacity .28s ease}
+.study-card.has-color-accent .study-art-tint{opacity:.52}
+.palette-sample{appearance:none;border:0;padding:0;background:transparent;color:inherit;font:inherit;cursor:pointer}
+.palette-sample>i{transition:transform .2s,box-shadow .2s}
+.palette-sample:hover>i,.palette-sample:focus-visible>i,.palette-sample[aria-pressed=true]>i{transform:translateY(-2px);box-shadow:0 0 0 2px #0b201e,0 0 0 3px var(--swatch),0 5px 15px color-mix(in srgb,var(--swatch) 40%,transparent)}
+.palette-sample:focus-visible{outline:2px solid var(--clay-pale);outline-offset:3px}
+.palette-feedback{min-height:1.5em;margin:7px 0 0;color:#a9c9c5;font:9px/1.45 var(--mono);letter-spacing:.025em}
+
+/* Art education uses the same discreet, expandable path language as the guides. */
+.artist-education{padding:72px clamp(22px,8vw,130px) 76px;background:#122824;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.artist-education-head{max-width:1240px;margin:0 auto 27px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(260px,.8fr);gap:30px;align-items:end}
+.artist-education-head .eyebrow{color:var(--clay-pale)}
+.artist-education-head h2{margin:0;font:400 clamp(36px,4.5vw,58px)/1.05 var(--serif);letter-spacing:-.04em;color:var(--paper)}
+.artist-education-head h2 em{color:var(--clay-pale)}
+.artist-education-head>p{max-width:43ch;margin:0 0 5px;color:#b5c4b8;font-size:13px;line-height:1.7}
+.artist-education-path{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.artist-education-step{min-width:0;border:1px solid rgba(233,223,201,.17);border-left:2px solid rgba(213,140,115,.7);background:rgba(7,24,22,.35);transition:border-color .2s,background .2s}
+.artist-education-step[open]{border-color:rgba(213,140,115,.55);background:linear-gradient(120deg,rgba(213,140,115,.08),rgba(7,24,22,.28) 58%)}
+.artist-education-step summary{position:relative;display:grid;grid-template-columns:50px minmax(0,1fr) auto;gap:10px;align-items:center;min-height:76px;padding:14px 17px;cursor:pointer;list-style:none}
+.artist-education-step summary::-webkit-details-marker{display:none}
+.artist-education-year{color:var(--clay-pale);font:10px var(--mono);letter-spacing:.08em}
+.artist-education-title{color:var(--paper);font:400 20px/1.15 var(--serif)}
+.artist-education-kind{color:#9eb1a7;font:8px/1.4 var(--mono);letter-spacing:.06em;text-align:right;text-transform:uppercase}
+.artist-education-step summary:after{content:'+';margin-left:3px;color:var(--clay-pale);font:18px/1 var(--sans)}
+.artist-education-step[open] summary:after{content:'−'}
+.artist-education-step>p{max-width:65ch;margin:0;padding:0 22px 17px 77px;color:#b5c4b8;font-size:12px;line-height:1.65}
+.artist-education-step summary:focus-visible{outline:2px solid var(--clay-pale);outline-offset:-3px}
+
+/* Exhibition explorer as a living, filterable timeline with expandable records. */
+.exhibitions-interactive .ex-event-timeline{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 54px;max-width:1180px;margin:20px auto 0;padding:14px 0}
+.exhibitions-interactive .ex-event-timeline:before{content:'';position:absolute;top:0;bottom:0;left:50%;width:1px;background:linear-gradient(transparent,rgba(213,140,115,.7) 8%,rgba(233,223,201,.25) 50%,rgba(213,140,115,.7) 92%,transparent)}
+.exhibitions-interactive .ex-event-step{position:relative;min-width:0;align-self:start;border:1px solid rgba(233,223,201,.2);border-top:2px solid var(--event-color,var(--clay));background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(7,24,22,.45));transition:transform .2s,border-color .2s,background .2s}
+.exhibitions-interactive .ex-event-step:nth-child(odd){grid-column:1}
+.exhibitions-interactive .ex-event-step:nth-child(even){grid-column:2;margin-top:42px}
+.exhibitions-interactive .ex-event-step:after{content:'';position:absolute;top:24px;width:9px;height:9px;border:2px solid var(--event-color,var(--clay));border-radius:50%;background:#0b201e;box-shadow:0 0 0 5px rgba(11,32,30,.65)}
+.exhibitions-interactive .ex-event-step:nth-child(odd):after{right:-34px}
+.exhibitions-interactive .ex-event-step:nth-child(even):after{left:-34px}
+.exhibitions-interactive .ex-event-step:hover,.exhibitions-interactive .ex-event-step[open]{transform:translateY(-2px);border-color:var(--event-color,var(--clay));background:linear-gradient(145deg,rgba(213,140,115,.11),rgba(7,24,22,.52))}
+.exhibitions-interactive .ex-event-step summary{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 18px;align-items:center;padding:18px 20px;cursor:pointer;list-style:none}
+.exhibitions-interactive .ex-event-step summary::-webkit-details-marker{display:none}
+.exhibitions-interactive .ex-event-step-meta{grid-column:1/-1;display:flex;justify-content:space-between;gap:10px;color:#a9b8ad;font:9px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.exhibitions-interactive .ex-event-step-type{color:var(--event-color,var(--clay-pale))}
+.exhibitions-interactive .ex-event-step-title{font:400 clamp(20px,2.3vw,28px)/1.12 var(--serif);color:var(--paper)}
+.exhibitions-interactive .ex-event-step-index{align-self:end;color:#81968c;font:9px var(--mono);letter-spacing:.08em}
+.exhibitions-interactive .ex-event-step summary:after{content:'+';position:absolute;right:19px;bottom:18px;color:var(--event-color,var(--clay-pale));font:16px/1 var(--sans)}
+.exhibitions-interactive .ex-event-step[open] summary:after{content:'−'}
+.exhibitions-interactive .ex-event-step-body{padding:0 20px 20px;color:#b7c4ba;font-size:13px;line-height:1.65}
+.exhibitions-interactive .ex-event-step-body p{margin:0}
+.exhibitions-interactive .ex-event-step-body .ex-event-step-note{margin-top:8px;color:#96aaa0;font-size:11px}
+.exhibitions-interactive .ex-event-step-body a{display:inline-block;margin-top:13px;color:var(--event-color,var(--clay-pale));font-size:11px;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px}
+.exhibitions-interactive .ex-event-step summary:focus-visible{outline:2px solid var(--clay-pale);outline-offset:-3px}
+.exhibitions-interactive .ex-event-pers{--event-color:#83a36a}.exhibitions-interactive .ex-event-intl{--event-color:#7f9bc7}.exhibitions-interactive .ex-event-onl{--event-color:#55aaa5}.exhibitions-interactive .ex-event-auc{--event-color:#af88c8}.exhibitions-interactive .ex-event-exh{--event-color:#d58c73}.exhibitions-interactive .ex-event-cmp{--event-color:#c0764c}.exhibitions-interactive .ex-event-mkt{--event-color:#d29d56}
+@media(max-width:760px){.study-art-frame{height:100%;min-height:225px}.artist-education{padding:52px 18px}.artist-education-head{display:block;margin-bottom:20px}.artist-education-head>p{margin-top:12px}.artist-education-path{grid-template-columns:1fr}.artist-education-step summary{grid-template-columns:44px minmax(0,1fr) auto;padding:12px}.artist-education-title{font-size:18px}.artist-education-kind{grid-column:2;grid-row:2;text-align:left}.artist-education-step summary:after{grid-column:3;grid-row:1/3}.artist-education-step>p{padding:0 16px 15px 68px}.exhibitions-interactive .ex-event-timeline{grid-template-columns:1fr;gap:10px;margin-top:12px;padding:0 0 0 20px}.exhibitions-interactive .ex-event-timeline:before{left:5px}.exhibitions-interactive .ex-event-step:nth-child(even){grid-column:1;margin-top:0}.exhibitions-interactive .ex-event-step:nth-child(odd){grid-column:1}.exhibitions-interactive .ex-event-step:nth-child(odd):after,.exhibitions-interactive .ex-event-step:nth-child(even):after{left:-22px;right:auto;top:21px}.exhibitions-interactive .ex-event-step summary{padding:15px}.exhibitions-interactive .ex-event-step-title{font-size:22px}.exhibitions-interactive .ex-event-step-body{padding:0 15px 16px}}
+@media(max-width:420px){.artist-education-step summary{grid-template-columns:39px minmax(0,1fr) auto;gap:7px}.artist-education-title{font-size:17px}.artist-education-kind{font-size:7px}.artist-education-step>p{padding-left:58px}.exhibitions-interactive .ex-event-step-meta{font-size:8px}}
+@media(prefers-reduced-motion:reduce){.study-art-tint,.palette-sample>i,.artist-education-step,.exhibitions-interactive .ex-event-step{transition:none}}

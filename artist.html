@@ -23,8 +23,8 @@
 </div>
 <button class="artist-tab artist-exhibition-jump" id="tab-exhibitions" type="button">Выставки <span aria-hidden="true">↘</span></button>
 </div>
-<section class="panel" id="panel-view" role="tabpanel" aria-labelledby="tab-view"><iframe title="Авторская презентация художницы" src="artist-view.html?embed=1&amp;rev=20261124-explorer-v1"></iframe></section>
-<section class="panel" id="panel-cv" role="tabpanel" aria-labelledby="tab-cv" hidden><iframe title="CV художницы" data-src="artist-cv.html?embed=1&amp;rev=20261124-explorer-v1"></iframe></section>
+<section class="panel" id="panel-view" role="tabpanel" aria-labelledby="tab-view"><iframe title="Авторская презентация художницы" src="artist-view.html?embed=1&amp;rev=20261125-education-color-v1"></iframe></section>
+<section class="panel" id="panel-cv" role="tabpanel" aria-labelledby="tab-cv" hidden><iframe title="CV художницы" data-src="artist-cv.html?embed=1&amp;rev=20261125-education-color-v1"></iframe></section>
 </div>
 <script>
 const tabs=[...document.querySelectorAll('[data-tab]')],panels={view:document.getElementById('panel-view'),cv:document.getElementById('panel-cv')};
@@ -35,6 +35,6 @@ window.addEventListener('message',e=>{if(e.origin===location.origin&&e.data&&e.d
 function selectTab(name,writeHash=true){if(!panels[name])return;tabs.forEach(t=>{const on=t.dataset.tab===name;t.setAttribute('aria-selected',String(on));t.tabIndex=on?0:-1});Object.entries(panels).forEach(([key,p])=>p.hidden=key!==name);if(name==='cv'){const f=panels.cv.querySelector('iframe');if(f.getAttribute('src')===null)f.setAttribute('src',f.dataset.src)}if(writeHash)history.replaceState(null,'',location.pathname+location.search+(name==='cv'?'#cv':'#view'))}
 tabs.forEach(t=>t.addEventListener('click',()=>selectTab(t.dataset.tab)));tabs.forEach(t=>t.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const i=tabs.indexOf(t),n=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;tabs[n].focus();selectTab(tabs[n].dataset.tab)}));document.getElementById('tab-exhibitions').addEventListener('click',()=>{selectTab('view');const frame=panels.view.querySelector('iframe');const go=()=>frame.contentWindow.postMessage({type:'kc-scroll-exhibitions'},location.origin);if(frame.contentDocument&&frame.contentDocument.readyState==='complete')go();else frame.addEventListener('load',go,{once:true})});window.addEventListener('hashchange',()=>{if(location.hash==='#cv')selectTab('cv',false);else if(location.hash==='#view')selectTab('view',false)});if(location.hash==='#cv')selectTab('cv',false);
 </script>
-<script src="assets/i18n-runtime.js?v=20261124-locale-v3"></script><script src="assets/header.js"></script>
+<script src="assets/i18n-runtime.js?v=20261125-locale-v1"></script><script src="assets/header.js"></script>
 </body>
 </html>
