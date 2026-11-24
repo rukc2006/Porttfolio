@@ -134,11 +134,13 @@
     markSwitch();
   }
   function load(cb) {
-    if (lang === 'ru' || lang === 'dump') { dict = {}; cb(); return; }
+    var requested = lang;
+    if (requested === 'ru' || requested === 'dump') { dict = {}; cb(); return; }
     var x = new XMLHttpRequest();
-    x.open('GET', BASE + 'i18n-runtime/' + lang + '.json?v=20261124f', true);
-    x.onload = function () { try { dict = JSON.parse(x.responseText) || {}; } catch (e) { dict = {}; } cb(); };
-    x.onerror = function () { dict = {}; cb(); };
+    x.open('GET', BASE + 'i18n-runtime/' + requested + '.json?v=20261124h', true);
+    // Ignore older requests if the visitor toggles languages quickly.
+    x.onload = function () { if (requested !== lang) return; try { dict = JSON.parse(x.responseText) || {}; } catch (e) { dict = {}; } cb(); };
+    x.onerror = function () { if (requested !== lang) return; dict = {}; cb(); };
     x.send();
   }
   function setLang(l, fromParent) {

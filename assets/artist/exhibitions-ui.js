@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   var labels={pers:'Персональные',intl:'Международные',onl:'Онлайн-выставки',auc:'Аукционы',exh:'Выставки',cmp:'Конкурсы',mkt:'Маркеты'};
-  var views=[{root:'exCards',menu:'exMenu'},{root:'exhibitionCards',menu:'exFilter',timeline:'exYears'},{root:'cvExhibitions',mode:'years'}];
+  var views=[{root:'exCards',menu:'exMenu',timeline:'exYears'},{root:'exhibitionCards',menu:'exFilter',timeline:'exYears'},{root:'cvExhibitions',mode:'years'}];
   var states={},items=[];
   function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
   function tr(v){return typeof window.kcT==='function'?window.kcT(v):v}

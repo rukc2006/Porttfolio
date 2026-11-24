@@ -366,6 +366,9 @@ footer{padding:35px 0;color:#827b6d;font-size:12px;border-top:1px solid var(--li
 .ex-legend button{font:inherit;color:inherit;cursor:pointer;font-size:12px;letter-spacing:.06em;padding:6px 14px;border-radius:999px;border:1px solid rgba(var(--c,233,223,201),.55);background:rgba(var(--c,233,223,201),.12)}
 .ex-legend button:hover{background:rgba(var(--c,233,223,201),.25)}
 .ex-legend button.on{background:rgba(var(--c,233,223,201),.35);box-shadow:0 0 0 1px rgba(var(--c,233,223,201),.8)}
+.ex-timeline{margin:24px 0 15px;padding:14px 16px;border:1px solid var(--line);background:rgba(7,24,22,.35)}
+.ex-timeline-head{display:flex;align-items:end;justify-content:space-between;gap:14px;margin-bottom:10px}.ex-timeline-head>div{display:grid;gap:3px}.ex-timeline-head span{font:8px/1.4 'DM Mono',monospace;letter-spacing:.14em;color:var(--gold)}.ex-timeline-head strong{font:400 20px/1.2 'Cormorant Garamond',serif;color:var(--paper)}.ex-timeline-head output{font:9px 'DM Mono',monospace;color:var(--muted)}
+.ex-years{display:flex;gap:7px;overflow-x:auto;padding:1px 1px 6px;scrollbar-width:thin}.ex-years button{flex:0 0 auto;border:1px solid var(--line);border-radius:999px;padding:8px 12px;background:transparent;color:var(--paper);font:11px/1.2 Manrope,sans-serif;cursor:pointer}.ex-years button:hover{border-color:var(--gold)}.ex-years button[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:var(--bg)}
 /* первый экран компактнее */
 .logo-name{font-family:"Cormorant Garamond",serif;font-size:15px;text-transform:uppercase;color:var(--paper);white-space:nowrap;letter-spacing:.1em;margin-left:4px;padding-left:12px;border-left:1px solid var(--line)}
 @media(max-width:1180px){.logo-name{display:none}}
@@ -648,6 +651,7 @@ section[id],article[id]{scroll-margin-top:96px}
   <div class="section-kicker">Выставки и конкурсы художника</div>
   <h2>Работы уже<br>путешествовали.</h2>
   <p class="featured-intro">Выставки, аукционы и конкурсы собраны в одном списке. Он обновляется вместе со страницами «Художник» и CV; сначала показаны новые события.</p>
+  <div class="ex-timeline" aria-label="Хронология выставок"><div class="ex-timeline-head"><div><span>ХРОНИКА</span><strong>Весь путь</strong></div><output data-i18n-skip data-ex-count aria-live="polite">15 событий</output></div><div class="ex-years" id="exYears" aria-label="Выбрать год"></div></div>
   <div class="ex-legend" id="exMenu"></div>
   <div class="exhibition-featured" id="exCards"></div>
 </div></section>
@@ -758,7 +762,7 @@ section[id],article[id]{scroll-margin-top:96px}
 <div class="container foot-brand"><a class="foot-logo" href="#top" aria-label="Наверх"><img src="assets/kcradle-wordmark-light.png" alt="KRADLE · Мастерская-Колыбель" width="190" height="94" loading="lazy"></a><div>© Ксения Комарова · Мастерская-Колыбель<br><span style="opacity:.6;font-size:12px">Сайт считает визиты без cookies и без личных данных.</span><br><span class="legal-short" style="font-size:12px;color:#e9dfc9;opacity:.6">Материалы сайта носят ознакомительный характер и не являются публичной офертой. Цены ориентировочные.</span></div><div class="foot-links" style="margin-top:10px"><a href="Kcradle.html">Главная</a> · <a href="artist.html">Художник</a> · <a href="cv_print.html">CV для галерей</a> · <a href="gift.html">Подарок</a> · <a href="guides.html">Гайды</a></div>
 </footer>
 <script>window.addEventListener('load',function(){if(location.hash.length>1){var el=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(el){document.documentElement.style.scrollBehavior='auto';setTimeout(function(){el.scrollIntoView();},400)}}});</script>
-<script src="assets/artist/exhibitions-ui.js"></script>
+<script src="assets/artist/exhibitions-ui.js?v=20261124-timeline"></script>
 <script>document.querySelectorAll('#live-contact .place').forEach(function(a){var b=a.querySelector('b'),sp=a.querySelector('span');var t=(b?b.textContent:'')+(sp?' · '+sp.textContent:'');a.dataset.tip=t;a.setAttribute('aria-label',t);a.setAttribute('title',t)});</script>
 
 <script>
@@ -842,6 +846,6 @@ section[id],article[id]{scroll-margin-top:96px}
   document.addEventListener('keydown',function(event){if(!overlay.hidden&&event.key==='Escape')closeDialog()});
 })();
 </script>
-<script src="assets/i18n-runtime.js?v=20261124-checked"></script>
+<script src="assets/i18n-runtime.js?v=20261124-langfix"></script>
 </body>
 </html>

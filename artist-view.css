@@ -369,6 +369,7 @@ html{scrollbar-color:#526b64 #0b1d1b;scrollbar-width:thin}
 .interactive-heading h3 em{color:var(--clay-pale);font-weight:400}
 .interactive-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .interactive-card{min-width:0;padding:18px;border:1px solid var(--line);background:rgba(7,24,22,.68)}
+.interactive-card{display:flex;flex-direction:column}
 .interactive-kicker{margin:0 0 5px;color:var(--clay-pale);font:9px var(--mono);letter-spacing:.14em}
 .interactive-card h4{margin:0 0 14px;font:400 21px/1.2 var(--serif)}
 .interactive-note{margin:12px 0 0;color:#9eafa4;font-size:11px;line-height:1.6}
@@ -382,11 +383,15 @@ html{scrollbar-color:#526b64 #0b1d1b;scrollbar-width:thin}
 .compare-top{position:absolute;inset:0;overflow:hidden;clip-path:inset(0 calc(100% - var(--compare)) 0 0);border-right:0;z-index:1}
 .compare-top img{width:100%;object-fit:contain}
 .image-compare:after{content:"";position:absolute;z-index:2;top:0;bottom:0;left:var(--compare);width:2px;background:var(--clay-pale);pointer-events:none}
-.compare-label{position:absolute;z-index:2;top:10px;padding:4px 7px;background:#0a1c1bdd;color:#e9dfc9;font:8px var(--mono);letter-spacing:.1em}
+.compare-label{position:absolute;z-index:2;top:10px;width:calc(50% - 22px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:4px 7px;background:#0a1c1bdd;color:#e9dfc9;font:8px var(--mono);letter-spacing:.08em}
 .compare-label-a{left:9px}.compare-label-b{right:9px}
 .image-compare input{position:absolute;z-index:4;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;touch-action:pan-y}
 .compare-handle{position:absolute;z-index:3;left:var(--compare);top:50%;transform:translate(-50%,-50%);width:32px;height:32px;border:1px solid #f0d1bd;border-radius:50%;display:grid;place-items:center;background:var(--clay);color:#10211e;font-size:16px;pointer-events:none}
 .glass-art{height:245px;position:relative;overflow:hidden;background:#091a18;cursor:none;touch-action:pan-y}
+.glass-picker{display:grid;gap:5px;margin:0 0 12px;min-width:0}
+.glass-picker>span{font:8px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.glass-picker select{width:100%;min-width:0;border:1px solid var(--line);border-radius:2px;padding:8px 28px 8px 9px;background:#102723;color:var(--paper);font:12px/1.3 var(--sans)}
+.glass-picker select:focus-visible{outline:2px solid var(--clay);outline-offset:2px}
 .glass-art>img{width:100%;height:100%;object-fit:contain}
 .glass-lens{position:absolute;left:50%;top:50%;width:108px;height:108px;border-radius:50%;border:2px solid rgba(239,221,199,.9);box-shadow:0 7px 24px #0008,inset 0 0 18px #fff5;background-repeat:no-repeat;background-color:#17332e;transform:translate(-50%,-50%);pointer-events:none;opacity:0;transition:opacity .18s}
 .glass-art:hover .glass-lens,.glass-art:focus-within .glass-lens,.glass-art.is-active .glass-lens{opacity:1}
@@ -405,3 +410,44 @@ html{scrollbar-color:#526b64 #0b1d1b;scrollbar-width:thin}
 @media(max-width:900px){.interactive-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.swap-card{grid-column:1/-1}.swap-card .art-swap{max-width:420px;margin:auto}.swap-card .swap-controls{max-width:420px;margin:12px auto 0}}
 @media(max-width:600px){.art-interactives{padding:38px 18px 42px}.interactive-heading{display:block}.interactive-heading h3{margin-top:8px}.interactive-grid{grid-template-columns:1fr;gap:10px}.swap-card{grid-column:auto}.interactive-card{padding:15px}.image-compare,.glass-art,.art-swap{height:220px}.compare-pickers{gap:6px}.compare-pickers select{font-size:11px;padding:8px 20px 8px 7px}.swap-art{inset:12px 21%;width:58%}.palette{grid-template-columns:repeat(5,minmax(0,1fr));gap:3px}.palette i{height:10px}}
 @media(prefers-reduced-motion:reduce){.swap-art,.glass-lens{transition:none!important}}
+
+/* A calmer grid: each control reads as one small tool, with aligned card bottoms. */
+.interactive-grid{align-items:stretch;gap:12px}
+.interactive-card{padding:16px;background:linear-gradient(155deg,rgba(11,32,29,.95),rgba(7,20,19,.9));border-color:rgba(233,223,201,.16);border-radius:3px}
+.interactive-card h4{min-height:2.35em;margin-bottom:12px}
+.interactive-note{margin-top:auto;padding-top:12px;min-height:3.5em}
+.image-compare,.glass-art,.art-swap{height:228px;border:1px solid rgba(233,223,201,.1)}
+.glass-art{cursor:crosshair}
+.exhibitions-interactive{padding:76px clamp(22px,8vw,130px) 74px;background:#0b201e;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.exhibitions-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:28px}
+.exhibitions-head .eyebrow{margin-bottom:12px;font-size:10px}
+.exhibitions-head h2{max-width:18ch;font:400 clamp(34px,4vw,52px)/1.05 var(--serif);letter-spacing:-.04em}
+.exhibitions-head h2 em{color:var(--clay-pale);font-weight:400}
+.exhibitions-head>p{max-width:340px;margin:0 0 3px;color:#a9b8ad;font-size:13px;line-height:1.65}
+.exhibitions-interactive .ex-timeline{margin:0 0 15px;padding:14px 16px;border:1px solid rgba(233,223,201,.16);background:rgba(7,24,22,.4)}
+.exhibitions-interactive .ex-timeline-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:10px}
+.exhibitions-interactive .ex-timeline-head>div{display:grid;gap:3px}
+.exhibitions-interactive .ex-timeline-head span{font:8px var(--mono);letter-spacing:.15em;color:var(--clay-pale)}
+.exhibitions-interactive .ex-timeline-head strong{font:400 20px/1.2 var(--serif);color:var(--paper)}
+.exhibitions-interactive .ex-timeline output{font:9px var(--mono);color:#a9c9c5}
+.exhibitions-interactive .ex-years,.exhibitions-interactive .ex-legend{display:flex;flex-wrap:wrap;gap:7px}
+.exhibitions-interactive .ex-years button,.exhibitions-interactive .ex-legend button{border:1px solid rgba(233,223,201,.24);border-radius:999px;padding:8px 12px;background:transparent;color:var(--paper);font:10px/1.2 var(--sans);cursor:pointer;transition:background .18s,border-color .18s,transform .18s}
+.exhibitions-interactive .ex-years button:hover,.exhibitions-interactive .ex-legend button:hover{border-color:var(--clay);transform:translateY(-1px)}
+.exhibitions-interactive .ex-years button[aria-pressed=true],.exhibitions-interactive .ex-legend button.on{background:var(--clay);border-color:var(--clay);color:#10211e}
+.exhibitions-interactive .ex-legend{margin:0 0 14px}
+.exhibitions-interactive .exhibition-featured{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.exhibitions-interactive .ex-card{min-width:0;min-height:180px;padding:20px;display:flex;flex-direction:column;border:1px solid rgba(233,223,201,.16);border-left:3px solid var(--clay);background:rgba(255,255,255,.025);transition:opacity .2s,transform .2s}
+.exhibitions-interactive .ex-card[hidden]{display:none!important}
+.exhibitions-interactive .ex-card .ex-meta{font:9px var(--mono);letter-spacing:.14em;color:var(--clay-pale)}
+.exhibitions-interactive .ex-card h3{margin:10px 0 auto;font:400 24px/1.16 var(--serif);color:var(--paper)}
+.exhibitions-interactive .ex-card p{margin:10px 0 0;color:#a9b8ad;font-size:12px;line-height:1.5}
+.exhibitions-interactive .ex-card .button{align-self:flex-start;margin-top:14px;color:var(--clay-pale)}
+.exhibitions-more{display:inline-block;margin-top:20px;padding-bottom:4px;border-bottom:1px solid rgba(213,140,115,.55);color:var(--clay-pale);font-size:12px}
+@media(max-width:760px){.exhibitions-interactive{padding:52px 18px}.exhibitions-head{display:block}.exhibitions-head>p{margin-top:12px}.exhibitions-interactive .exhibition-featured{grid-template-columns:1fr}.exhibitions-interactive .ex-card{min-height:150px}.interactive-heading{align-items:start}.interactive-heading h3{max-width:16ch}.interactive-card h4{min-height:0}.interactive-note{min-height:0}}
+
+/* Keep each palette label attached to its own colour sample. */
+.palette{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px 6px;width:100%;min-width:0;margin-top:auto;padding-top:15px;flex-wrap:nowrap}
+.palette-sample{display:grid;grid-template-rows:11px auto;gap:6px;min-width:0;text-align:center}
+.palette-sample>i{display:block;width:100%;height:11px;background:var(--swatch);border-radius:1px}
+.palette-sample>span{color:#9eafa4;font:9px/1.35 var(--mono);letter-spacing:.02em;overflow-wrap:anywhere}
+@media(max-width:760px){.palette{gap:7px 4px;padding-top:11px}.palette-sample>span{font-size:8px}}

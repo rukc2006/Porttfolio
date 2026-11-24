@@ -107,7 +107,37 @@ document.querySelectorAll('[data-compare]').forEach((stage) => {
 document.querySelectorAll('[data-glass]').forEach((stage) => {
   const image = stage.querySelector('img');
   const lens = stage.querySelector('.glass-lens');
+  const picker = stage.parentElement.querySelector('[data-glass-select]');
   if (!image || !lens) return;
+  const buildChoices = () => {
+    if (!picker) return;
+    const current = image.getAttribute('src');
+    const choices = new Map();
+    document.querySelectorAll('.artwork-slide:not([aria-hidden="true"]), .swap-art, .study-art').forEach((node) => {
+      const art = node.matches('img') ? node : node.querySelector('img');
+      if (!art) return;
+      const src = art.getAttribute('src');
+      if (!src || choices.has(src)) return;
+      const button = node.matches('button') ? node : node.closest('button');
+      const heading = node.closest('.study-card')?.querySelector('h3');
+      const name = button?.dataset.artName || button?.dataset.name || heading?.getAttribute('data-ru') || heading?.textContent || art.getAttribute('data-ru-alt') || art.alt || src.split('/').pop();
+      choices.set(src, { src, name: name.replace(/\s+/g, ' ').trim() });
+    });
+    picker.replaceChildren(...[...choices.values()].map((choice) => {
+      const option = document.createElement('option');
+      option.value = choice.src;
+      option.textContent = typeof window.kcT === 'function' ? window.kcT(choice.name) : choice.name;
+      return option;
+    }));
+    if (choices.has(current)) picker.value = current;
+    picker.onchange = () => {
+      image.src = picker.value;
+      image.alt = picker.selectedOptions[0]?.textContent || 'Картина';
+      lens.style.backgroundImage = `url("${image.currentSrc || image.src}")`;
+    };
+  };
+  document.addEventListener('kc:language-change', buildChoices);
+  buildChoices();
   const update = (event) => {
     const rect = stage.getBoundingClientRect();
     const x = Math.max(0, Math.min(rect.width, event.clientX - rect.left));
