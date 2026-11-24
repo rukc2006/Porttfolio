@@ -48,7 +48,9 @@ document.querySelectorAll('[data-compare]').forEach((stage) => {
     const button = node.matches('button') ? node : node.closest('button');
     const named = button?.dataset.artName || button?.dataset.name;
     if (named) return clean(named);
-    const title = node.querySelector?.('h3')?.getAttribute('data-ru') || node.querySelector?.('h3')?.textContent;
+    const card = node.closest?.('.study-card');
+    const title = node.querySelector?.('h3')?.getAttribute('data-ru') || node.querySelector?.('h3')?.textContent
+      || card?.querySelector('h3')?.getAttribute('data-ru') || card?.querySelector('h3')?.textContent;
     if (title) return clean(title.replace(/<[^>]+>/g, ' '));
     return clean(image.getAttribute('data-ru-alt') || image.alt || image.getAttribute('src').split('/').pop().replace(/[-_]/g, ' ').replace(/\.[^.]+$/, ''));
   };
