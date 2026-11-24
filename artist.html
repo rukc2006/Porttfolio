@@ -1,86 +1,27 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#102724">
-  <meta name="description" content="Ксения Комарова — живопись о сложных цветовых отношениях, форме и внутреннем напряжении образа.">
-  <title>Ксения Комарова — живопись на пересечении цвета</title>
-  <link rel="canonical" href="https://rukc2006.github.io/Porttfolio/artist.html">
-  <link rel="stylesheet" href="artist-page.css">
-  <script src="artist-page.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102724">
+<meta name="description" content="Ксения Комарова — художественная практика, живопись и профессиональное CV.">
+<link rel="canonical" href="https://rukc2006.github.io/Porttfolio/artist.html">
+<title>Ксения Комарова · Художница</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0c1d1b;color:#e7e6dc;font-family:Arial,sans-serif}.artist-tabs{height:58px;display:flex;justify-content:center;align-items:center;gap:10px;padding:7px 14px;background:#0b1d1b;border-bottom:1px solid rgba(226,221,202,.18)}.artist-tab{appearance:none;border:1px solid rgba(226,221,202,.22);border-radius:999px;background:transparent;color:#b6c2b8;padding:10px 26px;font:500 12px/1.2 Arial,sans-serif;letter-spacing:.03em;cursor:pointer}.artist-tab:hover{border-color:#d58c73;color:#e7e6dc}.artist-tab[aria-selected=true]{background:#c77d67;border-color:#c77d67;color:#10211e}.panel{height:calc(100% - 58px);width:100%}.panel[hidden]{display:none!important}iframe{display:block;width:100%;height:100%;border:0;background:#0c1d1b}@media(max-width:680px){.artist-tabs{height:52px;gap:8px;padding:6px}.artist-tab{padding:9px 18px;font-size:11px}.panel{height:calc(100% - 52px)}}
+</style>
 </head>
 <body>
-  <header class="topbar" id="top">
-    <a class="brand" href="#top" aria-label="Ксения Комарова — главная">
-      <span class="brand-mark" aria-hidden="true"><img src="assets/hudozhnik/artist-logo.webp" alt=""></span>
-      <span class="brand-copy"><strong>Ксения Комарова</strong><small>художница · живопись</small></span>
-    </a>
-    <nav class="main-nav" aria-label="Основная навигация"><a href="#practice">Практика</a><a href="#works">Работы</a><a href="#cv">CV</a><a href="#contact">Контакт</a></nav>
-    <a class="top-cta" href="#cv">CV художницы</a>
-    <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
-  </header>
-  <div class="artist-tabs" role="tablist" aria-label="Разделы портфолио">
-    <button class="artist-tab is-active" id="artist-tab-view" type="button" role="tab" aria-selected="true" aria-controls="artist-panel-view" data-artist-tab="view">Мой взгляд</button>
-    <button class="artist-tab" id="artist-tab-cv" type="button" role="tab" aria-selected="false" aria-controls="artist-panel-cv" data-artist-tab="cv" tabindex="-1">CV художницы</button>
-  </div>
-  <section class="artist-panel" id="artist-panel-view" role="tabpanel" aria-labelledby="artist-tab-view">
-  <main>
-    <section class="author-panel author-intro" id="practice" aria-labelledby="author-title">
-      <div class="author-portrait"><img src="assets/hudozhnik/artist-portrait.webp" alt="Ксения Комарова в мастерской" fetchpriority="high"><span>АВТОР / КСЕНИЯ КОМАРОВА</span></div>
-      <div class="author-copy"><p class="eyebrow">ЦВЕТ — МОЯ ТОЧКА ОТСЧЁТА</p><h1 id="author-title">Я соединяю то,<br>что кажется <em>несовместимым.</em></h1><p>Я ищу точное место для сложных оттенков. Когда они остаются разными, но начинают усиливать друг друга, возникает мой язык живописи.</p><p>Тёплое и холодное, мягкое и резкое встречаются на холсте — и сохраняют свой характер.</p><a class="text-link" href="#works">Увидеть работы <span aria-hidden="true">↓</span></a></div>
-    </section>
-    <section class="works-marquee" id="works" aria-labelledby="works-marquee-title">
-      <div class="works-marquee-heading"><div><p class="eyebrow">ЖИВОПИСЬ / КСЕНИЯ КОМАРОВА</p><h2 id="works-marquee-title">Работы, в которых<br><em>встречаются разные.</em></h2></div><a class="text-link" href="https://rukc2006.github.io/Porttfolio/vitrina.html?v=32" target="_blank" rel="noopener">Открыть витрину ↗</a></div>
-      <div class="artwork-marquee" aria-label="Живописные работы Ксении Комаровой"><div class="artwork-track">
-        <button class="artwork-slide" type="button" data-art-src="assets/hudozhnik/art/imago.jpg" data-art-name="Imago"><img src="assets/hudozhnik/art/imago.jpg" alt="Картина Imago Ксении Комаровой" loading="lazy"><span>IMAGO</span></button>
-        <button class="artwork-slide" type="button" data-art-src="assets/hudozhnik/art/forest-witch.jpg" data-art-name="Живописная работа"><img src="assets/hudozhnik/art/forest-witch.jpg" alt="Живописная работа Ксении Комаровой" loading="lazy"><span>ЖИВОПИСЬ</span></button>
-        <button class="artwork-slide" type="button" data-art-src="assets/hudozhnik/art/starica-shamanka.jpg" data-art-name="Живописная работа"><img src="assets/hudozhnik/art/starica-shamanka.jpg" alt="Живописная работа Ксении Комаровой" loading="lazy"><span>ЖИВОПИСЬ</span></button>
-        <button class="artwork-slide" type="button" data-art-src="assets/hudozhnik/art/tristitia.jpg" data-art-name="Живописная работа"><img src="assets/hudozhnik/art/tristitia.jpg" alt="Живописная работа Ксении Комаровой" loading="lazy"><span>ЖИВОПИСЬ</span></button>
-        <button class="artwork-slide" type="button" data-art-src="assets/hudozhnik/art/under-wing.jpg" data-art-name="Живописная работа"><img src="assets/hudozhnik/art/under-wing.jpg" alt="Живописная работа Ксении Комаровой" loading="lazy"><span>ЖИВОПИСЬ</span></button>
-        <button class="artwork-slide" type="button" data-art-src="assets/hudozhnik/art/wheel-of-samsara.jpg" data-art-name="Живописная работа"><img src="assets/hudozhnik/art/wheel-of-samsara.jpg" alt="Живописная работа Ксении Комаровой" loading="lazy"><span>ЖИВОПИСЬ</span></button>
-        <button class="artwork-slide" type="button" aria-hidden="true" tabindex="-1" data-art-src="assets/hudozhnik/art/imago.jpg" data-art-name="Imago"><img src="assets/hudozhnik/art/imago.jpg" alt="" loading="lazy"><span>IMAGO</span></button>
-        <button class="artwork-slide" type="button" aria-hidden="true" tabindex="-1" data-art-src="assets/hudozhnik/art/forest-witch.jpg" data-art-name="Живописная работа"><img src="assets/hudozhnik/art/forest-witch.jpg" alt="" loading="lazy"><span>ЖИВОПИСЬ</span></button>
-        <button class="artwork-slide" type="button" aria-hidden="true" tabindex="-1" data-art-src="assets/hudozhnik/art/starica-shamanka.jpg" data-art-name="Живописная работа"><img src="assets/hudozhnik/art/starica-shamanka.jpg" alt="" loading="lazy"><span>ЖИВОПИСЬ</span></button>
-        <button class="artwork-slide" type="button" aria-hidden="true" tabindex="-1" data-art-src="assets/hudozhnik/art/tristitia.jpg" data-art-name="Живописная работа"><img src="assets/hudozhnik/art/tristitia.jpg" alt="" loading="lazy"><span>ЖИВОПИСЬ</span></button>
-        <button class="artwork-slide" type="button" aria-hidden="true" tabindex="-1" data-art-src="assets/hudozhnik/art/under-wing.jpg" data-art-name="Живописная работа"><img src="assets/hudozhnik/art/under-wing.jpg" alt="" loading="lazy"><span>ЖИВОПИСЬ</span></button>
-        <button class="artwork-slide" type="button" aria-hidden="true" tabindex="-1" data-art-src="assets/hudozhnik/art/wheel-of-samsara.jpg" data-art-name="Живописная работа"><img src="assets/hudozhnik/art/wheel-of-samsara.jpg" alt="" loading="lazy"><span>ЖИВОПИСЬ</span></button>
-      </div></div><p class="works-marquee-caption">Нажмите на картину, чтобы рассмотреть её. <a href="#color-studies">Ниже — разбор цвета пяти работ ↓</a></p>
-    </section>
-    <section class="color-studies" aria-labelledby="color-studies-title">
-      <header class="studies-heading"><p class="eyebrow">ШЕСТЬ РАБОТ · ШЕСТЬ ЦВЕТОВЫХ РЕШЕНИЙ</p><h2 id="color-studies-title">Как цвет <em>держит образ.</em></h2><p>Не универсальные схемы, а наблюдения за тем, что происходит в конкретных картинах. Палитры показаны приблизительно по репродукциям.</p></header>
-      <div class="study-grid">
-        <article class="study-card"><img class="study-art" src="assets/hudozhnik/studies/imago.jpg" alt="Imago — живопись Ксении Комаровой" loading="lazy"><div class="study-copy"><p class="study-meta">МАСЛО · ХОЛСТ · 30 × 40 СМ · 2021</p><h3>Imago</h3><p>Мятно-серые и пыльно-розовые слои не спорят за центр. Холодный зелёный раскрывает пространство, а розовые и охристые следы дают ему напряжение. Светлая середина собирает разные жесты в целое.</p><div class="palette" aria-label="Светлая кость, шалфей, пыльная роза, серо-лиловый"><i style="--swatch:#EFECE4"></i><i style="--swatch:#93A29A"></i><i style="--swatch:#B9A698"></i><i style="--swatch:#9C8E87"></i><i style="--swatch:#D2CCBB"></i></div><small class="palette-note">кость · шалфей · роза · лиловый · тёплый серый</small></div></article>
-        <article class="study-card"><img class="study-art" src="assets/hudozhnik/studies/kto-ty.jpg" alt="Кто ты? — живопись Ксении Комаровой" loading="lazy"><div class="study-copy"><p class="study-meta">МАСЛО, ПОТАЛЬ · ХОЛСТ · 50 × 40 СМ · 2020</p><h3>Кто ты?</h3><p>Охра и золото несут тепло, но тёмная умбра делает его собранным, не декоративным. Приглушённый серо-оливковый связывает лицо и фон, а светлый круг удерживает фокус.</p><div class="palette" aria-label="Слоновая кость, оливковый серый, охра, золото, тёмная умбра"><i style="--swatch:#F5F0DE"></i><i style="--swatch:#A4A07C"></i><i style="--swatch:#D7A525"></i><i style="--swatch:#B48321"></i><i style="--swatch:#271605"></i></div><small class="palette-note">слоновая кость · олива · охра · золото · умбра</small></div></article>
-        <article class="study-card"><img class="study-art" src="assets/hudozhnik/studies/lunny-svet.jpg" alt="Лунный свет — живопись Ксении Комаровой" loading="lazy"><div class="study-copy"><p class="study-meta">МАСЛО · ХОЛСТ · 50 × 60 СМ · 2020</p><h3>Лунный свет</h3><p>Сине-фиолетовая ночь и почти чёрные участки создают тишину. Лунный свет становится маршрутом взгляда: сначала вспышка на небе, затем её отражение в воде.</p><div class="palette" aria-label="Стальной синий, серо-синий, ночной индиго, глубокий тёмный"><i style="--swatch:#566378"></i><i style="--swatch:#3D4459"></i><i style="--swatch:#23354B"></i><i style="--swatch:#171C2C"></i><i style="--swatch:#070406"></i></div><small class="palette-note">стальной синий · индиго · ночной синий · чернильный</small></div></article>
-        <article class="study-card"><img class="study-art" src="assets/hudozhnik/studies/20-20.jpg" alt="20.20 — Код доступа к игре — живопись Ксении Комаровой" loading="lazy"><div class="study-copy"><p class="study-meta">МАСЛО · ХОЛСТ · 60 × 70 СМ · 2020</p><h3>20.20 — Код доступа к игре</h3><p>Бирюзово-голубой костюм резко отделяется от горячих красно-малиновых и тёмных тонов города. Контраст не успокаивает сцену, а подчёркивает уязвимость и напряжение образа.</p><div class="palette" aria-label="Светлый голубой, бирюза, тёплый серый, красная умбра, почти чёрный"><i style="--swatch:#AFCFDB"></i><i style="--swatch:#509BB6"></i><i style="--swatch:#B29F98"></i><i style="--swatch:#6E3A3D"></i><i style="--swatch:#1B0F10"></i></div><small class="palette-note">голубой · бирюза · тёплый серый · красная умбра · уголь</small></div></article>
-        <article class="study-card"><img class="study-art" src="assets/hudozhnik/studies/flamingo.jpg" alt="Фламинго — акварель Ксении Комаровой" loading="lazy"><div class="study-copy"><p class="study-meta">АКВАРЕЛЬ · БУМАГА · 11 × 17 СМ</p><h3>Фламинго</h3><p>Пыльно-розовые птицы звучат на фоне сине-зелёной воды. Тёмный бирюзовый собирает розовый, а светлое небо смягчает их встречу: контраст превращается в ритм.</p><div class="palette" aria-label="Пудровая роза, бледный коралл, серый, бирюзовый, глубокий синий"><i style="--swatch:#D6BFC2"></i><i style="--swatch:#D7A3A4"></i><i style="--swatch:#9D9CA3"></i><i style="--swatch:#39666F"></i><i style="--swatch:#081419"></i></div><small class="palette-note">пудровая роза · коралл · дымка · бирюза · ночь</small></div></article>
-      <article class="study-card"><img class="study-art" src="assets/hudozhnik/studies/starica-shamanka.jpg" alt="Старица-Шаманка — живопись Ксении Комаровой" loading="lazy"><div class="study-copy"><p class="study-meta">МАСЛО · ХОЛСТ · 30 × 40 СМ · 2021</p><h3>Старица-Шаманка</h3><p>Холодные бело-серые пряди пересекают лицо и задают вертикальный ритм. На их фоне тёплая охра кожи становится особенно живой, а приглушённый шалфейный фон удерживает портрет от излишней драматичности. Один светлый глаз собирает взгляд.</p><div class="palette" aria-label="Светлая кость, дымчато-серый, шалфей, тёплая охра, тёмный графит"><i style="--swatch:#D0D0C6"></i><i style="--swatch:#6B7772"></i><i style="--swatch:#A2AE9E"></i><i style="--swatch:#A28371"></i><i style="--swatch:#1F2323"></i></div><small class="palette-note">кость · дымчатый серый · шалфей · охра · графит</small></div></article>
-      </div>
-      <p class="studies-footnote">Цветовые названия и палитры — авторское чтение картин, а не техническое описание пигментов. Оттенки на экране зависят от устройства.</p>
-    </section>    <section class="thesis artist-practice" id="vision" aria-labelledby="vision-title">
-      <div class="thesis-kicker"><span>02</span><span>МОЙ СПОСОБ ВИДЕТЬ</span><i></i></div>
-      <div class="thesis-body"><div><p class="eyebrow">ЦВЕТ НЕ ОБЯЗАН БЫТЬ УДОБНЫМ</p><h2 id="vision-title">Он должен быть <em>точным.</em></h2><p class="vision-intro">Мне интересно не сглаживать противоречия, а находить точку, где противоположности удерживают друг друга. Там, где оттенок усиливает другой, а форма сохраняет напряжение, рождается образ.</p></div><div class="thesis-aside"><p>Природное чутьё на цвет — это внимание к отношениям: как сложный оттенок меняет пространство и как неожиданные сочетания становятся цельными.</p><div class="color-equation"><span class="swatch clay"></span><b>+</b><span class="swatch blue"></span><b>+</b><span class="swatch acid"></span><span class="equation-caption">Противоречие<br>может стать целым</span></div></div></div>
-      <div class="practice-routes"><a class="practice-route" href="#cv"><span>01 / ПРОФЕССИОНАЛЬНЫЙ КОНТЕКСТ</span><strong>CV художницы</strong><small>Биография, практика и профессиональный путь</small><b>Открыть CV ↗</b></a><a class="practice-route practice-route-store" href="https://rukc2006.github.io/Porttfolio/vitrina.html?v=32" target="_blank" rel="noopener"><span>02 / КОЛЛЕКЦИЯ</span><strong>Витрина картин</strong><small>Посмотреть работы и уточнить детали конкретной картины</small><b>Перейти к картинам ↗</b></a></div>
-      <div class="color-statement"><span>ЦВЕТ — ЭТО НЕ ФОН.</span><strong>ЭТО СПОСОБ ДУМАТЬ.</strong></div>
-    </section>
-    <section class="contact-section" id="contact"><div class="contact-number">СВЯЗАТЬСЯ<br><span>О РАБОТЕ, ПОКУПКЕ И СОТРУДНИЧЕСТВЕ</span></div><div class="contact-main"><p class="eyebrow">ОБСУДИТЬ РАБОТУ ИЛИ СОТРУДНИЧЕСТВО</p><h2>У картины может<br>начаться <em>другая жизнь.</em></h2><p>Напишите мне о работе — отвечу по её статусу и возможности просмотра.</p><div class="contact-options"><a class="contact-option" href="https://www.instagram.com/ru2006kc/" target="_blank" rel="noopener"><span>Instagram</span><small>@ru2006kc</small></a><a class="contact-option" href="https://vk.ru/kcradle" target="_blank" rel="noopener"><span>ВКонтакте</span><small>Написать в VK</small></a><a class="contact-option" href="mailto:ru-2006kc@yandex.ru"><span>Почта</span><small>ru-2006kc@yandex.ru</small></a></div></div><div class="contact-mark" aria-hidden="true"><img src="assets/hudozhnik/artist-logo.webp" alt=""></div></section>
-    <dialog class="art-dialog" aria-labelledby="art-dialog-title"><button class="dialog-close" type="button" aria-label="Закрыть просмотр">×</button><img class="dialog-image" src="" alt=""><div class="dialog-copy"><p class="eyebrow">ЖИВОПИСЬ / КСЕНИЯ КОМАРОВА</p><h2 id="art-dialog-title">Работа</h2><p>Чтобы узнать больше о работе и посмотреть актуальную информацию, перейдите в витрину.</p><a class="button button-clay dialog-store-link" href="https://rukc2006.github.io/Porttfolio/vitrina.html?v=32" target="_blank" rel="noopener">Открыть витрину <span aria-hidden="true">↗</span></a></div></dialog>
-  </main>
-  <footer class="footer"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><img src="assets/hudozhnik/artist-logo.webp" alt=""></span><span class="brand-copy"><strong>Ксения Комарова</strong><small>художница · живопись</small></span></a><div class="footer-links"><a href="Kcradle.html">Обо мне</a><a href="#cv">CV</a><a href="https://rukc2006.github.io/Porttfolio/vitrina.html?v=32" target="_blank" rel="noopener">Витрина</a></div><a href="#top">В начало</a><small class="footer-note">Персональное портфолио художницы</small></footer>
-
-  </section>
-  <section class="artist-panel cv-panel" id="artist-panel-cv" role="tabpanel" aria-labelledby="artist-tab-cv" hidden>
-    <iframe id="artist-cv-frame" title="CV художницы Ксении Комаровой" loading="lazy"></iframe>
-  </section>
+<div class="artist-tabs" role="tablist" aria-label="Страницы художницы">
+<button class="artist-tab" id="tab-view" type="button" role="tab" aria-selected="true" aria-controls="panel-view" data-tab="view">Мой взгляд</button>
+<button class="artist-tab" id="tab-cv" type="button" role="tab" aria-selected="false" aria-controls="panel-cv" data-tab="cv" tabindex="-1">CV художницы</button>
+</div>
+<section class="panel" id="panel-view" role="tabpanel" aria-labelledby="tab-view"><iframe title="Авторская презентация художницы" src="artist-view.html"></iframe></section>
+<section class="panel" id="panel-cv" role="tabpanel" aria-labelledby="tab-cv" hidden><iframe title="Прежняя страница художницы и CV" data-src="artist-cv.html"></iframe></section>
+<script>
+const tabs=[...document.querySelectorAll('[data-tab]')],panels={view:document.getElementById('panel-view'),cv:document.getElementById('panel-cv')};
+function selectTab(name,writeHash=true){if(!panels[name])return;tabs.forEach(t=>{const on=t.dataset.tab===name;t.setAttribute('aria-selected',String(on));t.tabIndex=on?0:-1});Object.entries(panels).forEach(([key,p])=>p.hidden=key!==name);if(name==='cv'){const f=panels.cv.querySelector('iframe');if(!f.src)f.src=f.dataset.src}if(writeHash)history.replaceState(null,'',location.pathname+location.search+(name==='cv'?'#cv':'#view'))}
+tabs.forEach(t=>t.addEventListener('click',()=>selectTab(t.dataset.tab)));tabs.forEach(t=>t.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const i=tabs.indexOf(t),n=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;tabs[n].focus();selectTab(tabs[n].dataset.tab)}));window.addEventListener('hashchange',()=>{if(location.hash==='#cv')selectTab('cv',false);else if(location.hash==='#view')selectTab('view',false)});if(location.hash==='#cv')selectTab('cv',false);
+</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
