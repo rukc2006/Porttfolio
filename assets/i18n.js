@@ -120,7 +120,7 @@
   function load(cb) {
     if (lang === 'ru' || lang === 'dump') { dict = {}; cb(); return; }
     var x = new XMLHttpRequest();
-    x.open('GET', BASE + 'i18n/' + lang + '.json?v=20261124b', true);
+    x.open('GET', BASE + 'i18n/' + lang + '.json?v=20261024a', true);
     x.onload = function () { try { dict = JSON.parse(x.responseText) || {}; } catch (e) { dict = {}; } cb(); };
     x.onerror = function () { dict = {}; cb(); };
     x.send();
@@ -203,14 +203,7 @@
     });
     return Object.keys(out);
   };
-  window.addEventListener('message', function (event) {
-    if (event.origin !== location.origin || !event.data || event.data.type !== 'kc-language-sync') return;
-    var next = event.data.lang;
-    if (next !== 'ru' && next !== 'en' && next !== 'zh') return;
-    lang = next;
-    try { localStorage.setItem('kc_lang', next); } catch (e) {}
-    load(applyAll);
-  });  function init() {
+  function init() {
     lang = getLang();
     injectSwitch();
     if (lang === 'dump') {
