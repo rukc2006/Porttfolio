@@ -9,7 +9,7 @@
   var BASE = script ? script.src.replace(/i18n\.js(\?.*)?$/, '') : 'assets/';
   var INLINE = { A: 1, B: 1, I: 1, EM: 1, STRONG: 1, SPAN: 1, SMALL: 1, BR: 1, SUP: 1, SUB: 1, U: 1, CODE: 1, MARK: 1, S: 1, IMG: 1, WBR: 1 };
   var SKIP = { SCRIPT: 1, STYLE: 1, SVG: 1, TEXTAREA: 1, INPUT: 1, SELECT: 1, OPTION: 1, NOSCRIPT: 1, IFRAME: 1, CANVAS: 1, PRE: 1, CODE: 0 };
-  var ATTRS = ['alt', 'title', 'placeholder', 'aria-label'];
+  var ATTRS = ['alt', 'title', 'placeholder', 'aria-label', 'data-art-name'];
   var dict = {}, lang = 'ru', applying = false, timer = null;
 
   function lookup(k) {
