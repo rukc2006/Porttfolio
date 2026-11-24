@@ -9,7 +9,7 @@
   var BASE = script ? script.src.replace(/i18n\.js(\?.*)?$/, '') : 'assets/';
   var INLINE = { A: 1, B: 1, I: 1, EM: 1, STRONG: 1, SPAN: 1, SMALL: 1, BR: 1, SUP: 1, SUB: 1, U: 1, CODE: 1, MARK: 1, S: 1, IMG: 1, WBR: 1 };
   var SKIP = { SCRIPT: 1, STYLE: 1, SVG: 1, TEXTAREA: 1, INPUT: 1, SELECT: 1, OPTION: 1, NOSCRIPT: 1, IFRAME: 1, CANVAS: 1, PRE: 1, CODE: 0 };
-  var ATTRS = ['alt', 'title', 'placeholder', 'aria-label'];
+  var ATTRS = ['alt', 'title', 'placeholder', 'aria-label', 'data-art-name'];
   var dict = {}, lang = 'ru', applying = false, timer = null;
 
   function lookup(k) {
@@ -35,6 +35,7 @@
     return false;
   }
   function isUnit(el) {
+    if (el.hasAttribute && el.hasAttribute('data-i18n-descend')) return false;
     if (!el.textContent || !el.textContent.trim()) return false;
     for (var i = 0; i < el.children.length; i++) { if (!INLINE[el.children[i].tagName]) return false; }
     return true;
@@ -127,6 +128,7 @@
   function setLang(l) {
     lang = l;
     try { localStorage.setItem('kc_lang', l); } catch (e) {}
+    try { if (window.parent && window.parent !== window) window.parent.postMessage({ type: 'kc-language-change', lang: l }, location.origin); } catch (e) {}
     load(applyAll);
     try { var u = new URL(location.href); u.searchParams.delete('lang'); history.replaceState(null, '', u.toString()); } catch (e) {}
   }
