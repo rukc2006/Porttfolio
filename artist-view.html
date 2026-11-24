@@ -3,11 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>if(new URLSearchParams(location.search).has('embed'))document.documentElement.classList.add('embedded')</script>
   <meta name="theme-color" content="#102724">
   <meta name="description" content="Ксения Комарова — живопись о сложных цветовых отношениях, форме и внутреннем напряжении образа.">
   <title>Ксения Комарова — живопись на пересечении цвета</title>
   <link rel="stylesheet" href="artist-view.css">
   <script src="artist-view.js" defer></script>
+  <style>.embedded .topbar{display:none!important}</style>
 </head>
 <body>
   <header class="topbar" id="top">
@@ -43,6 +45,39 @@
         <button class="artwork-slide" data-i18n-descend type="button" aria-hidden="true" tabindex="-1" data-art-src="assets/hudozhnik/art/under-wing.jpg" data-art-name="Под крылом"><img src="assets/hudozhnik/art/under-wing.jpg" alt="" loading="lazy"><span>ПОД КРЫЛОМ</span></button>
         <button class="artwork-slide" data-i18n-descend type="button" aria-hidden="true" tabindex="-1" data-art-src="assets/hudozhnik/art/wheel-of-samsara.jpg" data-art-name="Колесо Сансары"><img src="assets/hudozhnik/art/wheel-of-samsara.jpg" alt="" loading="lazy"><span>КОЛЕСО САНСАРЫ</span></button>
       </div></div><p class="works-marquee-caption">Нажмите на картину, чтобы рассмотреть её. <a href="#color-studies">Ниже — разбор цвета шести работ ↓</a></p>
+      <section class="art-interactives" aria-label="Интерактивный просмотр картин">
+        <div class="interactive-heading"><p class="eyebrow">РАССМОТРЕТЬ БЛИЖЕ</p><h3>Цвет и фактура <em>в движении.</em></h3></div>
+        <div class="interactive-grid">
+          <article class="interactive-card compare-card">
+            <p class="interactive-kicker">ДВА СОСТОЯНИЯ ЦВЕТА</p><h4>Передвигайте границу</h4>
+            <div class="image-compare" data-compare style="--compare:50%">
+              <img src="assets/artist/12_flamingo.jpg" alt="Акварель Фламинго, розовые птицы на бирюзовом фоне" loading="lazy">
+              <div class="compare-top"><img src="assets/artist/07_lunny_svet.jpg" alt="Масло Лунный свет, ночной синий пейзаж" loading="lazy"></div>
+              <span class="compare-label compare-label-a">АКВАРЕЛЬ</span><span class="compare-label compare-label-b">МАСЛО</span>
+              <input type="range" min="0" max="100" value="50" aria-label="Сравнить две картины">
+              <span class="compare-handle" aria-hidden="true">↔</span>
+            </div>
+            <p class="interactive-note">Акварель «Фламинго» и масляный «Лунный свет»: два разных способа собрать цвет.</p>
+          </article>
+          <article class="interactive-card bubble-card">
+            <p class="interactive-kicker">СЛОИ И МАЗКИ</p><h4>Посмотрите сквозь стекло</h4>
+            <div class="glass-art" data-glass tabindex="0" aria-label="Проведите указателем по картине, чтобы рассмотреть увеличенную фактуру">
+              <img src="assets/artist/13_imago.jpg" alt="Фактура картины Imago" loading="lazy"><span class="glass-lens" aria-hidden="true"></span>
+            </div>
+            <p class="interactive-note">Ведите указателем или пальцем по работе — стеклянная линза приблизит фрагмент.</p>
+          </article>
+          <article class="interactive-card swap-card">
+            <p class="interactive-kicker">КАРУСЕЛЬ РАБОТ</p><h4>Меняйте порядок картин</h4>
+            <div class="art-swap" data-swap>
+              <button class="swap-art" type="button" data-name="Старица-Шаманка" aria-label="Переместить картину Старица-Шаманка в конец карусели"><img src="assets/artist/01_starica_shamanka.jpg" alt="Старица-Шаманка" loading="lazy"><span>СТАРИЦА-ШАМАНКА</span></button>
+              <button class="swap-art" type="button" data-name="Колесо Сансары" aria-label="Переместить картину Колесо Сансары в конец карусели"><img src="assets/artist/06_koleso_sansary.jpg" alt="Колесо Сансары" loading="lazy"><span>КОЛЕСО САНСАРЫ</span></button>
+              <button class="swap-art" type="button" data-name="Под крылом" aria-label="Переместить картину Под крылом в конец карусели"><img src="assets/artist/08_pod_krylom.jpg" alt="Под крылом" loading="lazy"><span>ПОД КРЫЛОМ</span></button>
+            </div>
+            <div class="swap-controls"><button type="button" data-swap-prev aria-label="Предыдущая картина">←</button><span data-swap-count>01 / 03</span><button type="button" data-swap-next aria-label="Следующая картина">→</button></div>
+            <p class="interactive-note">Нажмите на переднюю работу или листайте стрелками — карточка мягко уходит назад.</p>
+          </article>
+        </div>
+      </section>
     </section>
     <section class="color-studies" id="color-studies" aria-labelledby="color-studies-title">
       <header class="studies-heading"><p class="eyebrow">ШЕСТЬ РАБОТ · ШЕСТЬ ЦВЕТОВЫХ РЕШЕНИЙ</p><h2 id="color-studies-title">Как цвет <em>держит образ.</em></h2><p>Не универсальные схемы, а наблюдения за тем, что происходит в конкретных картинах. Палитры показаны приблизительно по репродукциям.</p></header>
