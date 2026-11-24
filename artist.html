@@ -24,9 +24,9 @@
 .hero-line{margin:18px 0 0;max-width:520px;font-size:16px;line-height:1.8;color:var(--muted)}
 .button.key{border-color:var(--gold2);color:var(--gold2)}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.portrait{margin:0;position:relative;justify-self:end;width:100%;max-width:350px}
-.portrait img{display:block;width:100%;aspect-ratio:1/1.08;max-height:min(480px,calc(100vh - 300px));min-height:340px;object-fit:cover;object-position:50% 14%;border:1px solid var(--line);box-shadow:var(--shadow);background:#000}
-.portrait:after{content:"";position:absolute;left:-14px;top:14px;right:14px;bottom:-14px;border:1px solid rgba(182,154,104,.35);z-index:-1}
+.portrait{margin:0;position:relative;isolation:isolate;justify-self:end;width:100%;max-width:350px;padding:9px;border:1px solid rgba(182,154,104,.42);border-radius:48% 48% 24px 24px / 26% 26% 14px 14px;background:linear-gradient(145deg,rgba(182,154,104,.12),rgba(16,23,16,.2));box-shadow:0 22px 54px rgba(0,0,0,.28)}
+.portrait img{display:block;width:100%;aspect-ratio:4/5;max-height:min(480px,calc(100vh - 300px));min-height:340px;object-fit:cover;object-position:50% 12%;border:0;border-radius:46% 46% 17px 17px / 25% 25% 12px 12px;box-shadow:none;background:#000;-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 84%,rgba(0,0,0,.72) 93%,transparent 100%);mask-image:linear-gradient(to bottom,#000 0%,#000 84%,rgba(0,0,0,.72) 93%,transparent 100%)}
+.portrait:before{content:"";position:absolute;inset:15px -8px -8px 15px;border:1px solid rgba(182,154,104,.25);border-radius:48% 48% 24px 24px / 26% 26% 14px 14px;z-index:-1}
 section.blk{padding:60px 0 70px;border-top:1px solid var(--line)}
 section.blk h2{font-size:clamp(34px,4.4vw,60px);line-height:1.05;color:var(--paper);margin-bottom:14px}
 .lede{max-width:760px;font-size:15px;line-height:1.7;color:var(--muted);margin:0}
@@ -44,6 +44,10 @@ section.blk h2{font-size:clamp(34px,4.4vw,60px);line-height:1.05;color:var(--pap
 /* биография и контакты */
 .bulb{display:block;color:var(--gold);margin-bottom:12px}
 .bio-blk h2{font-size:clamp(22px,2.6vw,32px)!important}
+.bio-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(230px,32%);gap:clamp(28px,4vw,56px);align-items:start;max-width:1120px}
+.bio-copy{min-width:0}
+.bio-photo{margin:2px 0 0;position:relative;width:100%;max-width:320px;justify-self:end;padding:7px;border:1px solid rgba(182,154,104,.3);background:rgba(182,154,104,.045);box-shadow:0 18px 42px rgba(0,0,0,.22)}
+.bio-photo img{display:block;width:100%;height:auto;border:1px solid rgba(233,223,201,.18)}
 .bio{margin:0 0 14px;max-width:760px;font-size:15.5px;line-height:1.85;color:var(--muted)}
 .bio-contacts{margin:22px 0 0;font-size:14px;color:var(--muted)}
 .bio-contacts a{color:var(--gold2);border-bottom:1px solid rgba(182,154,104,.4)}
@@ -85,7 +89,7 @@ section.blk h2{font-size:clamp(34px,4.4vw,60px);line-height:1.05;color:var(--pap
 .lb-prev{left:14px;top:50%;margin-top:-24px}.lb-next{right:14px;top:50%;margin-top:-24px}.lb-close{right:14px;top:14px}
 body.lb-lock{overflow:hidden}
 @media(max-width:980px){.hero-grid{grid-template-columns:1fr;gap:44px}.portrait{max-width:380px;justify-self:start}.portrait img{max-height:none}.ex-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:700px){.hero{padding:92px 0 44px}section.blk{padding:56px 0 50px}.gallery{grid-template-columns:1fr;gap:40px;margin-top:30px}.ex-grid{grid-template-columns:1fr}.lb{padding:14px 10px 10px}.lb-btn{width:42px;height:42px;top:auto;bottom:14px;margin:0}.lb-prev{left:14px}.lb-next{right:14px}.lb-close{top:10px;right:10px}.lb-fig img{max-height:calc(100vh - 250px)}.lb-cnt{margin-bottom:46px}}
+@media(max-width:700px){.hero{padding:92px 0 44px}section.blk{padding:56px 0 50px}.gallery{grid-template-columns:1fr;gap:40px;margin-top:30px}.ex-grid{grid-template-columns:1fr}.lb{padding:14px 10px 10px}.lb-btn{width:42px;height:42px;top:auto;bottom:14px;margin:0}.lb-prev{left:14px}.lb-next{right:14px}.lb-close{top:10px;right:10px}.lb-fig img{max-height:calc(100vh - 250px)}.lb-cnt{margin-bottom:46px}.bio-layout{grid-template-columns:1fr;gap:24px}.bio-photo{max-width:360px;justify-self:start}}
 
 .cv-banner{padding:10px 0 30px}
 .cvb{display:flex;gap:28px;align-items:center;justify-content:space-between;flex-wrap:wrap;border:1px solid rgba(233,223,201,.45);background:rgba(233,223,201,.05);padding:28px 32px}
@@ -165,9 +169,14 @@ body.lb-lock{overflow:hidden}
 <section class="blk bio-blk" id="bio"><div class="container">
   <svg class="bulb" viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M24 14c-5.5 0-9.5 4-9.5 9 0 3.4 1.8 5.6 3.6 7.6 1 1.1 1.6 2.3 1.6 3.9v.5h8.6v-.5c0-1.6.6-2.8 1.6-3.9 1.8-2 3.6-4.2 3.6-7.6 0-5-4-9-9.5-9z"/><path d="M20 38h8M21.2 41.6h5.6"/><path d="M24 3.5v4.6M11.8 8.4l3.1 3.3M36.2 8.4l-3.1 3.3"/></svg>
   <h2>Краткая творческая биография</h2>
+  <div class="bio-layout">
+    <div class="bio-copy">
   <p class="bio">Я архитектор маленьких миров. Соединяю рисунок и IT: в живописи ищу образ, в работе с данными и автоматизацией строю системы, и в обоих случаях меня занимает одно и то же: как из смысла и вдохновения собрать устойчивую форму.</p><p class="bio">Родилась и живу в Москве. Рисовать начала в изостудии «Планета молодых» под руководством А. А. Соловьёва (член СХ СССР с 1985 г.): направление «художественно-графический рисунок», 2005 год.</p><p class="bio">Основные материалы: холст, бумага, масло и акварель. Техники: алла прима, импасто, традиционная, а в ряде работ мастихин. Направления, в которых я работаю: символизм, экспрессионизм, импрессионизм и абстракция. Постоянно ищу новые формы и добавляю в работы что-то новое.</p><p class="bio">Есть дополнительное образование, и я постоянно узнаю новое.</p><p class="bio">С 2017 года участвую в конкурсах и выставках в Москве и онлайн: от конкурса «Битва художников» до персональных выставок 2021 года и международных онлайн-проектов (<a class="bio-exhibitions-link" href="#exhibitions">список выставок</a>). Развиваю проект «Мастерская-Колыбель»: маленькие миры, символы и тёплые предметы.</p>
   <div class="bio-cta"><a class="button solid big" href="Kcradle.html#contacts">Связаться со мной</a><a class="button big" href="cv.html">CV для галерей</a><a class="button big" href="cv/Komarova_Ksenia_CV.pdf" download>Скачать CV (PDF)</a></div>
   <p class="bio-contacts">Почта: <a href="mailto:ru-2006kc@yandex.ru">ru-2006kc@yandex.ru</a> · Instagram: <a href="https://www.instagram.com/ru2006kc/" target="_blank" rel="noopener">@ru2006kc</a></p>
+    </div>
+    <figure class="bio-photo"><img src="assets/artist/portrait-cv-full.jpg" alt="Ксения Комарова, полный портрет в биографии" width="1100" height="1650" loading="lazy"></figure>
+  </div>
 </div></section>
 
 <section class="blk ex-blk" id="exhibitions"><div class="container">
