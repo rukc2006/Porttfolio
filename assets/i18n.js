@@ -136,7 +136,7 @@
   function load(cb) {
     if (lang === 'ru' || lang === 'dump') { dict = {}; cb(); return; }
     var x = new XMLHttpRequest();
-    x.open('GET', BASE + 'i18n/' + lang + '.json?v=20261124c', true);
+    x.open('GET', BASE + 'i18n/' + lang + '.json?v=20261124d', true);
     x.onload = function () { try { dict = JSON.parse(x.responseText) || {}; } catch (e) { dict = {}; } cb(); };
     x.onerror = function () { dict = {}; cb(); };
     x.send();
