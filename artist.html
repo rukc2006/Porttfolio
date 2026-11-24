@@ -7,19 +7,25 @@
   <meta name="description" content="Ксения Комарова — живопись о сложных цветовых отношениях, форме и внутреннем напряжении образа.">
   <title>Ксения Комарова — живопись на пересечении цвета</title>
   <link rel="canonical" href="https://rukc2006.github.io/Porttfolio/artist.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/header.css">
   <link rel="stylesheet" href="artist-page.css">
+  <style>
+    :root{--bg:#101710;--cream:#f1eadb;--paper:#e9dfc9;--paper2:#cfc0a3;--gold:#b69a68;--line:rgba(233,223,201,.18);--muted:#cbc1ac}
+    body{padding-top:72px}
+    header:not(.site){position:static;top:auto;z-index:auto;background:transparent;border:0;backdrop-filter:none;-webkit-backdrop-filter:none}
+    .artist-tabs{position:sticky;top:72px;z-index:9}
+    @media(max-width:760px){.artist-tabs{top:72px}}
+  </style>
   <script src="artist-page.js" defer></script>
 </head>
-<body>
-  <header class="topbar" id="top">
-    <a class="brand" href="#top" aria-label="Ксения Комарова — главная">
-      <span class="brand-mark" aria-hidden="true"><img src="assets/hudozhnik/artist-logo.webp" alt=""></span>
-      <span class="brand-copy"><strong>Ксения Комарова</strong><small>художница · живопись</small></span>
-    </a>
-    <nav class="main-nav" aria-label="Основная навигация"><a href="#practice">Практика</a><a href="#works">Работы</a><a href="#cv">CV</a><a href="#contact">Контакт</a></nav>
-    <a class="top-cta" href="#cv">CV художницы</a>
-    <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
-  </header>
+<body id="top">
+  <header class="site"><div class="container"><nav>
+    <a class="logo" href="Kcradle.html" aria-label="Мастерская-Колыбель, на главную"><img class="logo-mark" src="assets/kcradle-wordmark-light.png" alt="KRADLE · Мастерская-Колыбель" width="84" height="42"><span class="logo-name">Ксения Комарова</span></a>
+    <div class="navlinks"><a href="artist.html" class="cur">Художник</a><a href="artist.html#works">Работы</a><a href="artist.html#exhibitions">Выставки</a><a href="Kcradle.html#about">Обо мне</a><a href="education.html">Образование и путь</a><a href="gift.html">Подарок</a><a href="artist.html#cv" class="nav-pill">CV для галерей</a><a class="nav-cta" href="about.html#all-contacts">Связаться</a></div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu">Меню</button>
+  </nav><div class="mobile-menu" id="mobileMenu"><div class="mobile-menu-inner"><a href="Kcradle.html">Главная</a><a href="artist.html" class="cur">Художник</a><a href="artist.html#works">Работы</a><a href="artist.html#exhibitions">Выставки</a><a href="Kcradle.html#about">Обо мне</a><a href="education.html">Образование и путь</a><a href="gift.html">Подарок</a><a href="artist.html#cv" class="nav-pill">CV для галерей</a><a href="about.html#all-contacts"><b>Связаться</b></a></div></div></div></header>
   <div class="artist-tabs" role="tablist" aria-label="Разделы портфолио">
     <button class="artist-tab is-active" id="artist-tab-view" type="button" role="tab" aria-selected="true" aria-controls="artist-panel-view" data-artist-tab="view">Мой взгляд</button>
     <button class="artist-tab" id="artist-tab-cv" type="button" role="tab" aria-selected="false" aria-controls="artist-panel-cv" data-artist-tab="cv" tabindex="-1">CV художницы</button>
@@ -73,6 +79,7 @@
   <section class="artist-panel cv-panel" id="artist-panel-cv" role="tabpanel" aria-labelledby="artist-tab-cv" hidden>
     <iframe id="artist-cv-frame" title="CV художницы Ксении Комаровой" loading="lazy"></iframe>
   </section>
+  <script src="assets/header.js"></script>
 </body>
 </html>
 
