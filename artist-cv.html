@@ -17,6 +17,23 @@
 <link rel="stylesheet" href="assets/artist/site.css">
 <style>.artist-cv-education{margin:26px 0 0;padding:20px;border:1px solid rgba(182,154,104,.28);background:rgba(182,154,104,.035)}.artist-cv-education h3{margin:0 0 14px;color:var(--paper);font:400 22px/1.1 var(--display);letter-spacing:.04em;text-transform:uppercase}.artist-cv-edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 28px}.artist-cv-edu-grid h4{margin:0 0 8px;color:var(--gold2);font-size:10px;letter-spacing:.12em;text-transform:uppercase}.artist-cv-edu-grid p{margin:0 0 8px;color:var(--muted);font-size:12px;line-height:1.6}.artist-cv-edu-grid strong{color:var(--gold2);font-weight:600}@media(max-width:700px){.artist-cv-edu-grid{grid-template-columns:1fr}}@media print{.artist-cv-education{break-inside:avoid}}</style><style>header.site .navlinks{flex-wrap:nowrap;white-space:nowrap;gap:clamp(7px,.65vw,14px);font-size:clamp(10px,.72vw,13px)}html{scrollbar-color:#526b64 #0b1d1b;scrollbar-width:thin}::-webkit-scrollbar{width:10px;height:10px;background:#0b1d1b}::-webkit-scrollbar-thumb{background:#526b64;border:2px solid #0b1d1b;border-radius:9px}@media(max-width:980px){header.site .navlinks{display:none!important}.mobile-menu-btn{display:inline-flex!important}}</style>
 <style>
+.artist-cv-education{margin:36px 0 0;padding:26px 0 8px;border-top:1px solid rgba(182,154,104,.36)}
+.artist-cv-education h3{margin:0 0 23px;color:var(--paper);font:400 25px/1.1 var(--display);letter-spacing:.04em;text-transform:uppercase}
+.artist-cv-edu-timeline{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin:0;padding:0;list-style:none}
+.artist-cv-edu-timeline:before{content:"";position:absolute;top:7px;left:9px;right:9px;height:1px;background:linear-gradient(90deg,rgba(223,155,130,.72),rgba(233,223,201,.25) 48%,rgba(223,155,130,.72))}
+.artist-cv-edu-year{position:relative;min-width:0;padding-top:27px}
+.artist-cv-edu-year:before{content:"";position:absolute;top:0;left:2px;width:11px;height:11px;border:2px solid var(--clay-pale,#df9b82);border-radius:50%;background:#0b201e;box-shadow:0 0 0 5px #0b201e}
+.artist-cv-edu-year time{display:block;margin-bottom:9px;color:var(--clay-pale,#df9b82);font:600 13px/1.2 "DM Mono",monospace;letter-spacing:.08em}
+.artist-cv-edu-card{height:100%;min-height:175px;padding:17px 18px;border:1px solid rgba(233,223,201,.17);background:linear-gradient(145deg,rgba(213,140,115,.065),rgba(7,24,22,.28));transition:border-color .2s,transform .2s,background .2s}
+.artist-cv-edu-year:hover .artist-cv-edu-card{transform:translateY(-3px);border-color:rgba(223,155,130,.55);background:linear-gradient(145deg,rgba(213,140,115,.11),rgba(7,24,22,.34))}
+.artist-cv-edu-card h4{margin:0 0 11px;color:var(--paper);font:400 20px/1.15 var(--display)}
+.artist-cv-edu-card p{margin:0 0 9px;color:var(--muted);font-size:12px;line-height:1.55}
+.artist-cv-edu-card p:last-child{margin-bottom:0}
+.artist-cv-edu-card strong{color:var(--gold2);font-weight:600}
+@media(max-width:760px){.artist-cv-education{margin-top:30px}.artist-cv-edu-timeline{grid-template-columns:repeat(3,minmax(280px,1fr));gap:14px;overflow-x:auto;padding:0 2px 14px;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:#526b64 transparent}.artist-cv-edu-timeline:before{right:auto;width:calc(100% - 18px)}.artist-cv-edu-year{scroll-snap-align:start}.artist-cv-edu-card{min-height:0;padding:15px}.artist-cv-edu-card h4{font-size:19px}}
+@media(max-width:440px){.artist-cv-edu-timeline{grid-template-columns:repeat(3,minmax(82vw,1fr))}.artist-cv-edu-card p{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.artist-cv-edu-card{transition:none}}
+@media print{.artist-cv-education{break-inside:avoid}}
 .hero{padding:96px 0 36px;position:relative;overflow:hidden}
 .hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 78% 28%,rgba(102,117,73,.22),transparent 34%),radial-gradient(circle at 15% 80%,rgba(150,112,56,.12),transparent 32%);pointer-events:none}
 .hero-grid{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:64px;align-items:center}
@@ -198,15 +215,19 @@ body.lb-lock{overflow:hidden}
   <div class="bio-layout">
     <div class="bio-copy">
   <p class="bio">Я архитектор маленьких миров. Соединяю рисунок и IT: в живописи ищу образ, в работе с данными и автоматизацией строю системы, и в обоих случаях меня занимает одно и то же: как из смысла и вдохновения собрать устойчивую форму.</p><p class="bio">Родилась и живу в Москве. Рисовать начала в изостудии «Планета молодых» под руководством А. А. Соловьёва (член СХ СССР с 1985 г.): направление «художественно-графический рисунок», 2005 год.</p><p class="bio">Основные материалы: холст, бумага, масло и акварель. Техники: алла прима, импасто, традиционная, а в ряде работ мастихин. Направления, в которых я работаю: символизм, экспрессионизм, импрессионизм и абстракция. Постоянно ищу новые формы и добавляю в работы что-то новое.</p><p class="bio">Продолжаю художественное образование: академический рисунок, история искусства, дизайн и преподавание изобразительного искусства.</p><p class="bio">С 2017 года участвую в конкурсах и выставках в Москве и онлайн: от конкурса «Битва художников» до персональных выставок 2021 года и международных онлайн-проектов (<a class="bio-exhibitions-link" href="#exhibitions">список выставок</a>). Развиваю проект «Мастерская-Колыбель»: маленькие миры, символы и тёплые предметы.</p>
-  <section class="artist-cv-education" id="art-education" data-i18n-descend><h3>Художественное образование</h3><div class="artist-cv-edu-grid">
-<div><h4>Рисунок и история искусства</h4><p data-i18n-descend><strong>2025</strong> Академический рисунок и история изобразительного искусства — Пентаскул; удостоверения о повышении квалификации.</p><p data-i18n-descend><strong>2005</strong> Изостудия «Планета молодых», художественно-графический рисунок.</p></div>
-<div><h4>Преподавание и смежные дисциплины</h4><p data-i18n-descend><strong>2026</strong> Преподаватель изобразительного искусства и черчения — ЮРГПУ (НПИ); методист дополнительного образования — МИППиПКП. Дипломы о профессиональной переподготовке.</p><p data-i18n-descend><strong>2026</strong> Менеджмент в сфере культуры и искусства — КУЦ НПО «Меркурий Урал»; авторское право для дизайнера — НАРХСИ.</p><p data-i18n-descend><strong>2025–2026</strong> Основы дизайна — Formfactor Product Design School; Adobe Photoshop — Нетология; арт-терапия — НИИДОПО.</p></div>
-</div></section>
   <div class="bio-cta" data-i18n-descend><a class="button solid big" href="https://rukc2006.github.io/Porttfolio/about.html#all-contacts" target="_top">Связаться со мной</a><a class="button big" href="https://rukc2006.github.io/Porttfolio/cv_print.html" target="_top">CV для галерей</a><a class="button big" href="https://rukc2006.github.io/Porttfolio/cv_print.html?print=1" target="_top">Скачать CV (PDF)</a></div>
   <p class="bio-contacts" data-i18n-descend>Почта: <a href="https://rukc2006.github.io/Porttfolio/about.html#all-contacts" target="_top">ru-2006kc@yandex.ru</a> · Instagram: <a href="https://rukc2006.github.io/Porttfolio/about.html#all-contacts" target="_top">@ru2006kc</a></p>
     </div>
     <figure class="bio-photo"><img src="assets/artist/portrait-cv-full.jpg" alt="Ксения Комарова, полный портрет в биографии" width="1100" height="1650" loading="lazy"></figure>
   </div>
+  <section class="artist-cv-education" id="art-education" data-i18n-descend aria-labelledby="artist-cv-education-title">
+    <h3 id="artist-cv-education-title">Художественное образование</h3>
+    <ol class="artist-cv-edu-timeline" aria-label="Хронология художественного образования">
+      <li class="artist-cv-edu-year"><time datetime="2005">2005</time><article class="artist-cv-edu-card"><h4>Изостудия и первые занятия рисунком</h4><p>Изостудия «Планета молодых» — художественно-графический рисунок под руководством А. А. Соловьёва.</p></article></li>
+      <li class="artist-cv-edu-year"><time datetime="2025">2025</time><article class="artist-cv-edu-card"><h4>Рисунок, история искусства и практика</h4><p>Академический рисунок — Пентаскул, удостоверение о повышении квалификации.</p><p>История изобразительного искусства — Пентаскул, удостоверение о повышении квалификации.</p><p>Основы Adobe Photoshop — Нетология, сертификат; арт-терапия — НИИДОПО, удостоверение о повышении квалификации.</p></article></li>
+      <li class="artist-cv-edu-year"><time datetime="2026">2026</time><article class="artist-cv-edu-card"><h4>Преподавание, культура и дизайн</h4><p>Преподаватель изобразительного искусства и черчения — ЮРГПУ (НПИ), диплом о профессиональной переподготовке.</p><p>Методист дополнительного образования — МИППиПКП, диплом о профессиональной переподготовке.</p><p>Менеджмент в сфере культуры и искусства — КУЦ НПО «Меркурий Урал», диплом о профессиональной переподготовке.</p><p>Авторское право для дизайнера — НАРХСИ, удостоверение о повышении квалификации.</p><p>Основы дизайна — Formfactor Product Design School, сертификат.</p></article></li>
+    </ol>
+  </section>
 </div></section>
 
 <section class="blk ex-blk" id="exhibitions"><div class="container">
@@ -255,8 +276,8 @@ var sx=null;lb.addEventListener('touchstart',function(e){sx=e.touches[0].clientX
 lb.addEventListener('touchend',function(e){if(sx===null)return;var d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>50)show(i+(d<0?1:-1));sx=null});
 })();
 </script>
-<script src="assets/artist/exhibitions-ui.js?v=20261125-timeline-v1"></script>
+<script src="assets/artist/exhibitions-ui.js?v=20261125-horizontal-v2"></script>
 <script src="assets/counter.js"></script>
-<script src="assets/i18n-runtime.js?v=20261125-locale-v1"></script>
+<script src="assets/i18n-runtime.js?v=20261125-education-v2"></script>
 </body>
 </html>

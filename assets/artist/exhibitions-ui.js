@@ -66,13 +66,12 @@
 
     var active = visible.find(function (item) { return item._id === state.selectedId; }) || visible[0];
     state.selectedId = active._id;
-    root.innerHTML = '<div class="ex-event-timeline" aria-label="' + esc(tr('Интерактивная хронология выставок')) + '">'
+    root.innerHTML = '<div class="ex-event-timeline" tabindex="0" aria-label="' + esc(tr('Интерактивная хронология выставок')) + '">'
       + visible.map(function (item, index) {
         var type = validType(item.type);
-        var place = item.place ? ' · ' + tr(item.place) : '';
         var isOpen = item._id === active._id;
         return '<details class="ex-event-step ex-event-' + type + '" data-event-id="' + item._id + '"' + (isOpen ? ' open' : '') + '>'
-          + '<summary><span class="ex-event-step-meta"><span>' + esc(item.year) + esc(place) + '</span><span class="ex-event-step-type">' + esc(tr(labels[type])) + '</span></span>'
+          + '<summary><span class="ex-event-step-meta"><span class="ex-event-step-year">' + esc(item.year) + '</span><span class="ex-event-step-place">' + esc(item.place ? tr(item.place) : '') + '</span><span class="ex-event-step-type">' + esc(tr(labels[type])) + '</span></span>'
           + '<span class="ex-event-step-title">' + esc(tr(item.title)) + '</span>'
           + '<span class="ex-event-step-index">' + String(index + 1).padStart(2, '0') + ' / ' + String(visible.length).padStart(2, '0') + '</span></summary>'
           + '<div class="ex-event-step-body"><p>' + esc(tr(item.detail || '')) + '</p>'
@@ -111,7 +110,7 @@
     items.forEach(function (item) { years[item.year] = (years[item.year] || 0) + 1; });
     var timeline = document.getElementById(view.timeline);
     if (!timeline) return;
-    timeline.innerHTML = '<button type="button" data-y="all" aria-pressed="true">' + esc(tr('Весь путь')) + ' · ' + items.length + '</button>'
+    timeline.innerHTML = '<button type="button" data-y="all" aria-pressed="true">' + esc(tr('Все годы')) + ' · ' + items.length + '</button>'
       + Object.keys(years).sort(function (a, b) { return Number(a) - Number(b); }).map(function (year) {
         return '<button type="button" data-y="' + esc(year) + '" aria-pressed="false">' + esc(year) + ' · ' + years[year] + '</button>';
       }).join('');

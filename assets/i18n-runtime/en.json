@@ -1868,13 +1868,14 @@
 "Художественно-графический рисунок": "Fine art and graphic drawing",
 "Занятия под руководством А. А. Соловьёва. Направление — художественно-графический рисунок.": "Studied with A. A. Solovyov, focusing on fine art and graphic drawing.",
 "Интерактивная хронология выставок": "Interactive exhibition timeline",
-"Академический рисунок — Пентаскул, удостоверение о повышении квалификации.": "Academic drawing — Pentaschool, certificate of advanced training.",
-"История изобразительного искусства — Пентаскул, удостоверение о повышении квалификации.": "History of fine art — Pentaschool, certificate of advanced training.",
-"Преподаватель изобразительного искусства и черчения — ЮРГПУ (НПИ), диплом о профессиональной переподготовке.": "Teacher of fine art and technical drawing — South-Russian State Polytechnic University (NPI), diploma of professional retraining.",
-"Методист дополнительного образования — МИППиПКП, диплом о профессиональной переподготовке.": "Methodologist of supplementary education — MIPPiPKP, diploma of professional retraining.",
-"Менеджмент в сфере культуры и искусства — КУЦ НПО «Меркурий Урал», диплом о профессиональной переподготовке.": "Arts and cultural management — Mercury Ural Vocational Education Centre, diploma of professional retraining.",
-"Авторское право для дизайнера — НАРХСИ, удостоверение о повышении квалификации.": "Copyright for designers — NARKHSI, certificate of advanced training.",
-"Основы дизайна — Formfactor Product Design School, сертификат.": "Design fundamentals — Formfactor Product Design School, certificate.",
+
+
+
+
+
+
+
+"Прокручивайте ленту по горизонтали и откройте карточку, чтобы прочитать подробности.": "Scroll the timeline horizontally and open a card to read the details.",
 "Основы Adobe Photoshop — Нетология, сертификат.": "Adobe Photoshop fundamentals — Netology, certificate.",
 "Арт-терапия — НИИДОПО, удостоверение о повышении квалификации.": "Art therapy — NIIDОPO, certificate of advanced training.",
 "Изостудия «Планета молодых» — художественно-графический рисунок.": "Planeta Molodykh art studio — fine art and graphic drawing.",
@@ -1885,5 +1886,31 @@
 "Основы дизайна — Formfactor Product Design School; Adobe Photoshop — Нетология; арт-терапия — НИИДОПО.": "Design fundamentals — Formfactor Product Design School; Adobe Photoshop — Netology; art therapy — NIIDOPO.",
 "Продолжаю художественное образование: академический рисунок, история искусства, дизайн и преподавание изобразительного искусства.": "I continue my studies in academic drawing, art history, design and art education.",
 "Клик по цвету изменит тон картины; повторный клик сбросит эффект.": "Click a color to shift the painting’s tone; click it again to reset.",
-"повторный клик сбросит оттенок": "click again to reset"
+"повторный клик сбросит оттенок": "click again to reset",
+
+
+
+
+
+
+
+
+
+
+
+
+
+"Хронология художественного образования": "Art education timeline",
+"Изостудия и первые занятия рисунком": "Art studio and first drawing lessons",
+"Изостудия «Планета молодых» — художественно-графический рисунок под руководством А. А. Соловьёва.": "Planeta Molodykh art studio — fine art and graphic drawing with A. A. Solovyov.",
+"Рисунок, история искусства и практика": "Drawing, art history and studio practice",
+"Академический рисунок — Пентаскул, удостоверение о повышении квалификации.": "Academic drawing — Pentaschool, advanced professional development certificate.",
+"История изобразительного искусства — Пентаскул, удостоверение о повышении квалификации.": "History of fine art — Pentaschool, advanced professional development certificate.",
+"Основы Adobe Photoshop — Нетология, сертификат; арт-терапия — НИИДОПО, удостоверение о повышении квалификации.": "Adobe Photoshop fundamentals — Netology, certificate; art therapy — NIIDOPO, advanced professional development certificate.",
+"Преподавание, культура и дизайн": "Teaching, culture and design",
+"Преподаватель изобразительного искусства и черчения — ЮРГПУ (НПИ), диплом о профессиональной переподготовке.": "Teacher of fine art and technical drawing — South-Russian State Polytechnic University (NPI), professional retraining diploma.",
+"Методист дополнительного образования — МИППиПКП, диплом о профессиональной переподготовке.": "Methodologist of supplementary education — MIPPiPKP, professional retraining diploma.",
+"Менеджмент в сфере культуры и искусства — КУЦ НПО «Меркурий Урал», диплом о профессиональной переподготовке.": "Arts and cultural management — Mercury Ural Vocational Education Centre, professional retraining diploma.",
+"Авторское право для дизайнера — НАРХСИ, удостоверение о повышении квалификации.": "Copyright for designers — NARKHSI, advanced professional development certificate.",
+"Основы дизайна — Formfactor Product Design School, сертификат.": "Design fundamentals — Formfactor Product Design School, certificate."
 }
