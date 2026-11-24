@@ -358,3 +358,9 @@ html{scrollbar-color:#526b64 #0b1d1b;scrollbar-width:thin}
 /* Keep the coral collection link readable; the shared orbit label was vertical. */
 .hero-orbit{writing-mode:horizontal-tb;transform:rotate(5deg);text-orientation:mixed;}
 .hero-orbit:hover{transform:rotate(0) scale(1.05);}
+
+/* Page switcher sits beneath the primary site header. */
+.artist-mode-tabs{display:flex;justify-content:center;align-items:center;gap:10px;min-height:58px;padding:8px 16px;background:#0b1d1b;border-bottom:1px solid rgba(226,221,202,.16)}.artist-mode-tabs button{appearance:none;min-height:40px;padding:9px 22px;border:1px solid rgba(226,221,202,.22);border-radius:999px;background:transparent;color:#b6c2b8;font:500 13px/1.2 Manrope,"Segoe UI",Arial,sans-serif;letter-spacing:.03em;cursor:pointer;white-space:nowrap;transition:background .2s,border-color .2s,color .2s,transform .2s}.artist-mode-tabs button:hover{border-color:#d58c73;color:#e7e6dc;transform:translateY(-1px)}.artist-mode-tabs button[aria-pressed="true"]{background:#c77d67;border-color:#c77d67;color:#10211e}.artist-mode-tabs button:focus-visible{outline:2px solid #e29b82;outline-offset:3px}@media(max-width:760px){.artist-mode-tabs{min-height:52px;gap:7px;padding:6px 12px}.artist-mode-tabs button{min-height:38px;padding:8px 17px;font-size:12px}}
+@media(pointer:coarse){.artwork-marquee{overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:none;touch-action:pan-x}.artwork-marquee::-webkit-scrollbar{display:none}.artwork-track{animation:none;padding-inline:18px}.artwork-slide{scroll-snap-align:center}.artwork-marquee{scroll-snap-type:x proximity}}
+
+.author-portrait img{animation:portrait-arrive .85s cubic-bezier(.2,.7,.2,1) both}@keyframes portrait-arrive{from{opacity:.25;transform:scale(1.035)}to{opacity:.9;transform:scale(1)}}@media(prefers-reduced-motion:reduce){.author-portrait img{animation:none}}
