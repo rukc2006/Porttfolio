@@ -41,6 +41,6 @@
     });
     document.dispatchEvent(new Event('exhibitions:ready'));
   }
-  fetch('exhibitions.json').then(function(r){if(!r.ok)throw Error('load');return r.json()}).then(function(data){items=data.slice().sort(function(a,b){return Number(b.year)-Number(a.year)});render()}).catch(function(){views.forEach(function(v){var root=document.getElementById(v.root);if(root)root.textContent=tr('Список выставок временно не загрузился.')});document.dispatchEvent(new Event('exhibitions:ready'))});
+  fetch('exhibitions.json?v=20261124-interactives-v2').then(function(r){if(!r.ok)throw Error('load');return r.json()}).then(function(data){items=data.slice().sort(function(a,b){return Number(b.year)-Number(a.year)});render()}).catch(function(){views.forEach(function(v){var root=document.getElementById(v.root);if(root)root.textContent=tr('Список выставок временно не загрузился.')});document.dispatchEvent(new Event('exhibitions:ready'))});
   document.addEventListener('kc:language-change',function(){if(items.length)render()});
 })();

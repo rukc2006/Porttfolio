@@ -113,23 +113,34 @@ document.querySelectorAll('[data-glass]').forEach((stage) => {
     if (!picker) return;
     const current = image.getAttribute('src');
     const choices = new Map();
-    document.querySelectorAll('.artwork-slide:not([aria-hidden="true"]), .swap-art, .study-art').forEach((node) => {
+    const addChoice = (node) => {
       const art = node.matches('img') ? node : node.querySelector('img');
       if (!art) return;
       const src = art.getAttribute('src');
-      if (!src || choices.has(src)) return;
+      if (!src) return;
       const button = node.matches('button') ? node : node.closest('button');
       const heading = node.closest('.study-card')?.querySelector('h3');
       const name = button?.dataset.artName || button?.dataset.name || heading?.getAttribute('data-ru') || heading?.textContent || art.getAttribute('data-ru-alt') || art.alt || src.split('/').pop();
-      choices.set(src, { src, name: name.replace(/\s+/g, ' ').trim() });
-    });
+      const cleanName = name.replace(/\s+/g, ' ').trim();
+      const key = cleanName.toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+      if (!choices.has(key)) choices.set(key, { src, name: cleanName });
+    };
+    // Prefer the larger study reproductions, then add paintings from the marquee
+    // and carousel that are not already represented there.
+    document.querySelectorAll('.study-art').forEach(addChoice);
+    document.querySelectorAll('.artwork-slide').forEach(addChoice);
+    document.querySelectorAll('.swap-art').forEach(addChoice);
     picker.replaceChildren(...[...choices.values()].map((choice) => {
       const option = document.createElement('option');
       option.value = choice.src;
       option.textContent = typeof window.kcT === 'function' ? window.kcT(choice.name) : choice.name;
       return option;
     }));
-    if (choices.has(current)) picker.value = current;
+    const selectedChoice = [...choices.values()].find((choice) => choice.src === current) || choices.values().next().value;
+    if (selectedChoice) {
+      picker.value = selectedChoice.src;
+      if (selectedChoice.src !== current) image.src = selectedChoice.src;
+    }
     picker.onchange = () => {
       image.src = picker.value;
       image.alt = picker.selectedOptions[0]?.textContent || 'Картина';
