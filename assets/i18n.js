@@ -38,7 +38,11 @@
     if (el.hasAttribute && el.hasAttribute('data-i18n-descend')) return false;
     if (!el.textContent || !el.textContent.trim()) return false;
     for (var i = 0; i < el.children.length; i++) { if (!INLINE[el.children[i].tagName]) return false; }
-    return true;
+    if (!el.children.length) return true;
+    // Translate a rich-text group as a unit only when this language has an
+    // exact entry for it. Otherwise descend to its links, labels and text nodes.
+    var source = el.getAttribute('data-ru');
+    return !!lookup(norm(source !== null ? source : el.innerHTML));
   }
   // собираем блоки
   function collect(root, out) {
@@ -50,6 +54,17 @@
     }
   }
   function key(x) { return norm(x.nodeType === 3 ? x.nodeValue : x.innerHTML); }
+
+  function restoreUnmatched(root) {
+    if (!root.querySelectorAll) return;
+    var els = root.querySelectorAll('[data-ru]');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i], ru = el.getAttribute('data-ru');
+      if (lang === 'ru' || !lookup(norm(ru))) {
+        if (el.innerHTML !== ru) el.innerHTML = ru;
+      }
+    }
+  }
 
   function applyAttrs(root, toRu) {
     var els = root.querySelectorAll ? root.querySelectorAll('[alt],[title],[placeholder],[aria-label]') : [];
@@ -65,9 +80,10 @@
     }
   }
   function translateRoot(root) {
+    applying = true;
+    restoreUnmatched(root);
     var items = [];
     collect(root, items);
-    applying = true;
     items.forEach(function (x) {
       if (x.nodeType === 3) {
         if (x._ru === undefined) x._ru = x.nodeValue;
@@ -120,7 +136,7 @@
   function load(cb) {
     if (lang === 'ru' || lang === 'dump') { dict = {}; cb(); return; }
     var x = new XMLHttpRequest();
-    x.open('GET', BASE + 'i18n/' + lang + '.json?v=20261124b', true);
+    x.open('GET', BASE + 'i18n/' + lang + '.json?v=20261124c', true);
     x.onload = function () { try { dict = JSON.parse(x.responseText) || {}; } catch (e) { dict = {}; } cb(); };
     x.onerror = function () { dict = {}; cb(); };
     x.send();
