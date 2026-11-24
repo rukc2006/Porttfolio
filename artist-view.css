@@ -436,7 +436,7 @@ html{scrollbar-color:#526b64 #0b1d1b;scrollbar-width:thin}
 .exhibitions-interactive .ex-years button[aria-pressed=true],.exhibitions-interactive .ex-legend button.on{background:var(--clay);border-color:var(--clay);color:#10211e}
 .exhibitions-interactive .ex-legend{margin:0 0 14px}
 .exhibitions-interactive .ex-timeline-hint{margin:10px 0 12px;color:#a9b8ad;font-size:12px;line-height:1.45}
-.exhibitions-interactive .exhibition-featured{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.exhibitions-interactive .exhibition-featured{display:block}
 .exhibitions-interactive .ex-card{min-width:0;min-height:180px;padding:20px;display:flex;flex-direction:column;border:1px solid rgba(233,223,201,.16);border-left:3px solid var(--clay);background:rgba(255,255,255,.025);transition:opacity .2s,transform .2s}
 .exhibitions-interactive .ex-card[hidden]{display:none!important}
 .exhibitions-interactive .ex-card .ex-meta{font:9px var(--mono);letter-spacing:.14em;color:var(--clay-pale)}
