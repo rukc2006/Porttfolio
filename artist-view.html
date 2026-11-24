@@ -11,18 +11,20 @@
 </head>
 <body>
   <header class="topbar" id="top">
-    <a class="brand" href="#top" aria-label="Ксения Комарова — главная">
+    <a class="brand" data-i18n-descend href="#top" aria-label="Ксения Комарова — главная">
       <span class="brand-mark" aria-hidden="true"><img src="assets/hudozhnik/artist-logo.webp" alt=""></span>
-      <span class="brand-copy"><strong>Ксения Комарова</strong><small>художница · живопись</small></span>
+      <span class="brand-copy" data-i18n-descend><strong>Ксения Комарова</strong><small>художница · живопись</small></span>
     </a>
-    <nav class="main-nav" aria-label="Основная навигация"><a href="#works">Картины</a><a href="#practice">Практика</a><a href="artist.html#cv" target="_top" rel="noopener">CV</a><a href="#contact">Контакт</a></nav>
-    <a class="top-cta" href="artist.html#cv" target="_top" rel="noopener">CV художницы</a>
+    <nav class="main-nav" data-i18n-descend aria-label="Основная навигация"><a href="#works">Картины</a><a href="#vision">Практика</a><a href="https://rukc2006.github.io/Porttfolio/vitrina.html?v=32" target="_blank" rel="noopener">Витрина</a><a href="https://rukc2006.github.io/Porttfolio/artist.html#cv" target="_top" rel="noopener">CV</a><a href="https://rukc2006.github.io/Porttfolio/about.html#all-contacts" target="_top" rel="noopener">Контакты</a></nav>
+    <a class="top-cta" href="https://rukc2006.github.io/Porttfolio/artist.html#cv" target="_top" rel="noopener">CV художницы</a>
     <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
+    <div class="language-slot" data-lang-slot></div>
   </header>
 
   <main>
     <section class="author-panel author-intro" id="practice" aria-labelledby="author-title">
       <div class="author-portrait"><img src="assets/hudozhnik/artist-portrait.webp" alt="Ксения Комарова в мастерской" fetchpriority="high"><span>АВТОР / КСЕНИЯ КОМАРОВА</span></div>
+      <a class="hero-orbit" data-i18n-descend href="https://rukc2006.github.io/Porttfolio/vitrina.html?v=32" target="_blank" rel="noopener" aria-label="Открыть витрину картин"><span>РАБОТЫ<br>В ВИТРИНЕ</span><b aria-hidden="true">↗</b></a>
       <div class="author-copy"><p class="eyebrow">ЦВЕТ — МОЯ ТОЧКА ОТСЧЁТА</p><h1 id="author-title">Я соединяю то,<br>что кажется <em>несовместимым.</em></h1><p>Я ищу точное место для сложных оттенков. Когда они остаются разными, но начинают усиливать друг друга, возникает мой язык живописи.</p><p>Тёплое и холодное, мягкое и резкое встречаются на холсте — и сохраняют свой характер.</p><a class="text-link" href="#works">Увидеть работы <span aria-hidden="true">↓</span></a></div>
     </section>
     <section class="works-marquee" id="works" aria-labelledby="works-marquee-title">
@@ -40,9 +42,9 @@
         <button class="artwork-slide" type="button" aria-hidden="true" tabindex="-1" data-art-src="assets/hudozhnik/art/tristitia.jpg" data-art-name="Живописная работа"><img src="assets/hudozhnik/art/tristitia.jpg" alt="" loading="lazy"><span>ЖИВОПИСЬ</span></button>
         <button class="artwork-slide" type="button" aria-hidden="true" tabindex="-1" data-art-src="assets/hudozhnik/art/under-wing.jpg" data-art-name="Живописная работа"><img src="assets/hudozhnik/art/under-wing.jpg" alt="" loading="lazy"><span>ЖИВОПИСЬ</span></button>
         <button class="artwork-slide" type="button" aria-hidden="true" tabindex="-1" data-art-src="assets/hudozhnik/art/wheel-of-samsara.jpg" data-art-name="Живописная работа"><img src="assets/hudozhnik/art/wheel-of-samsara.jpg" alt="" loading="lazy"><span>ЖИВОПИСЬ</span></button>
-      </div></div><p class="works-marquee-caption">Нажмите на картину, чтобы рассмотреть её. <a href="#color-studies">Ниже — разбор цвета пяти работ ↓</a></p>
+      </div></div><p class="works-marquee-caption">Нажмите на картину, чтобы рассмотреть её. <a href="#color-studies">Ниже — разбор цвета шести работ ↓</a></p>
     </section>
-    <section class="color-studies" aria-labelledby="color-studies-title">
+    <section class="color-studies" id="color-studies" aria-labelledby="color-studies-title">
       <header class="studies-heading"><p class="eyebrow">ШЕСТЬ РАБОТ · ШЕСТЬ ЦВЕТОВЫХ РЕШЕНИЙ</p><h2 id="color-studies-title">Как цвет <em>держит образ.</em></h2><p>Не универсальные схемы, а наблюдения за тем, что происходит в конкретных картинах. Палитры показаны приблизительно по репродукциям.</p></header>
       <div class="study-grid">
         <article class="study-card"><img class="study-art" src="assets/hudozhnik/studies/imago.jpg" alt="Imago — живопись Ксении Комаровой" loading="lazy"><div class="study-copy"><p class="study-meta">МАСЛО · ХОЛСТ · 30 × 40 СМ · 2021</p><h3>Imago</h3><p>Мятно-серые и пыльно-розовые слои не спорят за центр. Холодный зелёный раскрывает пространство, а розовые и охристые следы дают ему напряжение. Светлая середина собирает разные жесты в целое.</p><div class="palette" aria-label="Светлая кость, шалфей, пыльная роза, серо-лиловый"><i style="--swatch:#EFECE4"></i><i style="--swatch:#93A29A"></i><i style="--swatch:#B9A698"></i><i style="--swatch:#9C8E87"></i><i style="--swatch:#D2CCBB"></i></div><small class="palette-note">кость · шалфей · роза · лиловый · тёплый серый</small></div></article>
@@ -55,22 +57,14 @@
       <p class="studies-footnote">Цветовые названия и палитры — авторское чтение картин, а не техническое описание пигментов. Оттенки на экране зависят от устройства.</p>
     </section>    <section class="thesis artist-practice" id="vision" aria-labelledby="vision-title">
       <div class="thesis-kicker"><span>02</span><span>МОЙ СПОСОБ ВИДЕТЬ</span><i></i></div>
-      <div class="thesis-body"><div><p class="eyebrow">ЦВЕТ НЕ ОБЯЗАН БЫТЬ УДОБНЫМ</p><h2 id="vision-title">Он должен быть <em>точным.</em></h2><p class="vision-intro">Мне интересно не сглаживать противоречия, а находить точку, где противоположности удерживают друг друга. Там, где оттенок усиливает другой, а форма сохраняет напряжение, рождается образ.</p></div><div class="thesis-aside"><p>Природное чутьё на цвет — это внимание к отношениям: как сложный оттенок меняет пространство и как неожиданные сочетания становятся цельными.</p><div class="color-equation"><span class="swatch clay"></span><b>+</b><span class="swatch blue"></span><b>+</b><span class="swatch acid"></span><span class="equation-caption">Противоречие<br>может стать целым</span></div></div></div>
-      <div class="practice-routes"><a class="practice-route" href="artist.html#cv" target="_top" rel="noopener"><span>01 / ПРОФЕССИОНАЛЬНЫЙ КОНТЕКСТ</span><strong>CV художницы</strong><small>Биография, практика и профессиональный путь</small><b>Открыть CV ↗</b></a><a class="practice-route practice-route-store" href="https://rukc2006.github.io/Porttfolio/vitrina.html?v=32" target="_blank" rel="noopener"><span>02 / КОЛЛЕКЦИЯ</span><strong>Витрина картин</strong><small>Посмотреть работы и уточнить детали конкретной картины</small><b>Перейти к картинам ↗</b></a></div>
-      <div class="color-statement"><span>ЦВЕТ — ЭТО НЕ ФОН.</span><strong>ЭТО СПОСОБ ДУМАТЬ.</strong></div>
+      <div class="thesis-body"><div><p class="eyebrow">ЦВЕТ НЕ ОБЯЗАН БЫТЬ УДОБНЫМ</p><h2 id="vision-title">Он должен быть <em>точным.</em></h2><p class="vision-intro">Мне интересно не сглаживать противоречия, а находить точку, где противоположности удерживают друг друга. Там, где оттенок усиливает другой, а форма сохраняет напряжение, рождается образ.</p></div><div class="thesis-aside"><p>Природное чутьё на цвет — это внимание к отношениям: как сложный оттенок меняет пространство и как неожиданные сочетания становятся цельными.</p><div class="color-equation" data-i18n-descend><span class="swatch clay"></span><b>+</b><span class="swatch blue"></span><b>+</b><span class="swatch acid"></span><span class="equation-caption">Противоречие<br>может стать целым</span></div></div></div>
+      <div class="practice-routes" data-i18n-descend><a class="practice-route" data-i18n-descend href="https://rukc2006.github.io/Porttfolio/artist.html#cv" target="_top" rel="noopener"><span>01 / ПРОФЕССИОНАЛЬНЫЙ КОНТЕКСТ</span><strong>CV художницы</strong><small>Биография, практика и профессиональный путь</small><b>Открыть CV ↗</b></a><a class="practice-route practice-route-store" data-i18n-descend href="https://rukc2006.github.io/Porttfolio/vitrina.html?v=32" target="_blank" rel="noopener"><span>02 / КОЛЛЕКЦИЯ</span><strong>Витрина картин</strong><small>Посмотреть работы и уточнить детали конкретной картины</small><b>Перейти к картинам ↗</b></a></div>
+      <div class="color-statement" data-i18n-descend><span>ЦВЕТ — ЭТО НЕ ФОН.</span><strong>ЭТО СПОСОБ ДУМАТЬ.</strong></div>
     </section>
-    <section class="contact-section" id="contact"><div class="contact-number">СВЯЗАТЬСЯ<br><span>О РАБОТЕ, ПОКУПКЕ И СОТРУДНИЧЕСТВЕ</span></div><div class="contact-main"><p class="eyebrow">ОБСУДИТЬ РАБОТУ ИЛИ СОТРУДНИЧЕСТВО</p><h2>У картины может<br>начаться <em>другая жизнь.</em></h2><p>Напишите мне о работе — отвечу по её статусу и возможности просмотра.</p><div class="contact-options"><a class="contact-option" href="https://www.instagram.com/ru2006kc/" target="_blank" rel="noopener"><span>Instagram</span><small>@ru2006kc</small></a><a class="contact-option" href="https://vk.ru/kcradle" target="_blank" rel="noopener"><span>ВКонтакте</span><small>Написать в VK</small></a><a class="contact-option" href="mailto:ru-2006kc@yandex.ru"><span>Почта</span><small>ru-2006kc@yandex.ru</small></a></div></div><div class="contact-mark" aria-hidden="true"><img src="assets/hudozhnik/artist-logo.webp" alt=""></div></section>
+    <section class="contact-section" id="contact"><div class="contact-number" data-i18n-descend>СВЯЗАТЬСЯ<br><span>О РАБОТЕ, ПОКУПКЕ И СОТРУДНИЧЕСТВЕ</span></div><div class="contact-main"><p class="eyebrow">ОБСУДИТЬ РАБОТУ ИЛИ СОТРУДНИЧЕСТВО</p><h2>У картины может<br>начаться <em>другая жизнь.</em></h2><p>Напишите мне о работе — отвечу по её статусу и возможности просмотра.</p><div class="contact-options" data-i18n-descend><a class="contact-option" data-i18n-descend href="https://rukc2006.github.io/Porttfolio/about.html#all-contacts" target="_top" rel="noopener"><span>Instagram</span><small>@ru2006kc</small></a><a class="contact-option" data-i18n-descend href="https://rukc2006.github.io/Porttfolio/about.html#all-contacts" target="_top" rel="noopener"><span>ВКонтакте</span><small>Написать в VK</small></a><a class="contact-option" data-i18n-descend href="https://rukc2006.github.io/Porttfolio/about.html#all-contacts" target="_top" rel="noopener"><span>Почта</span><small>ru-2006kc@yandex.ru</small></a></div></div><div class="contact-mark" aria-hidden="true"><img src="assets/hudozhnik/artist-logo.webp" alt=""></div></section>
     <dialog class="art-dialog" aria-labelledby="art-dialog-title"><button class="dialog-close" type="button" aria-label="Закрыть просмотр">×</button><img class="dialog-image" src="" alt=""><div class="dialog-copy"><p class="eyebrow">ЖИВОПИСЬ / КСЕНИЯ КОМАРОВА</p><h2 id="art-dialog-title">Работа</h2><p>Чтобы узнать больше о работе и посмотреть актуальную информацию, перейдите в витрину.</p><a class="button button-clay dialog-store-link" href="https://rukc2006.github.io/Porttfolio/vitrina.html?v=32" target="_blank" rel="noopener">Открыть витрину <span aria-hidden="true">↗</span></a></div></dialog>
   </main>
-  <footer class="footer"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><img src="assets/hudozhnik/artist-logo.webp" alt=""></span><span class="brand-copy"><strong>Ксения Комарова</strong><small>художница · живопись</small></span></a><div class="footer-links"><a href="artist.html#cv" target="_top" rel="noopener">CV</a><a href="https://rukc2006.github.io/Porttfolio/vitrina.html?v=32" target="_blank" rel="noopener">Витрина</a></div><a href="#top">В начало</a><small class="footer-note">Персональное портфолио художницы</small></footer>
+  <footer class="footer"><a class="brand" data-i18n-descend href="#top"><span class="brand-mark" aria-hidden="true"><img src="assets/hudozhnik/artist-logo.webp" alt=""></span><span class="brand-copy" data-i18n-descend><strong>Ксения Комарова</strong><small>художница · живопись</small></span></a><div class="footer-links" data-i18n-descend><a href="https://rukc2006.github.io/Porttfolio/artist.html#cv" target="_top" rel="noopener">CV</a><a href="https://rukc2006.github.io/Porttfolio/vitrina.html?v=32" target="_blank" rel="noopener">Витрина</a></div><a href="#top">В начало</a><small class="footer-note">Персональное портфолио художницы</small></footer>
+  <script src="assets/i18n.js?v=artist-20261124"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
