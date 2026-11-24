@@ -527,6 +527,9 @@ html{scrollbar-color:#526b64 #0b1d1b;scrollbar-width:thin}
 .artist-education-path{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .artist-education-step{min-width:0;border:1px solid rgba(233,223,201,.17);border-left:2px solid rgba(213,140,115,.7);background:rgba(7,24,22,.35);transition:border-color .2s,background .2s}
 .artist-education-step[open]{border-color:rgba(213,140,115,.55);background:linear-gradient(120deg,rgba(213,140,115,.08),rgba(7,24,22,.28) 58%)}
+.artist-education-step.is-highlighted,.artist-education-step.is-highlighted[open]{border-color:rgba(233,196,121,.62);border-left:4px solid var(--gold2);background:linear-gradient(110deg,rgba(182,154,104,.13),rgba(7,24,22,.4) 72%)}
+.artist-education-step.is-highlighted .artist-education-title{color:var(--gold2)}
+.artist-education-step.is-highlighted .artist-education-kind{color:var(--gold2)}
 .artist-education-step summary{position:relative;display:grid;grid-template-columns:50px minmax(0,1fr) auto;gap:10px;align-items:center;min-height:76px;padding:14px 17px;cursor:pointer;list-style:none}
 .artist-education-step summary::-webkit-details-marker{display:none}
 .artist-education-year{color:var(--clay-pale);font:10px var(--mono);letter-spacing:.08em}
