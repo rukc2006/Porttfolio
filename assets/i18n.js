@@ -35,7 +35,6 @@
     return false;
   }
   function isUnit(el) {
-    if (el.hasAttribute && el.hasAttribute('data-i18n-descend')) return false;
     if (!el.textContent || !el.textContent.trim()) return false;
     for (var i = 0; i < el.children.length; i++) { if (!INLINE[el.children[i].tagName]) return false; }
     return true;
@@ -128,7 +127,6 @@
   function setLang(l) {
     lang = l;
     try { localStorage.setItem('kc_lang', l); } catch (e) {}
-    try { if (window.parent && window.parent !== window) window.parent.postMessage({ type: 'kc-language-change', lang: l }, location.origin); } catch (e) {}
     load(applyAll);
     try { var u = new URL(location.href); u.searchParams.delete('lang'); history.replaceState(null, '', u.toString()); } catch (e) {}
   }
