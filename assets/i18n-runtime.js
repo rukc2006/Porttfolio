@@ -1,5 +1,5 @@
 /* Переключатель языков RU / EN / 中文 для всех страниц.
-   Русский текст остаётся в HTML. Переводы лежат в assets/i18n/en.json и zh.json в виде {"русский текст блока": "перевод"}.
+   Русский текст остаётся в HTML. Переводы лежат в assets/i18n-runtime/en.json и zh.json в виде {"русский текст блока": "перевод"}.
    Ключ = innerHTML блока с пробелами, сжатыми до одного. Если перевода нет, остаётся русский.
    Режим сбора строк: открыть страницу с ?lang=dump, список ключей окажется в <pre id="i18n-dump">. */
 (function () {
@@ -67,7 +67,7 @@
   }
 
   function applyAttrs(root, toRu) {
-    var els = root.querySelectorAll ? root.querySelectorAll('[alt],[title],[placeholder],[aria-label]') : [];
+    var els = root.querySelectorAll ? root.querySelectorAll('[alt],[title],[placeholder],[aria-label],[data-art-name]') : [];
     for (var i = 0; i < els.length; i++) {
       var e = els[i];
       ATTRS.forEach(function (a) {
@@ -75,7 +75,7 @@
         var ru = e.getAttribute('data-ru-' + a);
         if (ru === null) { ru = e.getAttribute(a); if (!hasCyr(ru)) return; e.setAttribute('data-ru-' + a, ru); }
         var t = toRu ? ru : lookup(norm(ru));
-        if (t) e.setAttribute(a, t); else if (toRu) e.setAttribute(a, ru);
+        e.setAttribute(a, t || ru);
       });
     }
   }
@@ -137,15 +137,24 @@
     var requested = lang;
     if (requested === 'ru' || requested === 'dump') { dict = {}; cb(); return; }
     var x = new XMLHttpRequest();
-    x.open('GET', BASE + 'i18n-runtime/' + requested + '.json?v=20261125k2', true);
+    x.open('GET', BASE + 'i18n-runtime/' + requested + '.json?v=20261125-language-audit-v1', true);
     // Ignore older requests if the visitor toggles languages quickly.
-    x.onload = function () { if (requested !== lang) return; try { dict = JSON.parse(x.responseText) || {}; } catch (e) { dict = {}; } cb(); };
+    x.onload = function () {
+      if (requested !== lang) return;
+      if (x.status < 200 || x.status >= 300) { dict = {}; cb(); return; }
+      try { dict = JSON.parse(x.responseText) || {}; } catch (e) { dict = {}; }
+      cb();
+    };
     x.onerror = function () { if (requested !== lang) return; dict = {}; cb(); };
     x.send();
   }
   function setLang(l, fromParent) {
     if (l !== 'ru' && l !== 'en' && l !== 'zh') return;
     lang = l;
+    // Drop the previous dictionary at once so a slow request cannot leave
+    // the old language visible. The saved Russian source restores the page
+    // until the newly selected dictionary arrives.
+    dict = {};
     try { localStorage.setItem('kc_lang', l); } catch (e) {}
     if (!fromParent) {
       try { if (window.parent && window.parent !== window) window.parent.postMessage({ type: 'kc-language-change', lang: l }, location.origin); } catch (e) {}
@@ -154,6 +163,8 @@
     document.querySelectorAll('iframe').forEach(function (frame) {
       try { frame.contentWindow.postMessage({ type: 'kc-language-change', lang: l }, location.origin); } catch (e) {}
     });
+    applyAll();
+    document.dispatchEvent(new CustomEvent('kc:language-change', { detail: { lang: lang } }));
     load(function () {
       applyAll();
       document.dispatchEvent(new CustomEvent('kc:language-change', { detail: { lang: lang } }));
@@ -180,6 +191,8 @@
   function markSwitch() {
     var bs = document.querySelectorAll('.lang-switch button');
     for (var i = 0; i < bs.length; i++) bs[i].classList.toggle('on', bs[i].dataset.l === lang);
+    var label = lang === 'zh' ? '语言' : lang === 'en' ? 'Language' : 'Язык';
+    document.querySelectorAll('.lang-switch').forEach(function (group) { group.setAttribute('aria-label', label); });
   }
   function injectSwitch() {
     var css = document.createElement('style');
@@ -209,13 +222,13 @@
       if (applying || lang === 'ru') return;
       clearTimeout(timer);
       timer = setTimeout(function () { translateRoot(document.body); fixLinks(); }, 180);
-    }).observe(document.body, { childList: true, subtree: true });
+    }).observe(document.body, { childList: true, characterData: true, subtree: true });
   }
   function dump() {
     var items = []; collect(document.body, items);
     var keys = {};
     items.forEach(function (x) { var k = key(x); if (hasCyr(k)) keys[k] = 1; });
-    var as = document.querySelectorAll('[alt],[title],[placeholder],[aria-label]');
+    var as = document.querySelectorAll('[alt],[title],[placeholder],[aria-label],[data-art-name]');
     for (var i = 0; i < as.length; i++) ATTRS.forEach(function (a) { var v = as[i].getAttribute(a); if (v && hasCyr(v)) keys[norm(v)] = 1; });
     if (hasCyr(document.title)) keys[norm(document.title)] = 1;
     var md = document.querySelector('meta[name="description"]'); if (md && hasCyr(md.content)) keys[norm(md.content)] = 1;
@@ -233,6 +246,19 @@
       if (lang === 'ru') return;
       if (!lookup(k)) out[k] = 1;
     });
+    var attrs = document.querySelectorAll('[alt],[title],[placeholder],[aria-label],[data-art-name]');
+    attrs.forEach(function (el) {
+      ATTRS.forEach(function (attr) {
+        var value = el.getAttribute('data-ru-' + attr) || el.getAttribute(attr);
+        var k = norm(value || '');
+        if (hasCyr(k) && !lookup(k)) out[k] = 1;
+      });
+    });
+    var title = document.documentElement.getAttribute('data-ru-title') || document.title;
+    if (hasCyr(title) && !lookup(norm(title))) out[norm(title)] = 1;
+    var meta = document.querySelector('meta[name="description"]');
+    var description = meta && (meta.getAttribute('data-ru') || meta.content);
+    if (description && hasCyr(description) && !lookup(norm(description))) out[norm(description)] = 1;
     return Object.keys(out);
   };
   function init() {
